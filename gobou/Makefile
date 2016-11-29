@@ -1,11 +1,11 @@
 #### notice, don't forget update Makefile.dep
 #### (make compile.all USE_CACHE=0; ...; rm -f Makefile.dep; make Makefile.dep)
 # SIMULATOR=vcs
-SIMULATOR=iverilog
+# SIMULATOR=iverilog
 # SIMULATOR=xsim
 IOC_DIR=.
-TARGET=test_top
-DIST=../dist
+TARGET=test_gobou
+DIST=dist
 
 include Makefile.dep
 include VERBMakefile

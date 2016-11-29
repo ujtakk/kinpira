@@ -1,0 +1,125 @@
+% load "renkon.rb"
+
+module renkon_conv_tree(/*AUTOARG*/);
+`include "renkon.vh"
+
+  /*AUTOINPUT*/
+  input clk;
+  input xrst;
+  <%- for i in 0...$fsize**2 -%>
+  input signed [DWIDTH-1:0] pixel<%=i%>;
+  input signed [DWIDTH-1:0] weight<%=i%>;
+  <%- end -%>
+
+  /*AUTOOUTPUT*/
+  output signed [DWIDTH-1:0] fmap;
+
+  /*AUTOWIRE*/
+  <%- for i in 0...24 -%>
+  wire signed[DWIDTH-1:0]   sum<%=i%>;
+  <%- end -%>
+  <%- for i in 0...$fsize**2 -%>
+  wire signed[2*DWIDTH-1:0]   pro<%=i%>;
+  wire signed [DWIDTH-1:0]    pro_short<%=i%>;
+  <%- end -%>
+
+  /*AUTOREG*/
+  reg signed[DWIDTH-1:0]    r_fmap;
+  <%- for i in 0...$fsize**2 -%>
+  reg signed [DWIDTH-1:0]   r_pixel<%=i%>;
+  reg signed [DWIDTH-1:0]   r_weight<%=i%>;
+  reg signed [2*DWIDTH-1:0] r_pro<%=i%>;
+  reg signed [DWIDTH-1:0]   r_pro_short<%=i%>;
+  <%- end -%>
+  <%- for i in 0...24 -%>
+  reg signed [DWIDTH-1:0] r_sum<%=i%>;
+  <%- end -%>
+  <%- for i in 1...5 -%>
+  reg signed [DWIDTH-1:0] pro_short24_d<%=i%>;
+  <%- end -%>
+
+  <%- for i in 0...$fsize**2 -%>
+  assign pro<%=i%> = (r_pixel<%=i%> * r_weight<%=i%>);
+  <%- end -%>
+
+  <%- for i in 0...$fsize**2 -%>
+  //assign pro_short<%=i%> = $signed({pro<%=i%>[22],pro<%=i%>[22:8]});
+  assign pro_short<%=i%> = $signed({r_pro<%=i%>[22], round(r_pro<%=i%>[22:0])});
+  <%- end -%>
+
+  assign sum0 = sum1 + sum2;
+
+  assign sum1 = r_sum3 + r_sum4;
+  assign sum2 = r_sum5 + pro_short24_d2;
+
+  <%- for i in 3...6 -%>
+  assign sum<%=i%> = sum<%=2*i+1%> + sum<%=2*i%>;
+  <%- end -%>
+
+  <%- for i in 6...12 -%>
+  assign sum<%=i%> = sum<%=2*i+1%> + sum<%=2*i%>;
+  <%- end -%>
+
+  <%- for i in 12...24 -%>
+  assign sum<%=i%> = r_pro_short<%=2*i-23%> + r_pro_short<%=2*i-24%>;
+  <%- end -%>
+
+  <%- for i in 1...5 -%>
+  always @(posedge clk)
+    <%- if i == 1 -%>
+    pro_short24_d<%=i%> <= pro_short24;
+    <%- else -%>
+    pro_short24_d<%=i%> <= pro_short24_d<%=i-1%>;
+    <%- end -%>
+  <%- end -%>
+
+  <%- for i in 0...24 -%>
+  always @(posedge clk)
+    r_sum<%=i%> <= sum<%=i%>;
+  <%- end -%>
+
+  <%- for i in 0...$fsize**2 -%>
+  always @(posedge clk)
+    r_pro<%=i%> <= pro<%=i%>;
+  always @(posedge clk)
+    r_pro_short<%=i%> <= pro_short<%=i%>;
+  <%- end -%>
+
+  <%- for i in 0...$fsize**2 -%>
+  always @(posedge clk or negedge xrst)
+    if(!xrst)
+      r_pixel<%=i%> <= 0;
+    else
+      r_pixel<%=i%> <= pixel<%=i%>;
+
+  <%- end -%>
+
+  <%- for i in 0...$fsize**2 -%>
+  always @(posedge clk or negedge xrst)
+    if(!xrst)
+      r_weight<%=i%> <= 0;
+    else
+      r_weight<%=i%> <= weight<%=i%>;
+
+  <%- end -%>
+  assign fmap = r_fmap;
+
+  always @(posedge clk or negedge xrst)
+    if(!xrst)
+      r_fmap <= 0;
+    else
+      r_fmap <= sum0;
+
+////////////////////////////////////////////////////////////
+//  Function
+////////////////////////////////////////////////////////////
+
+  function signed [14:0] round;
+    input [22:0] data;
+    if (data[22] == 1'b1 && data[7:0] == 8'd0)
+      round = data[22:8] - 1;
+    else
+      round = data[22:8];
+  endfunction
+
+endmodule

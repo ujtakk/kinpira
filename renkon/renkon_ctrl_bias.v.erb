@@ -1,0 +1,50 @@
+% load "renkon.rb"
+
+module renkon_ctrl_bias(/*AUTOARG*/);
+
+  /*AUTOINPUT*/
+  input clk;
+  input xrst;
+  input in_begin;
+  input in_valid;
+  input in_end;
+
+  /*AUTOOUTPUT*/
+  output out_begin;
+  output out_valid;
+  output out_end;
+  output bias_oe;
+
+  /*AUTOWIRE*/
+
+  /*AUTOREG*/
+  <%- for i in 0...$d_bias -%>
+  reg r_out_begin_d<%=i%>;
+  reg r_out_valid_d<%=i%>;
+  reg r_out_end_d<%=i%>;
+  <%- end -%>
+
+  assign out_begin = r_out_begin_d<%=$d_bias-1%>;
+  assign out_valid = r_out_valid_d<%=$d_bias-1%>;
+  assign out_end   = r_out_end_d<%=$d_bias-1%>;
+
+  assign bias_oe = r_out_valid_d<%=$d_bias-2%>;
+
+  <%- for n in ["begin", "valid", "end"] -%>
+  <%-   for i in 0...$d_bias -%>
+  always @(posedge clk)
+    <%- if i == 0 -%>
+    if (!xrst)
+      r_out_<%=n%>_d0 <= 0;
+    else
+      r_out_<%=n%>_d0 <= in_<%=n%>;
+    <%- else -%>
+    if (!xrst)
+      r_out_<%=n%>_d<%=i%> <= 0;
+    else
+      r_out_<%=n%>_d<%=i%> <= r_out_<%=n%>_d<%=i-1%>;
+    <%- end -%>
+  <%-   end -%>
+  <%- end -%>
+
+endmodule

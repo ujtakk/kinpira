@@ -1,0 +1,46 @@
+% load "gobou.rb"
+
+/* AUTO_LISP (setq verilog-auto-output-ignore-regexp
+    (verilog-regexp-words `(
+      ""
+    ))) */
+
+module gobou_core(/*AUTOARG*/);
+`include "gobou.vh"
+
+  /*AUTOINPUT*/
+
+  /*AUTOOUTPUT*/
+  output signed [DWIDTH-1:0] result;
+
+  /*AUTOWIRE*/
+
+  /*AUTOREG*/
+
+  /* gobou_mac AUTO_TEMPLATE (
+      .out_en   (mac_oe),
+      .accum_we (accum_we),
+      .reset    (accum_rst),
+      .x        (pixel[DWIDTH-1:0]),
+      .w        (weight[DWIDTH-1:0]),
+      .y        (dotted[DWIDTH-1:0]),
+  ); */
+  gobou_mac mac(/*AUTOINST*/);
+
+  /* gobou_bias AUTO_TEMPLATE (
+      .read_bias  (weight[DWIDTH-1:0]),
+      .breg_we    (breg_we),
+      .out_en     (bias_oe),
+      .pixel_in   (dotted[DWIDTH-1:0]),
+      .pixel_out  (biased[DWIDTH-1:0]),
+  ); */
+  gobou_bias bias(/*AUTOINST*/);
+
+  /* gobou_relu AUTO_TEMPLATE (
+      .out_en     (relu_oe),
+      .pixel_in   (biased[DWIDTH-1:0]),
+      .pixel_out  (result[DWIDTH-1:0]),
+  ); */
+  gobou_relu relu(/*AUTOINST*/);
+
+endmodule
