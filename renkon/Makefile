@@ -4,9 +4,9 @@
 # SIMULATOR=iverilog
 # SIMULATOR=xsim
 IOC_DIR=.
-TARGET=test_top
+TARGET=test_renkon
 INSTANCE=`echo $(TARGET) | awk -F "test_" '{print $$2}'`
-DIST=../dist
+DIST=dist
 
 include Makefile.dep
 include VERBMakefile

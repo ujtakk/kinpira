@@ -1,0 +1,50 @@
+% load "renkon.rb"
+
+module renkon_core(/*AUTOARG*/);
+`include "renkon.vh"
+
+  /*AUTOINPUT*/
+
+  /*AUTOOUTPUT*/
+
+  /*AUTOWIRE*/
+
+  /*AUTOREG*/
+
+  // AUTO_CONSTANT (DWIDTH)
+
+  /* renkon_conv AUTO_TEMPLATE (
+      .wreg_we        (wreg_we),
+      .out_en         (conv_oe),
+      .read_weight    (read_net[DWIDTH-1:0]),
+      <%- for i in 0...($fsize**2) -%>
+      .pixel_in<%=i%> (pixel<%=i%>[DWIDTH-1:0]),
+      <%- end -%>
+      .pixel_out      (fmap[DWIDTH-1:0]),
+  ); */
+  renkon_conv conv(/*AUTOINST*/);
+
+  /* renkon_bias AUTO_TEMPLATE (
+      .breg_we    (breg_we),
+      .out_en     (bias_oe),
+      .read_bias  (read_net[DWIDTH-1:0]),
+      .pixel_in   (fmap[DWIDTH-1:0]),
+      .pixel_out  (biased[DWIDTH-1:0]),
+  ); */
+  renkon_bias bias(/*AUTOINST*/);
+
+  /* renkon_relu AUTO_TEMPLATE (
+      .out_en     (relu_oe),
+      .pixel_in   (biased[DWIDTH-1:0]),
+      .pixel_out  (actived[DWIDTH-1:0]),
+  ); */
+  renkon_relu relu(/*AUTOINST*/);
+
+  /* renkon_pool AUTO_TEMPLATE (
+      .out_en     (pool_oe),
+      .pixel_in   (actived[DWIDTH-1:0]),
+      .pixel_out  (pmap[DWIDTH-1:0]),
+  ); */
+  renkon_pool pool(/*AUTOINST*/);
+
+endmodule
