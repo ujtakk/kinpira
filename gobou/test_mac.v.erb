@@ -1,0 +1,105 @@
+% load "parameters.rb"
+
+`timescale 1ns/1ps
+
+module test_mac();
+`include "parameters.vh"
+
+  /*AUTOREGINPUT*/
+
+  /*AUTOWIRE*/
+
+  //clock
+  always
+  begin
+    clk = 0;
+    #(STEP/2);
+    clk = 1;
+    #(STEP/2);
+  end
+
+  //flow
+  initial
+  begin
+    xrst = 0;
+    #(STEP);
+
+    xrst      = 1;
+    out_en    = 0;
+    accum_we  = 0;
+    reset     = 0;
+    x         = 0;
+    w         = 0;
+    #(STEP);
+
+    <%- 5.times do |i| -%>
+    x = <%=i%> * 256;
+    w = <%=i%> * 256;
+    #(STEP);
+    <%- end -%>
+
+    x = 5 * 256;
+    w = 0 * 256;
+    #(STEP);
+    accum_we = 1;
+
+    <%- (6...10).each do |i| -%>
+    x = <%=i%> * 256;
+    w = <%=i-5%> * 256;
+    #(STEP);
+    <%- end -%>
+
+    x = 10 * 256;
+    w = 5 * 256;
+    #(STEP);
+    accum_we = 0;
+
+    out_en = 1;
+    #(STEP);
+
+    out_en = 0;
+
+    reset = 1;
+    #(STEP);
+
+    reset = 0;
+    #(STEP);
+
+    #(STEP*5);
+
+    $finish();
+  end
+
+  mac dut0(/*AUTOINST*/);
+
+  //display
+  always
+  begin
+    #(STEP/2-1);
+    $display(
+      "%d: ", $time/STEP,
+      "%d ", xrst,
+      "| ",
+      "%d ", out_en,
+      "%d ", accum_we,
+      "%d ", reset,
+      "%x ", x,
+      "%x ", w,
+      "| ",
+      "%d ", y,
+      "| ",
+      "%d ", dut0.pro,
+      "%d ", dut0.pro_short,
+      "%d ", dut0.pro_short / 256,
+      "| ",
+      "%d ", dut0.r_x,
+      "%d ", dut0.r_w,
+      "%d ", dut0.r_y,
+      "%d ", dut0.r_accum,
+      "|"
+    );
+    #(STEP/2+1);
+  end
+
+endmodule
+

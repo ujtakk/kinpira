@@ -1,0 +1,53 @@
+`timescale 1ns/1ps
+
+module test_relu();
+`include "parameters.vh"
+
+  /*AUTOREGINPUT*/
+
+  /*AUTOWIRE*/
+
+  //clock
+  always
+  begin
+    clk = 0;
+    #(STEP/2);
+    clk = 1;
+    #(STEP/2);
+  end
+
+  //flow
+  integer i;
+  initial
+  begin
+    xrst = 0;
+    #(STEP);
+
+    xrst = 1;
+    #(STEP);
+
+    for (i = 0; i < 10; i = i + 1)
+    begin
+      pixel_in = (-1)**i * i;
+      #(STEP);
+    end
+    #(STEP);
+    $finish();
+  end
+
+  //display
+  always
+  begin
+    #(STEP/2-1);
+    $display(
+      "%d: ", $time/STEP,
+      "| ",
+      "%d ", pixel_in,
+      "%d ", pixel_out,
+    );
+    #(STEP/2+1);
+  end
+
+  relu dut0(/*AUTOINST*/);
+
+endmodule

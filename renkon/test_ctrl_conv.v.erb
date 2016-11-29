@@ -1,0 +1,217 @@
+% load "parameters.rb"
+
+`timescale 1ns/1ps
+
+module test_ctrl_conv();
+`include "parameters.vh"
+
+  parameter S_CORE_WAIT   = 'd0;
+  parameter S_CORE_WEIGHT = 'd1;
+  parameter S_CORE_INPUT  = 'd2;
+  parameter S_CORE_OUTPUT = 'd3;
+
+  /*AUTOREGINPUT*/
+  reg [2-1:0] core_state_in;
+  reg         first_input_in;
+  reg         last_input_in;
+  reg         in_begin_in;
+  reg         in_valid_in;
+  reg         in_end_in;
+  <%- for i in 1...$d_pixelbuf -%>
+  reg [2-1:0]       r_state_d<%=i%>;
+  reg               r_first_input_d<%=i%>;
+  reg               r_last_input_d<%=i%>;
+  reg               r_in_begin_d<%=i%>;
+  reg               r_in_valid_d<%=i%>;
+  reg               r_in_end_d<%=i%>;
+  <%- end -%>
+
+  /*AUTOWIRE*/
+
+  <%- for i in 1...$d_pixelbuf -%>
+  always @(posedge clk)
+    <%- if i == 1 -%>
+    if (!xrst)
+    begin
+      r_state_d<%=i%>       <= 0;
+      r_first_input_d<%=i%> <= 0;
+      r_last_input_d<%=i%>  <= 0;
+      r_in_begin_d<%=i%>    <= 0;
+      r_in_valid_d<%=i%>    <= 0;
+      r_in_end_d<%=i%>      <= 0;
+    end
+    else
+    begin
+      r_state_d<%=i%>       <= core_state_in;
+      r_first_input_d<%=i%> <= first_input_in;
+      r_last_input_d<%=i%>  <= last_input_in;
+      r_in_begin_d<%=i%>    <= in_begin_in;
+      r_in_valid_d<%=i%>    <= in_valid_in;
+      r_in_end_d<%=i%>      <= in_end_in;
+    end
+    <%- else -%>
+    if (!xrst)
+    begin
+      r_state_d<%=i%>       <= 0;
+      r_first_input_d<%=i%> <= 0;
+      r_last_input_d<%=i%>  <= 0;
+      r_in_begin_d<%=i%>    <= 0;
+      r_in_valid_d<%=i%>    <= 0;
+      r_in_end_d<%=i%>      <= 0;
+    end
+    else
+    begin
+      r_state_d<%=i%>       <= r_state_d<%=i-1%>;
+      r_first_input_d<%=i%> <= r_first_input_d<%=i-1%>;
+      r_last_input_d<%=i%>  <= r_last_input_d<%=i-1%>;
+      r_in_begin_d<%=i%>    <= r_in_begin_d<%=i-1%>;
+      r_in_valid_d<%=i%>    <= r_in_valid_d<%=i-1%>;
+      r_in_end_d<%=i%>      <= r_in_end_d<%=i-1%>;
+    end
+    <%- end -%>
+  <%- end -%>
+
+  always @(posedge clk)
+    if (!xrst)
+    begin
+      core_state  <= 0;
+      first_input <= 0;
+      last_input  <= 0;
+      in_begin    <= 0;
+      in_valid    <= 0;
+      in_end      <= 0;
+    end
+    else
+    begin
+      core_state  <= r_state_d<%=$d_pixelbuf-1%>;
+      first_input <= r_first_input_d<%=$d_pixelbuf-1%>;
+      last_input  <= r_last_input_d<%=$d_pixelbuf-1%>;
+      in_begin    <= r_in_begin_d<%=$d_pixelbuf-1%>;
+      in_valid    <= r_in_valid_d<%=$d_pixelbuf-1%>;
+      in_end      <= r_in_end_d<%=$d_pixelbuf-1%>;
+    end
+  //clock
+  always
+  begin
+    clk = 0;
+    #(STEP/2);
+    clk = 1;
+    #(STEP/2);
+  end
+
+  //flow
+  initial
+  begin
+    xrst = 0;
+    #(STEP);
+    xrst = 1;
+    core_state_in = 0;
+    first_input_in = 0;
+    last_input_in = 0;
+    in_begin_in = 0;
+    in_valid_in = 0;
+    in_end_in = 0;
+    img_size = 0;
+    fil_size = 0;
+    #(STEP);
+    img_size = 12;
+    fil_size = 5;
+    in_send;
+    while (!out_end) #(STEP);
+    #(STEP*5);
+    $finish();
+  end
+
+  //display
+  always
+  begin
+    #(STEP/2-1);
+    $display(
+      "%5d: ", $time/STEP,
+      "%d ", dut0.r_state,
+      "%d ", dut0.r_core_state,
+      "| ",
+      "%d ", xrst,
+      "%d ", in_begin,
+      "%d ", in_valid,
+      "%d ", in_end,
+      "%d ", core_state,
+      "%d ", img_size,
+      "%d ", fil_size,
+      "%d ", first_input,
+      "%d ", last_input,
+      "| ",
+      "%d ", out_begin,
+      "%d ", out_valid,
+      "%d ", out_end,
+      "%d ", mem_feat_we,
+      "%d ", mem_feat_rst,
+      "%d ", mem_feat_addr,
+      "%d ", mem_feat_addr_d1,
+      "| ",
+      "%d ", dut0.r_conv_x,
+      "%d ", dut0.r_conv_y,
+      "%d ", dut0.conv_begin,
+      "%d ", dut0.conv_valid,
+      "%d ", dut0.conv_end,
+    );
+    #(STEP/2+1);
+  end
+
+  ctrl_conv dut0(/*AUTOINST*/);
+
+  task in_send;
+    integer i, j, k, l;
+    begin
+      for (i = 0; i < 7; i = i + 1) begin
+        // weight
+        in_begin_in = 1;
+        core_state_in = S_CORE_WEIGHT;
+        #(STEP);
+        in_begin_in = 0;
+        in_valid_in = 1;
+        for (j = 0; j < 5; j = j + 1) begin
+          for (k = 0; k < 5; k = k + 1) begin
+            #(STEP);
+          end
+        end
+
+        // input
+        core_state_in = S_CORE_INPUT;
+        #(STEP);
+        for (j = 0; j < 20; j = j + 1) begin
+          if (j == 0) first_input_in = 1;
+          if (j == 19) last_input_in = 1;
+          for (k = 0; k < 12; k = k + 1) begin
+            for (l = 0; l < 12; l = l + 1) begin
+              #(STEP);
+            end
+          end
+          if (j == 0) first_input_in = 0;
+          if (j == 19) last_input_in = 0;
+        end
+        in_valid_in = 0;
+
+        // output
+        core_state_in = S_CORE_OUTPUT;
+        #(STEP);
+        for (j = 0; j < 8; j = j + 1) begin
+          for (k = 0; k < 8; k = k + 1) begin
+            if (j == 7 && k == 7)
+            begin
+              //in_end_in = 1;
+            end
+            #(STEP);
+            if (j == 7 && k == 7)
+            begin
+              //in_end_in = 0;
+              //in_begin_in = 0;
+            end
+          end
+        end
+      end
+      core_state_in = 0;
+    end
+  endtask
+
+endmodule

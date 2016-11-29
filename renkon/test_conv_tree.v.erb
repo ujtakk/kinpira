@@ -1,0 +1,115 @@
+% load "parameters.rb"
+% num = 100
+
+`timescale 1ns/1ps
+
+module test_conv_tree();
+`include "parameters.vh"
+
+  parameter DATA_NUM = FSIZE**2;
+
+  /*AUTOREGINPUT*/
+  <%- for n in 1..num -%>
+  reg [DWIDTH-1:0] xmem<%=n%>[0:DATA_NUM-1];
+  reg [DWIDTH-1:0] wmem<%=n%>[0:DATA_NUM-1];
+  <%- end -%>
+  reg signed [DWIDTH-1:0] omem[0:<%=num%>-1];
+
+  /*AUTOWIRE*/
+
+  integer i, j;
+
+  //clock
+  always
+  begin
+    clk = 0;
+    #(STEP/2);
+    clk = 1;
+    #(STEP/2);
+  end
+
+  integer fp;
+  initial
+  begin
+    <%- for n in 1..num -%>
+    read_x<%=n%>;
+    read_w<%=n%>;
+    #(STEP);
+    xrst=0;
+    <%-   for i in 0...$fsize**2 -%>
+    pixel<%=i%> = 0;
+    weight<%=i%> = 0;
+    <%-   end -%>
+    #(STEP);
+    xrst = 1;
+    #(STEP);
+    <%-   for i in 0...$fsize**2 -%>
+    pixel<%=i%>  = xmem<%=n%>[<%=i%>];
+    weight<%=i%> = wmem<%=n%>[<%=i%>];
+    <%-   end -%>
+    #(STEP*10);
+    omem[<%=n-1%>] = fmap;
+    #(STEP);
+    <%- end -%>
+    save_o;
+    $finish();
+  end
+
+  always
+  begin
+    #(STEP/2-1);
+    $display(
+      "%d: ", $time/STEP,
+      "%b", $signed(fmap)
+    );
+    #(STEP/2+1);
+  end
+  conv_tree dut0(/*AUTOINST*/);
+
+  <%- for n in 1..num -%>
+  task read_x<%=n%>;
+    reg [DWIDTH-1:0] val;
+    integer fd;
+    integer i;
+    integer c;
+    begin
+      fd = $fopen("../input/input_x_<%=n%>.dat", "r");
+      // read data
+      for (i = 0; i < DATA_NUM; i = i + 1) begin
+        c = $fscanf(fd, "%d", val);
+        xmem<%=n%>[i] = val;
+      end
+      $fclose(fd);
+    end
+  endtask
+
+  task read_w<%=n%>;
+    reg [DWIDTH-1:0] val;
+    integer fd;
+    integer i;
+    integer c;
+    begin
+      fd = $fopen("../input/input_w_<%=n%>.dat", "r");
+      // read data
+      for (i = 0; i < DATA_NUM; i = i + 1) begin
+        c = $fscanf(fd, "%d", val);
+        wmem<%=n%>[i] = val;
+      end
+      $fclose(fd);
+    end
+  endtask
+  <%- end -%>
+
+  task save_o;
+    integer fd;
+    integer i;
+    begin
+      fd = $fopen("output.dat", "w");
+      for (i = 0; i < <%=num%>; i = i + 1) begin
+        $fdisplay(fd, "%4d", omem[i]);
+      end
+      $fclose(fd);
+    end
+  endtask
+
+endmodule

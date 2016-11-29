@@ -1,0 +1,39 @@
+% load "parameters.rb"
+
+module conv_wreg(/*AUTOARG*/);
+`include "parameters.vh"
+
+  /*AUTOINPUT*/
+  input signed [DWIDTH-1:0] read_weight;
+  input wreg_we;
+  input clk;
+
+  /*AUTOOUTPUT*/
+  <%- for i in 0...$fsize**2 -%>
+  output signed [DWIDTH-1:0] weight<%=i%>;
+  <%- end -%>
+
+  /*AUTOWIRE*/
+
+  /*AUTOREG*/
+  <%- for i in 0...$fsize**2 -%>
+  reg signed [DWIDTH-1:0] r_weight<%=i%>;
+  <%- end -%>
+
+  <%- for i in 0...$fsize**2 -%>
+  assign weight<%=i%> = r_weight<%=i%>;
+  <%- end -%>
+
+  <%- for i in 0...$fsize**2 -%>
+  always @(posedge clk)
+    if (wreg_we)
+      <%- if i == $fsize**2-1 -%>
+      r_weight<%=i%> <= read_weight;
+      <%- else -%>
+      r_weight<%=i%> <= r_weight<%=i+1%>;
+      <%- end -%>
+    else
+      r_weight<%=i%> <= r_weight<%=i%>;
+  <%- end -%>
+
+endmodule

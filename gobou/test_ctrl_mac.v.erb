@@ -1,0 +1,70 @@
+% load "parameters.rb"
+
+`timescale 1ns/1ps
+
+module test_ctrl_mac();
+`include "parameters.vh"
+
+  /*AUTOREGINPUT*/
+
+  /*AUTOWIRE*/
+
+  //clock
+  always
+  begin
+    clk = 0;
+    #(STEP/2);
+    clk = 1;
+    #(STEP/2);
+  end
+
+  //flow
+  initial
+  begin
+    xrst = 0;
+    #(STEP);
+    xrst = 1;
+    in_begin  = 0;
+    in_valid  = 0;
+    in_end    = 0;
+    #(STEP);
+    in_begin = 1;
+    #(STEP);
+    in_begin = 0;
+    in_valid = 1;
+    #(STEP*800);
+    in_end = 1;
+    #(STEP);
+    in_valid = 0;
+    in_end = 0;
+    #(STEP*5);
+    $finish();
+  end
+
+  ctrl_mac dut0(/*AUTOINST*/);
+
+  //display
+  always
+  begin
+    #(STEP/2-1);
+    $display(
+      "%d: ", $time/STEP,
+      "| ",
+      "%d ", xrst,
+      "%d ", in_begin,
+      "%d ", in_valid,
+      "%d ", in_end,
+      "| ",
+      "%d ", out_begin,
+      "%d ", out_valid,
+      "%d ", out_end,
+      "%d ", mac_oe,
+      "%d ", accum_we,
+      "%d ", accum_rst,
+      "|"
+    );
+    #(STEP/2+1);
+  end
+
+endmodule
+

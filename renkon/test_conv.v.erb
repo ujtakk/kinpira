@@ -1,0 +1,68 @@
+% load "parameters.rb"
+
+`timescale 1ns/1ps
+
+module test_conv();
+`include "parameters.vh"
+
+  /*AUTOREGINPUT*/
+
+  /*AUTOWIRE*/
+
+  //clock
+  always
+  begin
+    clk = 0;
+    #(STEP/2);
+    clk = 1;
+    #(STEP/2);
+  end
+
+  initial
+  begin
+    #(STEP);
+    xrst = 0;
+    wreg_we = 0;
+    <%- for i in 0...$fsize**2 -%>
+    pixel<%=i%> = 0;
+    <%- end -%>
+    #(STEP);
+    xrst = 1;
+    #(STEP);
+    wreg_we = 1;
+    <%- for i in 0...$fsize**2 -%>
+    read_data = <%=i%>;
+    #(STEP);
+    <%- end -%>
+    wreg_we = 0;
+    <%- for i in 0...$fsize**2 -%>
+    pixel<%=i%> = <%=i%>;
+    <%- end -%>
+    #(STEP*3);
+    $finish();
+  end
+
+  always
+  begin
+    #(STEP/2-1);
+    $display("%d %d | %d ", xrst, wreg_we, read_data);
+    <%- for i in 0...5 -%>
+    $display(
+      <%-   for j in 0...4 -%>
+      "%d ", pixel<%=5*i+j%>,
+      <%- end -%>
+      "%d ", pixel<%=5*i+4%>,
+      "| ",
+      <%-   for j in 0...4 -%>
+      "%d ", dut0.weight<%=5*i+j%>,
+      <%- end -%>
+      "%d ", dut0.weight<%=5*i+4%>,
+    );
+    <%- end -%>
+    $display("output: %d\n", fmap);
+    #(STEP/2+1);
+  end
+
+  conv dut0(/*AUTOINST*/);
+
+endmodule

@@ -1,0 +1,16 @@
+*~
+*.v
+*.out
+*.vh
+log.txt
+*.log
+*[^(dep)]*.in
+*.com
+*.vstf
+*.dat
+!*_true.dat
+Makefile.dep
+work/
+transcript
+dep.rb
+dep.in
