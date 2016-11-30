@@ -93,6 +93,7 @@ module renkon_ctrl_core(/*AUTOARG*/);
   reg [LWIDTH-1:0]  r_serial_cnt;
   reg [OUTSIZE-1:0] r_serial_addr;
   reg               r_serial_end;
+  reg               r_output_end;
   reg [2-1:0]       r_state_d         [<%=$d_pixelbuf%>:0];
   reg               r_state_weight_d  [<%=$d_pixelbuf%>:0];
   reg               r_wreg_we_d       [<%=$d_pixelbuf%>-1:0];
@@ -470,8 +471,7 @@ module renkon_ctrl_core(/*AUTOARG*/);
   assign out_valid    = r_out_valid_d[r_d_pixelbuf];
   assign out_end      = r_out_end_d[r_d_pixelbuf];
 
-  assign s_output_end = r_state == S_OUTPUT
-                     && r_serial_end;
+  assign s_output_end = r_output_end;
 
   always @(posedge clk)
     if (!xrst)
@@ -479,6 +479,12 @@ module renkon_ctrl_core(/*AUTOARG*/);
     else
       r_serial_end <= r_serial_re == CORE
                    && r_serial_addr == r_serial_cnt - 1;
+
+  always @(posedge clk)
+    if (!xrst)
+      r_output_end <= 0;
+    else
+      r_output_end <= r_state == S_OUTPUT && r_serial_end;
 
   always @(posedge clk)
     if (!xrst)

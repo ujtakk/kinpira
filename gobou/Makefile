@@ -5,7 +5,8 @@
 # SIMULATOR=xsim
 IOC_DIR=.
 TARGET=test_gobou
-DIST=dist
+# DIST=dist
+DIST=../ip_repo/kinpira_1.0/src
 
 include Makefile.dep
 include VERBMakefile

@@ -8,11 +8,11 @@ module test_gobou();
 `include "gobou.vh"
 
   /*AUTOREGINPUT*/
-  reg [DWIDTH-1:0] mem_image [2**IMGSIZE-1:0];
+  reg [DWIDTH-1:0] mem_i [2**IMGSIZE-1:0];
 
   /*AUTOWIRE*/
   <%- for i in 0...$core -%>
-  reg [DWIDTH-1:0] mem_network<%=i%> [2**NETSIZE-1:0];
+  reg [DWIDTH-1:0] mem_n<%=i%> [2**NETSIZE-1:0];
   <%- end -%>
 
   //clock
@@ -25,6 +25,7 @@ module test_gobou();
   end
 
   //flow
+  integer i;
   initial
   begin
     xrst = 0;
@@ -47,8 +48,8 @@ module test_gobou();
     total_in = 800;
     input_addr = 0;
     output_addr = 1000;
-    read_input_direct;
-    read_weight_direct;
+    read_input;
+    read_weight;
     #(STEP);
 
     req = 1;
@@ -63,6 +64,30 @@ module test_gobou();
 
   gobou dut0(/*AUTOINST*/);
 
+  task read_input;
+    begin // {{{
+      $readmemh(
+        "test_gobou_input.dat",
+        mem_i,
+        0,
+        799
+      );
+      img_we = 1;
+        #(STEP);
+      for (i=0; i<2**IMGSIZE; i=i+1)
+      begin
+        input_addr = i;
+        #(STEP);
+        write_img = mem_i[i];
+        #(STEP);
+      end
+      #(STEP);
+      img_we = 0;
+      input_addr = 0;
+      write_img = 0;
+    end // }}}
+  endtask
+
   task read_input_direct;
     begin // {{{
       $readmemh(
@@ -71,6 +96,55 @@ module test_gobou();
         0,
         799
       );
+    end // }}}
+  endtask
+
+  task read_weight;
+    begin // {{{
+      <%- ($n_f1/$core).times do |i| -%>
+      <%-   $core.times do |j| -%>
+      $readmemb(
+        "<%=weight%>/bwb_3/data<%=$core*i+j%>.bin",
+        mem_n<%=j%>,
+        <%=($n_in+1)*(i)%>,
+        <%=($n_in+1)*(i+1)-1%>
+      );
+      <%-   end -%>
+      <%- end -%>
+      <%- if $n_f1 % $core != 0 -%>
+      <%-   $core.times do |j| -%>
+      <%-     if ($core*($n_f1/$core) + j) < $n_f1 -%>
+      $readmemb(
+        "<%=weight%>/bwb_3/data<%=$core*($n_f1/$core)+j%>.bin",
+        mem_n<%=j%>,
+        <%=($n_in+1)*($n_f1/$core)%>,
+        <%=($n_in+1)*($n_f1/$core+1)-1%>
+      );
+      <%-     else -%>
+      $readmemb(
+        "<%=weight%>/bwb_3/null_net.bin",
+        mem_n<%=j%>,
+        <%=($n_in+1)*($n_f1/$core)%>,
+        <%=($n_in+1)*($n_f1/$core+1)-1%>
+      );
+      <%-     end -%>
+      <%-   end -%>
+      <%- end -%>
+
+      <%- for n in 0...$core -%>
+      net_we = <%=$core_log+1%>'d<%=n+1%>;
+      #(STEP);
+      for (i=0; i<2**NETSIZE; i=i+1)
+      begin
+        net_addr = i;
+        #(STEP);
+        write_net = mem_n<%=n%>[i];
+        #(STEP);
+      end
+      net_we = <%=$core_log+1%>'d0;
+      net_addr = 0;
+      write_net = 0;
+      <%- end -%>
     end // }}}
   endtask
 
