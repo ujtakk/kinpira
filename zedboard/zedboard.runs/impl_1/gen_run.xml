@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GenRun Id="impl_1" LaunchPart="xc7z020clg484-1" LaunchTime="1480465810">
+  <File Type="PA-DCP" Name="kinpira_wrapper.dcp"/>
+  <File Type="OPT-METHODOLOGY-DRC" Name="kinpira_wrapper_methodology_drc_opted.rpt"/>
+  <File Type="PA-TCL" Name="kinpira_wrapper.tcl"/>
+  <File Type="POSTROUTE-PHYSOPT-DCP" Name="kinpira_wrapper_postroute_physopt.dcp"/>
+  <File Type="INIT-TIMING" Name="kinpira_wrapper_timing_summary_init.rpt"/>
+  <File Type="OPT-DCP" Name="kinpira_wrapper_opt.dcp"/>
+  <File Type="OPT-DRC" Name="kinpira_wrapper_drc_opted.rpt"/>
+  <File Type="OPT-HWDEF" Name="kinpira_wrapper.hwdef"/>
+  <File Type="OPT-TIMING" Name="kinpira_wrapper_timing_summary_opted.rpt"/>
+  <File Type="PWROPT-DCP" Name="kinpira_wrapper_pwropt.dcp"/>
+  <File Type="PWROPT-DRC" Name="kinpira_wrapper_drc_pwropted.rpt"/>
+  <File Type="PWROPT-TIMING" Name="kinpira_wrapper_timing_summary_pwropted.rpt"/>
+  <File Type="PLACE-DCP" Name="kinpira_wrapper_placed.dcp"/>
+  <File Type="PLACE-IO" Name="kinpira_wrapper_io_placed.rpt"/>
+  <File Type="PLACE-CLK" Name="kinpira_wrapper_clock_utilization_placed.rpt"/>
+  <File Type="PLACE-UTIL" Name="kinpira_wrapper_utilization_placed.rpt"/>
+  <File Type="PLACE-UTIL-PB" Name="kinpira_wrapper_utilization_placed.pb"/>
+  <File Type="PLACE-CTRL" Name="kinpira_wrapper_control_sets_placed.rpt"/>
+  <File Type="PLACE-SIMILARITY" Name="kinpira_wrapper_incremental_reuse_placed.rpt"/>
+  <File Type="PLACE-PRE-SIMILARITY" Name="kinpira_wrapper_incremental_reuse_pre_placed.rpt"/>
+  <File Type="PLACE-TIMING" Name="kinpira_wrapper_timing_summary_placed.rpt"/>
+  <File Type="POSTPLACE-PWROPT-DCP" Name="kinpira_wrapper_postplace_pwropt.dcp"/>
+  <File Type="POSTROUTE-PHYSOPT-TIMING" Name="kinpira_wrapper_timing_summary_postroute_physopted.rpt"/>
+  <File Type="BG-BIT" Name="kinpira_wrapper.bit"/>
+  <File Type="ROUTE-TIMINGSUMMARY" Name="kinpira_wrapper_timing_summary_routed.rpt"/>
+  <File Type="BG-BIN" Name="kinpira_wrapper.bin"/>
+  <File Type="ROUTE-SIMILARITY" Name="kinpira_wrapper_incremental_reuse_routed.rpt"/>
+  <File Type="BITSTR-MSK" Name="kinpira_wrapper.msk"/>
+  <File Type="ROUTE-CLK" Name="kinpira_wrapper_clock_utilization_routed.rpt"/>
+  <File Type="BITSTR-RBT" Name="kinpira_wrapper.rbt"/>
+  <File Type="BITSTR-NKY" Name="kinpira_wrapper.nky"/>
+  <File Type="BITSTR-BMM" Name="kinpira_wrapper_bd.bmm"/>
+  <File Type="POSTROUTE-PHYSOPT-BLACKBOX-DCP" Name="kinpira_wrapper_postroute_physopt_bb.dcp"/>
+  <File Type="WBT-USG" Name="usage_statistics_webtalk.html"/>
+  <File Type="RDI-RDI" Name="kinpira_wrapper.vdi"/>
+  <File Type="POSTROUTE-PHYSOPT-TIMING-PB" Name="kinpira_wrapper_timing_summary_postroute_physopted.pb"/>
+  <File Type="BG-DRC" Name="kinpira_wrapper.drc"/>
+  <File Type="ROUTE-TIMING-PB" Name="kinpira_wrapper_timing_summary_routed.pb"/>
+  <File Type="BITSTR-MMI" Name="kinpira_wrapper.mmi"/>
+  <File Type="POSTROUTE-PHYSOPT-TIMING-RPX" Name="kinpira_wrapper_timing_summary_postroute_physopted.rpx"/>
+  <File Type="BG-BGN" Name="kinpira_wrapper.bgn"/>
+  <File Type="ROUTE-TIMING-RPX" Name="kinpira_wrapper_timing_summary_routed.rpx"/>
+  <File Type="BITSTR-SYSDEF" Name="kinpira_wrapper.sysdef"/>
+  <File Type="ROUTE-STATUS-PB" Name="kinpira_wrapper_route_status.pb"/>
+  <File Type="ROUTE-STATUS" Name="kinpira_wrapper_route_status.rpt"/>
+  <File Type="ROUTE-PWR-RPX" Name="kinpira_wrapper_power_routed.rpx"/>
+  <File Type="ROUTE-PWR-SUM" Name="kinpira_wrapper_power_summary_routed.pb"/>
+  <File Type="ROUTE-PWR" Name="kinpira_wrapper_power_routed.rpt"/>
+  <File Type="ROUTE-METHODOLOGY-DRC-PB" Name="kinpira_wrapper_methodology_drc_routed.pb"/>
+  <File Type="ROUTE-METHODOLOGY-DRC" Name="kinpira_wrapper_methodology_drc_routed.rpt"/>
+  <File Type="ROUTE-DRC-PB" Name="kinpira_wrapper_drc_routed.pb"/>
+  <File Type="ROUTE-DRC" Name="kinpira_wrapper_drc_routed.rpt"/>
+  <File Type="ROUTE-BLACKBOX-DCP" Name="kinpira_wrapper_routed_bb.dcp"/>
+  <File Type="ROUTE-DCP" Name="kinpira_wrapper_routed.dcp"/>
+  <File Type="PHYSOPT-TIMING" Name="kinpira_wrapper_timing_summary_physopted.rpt"/>
+  <File Type="PHYSOPT-DRC" Name="kinpira_wrapper_drc_physopted.rpt"/>
+  <File Type="PHYSOPT-DCP" Name="kinpira_wrapper_physopt.dcp"/>
+  <File Type="POSTPLACE-PWROPT-TIMING" Name="kinpira_wrapper_timing_summary_postplace_pwropted.rpt"/>
+  <FileSet Name="sources" Type="DesignSrcs" RelSrcDir="$PSRCDIR/sources_1">
+    <Filter Type="Srcs"/>
+    <File Path="$PSRCDIR/sources_1/bd/kinpira/kinpira.bd">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/bd/kinpira/hdl/kinpira_wrapper.v">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <Config>
+      <Option Name="DesignMode" Val="RTL"/>
+      <Option Name="TopModule" Val="kinpira_wrapper"/>
+      <Option Name="TopAutoSet" Val="TRUE"/>
+    </Config>
+  </FileSet>
+  <FileSet Name="constrs_in" Type="Constrs" RelSrcDir="$PSRCDIR/constrs_1">
+    <Filter Type="Constrs"/>
+    <Config>
+      <Option Name="ConstrsType" Val="XDC"/>
+    </Config>
+  </FileSet>
+  <Strategy Version="1" Minor="2">
+    <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2016"/>
+    <Step Id="init_design"/>
+    <Step Id="opt_design" EnableStepBool="0"/>
+    <Step Id="power_opt_design"/>
+    <Step Id="place_design"/>
+    <Step Id="post_place_power_opt_design"/>
+    <Step Id="phys_opt_design"/>
+    <Step Id="route_design"/>
+    <Step Id="post_route_phys_opt_design"/>
+    <Step Id="write_bitstream"/>
+  </Strategy>
+</GenRun>

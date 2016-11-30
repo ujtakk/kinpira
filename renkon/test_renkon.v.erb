@@ -65,35 +65,11 @@ module test_renkon();
     output_addr = 5000;
     net_addr    = <%=net_offset%>;
 
-    read_image_direct;
-    // read_image;
-    // input_we = 1;
-    // for (i=0; i<2**INSIZE; i=i+1)
-    // begin
-    //   input_addr = i;
-    //   #(STEP);
-    //   write_input = mem_in[i];
-    //   #(STEP);
-    // end
-    // input_we = 0;
-    // input_addr = 0;
-    // write_input = 0;
+    // read_image_direct;
+    read_image;
 
-    read_network_direct;
-    // read_network;
-    // <%- for n in 0...$core -%>
-    // weight_we = 4'd<%=n+1%>;
-    // for (i=0; i<2**WSIZE; i=i+1)
-    // begin
-    //  weight_addr = i;
-    //  #(STEP);
-    //  write_weight = mem_n<%=n%>[i];
-    //  #(STEP);
-    // end
-    // weight_we = 4'd0;
-    // weight_addr = 0;
-    // write_weight = 0;
-    // <%- end -%>
+    // read_network_direct;
+    read_network;
 
     // $toggle_start();
     #(STEP);
@@ -145,6 +121,7 @@ module test_renkon();
   endtask
 
   task read_image;
+    integer fd;
     begin // {{{
       <%- for i in 0...$n_f1 -%>
       $readmemb(
@@ -154,6 +131,22 @@ module test_renkon();
         <%=($pm1hei**2)*(i+1)-1%>
       );
       <%- end -%>
+      #(STEP);
+      img_we = 1;
+      fd = $fopen("asdf");
+      for (i=0; i<2**IMGSIZE; i=i+1)
+      begin
+        $fdisplay(fd, "%d", mem_i[i]);
+        input_addr = i;
+        #(STEP);
+        write_img = mem_i[i];
+        #(STEP);
+      end
+      $fclose(fd);
+      #(STEP);
+      img_we = 0;
+      input_addr = 0;
+      write_img = 0;
     end // }}}
   endtask
 
@@ -197,33 +190,48 @@ module test_renkon();
       $readmemb(
         "<%=weight%>/bwb_2/data<%=$core*($n_f2/$core)+j%>_<%=k%>.bin",
         mem_n<%=j%>,
-        <%=($fsize**2)*($n_f1*($n_f2/$core)+k)+i%> + <%=net_offset%>,
-        <%=($fsize**2)*($n_f1*($n_f2/$core)+k+1)+i-1%> + <%=net_offset%>
+        <%=($fsize**2)*($n_f1*($n_f2/$core)+k)+($n_f2/$core)%> + <%=net_offset%>,
+        <%=($fsize**2)*($n_f1*($n_f2/$core)+k+1)+($n_f2/$core)-1%> + <%=net_offset%>
       );
       <%-       end -%>
       $readmemb(
         "<%=weight%>/bwb_2/data<%=$core*($n_f2/$core)+j%>.bin",
         mem_n<%=j%>,
-        <%=($fsize**2)*($n_f1*(($n_f2/$core)+1))+i%> + <%=net_offset%>,
-        <%=($fsize**2)*($n_f1*(($n_f2/$core)+1))+i%> + <%=net_offset%>
+        <%=($fsize**2)*($n_f1*(($n_f2/$core)+1))+($n_f2/$core)%> + <%=net_offset%>,
+        <%=($fsize**2)*($n_f1*(($n_f2/$core)+1))+($n_f2/$core)%> + <%=net_offset%>
       );
       <%-     else -%>
       <%-       for k in 0...$n_f1 -%>
       $readmemb(
         "<%=weight%>/bwb_2/null_w.bin",
         mem_n<%=j%>,
-        <%=($fsize**2)*($n_f1*($n_f2/$core)+k)+i%> + <%=net_offset%>,
-        <%=($fsize**2)*($n_f1*($n_f2/$core)+k+1)+i-1%> + <%=net_offset%>
+        <%=($fsize**2)*($n_f1*($n_f2/$core)+k)+($n_f2/$core)%> + <%=net_offset%>,
+        <%=($fsize**2)*($n_f1*($n_f2/$core)+k+1)+($n_f2/$core)-1%> + <%=net_offset%>
       );
       <%-       end -%>
       $readmemb(
         "<%=weight%>/bwb_2/null_b.bin",
         mem_n<%=j%>,
-        <%=($fsize**2)*($n_f1*(($n_f2/$core)+1))+i%> + <%=net_offset%>,
-        <%=($fsize**2)*($n_f1*(($n_f2/$core)+1))+i%> + <%=net_offset%>
+        <%=($fsize**2)*($n_f1*(($n_f2/$core)+1))+($n_f2/$core)%> + <%=net_offset%>,
+        <%=($fsize**2)*($n_f1*(($n_f2/$core)+1))+($n_f2/$core)%> + <%=net_offset%>
       );
       <%-     end -%>
       <%-   end -%>
+      <%- end -%>
+
+      <%- for n in 0...$core -%>
+      net_we = <%=$core_log+1%>'d<%=n+1%>;
+      #(STEP);
+      for (i=0; i<2**NETSIZE; i=i+1)
+      begin
+        net_addr = i;
+        #(STEP);
+        write_net = mem_n<%=n%>[i];
+        #(STEP);
+      end
+      net_we = <%=$core_log+1%>'d0;
+      net_addr = 0;
+      write_net = 0;
       <%- end -%>
     end // }}}
   endtask

@@ -1,0 +1,90 @@
+09:37:15 INFO  : Launching XSDB server: xsdb -n -interactive /ram/home/work/takau/kinpira/zedboard/zedboard.sdk/temp_xsdb_launch_script.tcl
+09:37:22 INFO  : XSDB server has started successfully.
+09:37:23 INFO  : Processing command line option -hwspec /ram/home/work/takau/kinpira/zedboard/zedboard.sdk/kinpira_wrapper.hdf.
+09:41:37 INFO  : Launching XSDB server: xsdb -n -interactive /ram/home/work/takau/kinpira/zedboard/zedboard.sdk/temp_xsdb_launch_script.tcl
+09:41:41 INFO  : XSDB server has started successfully.
+09:41:52 INFO  : Processing command line option -hwspec /ram/home/work/takau/kinpira/zedboard/zedboard.sdk/kinpira_wrapper.hdf.
+09:41:55 INFO  : Checking for hwspec changes in the project kinpira_wrapper_hw_platform_0.
+09:42:19 INFO  : 'targets -set -filter {jtag_cable_name =~ "Digilent Zed 210248782826" && level==0} -index 1' command is executed.
+09:42:19 INFO  : 'fpga -state' command is executed.
+09:42:19 INFO  : Connected to target on host '127.0.0.1' and port '3121'.
+09:42:19 INFO  : Jtag cable 'Digilent Zed 210248782826' is selected.
+09:42:19 INFO  : 'jtag frequency' command is executed.
+09:42:19 INFO  : Sourcing of '/ram/home/work/takau/kinpira/zedboard/zedboard.sdk/kinpira_wrapper_hw_platform_0/ps7_init.tcl' is done.
+09:42:19 INFO  : 'targets -set -filter {name =~"APU" && jtag_cable_name =~ "Digilent Zed 210248782826"} -index 0' command is executed.
+09:42:19 INFO  : Hardware design information is loaded from '/ram/home/work/takau/kinpira/zedboard/zedboard.sdk/kinpira_wrapper_hw_platform_0/system.hdf'.
+09:42:19 INFO  : 'targets -set -filter {name =~"APU" && jtag_cable_name =~ "Digilent Zed 210248782826"} -index 0' command is executed.
+09:42:19 INFO  : 'stop' command is executed.
+09:42:20 INFO  : 'ps7_init' command is executed.
+09:42:20 INFO  : 'ps7_post_config' command is executed.
+09:42:20 INFO  : Context for processor 'ps7_cortexa9_0' is selected.
+09:42:20 INFO  : Processor reset is completed for 'ps7_cortexa9_0'.
+09:42:20 INFO  : Context for processor 'ps7_cortexa9_0' is selected.
+09:42:20 INFO  : The application '/ram/home/work/takau/kinpira/zedboard/zedboard.sdk/cnn/Debug/cnn.elf' is downloaded to processor 'ps7_cortexa9_0'.
+09:42:20 INFO  : ----------------XSDB Script----------------
+connect -url tcp:127.0.0.1:3121
+source /ram/home/work/takau/kinpira/zedboard/zedboard.sdk/kinpira_wrapper_hw_platform_0/ps7_init.tcl
+targets -set -filter {name =~"APU" && jtag_cable_name =~ "Digilent Zed 210248782826"} -index 0
+loadhw /ram/home/work/takau/kinpira/zedboard/zedboard.sdk/kinpira_wrapper_hw_platform_0/system.hdf
+targets -set -filter {name =~"APU" && jtag_cable_name =~ "Digilent Zed 210248782826"} -index 0
+stop
+ps7_init
+ps7_post_config
+targets -set -nocase -filter {name =~ "ARM*#0" && jtag_cable_name =~ "Digilent Zed 210248782826"} -index 0
+rst -processor
+targets -set -nocase -filter {name =~ "ARM*#0" && jtag_cable_name =~ "Digilent Zed 210248782826"} -index 0
+dow /ram/home/work/takau/kinpira/zedboard/zedboard.sdk/cnn/Debug/cnn.elf
+----------------End of Script----------------
+
+09:42:20 INFO  : Memory regions updated for context APU
+09:42:20 INFO  : Context for processor 'ps7_cortexa9_0' is selected.
+09:42:20 INFO  : 'con' command is executed.
+09:42:20 INFO  : ----------------XSDB Script (After Launch)----------------
+targets -set -nocase -filter {name =~ "ARM*#0" && jtag_cable_name =~ "Digilent Zed 210248782826"} -index 0
+con
+----------------End of Script----------------
+
+09:42:20 INFO  : Launch script is exported to file '/ram/home/work/takau/kinpira/zedboard/zedboard.sdk/.sdk/launch_scripts/xilinx_c-c++_application_(system_debugger)/system_debugger_on_local_cnn.elf.tcl'
+09:42:25 INFO  : Disconnected from the channel tcfchan#1.
+09:42:25 INFO  : Connected to target on host '127.0.0.1' and port '3121'.
+09:42:25 INFO  : Jtag cable 'Digilent Zed 210248782826' is selected.
+09:42:25 INFO  : 'jtag frequency' command is executed.
+09:42:25 INFO  : Sourcing of '/ram/home/work/takau/kinpira/zedboard/zedboard.sdk/kinpira_wrapper_hw_platform_0/ps7_init.tcl' is done.
+09:42:25 INFO  : 'targets -set -filter {name =~"APU" && jtag_cable_name =~ "Digilent Zed 210248782826"} -index 0' command is executed.
+09:42:26 INFO  : System reset is completed.
+09:42:29 INFO  : 'after 3000' command is executed.
+09:42:29 INFO  : 'targets -set -filter {jtag_cable_name =~ "Digilent Zed 210248782826" && level==0} -index 1' command is executed.
+09:42:35 INFO  : FPGA configured successfully with bitstream "/ram/home/work/takau/kinpira/zedboard/zedboard.sdk/kinpira_wrapper_hw_platform_0/kinpira_wrapper.bit"
+09:42:35 INFO  : 'targets -set -filter {name =~"APU" && jtag_cable_name =~ "Digilent Zed 210248782826"} -index 0' command is executed.
+09:42:38 INFO  : Hardware design information is loaded from '/ram/home/work/takau/kinpira/zedboard/zedboard.sdk/kinpira_wrapper_hw_platform_0/system.hdf'.
+09:42:38 INFO  : 'targets -set -filter {name =~"APU" && jtag_cable_name =~ "Digilent Zed 210248782826"} -index 0' command is executed.
+09:42:38 INFO  : 'ps7_init' command is executed.
+09:42:38 INFO  : 'ps7_post_config' command is executed.
+09:42:38 INFO  : Context for processor 'ps7_cortexa9_0' is selected.
+09:42:38 INFO  : The application '/ram/home/work/takau/kinpira/zedboard/zedboard.sdk/cnn/Debug/cnn.elf' is downloaded to processor 'ps7_cortexa9_0'.
+09:42:38 INFO  : ----------------XSDB Script----------------
+connect -url tcp:127.0.0.1:3121
+source /ram/home/work/takau/kinpira/zedboard/zedboard.sdk/kinpira_wrapper_hw_platform_0/ps7_init.tcl
+targets -set -filter {name =~"APU" && jtag_cable_name =~ "Digilent Zed 210248782826"} -index 0
+rst -system
+after 3000
+targets -set -filter {jtag_cable_name =~ "Digilent Zed 210248782826" && level==0} -index 1
+fpga -file /ram/home/work/takau/kinpira/zedboard/zedboard.sdk/kinpira_wrapper_hw_platform_0/kinpira_wrapper.bit
+targets -set -filter {name =~"APU" && jtag_cable_name =~ "Digilent Zed 210248782826"} -index 0
+loadhw /ram/home/work/takau/kinpira/zedboard/zedboard.sdk/kinpira_wrapper_hw_platform_0/system.hdf
+targets -set -filter {name =~"APU" && jtag_cable_name =~ "Digilent Zed 210248782826"} -index 0
+ps7_init
+ps7_post_config
+targets -set -nocase -filter {name =~ "ARM*#0" && jtag_cable_name =~ "Digilent Zed 210248782826"} -index 0
+dow /ram/home/work/takau/kinpira/zedboard/zedboard.sdk/cnn/Debug/cnn.elf
+----------------End of Script----------------
+
+09:42:38 INFO  : Memory regions updated for context APU
+09:42:38 INFO  : Context for processor 'ps7_cortexa9_0' is selected.
+09:42:38 INFO  : 'con' command is executed.
+09:42:38 INFO  : ----------------XSDB Script (After Launch)----------------
+targets -set -nocase -filter {name =~ "ARM*#0" && jtag_cable_name =~ "Digilent Zed 210248782826"} -index 0
+con
+----------------End of Script----------------
+
+09:42:38 INFO  : Launch script is exported to file '/ram/home/work/takau/kinpira/zedboard/zedboard.sdk/.sdk/launch_scripts/xilinx_c-c++_application_(system_debugger)/system_debugger_on_local_cnn.elf.tcl'

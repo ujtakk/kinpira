@@ -1,8 +1,13 @@
 % load "gobou.rb"
+% less = false
 
 module gobou_mem_net(/*AUTOARG*/);
 `include "gobou.vh"
+% if less
+  parameter WORDS = 25345;
+% else
   parameter WORDS = 2 ** NETSIZE;
+% end
 
   /*AUTOINPUT*/
   input                     clk;
@@ -16,16 +21,28 @@ module gobou_mem_net(/*AUTOARG*/);
   /*AUTOWIRE*/
 
   /*AUTOREG*/
+% if less
+  reg signed [DWIDTH-1-6:0] mem [WORDS-1:0];
+% else
   reg signed [DWIDTH-1:0] mem [WORDS-1:0];
+% end
   reg [DWIDTH-1:0]        addr_reg;
+
+% if less
+  assign read_data = $signed({{6{mem[addr_reg][DWIDTH-1-6]}}, mem[addr_reg]});
+% else
+  assign read_data = mem[addr_reg];
+% end
 
   always @(posedge clk)
   begin
     if (mem_we)
+% if less
+      mem[mem_addr] <= write_data[DWIDTH-1-6:0];
+% else
       mem[mem_addr] <= write_data;
+% end
     addr_reg <= mem_addr;
   end
-
-  assign read_data = mem[addr_reg];
 
 endmodule
