@@ -1,8 +1,8 @@
 //Copyright 1986-2016 Xilinx, Inc. All Rights Reserved.
 //--------------------------------------------------------------------------------
 //Tool Version: Vivado v.2016.2 (lin64) Build 1577090 Thu Jun  2 16:32:35 MDT 2016
-//Date        : Wed Nov 30 07:04:53 2016
-//Host        : mai running 64-bit Debian GNU/Linux 8.6 (jessie)
+//Date        : Thu Dec  1 22:29:15 2016
+//Host        : yume running 64-bit Debian GNU/Linux 8.6 (jessie)
 //Command     : generate_target kinpira_wrapper.bd
 //Design      : kinpira_wrapper
 //Purpose     : IP block netlist

@@ -2,8 +2,8 @@
 # Vivado v2016.2 (64-bit)
 # SW Build 1577090 on Thu Jun  2 16:32:35 MDT 2016
 # IP Build 1577682 on Fri Jun  3 12:00:54 MDT 2016
-# Start of session at: Wed Nov 30 07:05:58 2016
-# Process ID: 29918
+# Start of session at: Thu Dec  1 22:29:56 2016
+# Process ID: 27343
 # Current directory: /ram/home/work/takau/kinpira/zedboard/zedboard.runs/synth_1
 # Command line: vivado -log kinpira_wrapper.vds -mode batch -messageDb vivado.pb -notrace -source kinpira_wrapper.tcl
 # Log file: /ram/home/work/takau/kinpira/zedboard/zedboard.runs/synth_1/kinpira_wrapper.vds

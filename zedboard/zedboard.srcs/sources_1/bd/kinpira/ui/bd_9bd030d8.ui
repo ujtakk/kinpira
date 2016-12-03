@@ -15,7 +15,7 @@ preplace netloc rst_processing_system7_0_100M_peripheral_aresetn 1 1 2 450 230 N
 preplace netloc processing_system7_0_FIXED_IO 1 1 3 NJ 270 NJ 270 NJ
 preplace netloc rst_processing_system7_0_100M_interconnect_aresetn 1 1 1 420
 preplace netloc processing_system7_0_FCLK_CLK0 1 0 3 20 30 430 240 NJ
-levelinfo -pg 1 0 220 600 850 960 -top 0 -bot 460
+levelinfo -pg 1 0 220 600 850 970 -top 0 -bot 460
 ",
 }
 {

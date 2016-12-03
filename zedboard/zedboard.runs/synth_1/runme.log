@@ -27,7 +27,7 @@ Starting synth_design
 Attempting to get a license for feature 'Synthesis' and/or device 'xc7z020'
 INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7z020'
 INFO: Launching helper process for spawning children vivado processes
-INFO: Helper process launched with PID 29922 
+INFO: Helper process launched with PID 27570 
 WARNING: [Synth 8-2507] parameter declaration becomes local in kinpira_v1_0 with formal parameter declaration list [/ram/home/work/takau/kinpira/zedboard/zedboard.srcs/sources_1/bd/kinpira/ipshared/ac.jp/kinpira_v1_0/src/ninjin.vh:2]
 WARNING: [Synth 8-2507] parameter declaration becomes local in kinpira_v1_0 with formal parameter declaration list [/ram/home/work/takau/kinpira/zedboard/zedboard.srcs/sources_1/bd/kinpira/ipshared/ac.jp/kinpira_v1_0/src/ninjin.vh:3]
 WARNING: [Synth 8-2507] parameter declaration becomes local in kinpira_v1_0 with formal parameter declaration list [/ram/home/work/takau/kinpira/zedboard/zedboard.srcs/sources_1/bd/kinpira/ipshared/ac.jp/kinpira_v1_0/src/ninjin.vh:4]
@@ -39,7 +39,7 @@ WARNING: [Synth 8-2507] parameter declaration becomes local in kinpira_v1_0 with
 WARNING: [Synth 8-2507] parameter declaration becomes local in kinpira_v1_0 with formal parameter declaration list [/ram/home/work/takau/kinpira/zedboard/zedboard.srcs/sources_1/bd/kinpira/ipshared/ac.jp/kinpira_v1_0/src/ninjin.vh:10]
 WARNING: [Synth 8-2507] parameter declaration becomes local in kinpira_v1_0 with formal parameter declaration list [/ram/home/work/takau/kinpira/zedboard/zedboard.srcs/sources_1/bd/kinpira/ipshared/ac.jp/kinpira_v1_0/src/ninjin.vh:11]
 ---------------------------------------------------------------------------------
-Starting RTL Elaboration : Time (s): cpu = 00:00:09 ; elapsed = 00:00:10 . Memory (MB): peak = 1093.000 ; gain = 206.332 ; free physical = 13512 ; free virtual = 28055
+Starting RTL Elaboration : Time (s): cpu = 00:00:09 ; elapsed = 00:00:11 . Memory (MB): peak = 1092.996 ; gain = 206.332 ; free physical = 3229 ; free virtual = 19436
 ---------------------------------------------------------------------------------
 INFO: [Synth 8-638] synthesizing module 'kinpira_wrapper' [/ram/home/work/takau/kinpira/zedboard/zedboard.srcs/sources_1/bd/kinpira/hdl/kinpira_wrapper.v:12]
 INFO: [Synth 8-638] synthesizing module 'kinpira' [/ram/home/work/takau/kinpira/zedboard/zedboard.srcs/sources_1/bd/kinpira/hdl/kinpira.v:13]
@@ -1607,7 +1607,7 @@ WARNING: [Synth 8-3331] design axi_protocol_converter_v2_1_9_b2s_rd_cmd_fsm has 
 WARNING: [Synth 8-3331] design axi_protocol_converter_v2_1_9_b2s_rd_cmd_fsm has unconnected port s_arlen[2]
 INFO: [Common 17-14] Message 'Synth 8-3331' appears 100 times and further instances of the messages will be disabled. Use the Tcl command set_msg_config to change the current settings.
 ---------------------------------------------------------------------------------
-Finished RTL Elaboration : Time (s): cpu = 00:00:31 ; elapsed = 00:00:32 . Memory (MB): peak = 1259.250 ; gain = 372.582 ; free physical = 13346 ; free virtual = 27891
+Finished RTL Elaboration : Time (s): cpu = 00:00:35 ; elapsed = 00:00:38 . Memory (MB): peak = 1259.246 ; gain = 372.582 ; free physical = 3124 ; free virtual = 19334
 ---------------------------------------------------------------------------------
 
 Report Check Netlist: 
@@ -1718,9 +1718,9 @@ WARNING: [Synth 8-3295] tying undriven pin kinpira_v1_0_s_axi_inst:port19[29] to
 WARNING: [Synth 8-3295] tying undriven pin kinpira_v1_0_s_axi_inst:port19[28] to constant 0 [/ram/home/work/takau/kinpira/zedboard/zedboard.srcs/sources_1/bd/kinpira/ipshared/ac.jp/kinpira_v1_0/src/kinpira_v1_0.v:83]
 INFO: [Common 17-14] Message 'Synth 8-3295' appears 100 times and further instances of the messages will be disabled. Use the Tcl command set_msg_config to change the current settings.
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:31 ; elapsed = 00:00:33 . Memory (MB): peak = 1259.250 ; gain = 372.582 ; free physical = 13345 ; free virtual = 27891
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:36 ; elapsed = 00:00:39 . Memory (MB): peak = 1259.246 ; gain = 372.582 ; free physical = 3212 ; free virtual = 19422
 ---------------------------------------------------------------------------------
-process 29918: arguments to dbus_move_error() were incorrect, assertion "(dest) == NULL || !dbus_error_is_set ((dest))" failed in file ../../dbus/dbus-errors.c line 282.
+process 27343: arguments to dbus_move_error() were incorrect, assertion "(dest) == NULL || !dbus_error_is_set ((dest))" failed in file ../../dbus/dbus-errors.c line 282.
 This is normally a bug in some application using the D-Bus library.
 libhal.c 3483 : Error unsubscribing to signals, error=The name org.freedesktop.Hal was not provided by any .service files
 INFO: [Netlist 29-17] Analyzing 13 Unisim elements for replacement
@@ -1749,16 +1749,16 @@ INFO: [Project 1-111] Unisim Transformation Summary:
   FDR => FDRE: 12 instances
   SRL16 => SRL16E: 1 instances
 
-Constraint Validation Runtime : Time (s): cpu = 00:00:00.03 ; elapsed = 00:00:00.03 . Memory (MB): peak = 1606.984 ; gain = 0.000 ; free physical = 13172 ; free virtual = 27717
+Constraint Validation Runtime : Time (s): cpu = 00:00:00.03 ; elapsed = 00:00:00.03 . Memory (MB): peak = 1606.980 ; gain = 0.000 ; free physical = 2952 ; free virtual = 19201
 ---------------------------------------------------------------------------------
-Finished Constraint Validation : Time (s): cpu = 00:00:47 ; elapsed = 00:00:58 . Memory (MB): peak = 1607.984 ; gain = 721.316 ; free physical = 13169 ; free virtual = 27715
+Finished Constraint Validation : Time (s): cpu = 00:00:53 ; elapsed = 00:01:04 . Memory (MB): peak = 1607.980 ; gain = 721.316 ; free physical = 2954 ; free virtual = 19205
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Loading Part and Timing Information
 ---------------------------------------------------------------------------------
 Loading part: xc7z020clg484-1
 ---------------------------------------------------------------------------------
-Finished Loading Part and Timing Information : Time (s): cpu = 00:00:47 ; elapsed = 00:00:58 . Memory (MB): peak = 1607.984 ; gain = 721.316 ; free physical = 13169 ; free virtual = 27715
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:53 ; elapsed = 00:01:04 . Memory (MB): peak = 1607.980 ; gain = 721.316 ; free physical = 2949 ; free virtual = 19200
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Applying 'set_property' XDC Constraints
@@ -1772,7 +1772,7 @@ Applied set_property DONT_TOUCH = true for kinpira_i/processing_system7_0_axi_pe
 Applied set_property DONT_TOUCH = true for kinpira_i/processing_system7_0_axi_periph/s00_couplers/auto_pc. (constraint file  auto generated constraint, line ).
 Applied set_property DONT_TOUCH = true for kinpira_i/rst_processing_system7_0_100M. (constraint file  auto generated constraint, line ).
 ---------------------------------------------------------------------------------
-Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:47 ; elapsed = 00:00:58 . Memory (MB): peak = 1607.984 ; gain = 721.316 ; free physical = 13170 ; free virtual = 27716
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:53 ; elapsed = 00:01:04 . Memory (MB): peak = 1607.980 ; gain = 721.316 ; free physical = 2951 ; free virtual = 19202
 ---------------------------------------------------------------------------------
 INFO: [Synth 8-5544] ROM "r_net_addr" won't be mapped to Block RAM because address size (2) smaller than threshold (5)
 INFO: [Synth 8-5544] ROM "r_input_addr" won't be mapped to Block RAM because address size (2) smaller than threshold (5)
@@ -1808,7 +1808,7 @@ INFO: [Synth 8-5544] ROM "r_input_addr" won't be mapped to Block RAM because add
 INFO: [Synth 8-4471] merging register 'r_accum_rst_reg' into 'r_out_valid_reg' [/ram/home/work/takau/kinpira/zedboard/zedboard.srcs/sources_1/bd/kinpira/ipshared/ac.jp/kinpira_v1_0/src/gobou_ctrl_mac.v:37]
 INFO: [Synth 8-4471] merging register 'seq_cnt_en_reg' into 'from_sys_reg' [/ram/home/work/takau/kinpira/zedboard/zedboard.srcs/sources_1/bd/kinpira/ipshared/xilinx.com/proc_sys_reset_v5_0/hdl/src/vhdl/sequence_psr.vhd:222]
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:50 ; elapsed = 00:01:01 . Memory (MB): peak = 1607.984 ; gain = 721.316 ; free physical = 13164 ; free virtual = 27710
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:56 ; elapsed = 00:01:08 . Memory (MB): peak = 1607.980 ; gain = 721.316 ; free physical = 2958 ; free virtual = 19209
 ---------------------------------------------------------------------------------
 
 Report RTL Partitions: 
@@ -1816,8 +1816,8 @@ Report RTL Partitions:
 |      |RTL Partition     |Replication |Instances |
 +------+------------------+------------+----------+
 |1     |renkon_core       |           8|      8477|
-|2     |renkon__GC0       |           1|      7817|
-|3     |kinpira_v1_0__GC0 |           1|     17008|
+|2     |renkon__GC0       |           1|      7671|
+|3     |kinpira_v1_0__GC0 |           1|     16768|
 |4     |kinpira__GC0      |           1|      2858|
 +------+------------------+------------+----------+
 ---------------------------------------------------------------------------------
@@ -1825,14 +1825,14 @@ Start RTL Component Statistics
 ---------------------------------------------------------------------------------
 Detailed RTL Component Info : 
 +---Adders : 
-	   2 Input     32 Bit       Adders := 31    
+	   2 Input     32 Bit       Adders := 29    
 	   8 Input     16 Bit       Adders := 24    
 	   4 Input     16 Bit       Adders := 8     
 	   2 Input     16 Bit       Adders := 32    
 	   2 Input     15 Bit       Adders := 216   
 	   2 Input     14 Bit       Adders := 1     
 	   2 Input     12 Bit       Adders := 8     
-	   2 Input     11 Bit       Adders := 2     
+	   2 Input     11 Bit       Adders := 4     
 	   2 Input     10 Bit       Adders := 28    
 	   3 Input     10 Bit       Adders := 3     
 	   2 Input      9 Bit       Adders := 2     
@@ -2012,9 +2012,9 @@ Detailed RTL Component Info :
 Module renkon_ctrl_core 
 Detailed RTL Component Info : 
 +---Adders : 
-	   2 Input     32 Bit       Adders := 5     
+	   2 Input     32 Bit       Adders := 4     
 	   2 Input     12 Bit       Adders := 1     
-	   2 Input     11 Bit       Adders := 2     
+	   2 Input     11 Bit       Adders := 3     
 	   2 Input     10 Bit       Adders := 7     
 	   3 Input     10 Bit       Adders := 1     
 	   2 Input      8 Bit       Adders := 1     
@@ -2256,9 +2256,10 @@ Detailed RTL Component Info :
 Module gobou_ctrl_core 
 Detailed RTL Component Info : 
 +---Adders : 
-	   2 Input     32 Bit       Adders := 2     
+	   2 Input     32 Bit       Adders := 1     
 	   2 Input     14 Bit       Adders := 1     
 	   2 Input     12 Bit       Adders := 1     
+	   2 Input     11 Bit       Adders := 1     
 	   2 Input     10 Bit       Adders := 3     
 +---Registers : 
 	               16 Bit    Registers := 1     
@@ -2956,7 +2957,7 @@ BRAMs: 280 (col length: RAMB18 60 RAMB36 30)
 ---------------------------------------------------------------------------------
 Finished Part Resource Summary
 ---------------------------------------------------------------------------------
-Start Parallel Synthesis Optimization  : Time (s): cpu = 00:00:50 ; elapsed = 00:01:02 . Memory (MB): peak = 1607.984 ; gain = 721.316 ; free physical = 13164 ; free virtual = 27710
+Start Parallel Synthesis Optimization  : Time (s): cpu = 00:00:57 ; elapsed = 00:01:08 . Memory (MB): peak = 1607.980 ; gain = 721.316 ; free physical = 2972 ; free virtual = 19223
 ---------------------------------------------------------------------------------
 Start Cross Boundary Optimization
 ---------------------------------------------------------------------------------
@@ -3109,17 +3110,17 @@ DSP Report: operator mac/pro is absorbed into DSP mac/pro.
 INFO: [Synth 8-3936] Found unconnected internal register 'inst/gen_axilite.gen_b2s_conv.axilite_b2s/SI_REG/aw_pipe/m_payload_i_reg' and it is trimmed from '66' to '62' bits. [/ram/home/work/takau/kinpira/zedboard/zedboard.srcs/sources_1/bd/kinpira/ipshared/xilinx.com/axi_register_slice_v2_1/hdl/verilog/axi_register_slice_v2_1_axic_register_slice.v:318]
 INFO: [Synth 8-3936] Found unconnected internal register 'inst/gen_axilite.gen_b2s_conv.axilite_b2s/SI_REG/ar_pipe/m_payload_i_reg' and it is trimmed from '66' to '62' bits. [/ram/home/work/takau/kinpira/zedboard/zedboard.srcs/sources_1/bd/kinpira/ipshared/xilinx.com/axi_register_slice_v2_1/hdl/verilog/axi_register_slice_v2_1_axic_register_slice.v:318]
 ---------------------------------------------------------------------------------
-Finished Cross Boundary Optimization : Time (s): cpu = 00:00:54 ; elapsed = 00:01:05 . Memory (MB): peak = 1607.984 ; gain = 721.316 ; free physical = 13164 ; free virtual = 27710
+Finished Cross Boundary Optimization : Time (s): cpu = 00:01:00 ; elapsed = 00:01:12 . Memory (MB): peak = 1607.980 ; gain = 721.316 ; free physical = 2928 ; free virtual = 19179
 ---------------------------------------------------------------------------------
-Finished Parallel Reinference  : Time (s): cpu = 00:00:54 ; elapsed = 00:01:05 . Memory (MB): peak = 1607.984 ; gain = 721.316 ; free physical = 13164 ; free virtual = 27710
+Finished Parallel Reinference  : Time (s): cpu = 00:01:00 ; elapsed = 00:01:12 . Memory (MB): peak = 1607.980 ; gain = 721.316 ; free physical = 2928 ; free virtual = 19179
 
 Report RTL Partitions: 
 +------+------------------+------------+----------+
 |      |RTL Partition     |Replication |Instances |
 +------+------------------+------------+----------+
 |1     |renkon_core       |           8|      8859|
-|2     |renkon__GC0       |           1|      7847|
-|3     |kinpira_v1_0__GC0 |           1|     19118|
+|2     |renkon__GC0       |           1|      7701|
+|3     |kinpira_v1_0__GC0 |           1|     18878|
 |4     |kinpira__GC0      |           1|      2979|
 +------+------------------+------------+----------+
 WARNING: [Synth 8-3323] Resources of type BRAM have been overutilized. Used = 292, Available = 280. Use report_utilization command for details.
@@ -3463,17 +3464,17 @@ INFO: [Synth 8-3886] merging instance 'kinpira_i/kinpira_0/renkon0i_0/ctrl/ctrl_
 INFO: [Synth 8-3886] merging instance 'kinpira_i/kinpira_0/renkon0i_0/ctrl/ctrl_core/r_net_offset_reg[9]' (FDRE) to 'kinpira_i/kinpira_0/renkon0i_0/ctrl/ctrl_core/r_net_offset_reg[10]'
 INFO: [Synth 8-3333] propagating constant 0 across sequential element (kinpira_i/kinpira_0/renkon0i_0/\ctrl/ctrl_core/r_net_offset_reg[10] )
 ---------------------------------------------------------------------------------
-Finished Area Optimization : Time (s): cpu = 00:01:11 ; elapsed = 00:01:22 . Memory (MB): peak = 1607.984 ; gain = 721.316 ; free physical = 13134 ; free virtual = 27679
+Finished Area Optimization : Time (s): cpu = 00:01:18 ; elapsed = 00:01:30 . Memory (MB): peak = 1607.980 ; gain = 721.316 ; free physical = 2839 ; free virtual = 19090
 ---------------------------------------------------------------------------------
-Finished Parallel Area Optimization  : Time (s): cpu = 00:01:11 ; elapsed = 00:01:22 . Memory (MB): peak = 1607.984 ; gain = 721.316 ; free physical = 13134 ; free virtual = 27679
+Finished Parallel Area Optimization  : Time (s): cpu = 00:01:18 ; elapsed = 00:01:30 . Memory (MB): peak = 1607.980 ; gain = 721.316 ; free physical = 2838 ; free virtual = 19090
 
 Report RTL Partitions: 
 +------+------------------+------------+----------+
 |      |RTL Partition     |Replication |Instances |
 +------+------------------+------------+----------+
 |1     |renkon_core       |           8|      6010|
-|2     |renkon__GC0       |           1|      5090|
-|3     |kinpira_v1_0__GC0 |           1|      7338|
+|2     |renkon__GC0       |           1|      5082|
+|3     |kinpira_v1_0__GC0 |           1|      7325|
 |4     |kinpira__GC0      |           1|      1985|
 +------+------------------+------------+----------+
 ---------------------------------------------------------------------------------
@@ -3483,10 +3484,10 @@ Start Timing Optimization
 Start Applying XDC Timing Constraints
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Applying XDC Timing Constraints : Time (s): cpu = 00:01:22 ; elapsed = 00:01:34 . Memory (MB): peak = 1765.969 ; gain = 879.301 ; free physical = 12912 ; free virtual = 27458
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:01:30 ; elapsed = 00:01:42 . Memory (MB): peak = 1764.965 ; gain = 878.301 ; free physical = 2698 ; free virtual = 18957
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Timing Optimization : Time (s): cpu = 00:01:29 ; elapsed = 00:01:41 . Memory (MB): peak = 1897.570 ; gain = 1010.902 ; free physical = 12781 ; free virtual = 27327
+Finished Timing Optimization : Time (s): cpu = 00:01:38 ; elapsed = 00:01:50 . Memory (MB): peak = 1896.551 ; gain = 1009.887 ; free physical = 2554 ; free virtual = 18813
 ---------------------------------------------------------------------------------
 
 Report RTL Partitions: 
@@ -3494,8 +3495,8 @@ Report RTL Partitions:
 |      |RTL Partition     |Replication |Instances |
 +------+------------------+------------+----------+
 |1     |renkon_core       |           8|      6010|
-|2     |renkon__GC0       |           1|      5090|
-|3     |kinpira_v1_0__GC0 |           1|      7338|
+|2     |renkon__GC0       |           1|      5082|
+|3     |kinpira_v1_0__GC0 |           1|      7327|
 |4     |kinpira__GC0      |           1|      1985|
 +------+------------------+------------+----------+
 ---------------------------------------------------------------------------------
@@ -3759,16 +3760,16 @@ INFO: [Synth 8-4480] The timing for the instance inst/gobou0/mem_net11/mem_reg_0
 INFO: [Synth 8-4480] The timing for the instance inst/gobou0/mem_net11/mem_reg_1 (implemented as a block RAM) might be sub-optimal as no optional output register could be merged into the block ram. Providing additional output register may help in improving timing.
 INFO: [Common 17-14] Message 'Synth 8-4480' appears 100 times and further instances of the messages will be disabled. Use the Tcl command set_msg_config to change the current settings.
 ---------------------------------------------------------------------------------
-Finished Technology Mapping : Time (s): cpu = 00:01:50 ; elapsed = 00:02:02 . Memory (MB): peak = 1941.578 ; gain = 1054.910 ; free physical = 12736 ; free virtual = 27282
+Finished Technology Mapping : Time (s): cpu = 00:02:04 ; elapsed = 00:02:16 . Memory (MB): peak = 1940.566 ; gain = 1053.902 ; free physical = 2480 ; free virtual = 18739
 ---------------------------------------------------------------------------------
-Finished Parallel Technology Mapping Optimization  : Time (s): cpu = 00:01:50 ; elapsed = 00:02:02 . Memory (MB): peak = 1941.578 ; gain = 1054.910 ; free physical = 12736 ; free virtual = 27282
+Finished Parallel Technology Mapping Optimization  : Time (s): cpu = 00:02:04 ; elapsed = 00:02:16 . Memory (MB): peak = 1940.566 ; gain = 1053.902 ; free physical = 2479 ; free virtual = 18738
 
 Report RTL Partitions: 
 +-+--------------+------------+----------+
 | |RTL Partition |Replication |Instances |
 +-+--------------+------------+----------+
 +-+--------------+------------+----------+
-Finished Parallel Synthesis Optimization  : Time (s): cpu = 00:01:50 ; elapsed = 00:02:02 . Memory (MB): peak = 1941.578 ; gain = 1054.910 ; free physical = 12736 ; free virtual = 27282
+Finished Parallel Synthesis Optimization  : Time (s): cpu = 00:02:04 ; elapsed = 00:02:16 . Memory (MB): peak = 1940.566 ; gain = 1053.902 ; free physical = 2479 ; free virtual = 18738
 ---------------------------------------------------------------------------------
 Start IO Insertion
 ---------------------------------------------------------------------------------
@@ -3802,7 +3803,7 @@ INFO: [Synth 8-4618] Found max_fanout attribute set to 20 on net \inst/gen_axili
 Finished Final Netlist Cleanup
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished IO Insertion : Time (s): cpu = 00:01:54 ; elapsed = 00:02:06 . Memory (MB): peak = 1941.578 ; gain = 1054.910 ; free physical = 12736 ; free virtual = 27282
+Finished IO Insertion : Time (s): cpu = 00:02:09 ; elapsed = 00:02:21 . Memory (MB): peak = 1940.566 ; gain = 1053.902 ; free physical = 2495 ; free virtual = 18754
 ---------------------------------------------------------------------------------
 
 Report Check Netlist: 
@@ -3815,7 +3816,7 @@ Report Check Netlist:
 Start Renaming Generated Instances
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Instances : Time (s): cpu = 00:01:54 ; elapsed = 00:02:06 . Memory (MB): peak = 1941.578 ; gain = 1054.910 ; free physical = 12736 ; free virtual = 27282
+Finished Renaming Generated Instances : Time (s): cpu = 00:02:09 ; elapsed = 00:02:21 . Memory (MB): peak = 1940.566 ; gain = 1053.902 ; free physical = 2466 ; free virtual = 18725
 ---------------------------------------------------------------------------------
 
 Report RTL Partitions: 
@@ -3827,25 +3828,25 @@ Report RTL Partitions:
 Start Rebuilding User Hierarchy
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Rebuilding User Hierarchy : Time (s): cpu = 00:02:03 ; elapsed = 00:02:15 . Memory (MB): peak = 1941.578 ; gain = 1054.910 ; free physical = 12736 ; free virtual = 27282
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:02:19 ; elapsed = 00:02:31 . Memory (MB): peak = 1940.566 ; gain = 1053.902 ; free physical = 2462 ; free virtual = 18721
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Ports
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Ports : Time (s): cpu = 00:02:03 ; elapsed = 00:02:15 . Memory (MB): peak = 1941.578 ; gain = 1054.910 ; free physical = 12736 ; free virtual = 27282
+Finished Renaming Generated Ports : Time (s): cpu = 00:02:19 ; elapsed = 00:02:31 . Memory (MB): peak = 1940.566 ; gain = 1053.902 ; free physical = 2438 ; free virtual = 18697
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:02:04 ; elapsed = 00:02:16 . Memory (MB): peak = 1941.578 ; gain = 1054.910 ; free physical = 12736 ; free virtual = 27282
+Finished Handling Custom Attributes : Time (s): cpu = 00:02:20 ; elapsed = 00:02:32 . Memory (MB): peak = 1940.566 ; gain = 1053.902 ; free physical = 2430 ; free virtual = 18689
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Nets
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Nets : Time (s): cpu = 00:02:04 ; elapsed = 00:02:16 . Memory (MB): peak = 1941.578 ; gain = 1054.910 ; free physical = 12736 ; free virtual = 27282
+Finished Renaming Generated Nets : Time (s): cpu = 00:02:20 ; elapsed = 00:02:32 . Memory (MB): peak = 1940.566 ; gain = 1053.902 ; free physical = 2459 ; free virtual = 18718
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start ROM, RAM, DSP and Shift Register Reporting
@@ -3909,17 +3910,17 @@ Report Cell Usage:
 +------+-----------+------+
 |1     |BIBUF      |   130|
 |2     |BUFG       |     1|
-|3     |CARRY4     |  1676|
+|3     |CARRY4     |  1672|
 |4     |DSP48E1    |   200|
 |5     |DSP48E1_1  |    16|
 |6     |LUT1       |  3311|
-|7     |LUT2       |  1447|
-|8     |LUT3       |  2098|
-|9     |LUT4       |  1579|
-|10    |LUT5       |  2486|
-|11    |LUT6       |  5501|
+|7     |LUT2       |  1438|
+|8     |LUT3       |  2095|
+|9     |LUT4       |  1584|
+|10    |LUT5       |  2496|
+|11    |LUT6       |  5488|
 |12    |MUXF7      |   490|
-|13    |MUXF8      |     6|
+|13    |MUXF8      |     7|
 |14    |PS7        |     1|
 |15    |RAM32M     |   162|
 |16    |RAM64M     |   760|
@@ -3932,7 +3933,7 @@ Report Cell Usage:
 |23    |SRLC32E    |    47|
 |24    |FDCE       |  4949|
 |25    |FDR        |     8|
-|26    |FDRE       | 13289|
+|26    |FDRE       | 13288|
 |27    |FDSE       |    55|
 +------+-----------+------+
 
@@ -3940,11 +3941,11 @@ Report Instance Areas:
 +------+---------------------------------------------------+--------------------------------------------------------------+------+
 |      |Instance                                           |Module                                                        |Cells |
 +------+---------------------------------------------------+--------------------------------------------------------------+------+
-|1     |top                                                |                                                              | 38796|
-|2     |  kinpira_i                                        |kinpira                                                       | 38796|
-|3     |    kinpira_0                                      |kinpira_kinpira_0_0                                           | 37297|
-|4     |      inst                                         |kinpira_v1_0                                                  | 37297|
-|5     |        gobou0                                     |gobou                                                         |  4094|
+|1     |top                                                |                                                              | 38782|
+|2     |  kinpira_i                                        |kinpira                                                       | 38782|
+|3     |    kinpira_0                                      |kinpira_kinpira_0_0                                           | 37283|
+|4     |      inst                                         |kinpira_v1_0                                                  | 37283|
+|5     |        gobou0                                     |gobou                                                         |  4084|
 |6     |          core0                                    |gobou_core                                                    |   208|
 |7     |            bias                                   |gobou_bias_222                                                |    68|
 |8     |            mac                                    |gobou_mac_223                                                 |    73|
@@ -4009,9 +4010,9 @@ Report Instance Areas:
 |67    |            bias                                   |gobou_bias                                                    |    68|
 |68    |            mac                                    |gobou_mac                                                     |    73|
 |69    |            relu                                   |gobou_relu                                                    |    67|
-|70    |          ctrl                                     |gobou_ctrl                                                    |   398|
+|70    |          ctrl                                     |gobou_ctrl                                                    |   388|
 |71    |            ctrl_bias                              |gobou_ctrl_bias                                               |     2|
-|72    |            ctrl_core                              |gobou_ctrl_core                                               |   391|
+|72    |            ctrl_core                              |gobou_ctrl_core                                               |   381|
 |73    |            ctrl_mac                               |gobou_ctrl_mac                                                |     4|
 |74    |            ctrl_relu                              |gobou_ctrl_relu                                               |     1|
 |75    |          mem_net0                                 |gobou_mem_net                                                 |     8|
@@ -4033,8 +4034,8 @@ Report Instance Areas:
 |91    |          serial                                   |gobou_serial_vec                                              |   256|
 |92    |        kinpira_v1_0_s_axi_inst                    |ninjin                                                        |  1940|
 |93    |        mem_img0                                   |mem_img                                                       |    18|
-|94    |        renkon0                                    |renkon                                                        | 31244|
-|95    |          buf_pix                                  |renkon_linebuf                                                |   556|
+|94    |        renkon0                                    |renkon                                                        | 31240|
+|95    |          buf_pix                                  |renkon_linebuf                                                |   557|
 |96    |            buff0                                  |renkon_mem_linebuf_144                                        |    68|
 |97    |            buff1                                  |renkon_mem_linebuf_145                                        |     4|
 |98    |            buff2                                  |renkon_mem_linebuf_146                                        |   100|
@@ -4177,11 +4178,11 @@ Report Instance Areas:
 |235   |                buff5                              |renkon_mem_linebuf_31                                         |     4|
 |236   |              pool_tree                            |renkon_pool_max                                               |   182|
 |237   |            relu                                   |renkon_relu                                                   |    42|
-|238   |          ctrl                                     |renkon_ctrl                                                   |  2097|
+|238   |          ctrl                                     |renkon_ctrl                                                   |  2092|
 |239   |            ctrl_bias                              |renkon_ctrl_bias                                              |     5|
 |240   |            ctrl_conv                              |renkon_ctrl_conv                                              |   530|
-|241   |            ctrl_core                              |renkon_ctrl_core                                              |  1069|
-|242   |            ctrl_pool                              |renkon_ctrl_pool                                              |   486|
+|241   |            ctrl_core                              |renkon_ctrl_core                                              |  1063|
+|242   |            ctrl_pool                              |renkon_ctrl_pool                                              |   487|
 |243   |            ctrl_relu                              |renkon_ctrl_relu                                              |     7|
 |244   |          mem_net0                                 |renkon_mem_net                                                |     1|
 |245   |          mem_net1                                 |renkon_mem_net_12                                             |     1|
@@ -4238,13 +4239,13 @@ Report Instance Areas:
 |296   |          SEQ_COUNTER                              |upcnt_n                                                       |    13|
 +------+---------------------------------------------------+--------------------------------------------------------------+------+
 ---------------------------------------------------------------------------------
-Finished Writing Synthesis Report : Time (s): cpu = 00:02:04 ; elapsed = 00:02:16 . Memory (MB): peak = 1941.578 ; gain = 1054.910 ; free physical = 12736 ; free virtual = 27282
+Finished Writing Synthesis Report : Time (s): cpu = 00:02:20 ; elapsed = 00:02:32 . Memory (MB): peak = 1940.566 ; gain = 1053.902 ; free physical = 2459 ; free virtual = 18718
 ---------------------------------------------------------------------------------
 Synthesis finished with 0 errors, 0 critical warnings and 40 warnings.
-Synthesis Optimization Runtime : Time (s): cpu = 00:01:49 ; elapsed = 00:01:51 . Memory (MB): peak = 1941.578 ; gain = 584.031 ; free physical = 12736 ; free virtual = 27282
-Synthesis Optimization Complete : Time (s): cpu = 00:02:05 ; elapsed = 00:02:17 . Memory (MB): peak = 1941.586 ; gain = 1054.918 ; free physical = 12737 ; free virtual = 27283
+Synthesis Optimization Runtime : Time (s): cpu = 00:02:03 ; elapsed = 00:02:06 . Memory (MB): peak = 1940.566 ; gain = 583.023 ; free physical = 2474 ; free virtual = 18733
+Synthesis Optimization Complete : Time (s): cpu = 00:02:20 ; elapsed = 00:02:32 . Memory (MB): peak = 1940.574 ; gain = 1053.910 ; free physical = 2473 ; free virtual = 18732
 INFO: [Project 1-571] Translating synthesized netlist
-INFO: [Netlist 29-17] Analyzing 3113 Unisim elements for replacement
+INFO: [Netlist 29-17] Analyzing 3109 Unisim elements for replacement
 INFO: [Netlist 29-28] Unisim Transformation completed in 1 CPU seconds
 INFO: [Project 1-570] Preparing netlist for logic optimization
 INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
@@ -4259,7 +4260,7 @@ INFO: [Project 1-111] Unisim Transformation Summary:
 INFO: [Common 17-83] Releasing license: Synthesis
 572 Infos, 272 Warnings, 0 Critical Warnings and 0 Errors encountered.
 synth_design completed successfully
-synth_design: Time (s): cpu = 00:02:12 ; elapsed = 00:02:22 . Memory (MB): peak = 1973.594 ; gain = 978.363 ; free physical = 12737 ; free virtual = 27284
-write_checkpoint: Time (s): cpu = 00:00:07 ; elapsed = 00:00:06 . Memory (MB): peak = 2006.609 ; gain = 33.016 ; free physical = 12728 ; free virtual = 27280
-report_utilization: Time (s): cpu = 00:00:00.28 ; elapsed = 00:00:00.40 . Memory (MB): peak = 2006.609 ; gain = 0.000 ; free physical = 12728 ; free virtual = 27280
-INFO: [Common 17-206] Exiting Vivado at Wed Nov 30 07:08:37 2016...
+synth_design: Time (s): cpu = 00:02:28 ; elapsed = 00:02:39 . Memory (MB): peak = 1972.582 ; gain = 977.355 ; free physical = 2404 ; free virtual = 18665
+write_checkpoint: Time (s): cpu = 00:00:08 ; elapsed = 00:00:07 . Memory (MB): peak = 2005.598 ; gain = 33.016 ; free physical = 2498 ; free virtual = 18764
+report_utilization: Time (s): cpu = 00:00:00.31 ; elapsed = 00:00:00.42 . Memory (MB): peak = 2005.598 ; gain = 0.000 ; free physical = 2414 ; free virtual = 18681
+INFO: [Common 17-206] Exiting Vivado at Thu Dec  1 22:32:52 2016...

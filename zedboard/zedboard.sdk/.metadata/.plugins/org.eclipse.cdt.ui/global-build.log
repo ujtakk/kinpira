@@ -249,3 +249,1050 @@ make pre-build main-build
 a9-linaro-pre-build-step
  
 make: Nothing to be done for 'main-build'.
+20:58:37 **** Auto Build of configuration Debug for project cnn ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+ 
+Building file: ../src/func_pl.c
+Invoking: ARM v7 gcc compiler
+arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/func_pl.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -I../../cnn_bsp/ps7_cortexa9_0/include -MMD -MP -MF"src/func_pl.d" -MT"src/func_pl.o" -o "src/func_pl.o" "../src/func_pl.c"
+In file included from ../src/cnn.h:15:0,
+                 from ../src/func_pl.c:4:
+../src/func_pl.h:39:16: error: unknown type name ‘layer’
+ void define_2d(layer *l,
+                ^
+../src/func_pl.h:44:16: error: unknown type name ‘layer’
+ void assign_2d(layer *l, s16 *weight, s16 *bias);
+                ^
+../src/func_pl.h:45:16: error: unknown type name ‘layer’
+ void define_1d(layer *l,
+                ^
+../src/func_pl.h:49:16: error: unknown type name ‘layer’
+ void assign_1d(layer *l, s16 *weight, s16 *bias);
+                ^
+../src/func_pl.h:50:16: error: unknown type name ‘layer’
+ void exec_core(layer *l);
+                ^
+../src/func_pl.c: In function ‘post_image’:
+../src/func_pl.c:20:3: error: ‘for’ loop initial declarations are only allowed in C99 or C11 mode
+src/subdir.mk:39: recipe for target 'src/func_pl.o' failed
+   for (u16 i = 0; i < length; i++) {
+   ^
+../src/func_pl.c:20:3: note: use option -std=c99, -std=gnu99, -std=c11 or -std=gnu11 to compile your code
+../src/func_pl.c: In function ‘assign_2d’:
+../src/func_pl.c:68:3: error: ‘for’ loop initial declarations are only allowed in C99 or C11 mode
+   for (u16 i = 0; i < total_out; i++) {
+   ^
+../src/func_pl.c:71:5: error: ‘for’ loop initial declarations are only allowed in C99 or C11 mode
+     for (u16 j = 0; j < total_in; j++) {
+     ^
+../src/func_pl.c:72:7: error: ‘for’ loop initial declarations are only allowed in C99 or C11 mode
+       for (u16 k = 0; k < fil_size; k++) {
+       ^
+../src/func_pl.c:73:9: error: ‘for’ loop initial declarations are only allowed in C99 or C11 mode
+         for (u16 l = 0; l < fil_size; l++) {
+         ^
+../src/func_pl.c:89:5: warning: statement with no effect [-Wunused-value]
+     b_cnt;
+     ^
+../src/func_pl.c: In function ‘assign_1d’:
+../src/func_pl.c:130:3: error: ‘for’ loop initial declarations are only allowed in C99 or C11 mode
+   for (u16 i = 0; i < total_out; i++) {
+   ^
+../src/func_pl.c:133:5: error: ‘for’ loop initial declarations are only allowed in C99 or C11 mode
+     for (u16 j = 0; j < total_in; j++) {
+     ^
+../src/func_pl.c:147:5: warning: statement with no effect [-Wunused-value]
+     b_cnt;
+     ^
+../src/func_pl.c: In function ‘get_image’:
+../src/func_pl.c:186:3: error: ‘for’ loop initial declarations are only allowed in C99 or C11 mode
+   for (u16 i = 0; i < length; i++) {
+   ^
+make: *** [src/func_pl.o] Error 1
+21:02:10 **** Clean-only build of configuration Debug for project cnn ****
+make clean 
+rm -rf  ./src/func_pl.o ./src/func_ps.o ./src/helloworld.o ./src/main.o ./src/misc.o ./src/platform.o ./src/show.o  ./src/func_pl.d ./src/func_ps.d ./src/helloworld.d ./src/main.d ./src/misc.d ./src/platform.d ./src/show.d  cnn.elf.size  cnn.elf
+ 
+21:02:11 **** Auto Build of configuration Debug for project cnn ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+ 
+Building file: ../src/func_pl.c
+Invoking: ARM v7 gcc compiler
+arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/func_pl.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -std=c11 -I../../cnn_bsp/ps7_cortexa9_0/include -MMD -MP -MF"src/func_pl.d" -MT"src/func_pl.o" -o "src/func_pl.o" "../src/func_pl.c"
+In file included from ../src/cnn.h:15:0,
+                 from ../src/func_pl.c:4:
+../src/func_pl.h:39:16: error: unknown type name ‘layer’
+ void define_2d(layer *l,
+                ^
+../src/func_pl.h:44:16: error: unknown type name ‘layer’
+ void assign_2d(layer *l, s16 *weight, s16 *bias);
+                ^
+../src/func_pl.h:45:16: error: unknown type name ‘layer’
+ void define_1d(layer *l,
+                ^
+../src/func_pl.h:49:16: error: unknown type name ‘layer’
+ void assign_1d(layer *l, s16 *weight, s16 *bias);
+                ^
+../src/func_pl.h:50:16: error: unknown type name ‘layer’
+ void exec_core(layer *l);
+                ^
+../src/func_pl.c: In function ‘assign_2d’:
+../src/func_pl.c:89:5: warning: statement with no effect [-Wunused-value]
+     b_cnt;
+     ^
+../src/func_pl.c: In function ‘assign_1d’:
+../src/func_pl.c:147:5: warning: statement with no effect [-Wunused-value]
+     b_cnt;
+     ^
+src/subdir.mk:39: recipe for target 'src/func_pl.o' failed
+make: *** [src/func_pl.o] Error 1
+21:44:46 **** Clean-only build of configuration Debug for project cnn ****
+make clean 
+rm -rf  ./src/func_pl.o ./src/func_ps.o ./src/helloworld.o ./src/main.o ./src/misc.o ./src/platform.o ./src/show.o  ./src/func_pl.d ./src/func_ps.d ./src/helloworld.d ./src/main.d ./src/misc.d ./src/platform.d ./src/show.d  cnn.elf.size  cnn.elf
+ 
+21:44:46 **** Auto Build of configuration Debug for project cnn ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+ 
+Building file: ../src/func_pl.c
+Invoking: ARM v7 gcc compiler
+arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/func_pl.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -std=c11 -I../../cnn_bsp/ps7_cortexa9_0/include -MMD -MP -MF"src/func_pl.d" -MT"src/func_pl.o" -o "src/func_pl.o" "../src/func_pl.c"
+In file included from ../src/cnn.h:15:0,
+                 from ../src/func_pl.c:4:
+../src/func_pl.h:39:16: error: unknown type name ‘layer’
+ void define_2d(layer *l,
+                ^
+../src/func_pl.h:44:16: error: unknown type name ‘layer’
+ void assign_2d(layer *l, s16 *weight, s16 *bias);
+                ^
+../src/func_pl.h:45:16: error: unknown type name ‘layer’
+ void define_1d(layer *l,
+                ^
+../src/func_pl.h:49:16: error: unknown type name ‘layer’
+ void assign_1d(layer *l, s16 *weight, s16 *bias);
+                ^
+../src/func_pl.h:50:16: error: unknown type name ‘layer’
+ void exec_core(layer *l);
+                ^
+../src/func_pl.c: In function ‘assign_2d’:
+../src/func_pl.c:89:5: warning: statement with no effect [-Wunused-value]
+     b_cnt;
+     ^
+../src/func_pl.c: In function ‘assign_1d’:
+../src/func_pl.c:147:5: warning: statement with no effect [-Wunused-value]
+     b_cnt;
+     ^
+src/subdir.mk:39: recipe for target 'src/func_pl.o' failed
+make: *** [src/func_pl.o] Error 1
+21:47:44 **** Auto Build of configuration Debug for project cnn ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+ 
+Building file: ../src/func_pl.c
+Invoking: ARM v7 gcc compiler
+arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/func_pl.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -std=c11 -I../../cnn_bsp/ps7_cortexa9_0/include -MMD -MP -MF"src/func_pl.d" -MT"src/func_pl.o" -o "src/func_pl.o" "../src/func_pl.c"
+In file included from ../src/func_pl.c:4:0:
+../src/cnn.h:67:3: error: conflicting types for ‘layer’
+ } layer;
+   ^
+In file included from ../src/cnn.h:15:0,
+                 from ../src/func_pl.c:4:
+../src/func_pl.h:26:3: note: previous declaration of ‘layer’ was here
+ } layer;
+   ^
+../src/func_pl.c:33:6: error: conflicting types for ‘define_2d’
+ void define_2d(layer *l,
+      ^
+In file included from ../src/cnn.h:15:0,
+                 from ../src/func_pl.c:4:
+../src/func_pl.h:50:6: note: previous declaration of ‘define_2d’ was here
+ void define_2d(layer *l,
+      ^
+../src/func_pl.c:52:6: error: conflicting types for ‘assign_2d’
+ void assign_2d(layer *l, s16 *weight, s16 *bias)
+      ^
+In file included from ../src/cnn.h:15:0,
+                 from ../src/func_pl.c:4:
+../src/func_pl.h:55:6: note: previous declaration of ‘assign_2d’ was here
+ void assign_2d(layer *l, s16 *weight, s16 *bias);
+      ^
+../src/func_pl.c: In function ‘assign_2d’:
+../src/func_pl.c:89:5: warning: statement with no effect [-Wunused-value]
+     b_cnt;
+     ^
+../src/func_pl.c: At top level:
+../src/func_pl.c:98:6: error: conflicting types for ‘define_1d’
+ void define_1d(layer *l,
+      ^
+In file included from ../src/cnn.h:15:0,
+                 from ../src/func_pl.c:4:
+../src/func_pl.h:56:6: note: previous declaration of ‘define_1d’ was here
+ void define_1d(layer *l,
+      ^
+../src/func_pl.c:116:6: error: conflicting types for ‘assign_1d’
+ void assign_1d(layer *l, s16 *weight, s16 *bias)
+      ^
+In file included from ../src/cnn.h:15:0,
+                 from ../src/func_pl.c:4:
+../src/func_pl.h:60:6: note: previous declaration of ‘assign_1d’ was here
+ void assign_1d(layer *l, s16 *weight, s16 *bias);
+src/subdir.mk:39: recipe for target 'src/func_pl.o' failed
+      ^
+../src/func_pl.c: In function ‘assign_1d’:
+../src/func_pl.c:147:5: warning: statement with no effect [-Wunused-value]
+     b_cnt;
+     ^
+../src/func_pl.c: At top level:
+../src/func_pl.c:156:6: error: conflicting types for ‘exec_core’
+ void exec_core(layer *l)
+      ^
+In file included from ../src/cnn.h:15:0,
+                 from ../src/func_pl.c:4:
+../src/func_pl.h:61:6: note: previous declaration of ‘exec_core’ was here
+ void exec_core(layer *l);
+      ^
+make: *** [src/func_pl.o] Error 1
+21:48:28 **** Auto Build of configuration Debug for project cnn ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+ 
+Building file: ../src/func_pl.c
+Invoking: ARM v7 gcc compiler
+arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/func_pl.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -std=c11 -I../../cnn_bsp/ps7_cortexa9_0/include -MMD -MP -MF"src/func_pl.d" -MT"src/func_pl.o" -o "src/func_pl.o" "../src/func_pl.c"
+In file included from ../src/cnn.h:15:0,
+                 from ../src/func_pl.c:4:
+../src/func_pl.h:40:16: error: unknown type name ‘layer’
+ void define_2d(layer *l,
+                ^
+../src/func_pl.h:45:16: error: unknown type name ‘layer’
+ void assign_2d(layer *l, s16 *weight, s16 *bias);
+                ^
+../src/func_pl.h:46:16: error: unknown type name ‘layer’
+ void define_1d(layer *l,
+                ^
+../src/func_pl.h:50:16: error: unknown type name ‘layer’
+ void assign_1d(layer *l, s16 *weight, s16 *bias);
+                ^
+../src/func_pl.h:51:16: error: unknown type name ‘layer’
+ void exec_core(layer *l);
+                ^
+../src/func_pl.c: In function ‘assign_2d’:
+../src/func_pl.c:89:5: warning: statement with no effect [-Wunused-value]
+     b_cnt;
+     ^
+../src/func_pl.c: In function ‘assign_1d’:
+../src/func_pl.c:147:5: warning: statement with no effect [-Wunused-value]
+     b_cnt;
+     ^
+src/subdir.mk:39: recipe for target 'src/func_pl.o' failed
+make: *** [src/func_pl.o] Error 1
+21:50:12 **** Auto Build of configuration Debug for project cnn ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+ 
+Building file: ../src/func_pl.c
+Invoking: ARM v7 gcc compiler
+arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/func_pl.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -std=c11 -I../../cnn_bsp/ps7_cortexa9_0/include -MMD -MP -MF"src/func_pl.d" -MT"src/func_pl.o" -o "src/func_pl.o" "../src/func_pl.c"
+In file included from ../src/cnn.h:15:0,
+                 from ../src/func_pl.c:4:
+../src/func_pl.h:41:16: error: unknown type name ‘layer’
+ void define_2d(layer *l,
+                ^
+../src/func_pl.h:46:16: error: unknown type name ‘layer’
+ void assign_2d(layer *l, s16 *weight, s16 *bias);
+                ^
+../src/func_pl.h:47:16: error: unknown type name ‘layer’
+ void define_1d(layer *l,
+                ^
+../src/func_pl.h:51:16: error: unknown type name ‘layer’
+ void assign_1d(layer *l, s16 *weight, s16 *bias);
+                ^
+../src/func_pl.h:52:16: error: unknown type name ‘layer’
+ void exec_core(layer *l);
+                ^
+../src/func_pl.c: In function ‘assign_2d’:
+../src/func_pl.c:89:5: warning: statement with no effect [-Wunused-value]
+     b_cnt;
+     ^
+../src/func_pl.c: In function ‘assign_1d’:
+../src/func_pl.c:147:5: warning: statement with no effect [-Wunused-value]
+     b_cnt;
+     ^
+src/subdir.mk:39: recipe for target 'src/func_pl.o' failed
+make: *** [src/func_pl.o] Error 1
+21:51:26 **** Auto Build of configuration Debug for project cnn ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+ 
+Building file: ../src/func_pl.c
+Invoking: ARM v7 gcc compiler
+arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/func_pl.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -std=c11 -I../../cnn_bsp/ps7_cortexa9_0/include -MMD -MP -MF"src/func_pl.d" -MT"src/func_pl.o" -o "src/func_pl.o" "../src/func_pl.c"
+In file included from ../src/func_pl.c:4:0:
+../src/cnn.h:67:3: error: conflicting types for ‘layer’
+ } layer;
+   ^
+In file included from ../src/cnn.h:15:0,
+                 from ../src/func_pl.c:4:
+../src/func_pl.h:48:3: note: previous declaration of ‘layer’ was here
+ } layer;
+   ^
+../src/func_pl.c:33:6: error: conflicting types for ‘define_2d’
+ void define_2d(layer *l,
+      ^
+In file included from ../src/cnn.h:15:0,
+                 from ../src/func_pl.c:4:
+../src/func_pl.h:51:6: note: previous declaration of ‘define_2d’ was here
+ void define_2d(layer *l,
+      ^
+../src/func_pl.c:52:6: error: conflicting types for ‘assign_2d’
+ void assign_2d(layer *l, s16 *weight, s16 *bias)
+      ^
+In file included from ../src/cnn.h:15:0,
+                 from ../src/func_pl.c:4:
+../src/func_pl.h:56:6: note: previous declaration of ‘assign_2d’ was here
+ void assign_2d(layer *l, s16 *weight, s16 *bias);
+      ^
+../src/func_pl.c: In function ‘assign_2d’:
+../src/func_pl.c:89:5: warning: statement with no effect [-Wunused-value]
+     b_cnt;
+     ^
+../src/func_pl.c: At top level:
+../src/func_pl.c:98:6: error: conflicting types for ‘define_1d’
+ void define_1d(layer *l,
+      ^
+In file included from ../src/cnn.h:15:0,
+                 from ../src/func_pl.c:4:
+../src/func_pl.h:57:6: note: previous declaration of ‘define_1d’ was here
+ void define_1d(layer *l,
+      ^
+../src/func_pl.c:116:6: error: conflicting types for ‘assign_1d’
+ void assign_1d(layer *l, s16 *weight, s16 *bias)
+      ^
+In file included from ../src/cnn.h:15:0,
+                 from ../src/func_pl.c:4:
+../src/func_pl.h:61:6: note: previous declaration of ‘assign_1d’ was here
+ void assign_1d(layer *l, s16 *weight, s16 *bias);
+      ^
+../src/func_pl.c: In function ‘assign_1d’:
+../src/func_pl.c:147:5: warning: statement with no effect [-Wunused-value]
+     b_cnt;
+     ^
+../src/func_pl.c: At top level:
+../src/func_pl.c:156:6: error: conflicting types for ‘exec_core’
+src/subdir.mk:39: recipe for target 'src/func_pl.o' failed
+ void exec_core(layer *l)
+      ^
+In file included from ../src/cnn.h:15:0,
+                 from ../src/func_pl.c:4:
+../src/func_pl.h:62:6: note: previous declaration of ‘exec_core’ was here
+ void exec_core(layer *l);
+      ^
+make: *** [src/func_pl.o] Error 1
+21:51:39 **** Auto Build of configuration Debug for project cnn ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+ 
+Building file: ../src/func_pl.c
+Invoking: ARM v7 gcc compiler
+arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/func_pl.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -std=c11 -I../../cnn_bsp/ps7_cortexa9_0/include -MMD -MP -MF"src/func_pl.d" -MT"src/func_pl.o" -o "src/func_pl.o" "../src/func_pl.c"
+../src/func_pl.c: In function ‘assign_2d’:
+../src/func_pl.c:89:5: warning: statement with no effect [-Wunused-value]
+     b_cnt;
+     ^
+../src/func_pl.c: In function ‘assign_1d’:
+../src/func_pl.c:147:5: warning: statement with no effect [-Wunused-value]
+     b_cnt;
+     ^
+Finished building: ../src/func_pl.c
+ 
+Building file: ../src/func_ps.c
+Invoking: ARM v7 gcc compiler
+arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/func_ps.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -std=c11 -I../../cnn_bsp/ps7_cortexa9_0/include -MMD -MP -MF"src/func_ps.d" -MT"src/func_ps.o" -o "src/func_ps.o" "../src/func_ps.c"
+Finished building: ../src/func_ps.c
+ 
+Building file: ../src/helloworld.c
+Invoking: ARM v7 gcc compiler
+arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/helloworld.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -std=c11 -I../../cnn_bsp/ps7_cortexa9_0/include -MMD -MP -MF"src/helloworld.d" -MT"src/helloworld.o" -o "src/helloworld.o" "../src/helloworld.c"
+Finished building: ../src/helloworld.c
+ 
+Building file: ../src/main.c
+Invoking: ARM v7 gcc compiler
+arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/main.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -std=c11 -I../../cnn_bsp/ps7_cortexa9_0/include -MMD -MP -MF"src/main.d" -MT"src/main.o" -o "src/main.o" "../src/main.c"
+../src/main.c: In function ‘main’:
+../src/main.c:76:3: error: expected ‘=’, ‘,’, ‘;’, ‘asm’ or ‘__attribute__’ before ‘s16’
+   s16 output_flat[LABEL];
+   ^
+../src/main.c:89:3: error: unknown type name ‘Clear’
+   Clear the screen
+   ^
+../src/main.c:89:13: error: expected ‘=’, ‘,’, ‘;’, ‘asm’ or ‘__attribute__’ before ‘screen’
+   Clear the screen
+             ^
+../src/main.c:90:19: error: ‘i’ undeclared (first use in this function)
+   for (int i = 0; i < 100; i++) xil_printf("\r\n");
+                   ^
+../src/main.c:90:19: note: each undeclared identifier is reported only once for each function it appears in
+../src/main.c:90:31: error: expected ‘;’ before ‘)’ token
+   for (int i = 0; i < 100; i++) xil_printf("\r\n");
+                               ^
+../src/main.c:90:31: error: expected statement before ‘)’ token
+../src/main.c:100:14: error: ‘conv1’ undeclared (first use in this function)
+   define_2d(&conv1,  0, 784, 0, N_F1, N_IN,  IMHEI, FHEI, PHEI);
+              ^
+../src/main.c:103:14: error: ‘conv2’ undeclared (first use in this function)
+   define_2d(&conv2, 784, 3088, 52, N_F2, N_F1, PM1HEI, FHEI, PHEI);
+              ^
+../src/main.c:106:14: error: ‘hidden’ undeclared (first use in this function)
+   define_1d(&hidden, 3088, 3600, 0, N_HL, N_F2*PM2HEI*PM2WID);
+              ^
+../src/main.c:107:22: error: ‘w_hidden_flat’ undeclared (first use in this function)
+   assign_1d(&hidden, w_hidden_flat, b_hidden_flat);
+                      ^
+../src/main.c:107:37: error: ‘b_hidden_flat’ undeclared (first use in this function)
+   assign_1d(&hidden, w_hidden_flat, b_hidden_flat);
+                                     ^
+../src/main.c:109:14: error: ‘output’ undeclared (first use in this function)
+   define_1d(&output, 3600, 3856, 8208, LABEL, N_HL);
+              ^
+../src/main.c:110:22: error: ‘w_output_flat’ undeclared (first use in this function)
+   assign_1d(&output, w_output_flat, b_output_flat);
+                      ^
+../src/main.c:110:37: error: ‘b_output_flat’ undeclared (first use in this function)
+   assign_1d(&output, w_output_flat, b_output_flat);
+                                     ^
+make: *** [src/main.o] Error 1
+src/subdir.mk:39: recipe for target 'src/main.o' failed
+21:52:12 **** Auto Build of configuration Debug for project cnn ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+ 
+Building file: ../src/main.c
+Invoking: ARM v7 gcc compiler
+arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/main.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -std=c11 -I../../cnn_bsp/ps7_cortexa9_0/include -MMD -MP -MF"src/main.d" -MT"src/main.o" -o "src/main.o" "../src/main.c"
+src/subdir.mk:39: recipe for target 'src/main.o' failed
+../src/main.c: In function ‘main’:
+../src/main.c:76:3: error: expected ‘=’, ‘,’, ‘;’, ‘asm’ or ‘__attribute__’ before ‘s16’
+   s16 output_flat[LABEL];
+   ^
+../src/main.c:100:14: error: ‘conv1’ undeclared (first use in this function)
+   define_2d(&conv1,  0, 784, 0, N_F1, N_IN,  IMHEI, FHEI, PHEI);
+              ^
+../src/main.c:100:14: note: each undeclared identifier is reported only once for each function it appears in
+../src/main.c:103:14: error: ‘conv2’ undeclared (first use in this function)
+   define_2d(&conv2, 784, 3088, 52, N_F2, N_F1, PM1HEI, FHEI, PHEI);
+              ^
+../src/main.c:106:14: error: ‘hidden’ undeclared (first use in this function)
+   define_1d(&hidden, 3088, 3600, 0, N_HL, N_F2*PM2HEI*PM2WID);
+              ^
+../src/main.c:107:22: error: ‘w_hidden_flat’ undeclared (first use in this function)
+   assign_1d(&hidden, w_hidden_flat, b_hidden_flat);
+                      ^
+../src/main.c:107:37: error: ‘b_hidden_flat’ undeclared (first use in this function)
+   assign_1d(&hidden, w_hidden_flat, b_hidden_flat);
+                                     ^
+../src/main.c:109:14: error: ‘output’ undeclared (first use in this function)
+   define_1d(&output, 3600, 3856, 8208, LABEL, N_HL);
+              ^
+../src/main.c:110:22: error: ‘w_output_flat’ undeclared (first use in this function)
+   assign_1d(&output, w_output_flat, b_output_flat);
+                      ^
+../src/main.c:110:37: error: ‘b_output_flat’ undeclared (first use in this function)
+   assign_1d(&output, w_output_flat, b_output_flat);
+                                     ^
+make: *** [src/main.o] Error 1
+21:54:06 **** Auto Build of configuration Debug for project cnn ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+ 
+Building file: ../src/main.c
+Invoking: ARM v7 gcc compiler
+arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/main.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -std=c11 -I../../cnn_bsp/ps7_cortexa9_0/include -MMD -MP -MF"src/main.d" -MT"src/main.o" -o "src/main.o" "../src/main.c"
+../src/main.c: In function ‘main’:
+../src/main.c:108:22: error: ‘w_hidden_flat’ undeclared (first use in this function)
+   assign_1d(&hidden, w_hidden_flat, b_hidden_flat);
+                      ^
+../src/main.c:108:22: note: each undeclared identifier is reported only once for each function it appears in
+../src/main.c:108:37: error: ‘b_hidden_flat’ undeclared (first use in this function)
+   assign_1d(&hidden, w_hidden_flat, b_hidden_flat);
+                                     ^
+../src/main.c:111:22: error: ‘w_output_flat’ undeclared (first use in this function)
+   assign_1d(&output, w_output_flat, b_output_flat);
+                      ^
+../src/main.c:111:37: error: ‘b_output_flat’ undeclared (first use in this function)
+   assign_1d(&output, w_output_flat, b_output_flat);
+                                     ^
+../src/main.c:117:3: error: incompatible type for argument 1 of ‘exec_core’
+   exec_core(conv1);
+   ^
+In file included from ../src/cnn.h:15:0,
+                 from ../src/main.c:3:
+../src/func_pl.h:62:6: note: expected ‘struct layer *’ but argument is of type ‘layer’
+ void exec_core(layer *l);
+      ^
+../src/main.c:120:3: error: incompatible type for argument 1 of ‘exec_core’
+   exec_core(conv2);
+   ^
+In file included from ../src/cnn.h:15:0,
+                 from ../src/main.c:3:
+../src/func_pl.h:62:6: note: expected ‘struct layer *’ but argument is of type ‘layer’
+ void exec_core(layer *l);
+      ^
+../src/main.c:123:3: error: incompatible type for argument 1 of ‘exec_core’
+   exec_core(hidden);
+   ^
+In file included from ../src/cnn.h:15:0,
+                 from ../src/main.c:3:
+../src/func_pl.h:62:6: note: expected ‘struct layer *’ but argument is of type ‘layer’
+ void exec_core(layer *l);
+      ^
+../src/main.c:126:3: error: incompatible type for argument 1 of ‘exec_core’
+   exec_core(output);
+   ^
+In file included from ../src/cnn.h:15:0,
+                 from ../src/main.c:3:
+../src/func_pl.h:62:6: note: expected ‘struct layer *’ but argument is of type ‘layer’
+ void exec_core(layer *l);
+      ^
+src/subdir.mk:39: recipe for target 'src/main.o' failed
+make: *** [src/main.o] Error 1
+21:54:44 **** Auto Build of configuration Debug for project cnn ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+ 
+Building file: ../src/main.c
+Invoking: ARM v7 gcc compiler
+arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/main.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -std=c11 -I../../cnn_bsp/ps7_cortexa9_0/include -MMD -MP -MF"src/main.d" -MT"src/main.o" -o "src/main.o" "../src/main.c"
+../src/main.c: In function ‘main’:
+../src/main.c:117:3: error: incompatible type for argument 1 of ‘exec_core’
+   exec_core(conv1);
+   ^
+In file included from ../src/cnn.h:15:0,
+                 from ../src/main.c:3:
+../src/func_pl.h:62:6: note: expected ‘struct layer *’ but argument is of type ‘layer’
+ void exec_core(layer *l);
+      ^
+../src/main.c:120:3: error: incompatible type for argument 1 of ‘exec_core’
+   exec_core(conv2);
+   ^
+In file included from ../src/cnn.h:15:0,
+                 from ../src/main.c:3:
+../src/func_pl.h:62:6: note: expected ‘struct layer *’ but argument is of type ‘layer’
+ void exec_core(layer *l);
+      ^
+../src/main.c:123:3: error: incompatible type for argument 1 of ‘exec_core’
+   exec_core(hidden);
+   ^
+In file included from ../src/cnn.h:15:0,
+                 from ../src/main.c:3:
+../src/func_pl.h:62:6: note: expected ‘struct layer *’ but argument is of type ‘layer’
+ void exec_core(layer *l);
+      ^
+../src/main.c:126:3: error: incompatible type for argument 1 of ‘exec_core’
+   exec_core(output);
+   ^
+In file included from ../src/cnn.h:15:0,
+                 from ../src/main.c:3:
+../src/func_pl.h:62:6: note: expected ‘struct layer *’ but argument is of type ‘layer’
+ void exec_core(layer *l);
+      ^
+make: *** [src/main.o] Error 1
+src/subdir.mk:39: recipe for target 'src/main.o' failed
+21:55:01 **** Auto Build of configuration Debug for project cnn ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+ 
+Building file: ../src/main.c
+Invoking: ARM v7 gcc compiler
+arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/main.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -std=c11 -I../../cnn_bsp/ps7_cortexa9_0/include -MMD -MP -MF"src/main.d" -MT"src/main.o" -o "src/main.o" "../src/main.c"
+Finished building: ../src/main.c
+ 
+Building file: ../src/misc.c
+Invoking: ARM v7 gcc compiler
+arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/misc.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -std=c11 -I../../cnn_bsp/ps7_cortexa9_0/include -MMD -MP -MF"src/misc.d" -MT"src/misc.o" -o "src/misc.o" "../src/misc.c"
+Finished building: ../src/misc.c
+ 
+Building file: ../src/platform.c
+Invoking: ARM v7 gcc compiler
+arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/platform.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -std=c11 -I../../cnn_bsp/ps7_cortexa9_0/include -MMD -MP -MF"src/platform.d" -MT"src/platform.o" -o "src/platform.o" "../src/platform.c"
+Finished building: ../src/platform.c
+ 
+Building file: ../src/show.c
+Invoking: ARM v7 gcc compiler
+arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/show.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -std=c11 -I../../cnn_bsp/ps7_cortexa9_0/include -MMD -MP -MF"src/show.d" -MT"src/show.o" -o "src/show.o" "../src/show.c"
+Finished building: ../src/show.c
+ 
+Building target: cnn.elf
+Invoking: ARM v7 gcc linker
+arm-none-eabi-gcc -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -Wl,-build-id=none -specs=Xilinx.spec -Wl,-T -Wl,../src/lscript.ld -L../../cnn_bsp/ps7_cortexa9_0/lib -o "cnn.elf"  ./src/func_pl.o ./src/func_ps.o ./src/helloworld.o ./src/main.o ./src/misc.o ./src/platform.o ./src/show.o   -Wl,--start-group,-lxil,-lgcc,-lc,--end-group
+./src/main.o: In function `main':
+/ram/home/work/takau/kinpira/zedboard/zedboard.sdk/cnn/Debug/../src/main.c:49: multiple definition of `main'
+./src/helloworld.o:/ram/home/work/takau/kinpira/zedboard/zedboard.sdk/cnn/Debug/../src/helloworld.c:54: first defined here
+./src/func_ps.o: In function `softmax':
+/ram/home/work/takau/kinpira/zedboard/zedboard.sdk/cnn/Debug/../src/func_ps.c:109: undefined reference to `exp'
+/ram/home/work/takau/kinpira/zedboard/zedboard.sdk/cnn/Debug/../src/func_ps.c:115: undefined reference to `exp'
+collect2: error: ld returned 1 exit status
+makefile:39: recipe for target 'cnn.elf' failed
+make: *** [cnn.elf] Error 1
+21:55:35 **** Clean-only build of configuration Debug for project cnn ****
+make clean 
+rm -rf  ./src/func_pl.o ./src/func_ps.o ./src/helloworld.o ./src/main.o ./src/misc.o ./src/platform.o ./src/show.o  ./src/func_pl.d ./src/func_ps.d ./src/helloworld.d ./src/main.d ./src/misc.d ./src/platform.d ./src/show.d  cnn.elf.size  cnn.elf
+ 
+21:55:35 **** Auto Build of configuration Debug for project cnn ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+ 
+Building file: ../src/func_pl.c
+Invoking: ARM v7 gcc compiler
+arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/func_pl.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -std=c11 -I../../cnn_bsp/ps7_cortexa9_0/include -MMD -MP -MF"src/func_pl.d" -MT"src/func_pl.o" -o "src/func_pl.o" "../src/func_pl.c"
+../src/func_pl.c: In function ‘assign_2d’:
+../src/func_pl.c:89:5: warning: statement with no effect [-Wunused-value]
+     b_cnt;
+     ^
+../src/func_pl.c: In function ‘assign_1d’:
+../src/func_pl.c:147:5: warning: statement with no effect [-Wunused-value]
+     b_cnt;
+     ^
+Finished building: ../src/func_pl.c
+ 
+Building file: ../src/func_ps.c
+Invoking: ARM v7 gcc compiler
+arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/func_ps.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -std=c11 -I../../cnn_bsp/ps7_cortexa9_0/include -MMD -MP -MF"src/func_ps.d" -MT"src/func_ps.o" -o "src/func_ps.o" "../src/func_ps.c"
+Finished building: ../src/func_ps.c
+ 
+Building file: ../src/main.c
+Invoking: ARM v7 gcc compiler
+arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/main.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -std=c11 -I../../cnn_bsp/ps7_cortexa9_0/include -MMD -MP -MF"src/main.d" -MT"src/main.o" -o "src/main.o" "../src/main.c"
+Finished building: ../src/main.c
+ 
+Building file: ../src/misc.c
+Invoking: ARM v7 gcc compiler
+arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/misc.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -std=c11 -I../../cnn_bsp/ps7_cortexa9_0/include -MMD -MP -MF"src/misc.d" -MT"src/misc.o" -o "src/misc.o" "../src/misc.c"
+Finished building: ../src/misc.c
+ 
+Building file: ../src/platform.c
+Invoking: ARM v7 gcc compiler
+arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/platform.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -std=c11 -I../../cnn_bsp/ps7_cortexa9_0/include -MMD -MP -MF"src/platform.d" -MT"src/platform.o" -o "src/platform.o" "../src/platform.c"
+Finished building: ../src/platform.c
+ 
+Building file: ../src/show.c
+Invoking: ARM v7 gcc compiler
+arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/show.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -std=c11 -I../../cnn_bsp/ps7_cortexa9_0/include -MMD -MP -MF"src/show.d" -MT"src/show.o" -o "src/show.o" "../src/show.c"
+Finished building: ../src/show.c
+ 
+Building target: cnn.elf
+Invoking: ARM v7 gcc linker
+arm-none-eabi-gcc -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -Wl,-build-id=none -specs=Xilinx.spec -Wl,-T -Wl,../src/lscript.ld -L../../cnn_bsp/ps7_cortexa9_0/lib -o "cnn.elf"  ./src/func_pl.o ./src/func_ps.o ./src/main.o ./src/misc.o ./src/platform.o ./src/show.o   -Wl,--start-group,-lxil,-lgcc,-lc,--end-group
+./src/func_ps.o: In function `softmax':
+/ram/home/work/takau/kinpira/zedboard/zedboard.sdk/cnn/Debug/../src/func_ps.c:109: undefined reference to `exp'
+/ram/home/work/takau/kinpira/zedboard/zedboard.sdk/cnn/Debug/../src/func_ps.c:115: undefined reference to `exp'
+collect2: error: ld returned 1 exit status
+makefile:39: recipe for target 'cnn.elf' failed
+make: *** [cnn.elf] Error 1
+21:56:05 **** Clean-only build of configuration Debug for project cnn ****
+make clean 
+rm -rf  ./src/func_pl.o ./src/func_ps.o ./src/main.o ./src/misc.o ./src/platform.o ./src/show.o  ./src/func_pl.d ./src/func_ps.d ./src/main.d ./src/misc.d ./src/platform.d ./src/show.d  cnn.elf.size  cnn.elf
+ 
+21:56:06 **** Auto Build of configuration Debug for project cnn ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+ 
+Building file: ../src/func_pl.c
+Invoking: ARM v7 gcc compiler
+arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/func_pl.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -std=c11 -I../../cnn_bsp/ps7_cortexa9_0/include -MMD -MP -MF"src/func_pl.d" -MT"src/func_pl.o" -o "src/func_pl.o" "../src/func_pl.c"
+../src/func_pl.c: In function ‘assign_2d’:
+../src/func_pl.c:89:5: warning: statement with no effect [-Wunused-value]
+     b_cnt;
+     ^
+../src/func_pl.c: In function ‘assign_1d’:
+../src/func_pl.c:147:5: warning: statement with no effect [-Wunused-value]
+     b_cnt;
+     ^
+Finished building: ../src/func_pl.c
+ 
+Building file: ../src/func_ps.c
+Invoking: ARM v7 gcc compiler
+arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/func_ps.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -std=c11 -I../../cnn_bsp/ps7_cortexa9_0/include -MMD -MP -MF"src/func_ps.d" -MT"src/func_ps.o" -o "src/func_ps.o" "../src/func_ps.c"
+Finished building: ../src/func_ps.c
+ 
+Building file: ../src/main.c
+Invoking: ARM v7 gcc compiler
+arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/main.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -std=c11 -I../../cnn_bsp/ps7_cortexa9_0/include -MMD -MP -MF"src/main.d" -MT"src/main.o" -o "src/main.o" "../src/main.c"
+Finished building: ../src/main.c
+ 
+Building file: ../src/misc.c
+Invoking: ARM v7 gcc compiler
+arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/misc.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -std=c11 -I../../cnn_bsp/ps7_cortexa9_0/include -MMD -MP -MF"src/misc.d" -MT"src/misc.o" -o "src/misc.o" "../src/misc.c"
+Finished building: ../src/misc.c
+ 
+Building file: ../src/platform.c
+Invoking: ARM v7 gcc compiler
+arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/platform.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -std=c11 -I../../cnn_bsp/ps7_cortexa9_0/include -MMD -MP -MF"src/platform.d" -MT"src/platform.o" -o "src/platform.o" "../src/platform.c"
+Finished building: ../src/platform.c
+ 
+Building file: ../src/show.c
+Invoking: ARM v7 gcc compiler
+arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/show.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -std=c11 -I../../cnn_bsp/ps7_cortexa9_0/include -MMD -MP -MF"src/show.d" -MT"src/show.o" -o "src/show.o" "../src/show.c"
+Finished building: ../src/show.c
+ 
+Building target: cnn.elf
+Invoking: ARM v7 gcc linker
+arm-none-eabi-gcc -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -Wl,-build-id=none -specs=Xilinx.spec -Wl,-T -Wl,../src/lscript.ld -L../../cnn_bsp/ps7_cortexa9_0/lib -o "cnn.elf"  ./src/func_pl.o ./src/func_ps.o ./src/main.o ./src/misc.o ./src/platform.o ./src/show.o   -lm -Wl,--start-group,-lxil,-lgcc,-lc,--end-group
+Finished building target: cnn.elf
+ 
+Invoking: ARM v7 Print Size
+arm-none-eabi-size cnn.elf  |tee "cnn.elf.size"
+   text	   data	    bss	    dec	    hex	filename
+  84064	 918888	  23372	1026324	  fa914	cnn.elf
+Finished building: cnn.elf.size
+ 
+21:56:09 **** Clean-only build of configuration Debug for project cnn ****
+make clean 
+rm -rf  ./src/func_pl.o ./src/func_ps.o ./src/main.o ./src/misc.o ./src/platform.o ./src/show.o  ./src/func_pl.d ./src/func_ps.d ./src/main.d ./src/misc.d ./src/platform.d ./src/show.d  cnn.elf.size  cnn.elf
+ 
+21:56:09 **** Auto Build of configuration Debug for project cnn ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+ 
+Building file: ../src/func_pl.c
+Invoking: ARM v7 gcc compiler
+arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/func_pl.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -std=c11 -I../../cnn_bsp/ps7_cortexa9_0/include -MMD -MP -MF"src/func_pl.d" -MT"src/func_pl.o" -o "src/func_pl.o" "../src/func_pl.c"
+../src/func_pl.c: In function ‘assign_2d’:
+../src/func_pl.c:89:5: warning: statement with no effect [-Wunused-value]
+     b_cnt;
+     ^
+../src/func_pl.c: In function ‘assign_1d’:
+../src/func_pl.c:147:5: warning: statement with no effect [-Wunused-value]
+     b_cnt;
+     ^
+Finished building: ../src/func_pl.c
+ 
+Building file: ../src/func_ps.c
+Invoking: ARM v7 gcc compiler
+arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/func_ps.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -std=c11 -I../../cnn_bsp/ps7_cortexa9_0/include -MMD -MP -MF"src/func_ps.d" -MT"src/func_ps.o" -o "src/func_ps.o" "../src/func_ps.c"
+Finished building: ../src/func_ps.c
+ 
+Building file: ../src/main.c
+Invoking: ARM v7 gcc compiler
+arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/main.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -std=c11 -I../../cnn_bsp/ps7_cortexa9_0/include -MMD -MP -MF"src/main.d" -MT"src/main.o" -o "src/main.o" "../src/main.c"
+Finished building: ../src/main.c
+ 
+Building file: ../src/misc.c
+Invoking: ARM v7 gcc compiler
+arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/misc.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -std=c11 -I../../cnn_bsp/ps7_cortexa9_0/include -MMD -MP -MF"src/misc.d" -MT"src/misc.o" -o "src/misc.o" "../src/misc.c"
+Finished building: ../src/misc.c
+ 
+Building file: ../src/platform.c
+Invoking: ARM v7 gcc compiler
+arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/platform.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -std=c11 -I../../cnn_bsp/ps7_cortexa9_0/include -MMD -MP -MF"src/platform.d" -MT"src/platform.o" -o "src/platform.o" "../src/platform.c"
+Finished building: ../src/platform.c
+ 
+Building file: ../src/show.c
+Invoking: ARM v7 gcc compiler
+arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/show.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -std=c11 -I../../cnn_bsp/ps7_cortexa9_0/include -MMD -MP -MF"src/show.d" -MT"src/show.o" -o "src/show.o" "../src/show.c"
+Finished building: ../src/show.c
+ 
+Building target: cnn.elf
+Invoking: ARM v7 gcc linker
+arm-none-eabi-gcc -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -Wl,-build-id=none -specs=Xilinx.spec -Wl,-T -Wl,../src/lscript.ld -L../../cnn_bsp/ps7_cortexa9_0/lib -o "cnn.elf"  ./src/func_pl.o ./src/func_ps.o ./src/main.o ./src/misc.o ./src/platform.o ./src/show.o   -lm -Wl,--start-group,-lxil,-lgcc,-lc,--end-group
+Finished building target: cnn.elf
+ 
+Invoking: ARM v7 Print Size
+arm-none-eabi-size cnn.elf  |tee "cnn.elf.size"
+   text	   data	    bss	    dec	    hex	filename
+  84064	 918888	  23372	1026324	  fa914	cnn.elf
+Finished building: cnn.elf.size
+ 
+21:57:23 **** Clean-only build of configuration Debug for project cnn ****
+make clean 
+rm -rf  ./src/func_pl.o ./src/func_ps.o ./src/main.o ./src/misc.o ./src/platform.o ./src/show.o  ./src/func_pl.d ./src/func_ps.d ./src/main.d ./src/misc.d ./src/platform.d ./src/show.d  cnn.elf.size  cnn.elf
+ 
+21:57:24 **** Incremental Build of configuration Debug for project cnn ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+ 
+Building file: ../src/func_pl.c
+Invoking: ARM v7 gcc compiler
+arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/func_pl.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -std=c11 -I../../cnn_bsp/ps7_cortexa9_0/include -MMD -MP -MF"src/func_pl.d" -MT"src/func_pl.o" -o "src/func_pl.o" "../src/func_pl.c"
+../src/func_pl.c: In function ‘assign_2d’:
+../src/func_pl.c:89:5: warning: statement with no effect [-Wunused-value]
+     b_cnt;
+     ^
+../src/func_pl.c: In function ‘assign_1d’:
+../src/func_pl.c:147:5: warning: statement with no effect [-Wunused-value]
+     b_cnt;
+     ^
+Finished building: ../src/func_pl.c
+ 
+Building file: ../src/func_ps.c
+Invoking: ARM v7 gcc compiler
+arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/func_ps.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -std=c11 -I../../cnn_bsp/ps7_cortexa9_0/include -MMD -MP -MF"src/func_ps.d" -MT"src/func_ps.o" -o "src/func_ps.o" "../src/func_ps.c"
+Finished building: ../src/func_ps.c
+ 
+Building file: ../src/main.c
+Invoking: ARM v7 gcc compiler
+arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/main.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -std=c11 -I../../cnn_bsp/ps7_cortexa9_0/include -MMD -MP -MF"src/main.d" -MT"src/main.o" -o "src/main.o" "../src/main.c"
+Finished building: ../src/main.c
+ 
+Building file: ../src/misc.c
+Invoking: ARM v7 gcc compiler
+arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/misc.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -std=c11 -I../../cnn_bsp/ps7_cortexa9_0/include -MMD -MP -MF"src/misc.d" -MT"src/misc.o" -o "src/misc.o" "../src/misc.c"
+Finished building: ../src/misc.c
+ 
+Building file: ../src/platform.c
+Invoking: ARM v7 gcc compiler
+arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/platform.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -std=c11 -I../../cnn_bsp/ps7_cortexa9_0/include -MMD -MP -MF"src/platform.d" -MT"src/platform.o" -o "src/platform.o" "../src/platform.c"
+Finished building: ../src/platform.c
+ 
+Building file: ../src/show.c
+Invoking: ARM v7 gcc compiler
+arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/show.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -std=c11 -I../../cnn_bsp/ps7_cortexa9_0/include -MMD -MP -MF"src/show.d" -MT"src/show.o" -o "src/show.o" "../src/show.c"
+Finished building: ../src/show.c
+ 
+Building target: cnn.elf
+Invoking: ARM v7 gcc linker
+arm-none-eabi-gcc -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -Wl,-build-id=none -specs=Xilinx.spec -Wl,-T -Wl,../src/lscript.ld -L../../cnn_bsp/ps7_cortexa9_0/lib -o "cnn.elf"  ./src/func_pl.o ./src/func_ps.o ./src/main.o ./src/misc.o ./src/platform.o ./src/show.o   -lm -Wl,--start-group,-lxil,-lgcc,-lc,--end-group
+Finished building target: cnn.elf
+ 
+Invoking: ARM v7 Print Size
+arm-none-eabi-size cnn.elf  |tee "cnn.elf.size"
+   text	   data	    bss	    dec	    hex	filename
+  84064	 918888	  23372	1026324	  fa914	cnn.elf
+Finished building: cnn.elf.size
+ 
+21:59:38 **** Auto Build of configuration Debug for project cnn ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+ 
+Building file: ../src/main.c
+Invoking: ARM v7 gcc compiler
+arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/main.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -std=c11 -I../../cnn_bsp/ps7_cortexa9_0/include -MMD -MP -MF"src/main.d" -MT"src/main.o" -o "src/main.o" "../src/main.c"
+Finished building: ../src/main.c
+ 
+Building target: cnn.elf
+Invoking: ARM v7 gcc linker
+arm-none-eabi-gcc -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -Wl,-build-id=none -specs=Xilinx.spec -Wl,-T -Wl,../src/lscript.ld -L../../cnn_bsp/ps7_cortexa9_0/lib -o "cnn.elf"  ./src/func_pl.o ./src/func_ps.o ./src/main.o ./src/misc.o ./src/platform.o ./src/show.o   -lm -Wl,--start-group,-lxil,-lgcc,-lc,--end-group
+Finished building target: cnn.elf
+ 
+Invoking: ARM v7 Print Size
+arm-none-eabi-size cnn.elf  |tee "cnn.elf.size"
+   text	   data	    bss	    dec	    hex	filename
+  84256	 918888	  23372	1026516	  fa9d4	cnn.elf
+Finished building: cnn.elf.size
+ 
+21:59:41 **** Incremental Build of configuration Debug for project cnn ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+ 
+make: Nothing to be done for 'main-build'.
+22:00:46 **** Incremental Build of configuration Debug for project cnn ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+ 
+Building file: ../src/main.c
+Invoking: ARM v7 gcc compiler
+arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/main.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -std=c11 -I../../cnn_bsp/ps7_cortexa9_0/include -MMD -MP -MF"src/main.d" -MT"src/main.o" -o "src/main.o" "../src/main.c"
+../src/main.c: In function ‘main’:
+../src/main.c:110:34: error: expected expression before ‘,’ token
+   define_1d(&output, 3600, 3856, , LABEL, N_HL);
+                                  ^
+src/subdir.mk:36: recipe for target 'src/main.o' failed
+make: *** [src/main.o] Error 1
+22:02:34 **** Incremental Build of configuration Debug for project cnn ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+ 
+Building file: ../src/main.c
+Invoking: ARM v7 gcc compiler
+arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/main.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -std=c11 -I../../cnn_bsp/ps7_cortexa9_0/include -MMD -MP -MF"src/main.d" -MT"src/main.o" -o "src/main.o" "../src/main.c"
+Finished building: ../src/main.c
+ 
+Building target: cnn.elf
+Invoking: ARM v7 gcc linker
+arm-none-eabi-gcc -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -Wl,-build-id=none -specs=Xilinx.spec -Wl,-T -Wl,../src/lscript.ld -L../../cnn_bsp/ps7_cortexa9_0/lib -o "cnn.elf"  ./src/func_pl.o ./src/func_ps.o ./src/main.o ./src/misc.o ./src/platform.o ./src/show.o   -lm -Wl,--start-group,-lxil,-lgcc,-lc,--end-group
+Finished building target: cnn.elf
+ 
+Invoking: ARM v7 Print Size
+arm-none-eabi-size cnn.elf  |tee "cnn.elf.size"
+   text	   data	    bss	    dec	    hex	filename
+  84468	 918888	  23372	1026728	  faaa8	cnn.elf
+Finished building: cnn.elf.size
+ 
+22:04:10 **** Incremental Build of configuration Debug for project cnn ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+ 
+Building file: ../src/main.c
+Invoking: ARM v7 gcc compiler
+arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/main.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -std=c11 -I../../cnn_bsp/ps7_cortexa9_0/include -MMD -MP -MF"src/main.d" -MT"src/main.o" -o "src/main.o" "../src/main.c"
+Finished building: ../src/main.c
+ 
+Building target: cnn.elf
+Invoking: ARM v7 gcc linker
+arm-none-eabi-gcc -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -Wl,-build-id=none -specs=Xilinx.spec -Wl,-T -Wl,../src/lscript.ld -L../../cnn_bsp/ps7_cortexa9_0/lib -o "cnn.elf"  ./src/func_pl.o ./src/func_ps.o ./src/main.o ./src/misc.o ./src/platform.o ./src/show.o   -lm -Wl,--start-group,-lxil,-lgcc,-lc,--end-group
+Finished building target: cnn.elf
+ 
+Invoking: ARM v7 Print Size
+arm-none-eabi-size cnn.elf  |tee "cnn.elf.size"
+   text	   data	    bss	    dec	    hex	filename
+  84468	 918888	  23372	1026728	  faaa8	cnn.elf
+Finished building: cnn.elf.size
+ 
+22:07:38 **** Auto Build of configuration Debug for project cnn ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+ 
+Building file: ../src/func_pl.c
+Invoking: ARM v7 gcc compiler
+arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/func_pl.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -std=c11 -I../../cnn_bsp/ps7_cortexa9_0/include -MMD -MP -MF"src/func_pl.d" -MT"src/func_pl.o" -o "src/func_pl.o" "../src/func_pl.c"
+../src/func_pl.c: In function ‘assign_2d’:
+../src/func_pl.c:89:5: warning: statement with no effect [-Wunused-value]
+     b_cnt;
+     ^
+../src/func_pl.c: In function ‘assign_1d’:
+../src/func_pl.c:147:5: warning: statement with no effect [-Wunused-value]
+     b_cnt;
+     ^
+Finished building: ../src/func_pl.c
+ 
+Building file: ../src/main.c
+Invoking: ARM v7 gcc compiler
+arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/main.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -std=c11 -I../../cnn_bsp/ps7_cortexa9_0/include -MMD -MP -MF"src/main.d" -MT"src/main.o" -o "src/main.o" "../src/main.c"
+../src/main.c: In function ‘main’:
+../src/main.c:108:22: error: ‘w_hidden_flat’ undeclared (first use in this function)
+   assign_1d(&hidden, w_hidden_flat, b_hidden_flat);
+                      ^
+../src/main.c:108:22: note: each undeclared identifier is reported only once for each function it appears in
+../src/main.c:108:37: error: ‘b_hidden_flat’ undeclared (first use in this function)
+   assign_1d(&hidden, w_hidden_flat, b_hidden_flat);
+                                     ^
+../src/main.c:111:22: error: ‘w_output_flat’ undeclared (first use in this function)
+   assign_1d(&output, w_output_flat, b_output_flat);
+                      ^
+../src/main.c:111:37: error: ‘b_output_flat’ undeclared (first use in this function)
+   assign_1d(&output, w_output_flat, b_output_flat);
+                                     ^
+src/subdir.mk:36: recipe for target 'src/main.o' failed
+make: *** [src/main.o] Error 1
+22:08:02 **** Auto Build of configuration Debug for project cnn ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+ 
+Building file: ../src/main.c
+Invoking: ARM v7 gcc compiler
+arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/main.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -std=c11 -I../../cnn_bsp/ps7_cortexa9_0/include -MMD -MP -MF"src/main.d" -MT"src/main.o" -o "src/main.o" "../src/main.c"
+Finished building: ../src/main.c
+ 
+Building target: cnn.elf
+Invoking: ARM v7 gcc linker
+arm-none-eabi-gcc -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -Wl,-build-id=none -specs=Xilinx.spec -Wl,-T -Wl,../src/lscript.ld -L../../cnn_bsp/ps7_cortexa9_0/lib -o "cnn.elf"  ./src/func_pl.o ./src/func_ps.o ./src/main.o ./src/misc.o ./src/platform.o ./src/show.o   -lm -Wl,--start-group,-lxil,-lgcc,-lc,--end-group
+Finished building target: cnn.elf
+ 
+Invoking: ARM v7 Print Size
+arm-none-eabi-size cnn.elf  |tee "cnn.elf.size"
+   text	   data	    bss	    dec	    hex	filename
+  84484	 918888	  23372	1026744	  faab8	cnn.elf
+Finished building: cnn.elf.size
+ 
+22:08:10 **** Incremental Build of configuration Debug for project cnn ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+ 
+make: Nothing to be done for 'main-build'.
+22:11:54 **** Auto Build of configuration Debug for project cnn ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+ 
+Building file: ../src/main.c
+Invoking: ARM v7 gcc compiler
+arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/main.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -std=c11 -I../../cnn_bsp/ps7_cortexa9_0/include -MMD -MP -MF"src/main.d" -MT"src/main.o" -o "src/main.o" "../src/main.c"
+Finished building: ../src/main.c
+ 
+Building target: cnn.elf
+Invoking: ARM v7 gcc linker
+arm-none-eabi-gcc -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -Wl,-build-id=none -specs=Xilinx.spec -Wl,-T -Wl,../src/lscript.ld -L../../cnn_bsp/ps7_cortexa9_0/lib -o "cnn.elf"  ./src/func_pl.o ./src/func_ps.o ./src/main.o ./src/misc.o ./src/platform.o ./src/show.o   -lm -Wl,--start-group,-lxil,-lgcc,-lc,--end-group
+Finished building target: cnn.elf
+ 
+Invoking: ARM v7 Print Size
+arm-none-eabi-size cnn.elf  |tee "cnn.elf.size"
+   text	   data	    bss	    dec	    hex	filename
+  84484	 918888	  23372	1026744	  faab8	cnn.elf
+Finished building: cnn.elf.size
+ 
+22:11:57 **** Incremental Build of configuration Debug for project cnn ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+ 
+make: Nothing to be done for 'main-build'.
+22:13:04 **** Incremental Build of configuration Debug for project cnn ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+ 
+Building file: ../src/func_pl.c
+Invoking: ARM v7 gcc compiler
+arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/func_pl.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -std=c11 -I../../cnn_bsp/ps7_cortexa9_0/include -MMD -MP -MF"src/func_pl.d" -MT"src/func_pl.o" -o "src/func_pl.o" "../src/func_pl.c"
+../src/func_pl.c: In function ‘assign_2d’:
+../src/func_pl.c:89:5: warning: statement with no effect [-Wunused-value]
+     b_cnt;
+     ^
+../src/func_pl.c: In function ‘assign_1d’:
+../src/func_pl.c:147:5: warning: statement with no effect [-Wunused-value]
+     b_cnt;
+     ^
+Finished building: ../src/func_pl.c
+ 
+Building target: cnn.elf
+Invoking: ARM v7 gcc linker
+arm-none-eabi-gcc -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -Wl,-build-id=none -specs=Xilinx.spec -Wl,-T -Wl,../src/lscript.ld -L../../cnn_bsp/ps7_cortexa9_0/lib -o "cnn.elf"  ./src/func_pl.o ./src/func_ps.o ./src/main.o ./src/misc.o ./src/platform.o ./src/show.o   -lm -Wl,--start-group,-lxil,-lgcc,-lc,--end-group
+Finished building target: cnn.elf
+ 
+Invoking: ARM v7 Print Size
+arm-none-eabi-size cnn.elf  |tee "cnn.elf.size"
+   text	   data	    bss	    dec	    hex	filename
+  84404	 918888	  23372	1026664	  faa68	cnn.elf
+Finished building: cnn.elf.size
+ 
+22:16:42 **** Incremental Build of configuration Debug for project cnn ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+ 
+Building file: ../src/func_pl.c
+Invoking: ARM v7 gcc compiler
+arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/func_pl.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -std=c11 -I../../cnn_bsp/ps7_cortexa9_0/include -MMD -MP -MF"src/func_pl.d" -MT"src/func_pl.o" -o "src/func_pl.o" "../src/func_pl.c"
+../src/func_pl.c: In function ‘assign_2d’:
+../src/func_pl.c:89:5: warning: statement with no effect [-Wunused-value]
+     b_cnt;
+     ^
+../src/func_pl.c: In function ‘assign_1d’:
+../src/func_pl.c:147:5: warning: statement with no effect [-Wunused-value]
+     b_cnt;
+     ^
+Finished building: ../src/func_pl.c
+ 
+Building target: cnn.elf
+Invoking: ARM v7 gcc linker
+arm-none-eabi-gcc -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -Wl,-build-id=none -specs=Xilinx.spec -Wl,-T -Wl,../src/lscript.ld -L../../cnn_bsp/ps7_cortexa9_0/lib -o "cnn.elf"  ./src/func_pl.o ./src/func_ps.o ./src/main.o ./src/misc.o ./src/platform.o ./src/show.o   -lm -Wl,--start-group,-lxil,-lgcc,-lc,--end-group
+Finished building target: cnn.elf
+ 
+Invoking: ARM v7 Print Size
+arm-none-eabi-size cnn.elf  |tee "cnn.elf.size"
+   text	   data	    bss	    dec	    hex	filename
+  84468	 918888	  23372	1026728	  faaa8	cnn.elf
+Finished building: cnn.elf.size
+ 
+22:40:05 **** Incremental Build of configuration Debug for project cnn ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+ 
+make: Nothing to be done for 'main-build'.
+22:42:21 **** Incremental Build of configuration Debug for project cnn ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+ 
+make: Nothing to be done for 'main-build'.
+22:42:59 **** Incremental Build of configuration Debug for project cnn ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+ 
+make: Nothing to be done for 'main-build'.

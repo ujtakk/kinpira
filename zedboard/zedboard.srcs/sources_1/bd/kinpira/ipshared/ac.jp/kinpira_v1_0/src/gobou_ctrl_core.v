@@ -76,7 +76,7 @@ module gobou_ctrl_core(/*AUTOARG*/
   reg               r_out_end;
 
   assign final_iter = r_count_in == r_total_in - 1
-                   && r_count_out >= r_total_out - CORE;
+                   && r_count_out + CORE >= r_total_out;
 
   always @(posedge clk)
     if (!xrst)
@@ -106,7 +106,7 @@ module gobou_ctrl_core(/*AUTOARG*/
 
         S_OUTPUT:
           if (s_output_end)
-            if (r_count_out >= r_total_out - CORE)
+            if (r_count_out + CORE >= r_total_out)
             begin
               r_state <= S_WAIT;
               r_count_out <= 0;
@@ -268,7 +268,7 @@ module gobou_ctrl_core(/*AUTOARG*/
       r_out_begin <= 0;
     else
       r_out_begin <= req
-                  || s_output_end && (r_count_out < r_total_out - CORE);
+                  || s_output_end && (r_count_out + CORE < r_total_out);
   always @(posedge clk)
     if (!xrst)
       r_out_valid <= 0;
@@ -287,7 +287,7 @@ module gobou_ctrl_core(/*AUTOARG*/
       r_ack <= 1;
     else if (req)
       r_ack <= 0;
-    else if (s_output_end && r_count_out >= r_total_out - CORE)
+    else if (s_output_end && r_count_out + CORE >= r_total_out)
       r_ack <= 1;
 
   assign serial_we = r_serial_we;
