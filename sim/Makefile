@@ -1,23 +1,11 @@
-server:
-	node server.js
+RAND = ruby ../utils/rand.rb
 
-cnn:
-	gcc -o cnn.out -lm cnn.c
-	./cnn.out 2 4
+data:
+	$(RAND) 1024 > ../data/renkon/input_linebuf.dat
+	$(RAND) 25000 > ../data/renkon/input_conv_tree25.dat
+	$(RAND) 25000 > ../data/renkon/filter_conv_tree25.dat
 
-conv:
-	gcc -o conv.out -lm -std=c11 conv.c
-	./conv.out
+compile:
+	(cd gobou; make)
+	(cd renkon; make)
 
-rand:
-	ocamlopt -o rand.out rand.ml
-	./rand.out
-
-bpmap:
-	gcc -o bpmap.out -lm -std=c11 bpmap.c -DCALC
-	for i in `seq 0 9`; do \
-		mkdir -p /home/work/takau/bhewtek/data/mnist/iinput/$$i; \
-		for j in `seq 1 10`; do \
-			./bpmap.out $$i $$j; \
-		done; \
-	done
