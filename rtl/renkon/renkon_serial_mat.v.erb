@@ -1,6 +1,7 @@
 % load "renkon.rb"
 
 module renkon_serial_mat(/*AUTOARG*/);
+`include "ninjin.vh"
 `include "renkon.vh"
 
   /*AUTOINPUT*/
@@ -8,7 +9,7 @@ module renkon_serial_mat(/*AUTOARG*/);
   input                     xrst;
   input                     serial_we;
   input [OUTSIZE-1:0]       serial_addr;
-  input [CORELOG:0]         serial_re;
+  input [RENKON_CORELOG:0]         serial_re;
   <%- $core.times do |i| -%>
   input signed [DWIDTH-1:0] in_data<%=i%>;
   <%- end -%>
@@ -23,7 +24,7 @@ module renkon_serial_mat(/*AUTOARG*/);
   <%- end -%>
 
   /*AUTOREG*/
-  reg [CORELOG:0] r_serial_re;
+  reg [RENKON_CORELOG:0] r_serial_re;
 
   <%- for i in 0...$core -%>
   assign w_serial_addr<%=i%> = serial_re == 'd0 ? serial_addr
@@ -46,7 +47,7 @@ module renkon_serial_mat(/*AUTOARG*/);
   <%- end -%>
 
   /* renkon_mux_output AUTO_TEMPLATE (
-      .output_re    (r_serial_re[CORELOG:0]),
+      .output_re    (r_serial_re[RENKON_CORELOG:0]),
       <%- $core.times do |i| -%>
       .read_output<%=i%>  (mem_data<%=i%>[DWIDTH-1:0]),
       <%- end -%>

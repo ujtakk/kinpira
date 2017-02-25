@@ -77,10 +77,10 @@ module kinpira_v1_0 #
   wire [C_s_axi_DATA_WIDTH-1:0]	port30;
   wire [C_s_axi_DATA_WIDTH-1:0]	port31;
 
-  ninjin # (
+  ninjin_axi4_lite # (
     .C_S_AXI_DATA_WIDTH(C_s_axi_DATA_WIDTH),
     .C_S_AXI_ADDR_WIDTH(C_s_axi_ADDR_WIDTH)
-  ) kinpira_v1_0_s_axi_inst (
+  ) ninjin (
     .port0(port0),
     .port1(port1),
     .port2(port2),
@@ -139,6 +139,8 @@ module kinpira_v1_0 #
   // Add user logic here
 
 `include "ninjin.vh"
+`include "renkon.vh"
+`include "gobou.vh"
 
   wire                      clk;
   wire                      xrst;
@@ -237,36 +239,36 @@ module kinpira_v1_0 #
   assign port29 = {{(32-DWIDTH){read_img[DWIDTH-1]}}, read_img};
 
   // For renkon
-  assign renkon_req         = !which ? req         : 0;
-  assign renkon_img_we      = !which ? img_we      : 0;
-  assign renkon_input_addr  = !which ? input_addr  : 0;
-  assign renkon_output_addr = !which ? output_addr : 0;
-  assign renkon_write_img   = !which ? write_img   : 0;
-  assign renkon_net_we      = !which ? net_we[RENKON_CORELOG:0] : 0;
+  assign renkon_req         = !which ? req                        : 0;
+  assign renkon_img_we      = !which ? img_we                     : 0;
+  assign renkon_input_addr  = !which ? input_addr                 : 0;
+  assign renkon_output_addr = !which ? output_addr                : 0;
+  assign renkon_write_img   = !which ? write_img                  : 0;
+  assign renkon_net_we      = !which ? net_we[RENKON_CORELOG:0]   : 0;
   assign renkon_net_addr    = !which ? net_addr[RENKON_NETSIZE-1] : 0;
-  assign renkon_write_net   = !which ? write_net   : 0;
-  assign renkon_total_out   = !which ? total_out   : 0;
-  assign renkon_total_in    = !which ? total_in    : 0;
-  assign renkon_img_size    = !which ? img_size    : 0;
-  assign renkon_fil_size    = !which ? fil_size    : 0;
-  assign renkon_pool_size   = !which ? pool_size   : 0;
-  assign renkon_read_img    = !which ? read_img    : 0;
+  assign renkon_write_net   = !which ? write_net                  : 0;
+  assign renkon_total_out   = !which ? total_out                  : 0;
+  assign renkon_total_in    = !which ? total_in                   : 0;
+  assign renkon_img_size    = !which ? img_size                   : 0;
+  assign renkon_fil_size    = !which ? fil_size                   : 0;
+  assign renkon_pool_size   = !which ? pool_size                  : 0;
+  assign renkon_read_img    = !which ? read_img                   : 0;
 
   // For gobou
-  assign gobou_req          = which ? req         : 0;
-  assign gobou_img_we       = which ? img_we      : 0;
-  assign gobou_input_addr   = which ? input_addr  : 0;
-  assign gobou_output_addr  = which ? output_addr : 0;
-  assign gobou_write_img    = which ? write_img   : 0;
-  assign gobou_net_we       = which ? net_we[GOBOU_CORELOG:0] : 0;
+  assign gobou_req          = which ? req                         : 0;
+  assign gobou_img_we       = which ? img_we                      : 0;
+  assign gobou_input_addr   = which ? input_addr                  : 0;
+  assign gobou_output_addr  = which ? output_addr                 : 0;
+  assign gobou_write_img    = which ? write_img                   : 0;
+  assign gobou_net_we       = which ? net_we[GOBOU_CORELOG:0]     : 0;
   assign gobou_net_addr     = which ? net_addr[GOBOU_NETSIZE-1:0] : 0;
-  assign gobou_write_net    = which ? write_net   : 0;
-  assign gobou_total_out    = which ? total_out   : 0;
-  assign gobou_total_in     = which ? total_in    : 0;
-  assign gobou_img_size     = which ? img_size    : 0;
-  assign gobou_fil_size     = which ? fil_size    : 0;
-  assign gobou_pool_size    = which ? pool_size   : 0;
-  assign gobou_read_img     = which ? read_img    : 0;
+  assign gobou_write_net    = which ? write_net                   : 0;
+  assign gobou_total_out    = which ? total_out                   : 0;
+  assign gobou_total_in     = which ? total_in                    : 0;
+  assign gobou_img_size     = which ? img_size                    : 0;
+  assign gobou_fil_size     = which ? fil_size                    : 0;
+  assign gobou_pool_size    = which ? pool_size                   : 0;
+  assign gobou_read_img     = which ? read_img                    : 0;
 
   assign ack            = !which ? renkon_ack           : gobou_ack           ;
   assign mem_img_we     = !which ? renkon_mem_img_we    : gobou_mem_img_we    ;
@@ -291,7 +293,7 @@ module kinpira_v1_0 #
     .write_data (write_mem_img[DWIDTH-1:0])
   );
 
-  renkon renkon0(/*AUTOINST*/
+  renkon_top renkon0(/*AUTOINST*/
     // Outputs
     .ack            (renkon_ack),
     .mem_img_we     (renkon_mem_img_we),
@@ -316,7 +318,7 @@ module kinpira_v1_0 #
     .read_img       (renkon_read_img[DWIDTH-1:0])
   );
 
-  gobou gobou0(/*AUTOINST*/
+  gobou_top gobou0(/*AUTOINST*/
     // Outputs
     .ack            (gobou_ack),
     .mem_img_we     (gobou_mem_img_we),

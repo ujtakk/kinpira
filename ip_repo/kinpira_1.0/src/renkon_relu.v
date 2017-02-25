@@ -1,9 +1,11 @@
+
 module renkon_relu(/*AUTOARG*/
    // Outputs
    pixel_out,
    // Inputs
    clk, xrst, out_en, pixel_in
    );
+`include "ninjin.vh"
 `include "renkon.vh"
 
   /*AUTOINPUT*/

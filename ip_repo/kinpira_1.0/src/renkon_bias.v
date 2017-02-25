@@ -1,9 +1,11 @@
+
 module renkon_bias(/*AUTOARG*/
    // Outputs
    pixel_out,
    // Inputs
    clk, xrst, breg_we, out_en, read_bias, pixel_in
    );
+`include "ninjin.vh"
 `include "renkon.vh"
 
   /*AUTOINPUT*/

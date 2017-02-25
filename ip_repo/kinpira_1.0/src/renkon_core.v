@@ -11,6 +11,7 @@ module renkon_core(/*AUTOARG*/
    mem_feat_addr_d1, mem_feat_addr, conv_oe, clk, buf_feat_en,
    breg_we, bias_oe
    );
+`include "ninjin.vh"
 `include "renkon.vh"
 
   /*AUTOINPUT*/

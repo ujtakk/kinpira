@@ -7,6 +7,7 @@ module gobou_serial_vec(/*AUTOARG*/
    in_data4, in_data5, in_data6, in_data7, in_data8, in_data9,
    in_data10, in_data11, in_data12, in_data13, in_data14, in_data15
    );
+`include "ninjin.vh"
 `include "gobou.vh"
 
   /*AUTOINPUT*/
@@ -62,7 +63,7 @@ module gobou_serial_vec(/*AUTOARG*/
     else if (serial_we)
       r_cnt <= 1;
     else if (r_cnt > 0)
-      if (r_cnt == CORE)
+      if (r_cnt == GOBOU_CORE)
         r_cnt <= 0;
       else
         r_cnt <= r_cnt + 1;

@@ -1,9 +1,11 @@
+
 module renkon_mem_serial(/*AUTOARG*/
    // Outputs
    read_data,
    // Inputs
    clk, mem_we, mem_addr, write_data
    );
+`include "ninjin.vh"
 `include "renkon.vh"
   // parameter WORDS = 2 ** OUTSIZE;
   parameter WORDS = 150;

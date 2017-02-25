@@ -1,9 +1,11 @@
+
 module renkon_accum(/*AUTOARG*/
    // Outputs
    pixel_out, sum_new,
    // Inputs
    clk, xrst, reset, out_en, pixel_in, sum_old
    );
+`include "ninjin.vh"
 `include "renkon.vh"
 
   /*AUTOINPUT*/

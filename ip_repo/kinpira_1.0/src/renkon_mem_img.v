@@ -5,6 +5,7 @@ module renkon_mem_img(/*AUTOARG*/
    // Inputs
    clk, mem_we, mem_addr, write_data
    );
+`include "ninjin.vh"
 `include "renkon.vh"
   parameter WORDS = 2 ** IMGSIZE;
 

@@ -1,9 +1,10 @@
 % load "renkon.rb"
 % num = 100
 
-`timescale 1ns/1ps
+`timescale 1 ns / 1 ps
 
-module test_renkon_conv_tree();
+module test_renkon_conv_tree;
+`include "ninjin.vh"
 `include "renkon.vh"
 
   parameter DATA_NUM = FSIZE**2;
@@ -113,3 +114,7 @@ module test_renkon_conv_tree();
   endtask
 
 endmodule
+
+// Local Variables:
+// verilog-library-directories:("." "..")
+// End:

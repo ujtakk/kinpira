@@ -1,3 +1,4 @@
+
 module renkon_mem_feat(/*AUTOARG*/
    // Outputs
    read_data1, read_data2,
@@ -5,6 +6,7 @@ module renkon_mem_feat(/*AUTOARG*/
    clk, mem_we1, mem_we2, mem_addr1, mem_addr2, write_data1,
    write_data2
    );
+`include "ninjin.vh"
 `include "renkon.vh"
   parameter WORDS = 2 ** FACCUM;
 

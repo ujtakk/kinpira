@@ -5,6 +5,7 @@ module gobou_relu(/*AUTOARG*/
    // Inputs
    clk, xrst, out_en, pixel_in
    );
+`include "ninjin.vh"
 `include "gobou.vh"
 
   /*AUTOINPUT*/

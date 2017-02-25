@@ -5,6 +5,7 @@ module renkon_ctrl_pool(/*AUTOARG*/
    // Inputs
    clk, xrst, in_begin, in_valid, in_end, w_fea_size, pool_size
    );
+`include "ninjin.vh"
 `include "renkon.vh"
 
   parameter S_WAIT        = 'd0;

@@ -7,12 +7,13 @@ module renkon_mux_output(/*AUTOARG*/
    read_output3, read_output4, read_output5, read_output6,
    read_output7
    );
+`include "ninjin.vh"
 `include "renkon.vh"
 
   /*AUTOINPUT*/
   input clk;
   input xrst;
-  input [CORELOG:0] output_re;
+  input [RENKON_CORELOG:0] output_re;
   input signed [DWIDTH-1:0] read_output0;
   input signed [DWIDTH-1:0] read_output1;
   input signed [DWIDTH-1:0] read_output2;

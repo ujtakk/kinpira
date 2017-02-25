@@ -5,13 +5,14 @@ module renkon_mem_net(/*AUTOARG*/
    // Inputs
    clk, mem_we, mem_addr, write_data
    );
+`include "ninjin.vh"
 `include "renkon.vh"
-  parameter WORDS = 2 ** NETSIZE;
+  parameter WORDS = 2 ** RENKON_NETSIZE;
 
   /*AUTOINPUT*/
   input                     clk;
   input                     mem_we;
-  input [NETSIZE-1:0]        mem_addr;
+  input [RENKON_NETSIZE-1:0]        mem_addr;
   input signed [DWIDTH-1:0] write_data;
 
   /*AUTOOUTPUT*/

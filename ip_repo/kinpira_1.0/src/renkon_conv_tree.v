@@ -12,6 +12,7 @@ module renkon_conv_tree(/*AUTOARG*/
    pixel21, weight21, pixel22, weight22, pixel23, weight23, pixel24,
    weight24
    );
+`include "ninjin.vh"
 `include "renkon.vh"
 
   /*AUTOINPUT*/

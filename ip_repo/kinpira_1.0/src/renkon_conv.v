@@ -11,6 +11,7 @@ module renkon_conv(/*AUTOARG*/
    pixel_in0, out_en, mem_feat_we, mem_feat_rst, mem_feat_addr_d1,
    mem_feat_addr, clk
    );
+`include "ninjin.vh"
 `include "renkon.vh"
 
   /*AUTOINPUT*/

@@ -5,6 +5,7 @@ module gobou_mac(/*AUTOARG*/
    // Inputs
    clk, xrst, out_en, accum_we, reset, x, w
    );
+`include "ninjin.vh"
 `include "gobou.vh"
 
   /*AUTOINPUT*/

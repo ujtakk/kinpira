@@ -5,6 +5,8 @@ module renkon_ctrl_relu(/*AUTOARG*/
    // Inputs
    clk, xrst, in_begin, in_valid, in_end
    );
+`include "ninjin.vh"
+`include "ninjin.vh"
 
   /*AUTOINPUT*/
   input clk;

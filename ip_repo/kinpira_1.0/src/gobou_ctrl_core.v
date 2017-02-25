@@ -8,6 +8,7 @@ module gobou_ctrl_core(/*AUTOARG*/
    output_addr, write_img, write_result, net_we, net_addr, total_out,
    total_in
    );
+`include "ninjin.vh"
 `include "gobou.vh"
 
   parameter S_WAIT    = 'd0;
@@ -27,8 +28,8 @@ module gobou_ctrl_core(/*AUTOARG*/
   input [IMGSIZE-1:0]       output_addr;
   input signed [DWIDTH-1:0] write_img;
   input signed [DWIDTH-1:0] write_result;
-  input [CORELOG:0]         net_we;
-  input [NETSIZE-1:0]       net_addr;
+  input [GOBOU_CORELOG:0]         net_we;
+  input [GOBOU_NETSIZE-1:0]       net_addr;
   input [LWIDTH-1:0]        total_out;
   input [LWIDTH-1:0]        total_in;
 
@@ -40,8 +41,8 @@ module gobou_ctrl_core(/*AUTOARG*/
   output                      mem_img_we;
   output [IMGSIZE-1:0]        mem_img_addr;
   output signed [DWIDTH-1:0]  write_mem_img;
-  output [CORE-1:0]           mem_net_we;
-  output [NETSIZE-1:0]        mem_net_addr;
+  output [GOBOU_CORE-1:0]           mem_net_we;
+  output [GOBOU_NETSIZE-1:0]        mem_net_addr;
   output                      breg_we;
   output                      serial_we;
 
@@ -65,9 +66,9 @@ module gobou_ctrl_core(/*AUTOARG*/
   reg [IMGSIZE-1:0] r_output_offset;
   reg [IMGSIZE-1:0] r_input_addr;
   reg [IMGSIZE-1:0] r_output_addr;
-  reg [CORE-1:0]    r_net_we;
-  reg [NETSIZE-1:0] r_net_addr;
-  reg [NETSIZE-1:0] r_net_offset;
+  reg [GOBOU_CORE-1:0]    r_net_we;
+  reg [GOBOU_NETSIZE-1:0] r_net_addr;
+  reg [GOBOU_NETSIZE-1:0] r_net_offset;
   reg               r_breg_we;
   reg               r_serial_we;
   reg [LWIDTH-1:0]  r_serial_cnt;
@@ -76,7 +77,7 @@ module gobou_ctrl_core(/*AUTOARG*/
   reg               r_out_end;
 
   assign final_iter = r_count_in == r_total_in - 1
-                   && r_count_out + CORE >= r_total_out;
+                   && r_count_out + GOBOU_CORE >= r_total_out;
 
   always @(posedge clk)
     if (!xrst)
@@ -106,7 +107,7 @@ module gobou_ctrl_core(/*AUTOARG*/
 
         S_OUTPUT:
           if (s_output_end)
-            if (r_count_out + CORE >= r_total_out)
+            if (r_count_out + GOBOU_CORE >= r_total_out)
             begin
               r_state <= S_WAIT;
               r_count_out <= 0;
@@ -114,7 +115,7 @@ module gobou_ctrl_core(/*AUTOARG*/
             else
             begin
               r_state <= S_WEIGHT;
-              r_count_out <= r_count_out + CORE;
+              r_count_out <= r_count_out + GOBOU_CORE;
             end
 
         default:
@@ -148,7 +149,7 @@ module gobou_ctrl_core(/*AUTOARG*/
           r_img_we <= img_we;
         S_OUTPUT:
           r_img_we <= r_serial_we
-                   || (0 < r_serial_cnt && r_serial_cnt < CORE);
+                   || (0 < r_serial_cnt && r_serial_cnt < GOBOU_CORE);
         default:
           r_img_we <= 0;
       endcase
@@ -257,7 +258,7 @@ module gobou_ctrl_core(/*AUTOARG*/
 // output control
 //==========================================================
 
-  assign s_output_end = r_state == S_OUTPUT && r_serial_cnt == CORE;
+  assign s_output_end = r_state == S_OUTPUT && r_serial_cnt == GOBOU_CORE;
 
   assign out_begin = r_out_begin;
   assign out_valid = r_out_valid;
@@ -268,7 +269,7 @@ module gobou_ctrl_core(/*AUTOARG*/
       r_out_begin <= 0;
     else
       r_out_begin <= req
-                  || s_output_end && (r_count_out + CORE < r_total_out);
+                  || s_output_end && (r_count_out + GOBOU_CORE < r_total_out);
   always @(posedge clk)
     if (!xrst)
       r_out_valid <= 0;
@@ -287,7 +288,7 @@ module gobou_ctrl_core(/*AUTOARG*/
       r_ack <= 1;
     else if (req)
       r_ack <= 0;
-    else if (s_output_end && r_count_out + CORE >= r_total_out)
+    else if (s_output_end && r_count_out + GOBOU_CORE >= r_total_out)
       r_ack <= 1;
 
   assign serial_we = r_serial_we;
@@ -304,7 +305,7 @@ module gobou_ctrl_core(/*AUTOARG*/
     else if (serial_we)
       r_serial_cnt <= 1;
     else if (r_serial_cnt > 0)
-      if (r_serial_cnt == CORE)
+      if (r_serial_cnt == GOBOU_CORE)
         r_serial_cnt <= 0;
       else
         r_serial_cnt <= r_serial_cnt + 1;

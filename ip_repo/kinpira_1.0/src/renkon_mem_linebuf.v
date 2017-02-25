@@ -1,9 +1,11 @@
+
 module renkon_mem_linebuf(/*AUTOARG*/
    // Outputs
    read_data,
    // Inputs
    clk, mem_we, mem_addr, write_data
    );
+`include "ninjin.vh"
 `include "renkon.vh"
     localparam WORDS   = 2 ** BUFSIZE;
 

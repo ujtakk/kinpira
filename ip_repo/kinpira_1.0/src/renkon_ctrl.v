@@ -30,6 +30,7 @@ module renkon_ctrl(/*AUTOARG*/
    write_img, write_result, net_we, net_addr, total_in, total_out,
    img_size, fil_size
    );
+`include "ninjin.vh"
 `include "renkon.vh"
 
   parameter S_CORE_WAIT     = 'd0;
@@ -49,8 +50,8 @@ module renkon_ctrl(/*AUTOARG*/
   input [IMGSIZE-1:0]       output_addr;
   input signed [DWIDTH-1:0] write_img;
   input signed [DWIDTH-1:0] write_result;
-  input [CORELOG:0]         net_we;
-  input [NETSIZE-1:0]       net_addr;
+  input [RENKON_CORELOG:0]         net_we;
+  input [RENKON_NETSIZE-1:0]       net_addr;
   input [LWIDTH-1:0]        total_in;
   input [LWIDTH-1:0]        total_out;
   input [LWIDTH-1:0]        img_size;
@@ -63,7 +64,7 @@ module renkon_ctrl(/*AUTOARG*/
   output		buf_pix_en;		// From ctrl_core of renkon_ctrl_core.v
   output		relu_oe;		// From ctrl_relu of renkon_ctrl_relu.v
   output [OUTSIZE-1:0]	serial_addr;		// From ctrl_core of renkon_ctrl_core.v
-  output [CORELOG:0]	serial_re;		// From ctrl_core of renkon_ctrl_core.v
+  output [RENKON_CORELOG:0] serial_re;		// From ctrl_core of renkon_ctrl_core.v
   output		serial_we;		// From ctrl_core of renkon_ctrl_core.v
   // End of automatics
   output                      ack;
@@ -74,8 +75,8 @@ module renkon_ctrl(/*AUTOARG*/
   output                      mem_img_we;
   output [IMGSIZE-1:0]        mem_img_addr;
   output signed [DWIDTH-1:0]  write_mem_img;
-  output [CORE-1:0]           mem_net_we;
-  output [NETSIZE-1:0]        mem_net_addr;
+  output [RENKON_CORE-1:0]           mem_net_we;
+  output [RENKON_NETSIZE-1:0]        mem_net_addr;
   output                      mem_feat_we;
   output                      mem_feat_rst;
   output [FACCUM-1:0]         mem_feat_addr;
@@ -175,15 +176,15 @@ module renkon_ctrl(/*AUTOARG*/
 			     .mem_img_we	(mem_img_we),
 			     .mem_img_addr	(mem_img_addr[IMGSIZE-1:0]),
 			     .write_mem_img	(write_mem_img[DWIDTH-1:0]),
-			     .mem_net_we	(mem_net_we[CORE-1:0]),
-			     .mem_net_addr	(mem_net_addr[NETSIZE-1:0]),
+			     .mem_net_we	(mem_net_we[RENKON_CORE-1:0]),
+			     .mem_net_addr	(mem_net_addr[RENKON_NETSIZE-1:0]),
 			     .buf_pix_en	(buf_pix_en),
 			     .first_input	(first_input),
 			     .last_input	(last_input),
 			     .wreg_we		(wreg_we),
 			     .breg_we		(breg_we),
 			     .serial_we		(serial_we),
-			     .serial_re		(serial_re[CORELOG:0]),
+			     .serial_re		(serial_re[RENKON_CORELOG:0]),
 			     .serial_addr	(serial_addr[OUTSIZE-1:0]),
 			     .w_img_size	(w_img_size[LWIDTH-1:0]),
 			     .w_fil_size	(w_fil_size[LWIDTH-1:0]),
@@ -199,8 +200,8 @@ module renkon_ctrl(/*AUTOARG*/
 			     .output_addr	(output_addr[IMGSIZE-1:0]),
 			     .write_img		(write_img[DWIDTH-1:0]),
 			     .write_result	(write_result[DWIDTH-1:0]),
-			     .net_we		(net_we[CORELOG:0]),
-			     .net_addr		(net_addr[NETSIZE-1:0]),
+			     .net_we		(net_we[RENKON_CORELOG:0]),
+			     .net_addr		(net_addr[RENKON_NETSIZE-1:0]),
 			     .total_out		(total_out[LWIDTH-1:0]),
 			     .total_in		(total_in[LWIDTH-1:0]),
 			     .img_size		(img_size[LWIDTH-1:0]),

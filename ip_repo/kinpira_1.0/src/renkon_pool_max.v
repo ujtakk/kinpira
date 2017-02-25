@@ -6,6 +6,7 @@ module renkon_pool_max(/*AUTOARG*/
    clk, xrst, out_en, pixel_in, pixel_feat0, pixel_feat1, pixel_feat2,
    pixel_feat3
    );
+`include "ninjin.vh"
 `include "renkon.vh"
 
   /*AUTOINPUT*/

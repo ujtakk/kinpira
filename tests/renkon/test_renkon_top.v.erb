@@ -5,9 +5,10 @@
 // % weight = "/home/work/takau/bhewtek/hashed/train/lh_t"
 % num = 2; file = 4
 
-`timescale 1ns/1ps
+`timescale 1 ns / 1 ps
 
-module test_renkon();
+module test_renkon_top;
+`include "ninjin.vh"
 `include "renkon.vh"
 
   /*AUTOREGINPUT*/
@@ -94,7 +95,7 @@ module test_renkon();
     $finish();
   end
 
-  renkon dut0(/*AUTOINST*/);
+  renkon_top dut0(/*AUTOINST*/);
 
   task mem_clear;
     begin // {{{
@@ -349,3 +350,7 @@ module test_renkon();
   end
 
 endmodule
+
+// Local Variables:
+// verilog-library-directories:("." "..")
+// End:

@@ -4,6 +4,7 @@ module gobou_bias(/*AUTOARG*/
    // Inputs
    clk, xrst, breg_we, out_en, read_bias, pixel_in
    );
+`include "ninjin.vh"
 `include "gobou.vh"
 
   /*AUTOINPUT*/

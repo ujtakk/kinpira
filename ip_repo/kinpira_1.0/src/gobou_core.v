@@ -11,6 +11,7 @@ module gobou_core(/*AUTOARG*/
    xrst, weight, relu_oe, pixel, mac_oe, clk, breg_we, bias_oe,
    accum_we, accum_rst
    );
+`include "ninjin.vh"
 `include "gobou.vh"
 
   /*AUTOINPUT*/

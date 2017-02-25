@@ -7,6 +7,7 @@ module renkon_ctrl_conv(/*AUTOARG*/
    clk, xrst, in_begin, in_valid, in_end, core_state, w_img_size,
    w_fil_size, first_input, last_input
    );
+`include "ninjin.vh"
 `include "renkon.vh"
 
   parameter S_CORE_WAIT     = 'd0;

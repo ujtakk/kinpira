@@ -5,13 +5,14 @@ module gobou_mem_net(/*AUTOARG*/
    // Inputs
    clk, mem_we, mem_addr, write_data
    );
+`include "ninjin.vh"
 `include "gobou.vh"
-  parameter WORDS = 2 ** NETSIZE;
+  parameter WORDS = 2 ** GOBOU_NETSIZE;
 
   /*AUTOINPUT*/
   input                     clk;
   input                     mem_we;
-  input [NETSIZE-1:0]        mem_addr;
+  input [GOBOU_NETSIZE-1:0]        mem_addr;
   input signed [DWIDTH-1:0] write_data;
 
   /*AUTOOUTPUT*/

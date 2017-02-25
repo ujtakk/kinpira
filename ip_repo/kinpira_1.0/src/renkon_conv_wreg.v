@@ -8,6 +8,7 @@ module renkon_conv_wreg(/*AUTOARG*/
    // Inputs
    read_weight, wreg_we, clk
    );
+`include "ninjin.vh"
 `include "renkon.vh"
 
   /*AUTOINPUT*/

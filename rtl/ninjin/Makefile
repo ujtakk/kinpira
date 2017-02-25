@@ -5,11 +5,10 @@ all:
 	for i in *.vh.erb; do \
 		erb -T - $$i > `echo $$i | awk -F . '{print $$1 "." $$2}'`; \
 	done
-	cp *.v *.vh ../src
 
 dist:
-	cp ../../../gobou/dist/*.v ../../../gobou/dist/*.vh ../src
-	cp ../../../renkon/dist/*.v ../../../renkon/dist/*.vh ../src
+	mkdir -p ../dist
+	cp *.v *.vh ../dist
 
 clean:
 	rm -f *.v

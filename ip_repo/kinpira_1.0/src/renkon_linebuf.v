@@ -21,6 +21,7 @@ module renkon_linebuf(/*AUTOARG*/
    // Inputs
    clk, xrst, buf_en, img_size, fil_size, buf_input
    );
+`include "ninjin.vh"
 `include "renkon.vh"
 
   parameter _BUFSIZE = 5;

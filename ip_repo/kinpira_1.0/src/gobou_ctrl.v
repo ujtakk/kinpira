@@ -24,6 +24,7 @@ module gobou_ctrl(/*AUTOARG*/
    xrst, write_result, write_img, total_out, total_in, req,
    output_addr, net_we, net_addr, input_addr, img_we, clk
    );
+`include "ninjin.vh"
 `include "gobou.vh"
 
   /*AUTOINPUT*/
@@ -31,8 +32,8 @@ module gobou_ctrl(/*AUTOARG*/
   input			clk;			// To ctrl_core of gobou_ctrl_core.v, ...
   input			img_we;			// To ctrl_core of gobou_ctrl_core.v
   input [IMGSIZE-1:0]	input_addr;		// To ctrl_core of gobou_ctrl_core.v
-  input [NETSIZE-1:0]	net_addr;		// To ctrl_core of gobou_ctrl_core.v
-  input [CORELOG:0]	net_we;			// To ctrl_core of gobou_ctrl_core.v
+  input [GOBOU_NETSIZE-1:0] net_addr;		// To ctrl_core of gobou_ctrl_core.v
+  input [GOBOU_CORELOG:0] net_we;		// To ctrl_core of gobou_ctrl_core.v
   input [IMGSIZE-1:0]	output_addr;		// To ctrl_core of gobou_ctrl_core.v
   input			req;			// To ctrl_core of gobou_ctrl_core.v
   input [LWIDTH-1:0]	total_in;		// To ctrl_core of gobou_ctrl_core.v
@@ -52,8 +53,8 @@ module gobou_ctrl(/*AUTOARG*/
   output		mac_oe;			// From ctrl_mac of gobou_ctrl_mac.v
   output [IMGSIZE-1:0]	mem_img_addr;		// From ctrl_core of gobou_ctrl_core.v
   output		mem_img_we;		// From ctrl_core of gobou_ctrl_core.v
-  output [NETSIZE-1:0]	mem_net_addr;		// From ctrl_core of gobou_ctrl_core.v
-  output [CORE-1:0]	mem_net_we;		// From ctrl_core of gobou_ctrl_core.v
+  output [GOBOU_NETSIZE-1:0] mem_net_addr;	// From ctrl_core of gobou_ctrl_core.v
+  output [GOBOU_CORE-1:0] mem_net_we;		// From ctrl_core of gobou_ctrl_core.v
   output		relu_oe;		// From ctrl_relu of gobou_ctrl_relu.v
   output		serial_we;		// From ctrl_core of gobou_ctrl_core.v
   output signed [DWIDTH-1:0] write_mem_img;	// From ctrl_core of gobou_ctrl_core.v
@@ -117,8 +118,8 @@ module gobou_ctrl(/*AUTOARG*/
 			    .mem_img_we		(mem_img_we),
 			    .mem_img_addr	(mem_img_addr[IMGSIZE-1:0]),
 			    .write_mem_img	(write_mem_img[DWIDTH-1:0]),
-			    .mem_net_we		(mem_net_we[CORE-1:0]),
-			    .mem_net_addr	(mem_net_addr[NETSIZE-1:0]),
+			    .mem_net_we		(mem_net_we[GOBOU_CORE-1:0]),
+			    .mem_net_addr	(mem_net_addr[GOBOU_NETSIZE-1:0]),
 			    .breg_we		(breg_we),
 			    .serial_we		(serial_we),
 			    // Inputs
@@ -133,8 +134,8 @@ module gobou_ctrl(/*AUTOARG*/
 			    .output_addr	(output_addr[IMGSIZE-1:0]),
 			    .write_img		(write_img[DWIDTH-1:0]),
 			    .write_result	(write_result[DWIDTH-1:0]),
-			    .net_we		(net_we[CORELOG:0]),
-			    .net_addr		(net_addr[NETSIZE-1:0]),
+			    .net_we		(net_we[GOBOU_CORELOG:0]),
+			    .net_addr		(net_addr[GOBOU_NETSIZE-1:0]),
 			    .total_out		(total_out[LWIDTH-1:0]),
 			    .total_in		(total_in[LWIDTH-1:0]));
 

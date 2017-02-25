@@ -5,6 +5,7 @@ module gobou_ctrl_bias(/*AUTOARG*/
    // Inputs
    clk, xrst, in_begin, in_valid, in_end
    );
+`include "ninjin.vh"
 `include "gobou.vh"
 
   /*AUTOINPUT*/

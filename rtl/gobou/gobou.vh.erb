@@ -1,12 +1,16 @@
+`ifndef _GOBOU_VH_
+`define _GOBOU_VH_
 % load "gobou.rb"
 
+% if $dist
+% else
+parameter STEP    = <%= $step     %>;
 parameter DWIDTH  = <%= $dwidth   %>;
 parameter LWIDTH  = <%= $lwidth   %>;
-parameter STEP    = <%= $step     %>;
-parameter CORE    = <%= $core     %>;
-parameter CORELOG = <%= $core_log %>;
 parameter IMGSIZE = <%= $imgsize  %>;
-parameter NETSIZE = <%= $netsize  %>;
-parameter N_IN    = <%= $n_in     %>;
-parameter N_F1    = <%= $n_f1     %>;
-parameter N_F2    = <%= $n_f2     %>;
+% end
+parameter GOBOU_CORE    = <%= $core     %>;
+parameter GOBOU_CORELOG = <%= $core_log %>;
+parameter GOBOU_NETSIZE = <%= $netsize  %>;
+
+`endif

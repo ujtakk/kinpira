@@ -6,6 +6,7 @@ module renkon_serial_mat(/*AUTOARG*/
    clk, xrst, serial_we, serial_addr, serial_re, in_data0, in_data1,
    in_data2, in_data3, in_data4, in_data5, in_data6, in_data7
    );
+`include "ninjin.vh"
 `include "renkon.vh"
 
   /*AUTOINPUT*/
@@ -13,7 +14,7 @@ module renkon_serial_mat(/*AUTOARG*/
   input                     xrst;
   input                     serial_we;
   input [OUTSIZE-1:0]       serial_addr;
-  input [CORELOG:0]         serial_re;
+  input [RENKON_CORELOG:0]         serial_re;
   input signed [DWIDTH-1:0] in_data0;
   input signed [DWIDTH-1:0] in_data1;
   input signed [DWIDTH-1:0] in_data2;
@@ -45,7 +46,7 @@ module renkon_serial_mat(/*AUTOARG*/
   wire signed [DWIDTH-1:0] mem_data7;
 
   /*AUTOREG*/
-  reg [CORELOG:0] r_serial_re;
+  reg [RENKON_CORELOG:0] r_serial_re;
 
   assign w_serial_addr0 = serial_re == 'd0 ? serial_addr
                              : serial_re == 'd1 ? serial_addr
@@ -241,7 +242,7 @@ module renkon_serial_mat(/*AUTOARG*/
 				.write_data	(in_data7[DWIDTH-1:0])); // Templated
 
   /* renkon_mux_output AUTO_TEMPLATE (
-      .output_re    (r_serial_re[CORELOG:0]),
+      .output_re    (r_serial_re[RENKON_CORELOG:0]),
       .read_output0  (mem_data0[DWIDTH-1:0]),
       .read_output1  (mem_data1[DWIDTH-1:0]),
       .read_output2  (mem_data2[DWIDTH-1:0]),
@@ -258,7 +259,7 @@ module renkon_serial_mat(/*AUTOARG*/
 			       // Inputs
 			       .clk		(clk),
 			       .xrst		(xrst),
-			       .output_re	(r_serial_re[CORELOG:0]), // Templated
+			       .output_re	(r_serial_re[RENKON_CORELOG:0]), // Templated
 			       .read_output0	(mem_data0[DWIDTH-1:0]), // Templated
 			       .read_output1	(mem_data1[DWIDTH-1:0]), // Templated
 			       .read_output2	(mem_data2[DWIDTH-1:0]), // Templated

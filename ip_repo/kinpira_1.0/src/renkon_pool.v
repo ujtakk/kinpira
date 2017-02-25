@@ -13,6 +13,7 @@ module renkon_pool(/*AUTOARG*/
    // Inputs
    w_pool_size, w_fea_size, buf_feat_en, clk, xrst, out_en, pixel_in
    );
+`include "ninjin.vh"
 `include "renkon.vh"
 
   /*AUTOINPUT*/

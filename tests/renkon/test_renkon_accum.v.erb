@@ -1,8 +1,9 @@
 % load "renkon.rb"
 
-`timescale 1ns/1ps
+`timescale 1 ns / 1 ps
 
-module test_renkon_accum();
+module test_renkon_accum;
+`include "ninjin.vh"
 `include "renkon.vh"
 
     /*AUTOREGINPUT*/
@@ -60,3 +61,7 @@ module test_renkon_accum();
     renkon_accum dut0(/*AUTOINST*/);
 
 endmodule
+
+// Local Variables:
+// verilog-library-directories:("." "..")
+// End:
