@@ -2,18 +2,19 @@
 % less = false
 
 module renkon_mem_net(/*AUTOARG*/);
+`include "ninjin.vh"
 `include "renkon.vh"
 % if less
   // parameter WORDS = 4000;
-  parameter WORDS = 2 ** NETSIZE;
+  parameter WORDS = 2 ** RENKON_NETSIZE;
 % else
-  parameter WORDS = 2 ** NETSIZE;
+  parameter WORDS = 2 ** RENKON_NETSIZE;
 % end
 
   /*AUTOINPUT*/
   input                     clk;
   input                     mem_we;
-  input [NETSIZE-1:0]        mem_addr;
+  input [RENKON_NETSIZE-1:0]        mem_addr;
   input signed [DWIDTH-1:0] write_data;
 
   /*AUTOOUTPUT*/

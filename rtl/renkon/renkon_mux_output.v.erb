@@ -1,12 +1,13 @@
 % load "renkon.rb"
 
 module renkon_mux_output(/*AUTOARG*/);
+`include "ninjin.vh"
 `include "renkon.vh"
 
   /*AUTOINPUT*/
   input clk;
   input xrst;
-  input [CORELOG:0] output_re;
+  input [RENKON_CORELOG:0] output_re;
   <%- for i in 0...$core -%>
   input signed [DWIDTH-1:0] read_output<%=i%>;
   <%- end -%>

@@ -1,8 +1,9 @@
 % load "renkon.rb"
 
-`timescale 1ns/1ps
+`timescale 1 ns / 1 ps
 
-module test_renkon_ctrl_conv();
+module test_renkon_ctrl_conv;
+`include "ninjin.vh"
 `include "renkon.vh"
 
   parameter S_CORE_WAIT   = 'd0;
@@ -215,3 +216,7 @@ module test_renkon_ctrl_conv();
   endtask
 
 endmodule
+
+// Local Variables:
+// verilog-library-directories:("." "..")
+// End:

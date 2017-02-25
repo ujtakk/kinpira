@@ -2,9 +2,10 @@
 // % weight = "/Users/pitchw0w/work/1.hw/bhewtek/data/mnist/lenet"
 % weight = "/home/work/takau/bhewtek/data/mnist/lenet"
 
-`timescale 1ns/1ps
+`timescale 1 ns / 1 ps
 
-module test_gobou();
+module test_gobou_top;
+`include "ninjin.vh"
 `include "gobou.vh"
 
   /*AUTOREGINPUT*/
@@ -12,7 +13,7 @@ module test_gobou();
 
   /*AUTOWIRE*/
   <%- for i in 0...$core -%>
-  reg [DWIDTH-1:0] mem_n<%=i%> [2**NETSIZE-1:0];
+  reg [DWIDTH-1:0] mem_n<%=i%> [2**GOBOU_NETSIZE-1:0];
   <%- end -%>
 
   //clock
@@ -62,7 +63,7 @@ module test_gobou();
     $finish();
   end
 
-  gobou dut0(/*AUTOINST*/);
+  gobou_top dut0(/*AUTOINST*/);
 
   task read_input;
     begin // {{{
@@ -134,7 +135,7 @@ module test_gobou();
       <%- for n in 0...$core -%>
       net_we = <%=$core_log+1%>'d<%=n+1%>;
       #(STEP);
-      for (i=0; i<2**NETSIZE; i=i+1)
+      for (i=0; i<2**GOBOU_NETSIZE; i=i+1)
       begin
         net_addr = i;
         #(STEP);
@@ -249,3 +250,7 @@ module test_gobou();
   end
 
 endmodule
+
+// Local Variables:
+// verilog-library-directories:("." "..")
+// End:

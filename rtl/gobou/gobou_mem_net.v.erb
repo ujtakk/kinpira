@@ -2,17 +2,18 @@
 % less = false
 
 module gobou_mem_net(/*AUTOARG*/);
+`include "ninjin.vh"
 `include "gobou.vh"
 % if less
   parameter WORDS = 25345;
 % else
-  parameter WORDS = 2 ** NETSIZE;
+  parameter WORDS = 2 ** GOBOU_NETSIZE;
 % end
 
   /*AUTOINPUT*/
   input                     clk;
   input                     mem_we;
-  input [NETSIZE-1:0]        mem_addr;
+  input [GOBOU_NETSIZE-1:0]        mem_addr;
   input signed [DWIDTH-1:0] write_data;
 
   /*AUTOOUTPUT*/

@@ -1,18 +1,18 @@
 #### notice, don't forget update Makefile.dep
-#### (make compile.all USE_CACHE=0; ...; rm -f Makefile.dep; make Makefile.dep)
-# SIMULATOR=vcs
-# SIMULATOR=iverilog
-# SIMULATOR=xsim
-IOC_DIR=.
-TARGET=test_renkon
-INSTANCE=`echo $(TARGET) | awk -F "test_" '{print $$2}'`
-# DIST=dist
-DIST=../ip_repo/kinpira_1.0/src
+# SIMULATOR = (vsim,) vcs, xsim, iverilog
+SIMULATOR = iverilog
+MODULE    = renkon_top
+TEST_DIR  = test
+OUTFILE   = mem_data
+
+LINK_DIR  = .
+DIST      = ../dist
+TARGET    = $(TEST_DIR)/test_$(MODULE)
 
 include Makefile.dep
 include VERBMakefile
 
-.PHONY: all file sim clean
+.PHONY: all file sim clean log edit diff
 sim: $(TARGET).log
 file: $(TARGET).com
 
@@ -20,19 +20,16 @@ all:
 	make clean
 	make sim
 
-clean:
-	make clean-common
-	rm -f vish_stacktrace.vstf
+clean: clean-common
 
 log:
-	vim -O $(TARGET).v.erb $(INSTANCE).v.erb -c ':0tabnew $(TARGET).log'
+	nvim $(TARGET).log
 
 edit:
-	# vim -O $(TARGET).v.erb `echo $(TARGET) | awk -F "test_" '{print $$2 ".v.erb"}'`
-	vim -O $(TARGET).v.erb $(INSTANCE).v.erb
+	nvim -O $(TARGET).v.erb `echo $(TARGET) | awk -F "$(TEST_DIR)/test_" '{print $$2 ".v.erb"}'`
 
 diff:
-	vimdiff $(TARGET).dat $(TARGET)_true.dat
+	nvim -d $(OUTFILE)_test.dat $(OUTFILE)_true.dat
 
 define DEP_IN
 ## -*- text -*-

@@ -1,15 +1,19 @@
-% load "renkon.rb"
+% load "ninjin.rb"
 
-module renkon_mem_serial(/*AUTOARG*/);
+module mem_img(/*AUTOARG*/
+   // Outputs
+   read_data,
+   // Inputs
+   clk, mem_we, mem_addr, write_data
+   );
 `include "ninjin.vh"
-`include "renkon.vh"
-  // parameter WORDS = 2 ** OUTSIZE;
-  parameter WORDS = 150;
+  // parameter WORDS = 2 ** IMGSIZE;
+  parameter WORDS = 5000;
 
   /*AUTOINPUT*/
   input                     clk;
   input                     mem_we;
-  input [OUTSIZE-1:0]       mem_addr;
+  input [IMGSIZE-1:0]        mem_addr;
   input signed [DWIDTH-1:0] write_data;
 
   /*AUTOOUTPUT*/
@@ -18,17 +22,16 @@ module renkon_mem_serial(/*AUTOARG*/);
   /*AUTOWIRE*/
 
   /*AUTOREG*/
-
   reg signed [DWIDTH-1:0] mem [WORDS-1:0];
   reg [DWIDTH-1:0]        addr_reg;
 
+  assign read_data = mem[addr_reg];
+
   always @(posedge clk)
   begin
-    if(mem_we)
+    if (mem_we)
       mem[mem_addr] <= write_data;
     addr_reg <= mem_addr;
   end
-
-  assign read_data = mem[addr_reg];
 
 endmodule

@@ -1,8 +1,9 @@
 % load "gobou.rb"
 
-`timescale 1ns/1ps
+`timescale 1 ns / 1 ps
 
-module test_gobou_ctrl_core();
+module test_gobou_ctrl_core;
+`include "ninjin.vh"
 `include "gobou.vh"
 
   /*AUTOREGINPUT*/
@@ -121,4 +122,8 @@ module test_gobou_ctrl_core();
   end
 
 endmodule
+`include "ninjin.vh"
 
+// Local Variables:
+// verilog-library-directories:("." "..")
+// End:

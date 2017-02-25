@@ -5,9 +5,10 @@
 % num = 2; file = 4
 % offset = 75 # addr offset where bwb_2 start at
 
-`timescale 1ns/1ps
+`timescale 1 ns / 1 ps
 
-module test_top_first();
+module test_top_first;
+`include "ninjin.vh"
 `include "renkon.vh"
 
   /*AUTOREGINPUT*/
@@ -124,7 +125,7 @@ module test_top_first();
 
     // $toggle_stop();
     // $toggle_report(
-    //   "../saif_rtl/saif{CORE}/rtl_top{NUM}_{FILE}.saif",
+    //   "../saif_rtl/saif{RENKON_CORE}/rtl_top{NUM}_{FILE}.saif",
     //   1.0e-9,
     //   "test_top"
     // );
@@ -516,3 +517,7 @@ module test_top_first();
   end
 
 endmodule
+
+// Local Variables:
+// verilog-library-directories:("." "..")
+// End:
