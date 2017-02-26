@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Product Version: Vivado v2016.2 (64-bit)              -->
+<!-- Product Version: Vivado v2016.4 (64-bit)              -->
 <!--                                                         -->
 <!-- Copyright 1986-2016 Xilinx, Inc. All Rights Reserved.   -->
 
-<Project Version="7" Minor="14" Path="/ram/home/work/takau/kinpira/zedboard/zedboard.xpr">
+<Project Version="7" Minor="17" Path="/home/kaftulal/kinpira/zedboard/zedboard.xpr">
   <DefaultLaunch Dir="$PRUNDIR"/>
   <Configuration>
-    <Option Name="Id" Val="015d44b2d5c64f0bb1c7c51ebbb83254"/>
+    <Option Name="Id" Val="8b870c815e8f43c6933fb3023416ea71"/>
     <Option Name="Part" Val="xc7z020clg484-1"/>
     <Option Name="CompiledLibDir" Val="$PCACHEDIR/compile_simlib"/>
     <Option Name="CompiledLibDirXSim" Val=""/>
@@ -19,18 +19,17 @@
     <Option Name="BoardPart" Val="em.avnet.com:zed:part0:1.3"/>
     <Option Name="ActiveSimSet" Val="sim_1"/>
     <Option Name="DefaultLib" Val="xil_defaultlib"/>
-    <Option Name="IPRepoPath" Val="$PPRDIR/../ip_repo/kinpira_1.0"/>
-    <Option Name="IPRepoPath" Val="$PPRDIR/../ip_repo/kinpira_1.0"/>
-    <Option Name="IPRepoPath" Val="$PPRDIR/../ip_repo/kinpira_1.0"/>
-    <Option Name="IPRepoPath" Val="$PPRDIR/../ip_repo/kinpira_1.0"/>
-    <Option Name="IPRepoPath" Val="$PPRDIR/../ip_repo/kinpira_1.0"/>
-    <Option Name="IPRepoPath" Val="$PPRDIR/../ip_repo/ninjin_1.0"/>
+    <Option Name="IPRepoPath" Val="$PPRDIR/../ip_repo/kinpira"/>
+    <Option Name="IPOutputRepo" Val="$PCACHEDIR/ip"/>
+    <Option Name="IPCachePermission" Val="read"/>
+    <Option Name="IPCachePermission" Val="write"/>
     <Option Name="EnableCoreContainer" Val="FALSE"/>
     <Option Name="CreateRefXciForCoreContainers" Val="FALSE"/>
     <Option Name="IPUserFilesDir" Val="$PPRDIR/zedboard.ip_user_files"/>
     <Option Name="IPStaticSourceDir" Val="$PPRDIR/zedboard.ip_user_files/ipstatic"/>
     <Option Name="EnableBDX" Val="FALSE"/>
     <Option Name="DSABoardId" Val="zed"/>
+    <Option Name="DSANumComputeUnits" Val="16"/>
     <Option Name="WTXSimLaunchSim" Val="0"/>
     <Option Name="WTModelSimLaunchSim" Val="0"/>
     <Option Name="WTQuestaLaunchSim" Val="0"/>
@@ -38,35 +37,67 @@
     <Option Name="WTVcsLaunchSim" Val="0"/>
     <Option Name="WTRivieraLaunchSim" Val="0"/>
     <Option Name="WTActivehdlLaunchSim" Val="0"/>
-    <Option Name="WTXSimExportSim" Val="14"/>
-    <Option Name="WTModelSimExportSim" Val="14"/>
-    <Option Name="WTQuestaExportSim" Val="14"/>
-    <Option Name="WTIesExportSim" Val="14"/>
-    <Option Name="WTVcsExportSim" Val="14"/>
-    <Option Name="WTRivieraExportSim" Val="14"/>
-    <Option Name="WTActivehdlExportSim" Val="14"/>
+    <Option Name="WTXSimExportSim" Val="1"/>
+    <Option Name="WTModelSimExportSim" Val="1"/>
+    <Option Name="WTQuestaExportSim" Val="1"/>
+    <Option Name="WTIesExportSim" Val="1"/>
+    <Option Name="WTVcsExportSim" Val="1"/>
+    <Option Name="WTRivieraExportSim" Val="1"/>
+    <Option Name="WTActivehdlExportSim" Val="1"/>
+    <Option Name="GenerateIPUpgradeLog" Val="TRUE"/>
+    <Option Name="XSimRadix" Val="hex"/>
+    <Option Name="XSimTimeUnit" Val="ns"/>
+    <Option Name="XSimArrayDisplayLimit" Val="64"/>
+    <Option Name="XSimTraceLimit" Val="65536"/>
   </Configuration>
   <FileSets Version="1" Minor="31">
     <FileSet Name="sources_1" Type="DesignSrcs" RelSrcDir="$PSRCDIR/sources_1">
       <Filter Type="Srcs"/>
-      <File Path="$PSRCDIR/sources_1/bd/kinpira/kinpira.bd">
+      <File Path="$PSRCDIR/sources_1/imports/dist/renkon.vh">
+        <FileInfo>
+          <Attr Name="IsGlobalInclude" Val="1"/>
+          <Attr Name="ImportPath" Val="$PPRDIR/../rtl/dist/renkon.vh"/>
+          <Attr Name="ImportTime" Val="1488056395"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PSRCDIR/sources_1/imports/dist/gobou.vh">
+        <FileInfo>
+          <Attr Name="IsGlobalInclude" Val="1"/>
+          <Attr Name="ImportPath" Val="$PPRDIR/../rtl/dist/gobou.vh"/>
+          <Attr Name="ImportTime" Val="1488056398"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PSRCDIR/sources_1/bd/design_1/design_1.bd">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
-        <CompFileExtendedInfo CompFileName="kinpira.bd" FileRelPathName="hdl/kinpira.hwdef"/>
-        <CompFileExtendedInfo CompFileName="kinpira.bd" FileRelPathName="hw_handoff/kinpira_bd.tcl"/>
-        <CompFileExtendedInfo CompFileName="kinpira.bd" FileRelPathName="hw_handoff/kinpira.hwh"/>
-        <CompFileExtendedInfo CompFileName="kinpira.bd" FileRelPathName="kinpira_ooc.xdc"/>
-        <CompFileExtendedInfo CompFileName="kinpira.bd" FileRelPathName="ip/kinpira_auto_pc_0/kinpira_auto_pc_0.xci"/>
-        <CompFileExtendedInfo CompFileName="kinpira.bd" FileRelPathName="hdl/kinpira.v"/>
-        <CompFileExtendedInfo CompFileName="kinpira.bd" FileRelPathName="ip/kinpira_processing_system7_0_axi_periph_0/kinpira_processing_system7_0_axi_periph_0.xci"/>
-        <CompFileExtendedInfo CompFileName="kinpira.bd" FileRelPathName="ip/kinpira_kinpira_0_0/kinpira_kinpira_0_0.xci"/>
-        <CompFileExtendedInfo CompFileName="kinpira.bd" FileRelPathName="ip/kinpira_rst_processing_system7_0_100M_0/kinpira_rst_processing_system7_0_100M_0.xci"/>
-        <CompFileExtendedInfo CompFileName="kinpira.bd" FileRelPathName="ip/kinpira_processing_system7_0_0/kinpira_processing_system7_0_0.xci"/>
+        <CompFileExtendedInfo CompFileName="design_1.bd" FileRelPathName="ip/design_1_kinpira_v1_0_0_0/design_1_kinpira_v1_0_0_0.xci"/>
+        <CompFileExtendedInfo CompFileName="design_1.bd" FileRelPathName="ip/design_1_processing_system7_0_0/design_1_processing_system7_0_0.xci"/>
+        <CompFileExtendedInfo CompFileName="design_1.bd" FileRelPathName="ip/design_1_ps7_0_axi_periph_0/design_1_ps7_0_axi_periph_0.xci"/>
+        <CompFileExtendedInfo CompFileName="design_1.bd" FileRelPathName="ip/design_1_rst_ps7_0_50M_0/design_1_rst_ps7_0_50M_0.xci"/>
+        <CompFileExtendedInfo CompFileName="design_1.bd" FileRelPathName="ip/design_1_auto_pc_0/design_1_auto_pc_0.xci"/>
+        <CompFileExtendedInfo CompFileName="design_1.bd" FileRelPathName="hdl/design_1.v"/>
+        <CompFileExtendedInfo CompFileName="design_1.bd" FileRelPathName="design_1_ooc.xdc"/>
+        <CompFileExtendedInfo CompFileName="design_1.bd" FileRelPathName="hw_handoff/design_1.hwh"/>
+        <CompFileExtendedInfo CompFileName="design_1.bd" FileRelPathName="hw_handoff/design_1_bd.tcl"/>
+        <CompFileExtendedInfo CompFileName="design_1.bd" FileRelPathName="hdl/design_1.hwdef"/>
       </File>
-      <File Path="$PSRCDIR/sources_1/bd/kinpira/hdl/kinpira_wrapper.v">
+      <File Path="$PSRCDIR/sources_1/imports/dist/ninjin.vh">
+        <FileInfo>
+          <Attr Name="IsGlobalInclude" Val="1"/>
+          <Attr Name="ImportPath" Val="$PPRDIR/../rtl/dist/ninjin.vh"/>
+          <Attr Name="ImportTime" Val="1488070619"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PSRCDIR/sources_1/bd/design_1/hdl/design_1_wrapper.v">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
@@ -75,7 +106,7 @@
       </File>
       <Config>
         <Option Name="DesignMode" Val="RTL"/>
-        <Option Name="TopModule" Val="kinpira_wrapper"/>
+        <Option Name="TopModule" Val="design_1_wrapper"/>
         <Option Name="TopAutoSet" Val="TRUE"/>
       </Config>
     </FileSet>
@@ -89,7 +120,7 @@
       <Filter Type="Srcs"/>
       <Config>
         <Option Name="DesignMode" Val="RTL"/>
-        <Option Name="TopModule" Val="kinpira_wrapper"/>
+        <Option Name="TopModule" Val="design_1_wrapper"/>
         <Option Name="TopLib" Val="xil_defaultlib"/>
         <Option Name="TopAutoSet" Val="TRUE"/>
         <Option Name="TransportPathDelay" Val="0"/>
@@ -126,12 +157,13 @@
         <Step Id="synth_design"/>
       </Strategy>
       <GeneratedRun Dir="$PRUNDIR" File="gen_run.xml"/>
+      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
     </Run>
     <Run Id="impl_1" Type="Ft2:EntireDesign" Part="xc7z020clg484-1" ConstrsSet="constrs_1" Description="Default settings for Implementation." State="current" Dir="$PRUNDIR/impl_1" SynthRun="synth_1" IncludeInArchive="true">
       <Strategy Version="1" Minor="2">
         <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2016"/>
         <Step Id="init_design"/>
-        <Step Id="opt_design" EnableStepBool="0"/>
+        <Step Id="opt_design"/>
         <Step Id="power_opt_design"/>
         <Step Id="place_design"/>
         <Step Id="post_place_power_opt_design"/>
@@ -141,6 +173,7 @@
         <Step Id="write_bitstream"/>
       </Strategy>
       <GeneratedRun Dir="$PRUNDIR" File="gen_run.xml"/>
+      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
     </Run>
   </Runs>
 </Project>

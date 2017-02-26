@@ -1,30 +1,28 @@
 
 *** Running vivado
-    with args -log kinpira_wrapper.vdi -applog -m64 -messageDb vivado.pb -mode batch -source kinpira_wrapper.tcl -notrace
+    with args -log design_1_wrapper.vdi -applog -m64 -product Vivado -messageDb vivado.pb -mode batch -source design_1_wrapper.tcl -notrace
 
+awk: symbol lookup error: awk: undefined symbol: mpfr_z_sub
 
-****** Vivado v2016.2 (64-bit)
-  **** SW Build 1577090 on Thu Jun  2 16:32:35 MDT 2016
-  **** IP Build 1577682 on Fri Jun  3 12:00:54 MDT 2016
+****** Vivado v2016.4 (64-bit)
+  **** SW Build 1756540 on Mon Jan 23 19:11:19 MST 2017
+  **** IP Build 1755317 on Mon Jan 23 20:30:07 MST 2017
     ** Copyright 1986-2016 Xilinx, Inc. All Rights Reserved.
 
-source kinpira_wrapper.tcl -notrace
+source design_1_wrapper.tcl -notrace
 Design is defaulting to srcset: sources_1
 Design is defaulting to constrset: constrs_1
-process 30949: arguments to dbus_move_error() were incorrect, assertion "(dest) == NULL || !dbus_error_is_set ((dest))" failed in file ../../dbus/dbus-errors.c line 282.
-This is normally a bug in some application using the D-Bus library.
-libhal.c 3483 : Error unsubscribing to signals, error=The name org.freedesktop.Hal was not provided by any .service files
 INFO: [Netlist 29-17] Analyzing 2962 Unisim elements for replacement
-INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
-INFO: [Project 1-479] Netlist was created with Vivado 2016.2
+INFO: [Netlist 29-28] Unisim Transformation completed in 1 CPU seconds
+INFO: [Project 1-479] Netlist was created with Vivado 2016.4
 INFO: [Device 21-403] Loading part xc7z020clg484-1
 INFO: [Project 1-570] Preparing netlist for logic optimization
-Parsing XDC File [/ram/home/work/takau/kinpira/zedboard/zedboard.srcs/sources_1/bd/kinpira/ip/kinpira_processing_system7_0_0/kinpira_processing_system7_0_0.xdc] for cell 'kinpira_i/processing_system7_0/inst'
-Finished Parsing XDC File [/ram/home/work/takau/kinpira/zedboard/zedboard.srcs/sources_1/bd/kinpira/ip/kinpira_processing_system7_0_0/kinpira_processing_system7_0_0.xdc] for cell 'kinpira_i/processing_system7_0/inst'
-Parsing XDC File [/ram/home/work/takau/kinpira/zedboard/zedboard.srcs/sources_1/bd/kinpira/ip/kinpira_rst_processing_system7_0_100M_0/kinpira_rst_processing_system7_0_100M_0_board.xdc] for cell 'kinpira_i/rst_processing_system7_0_100M/U0'
-Finished Parsing XDC File [/ram/home/work/takau/kinpira/zedboard/zedboard.srcs/sources_1/bd/kinpira/ip/kinpira_rst_processing_system7_0_100M_0/kinpira_rst_processing_system7_0_100M_0_board.xdc] for cell 'kinpira_i/rst_processing_system7_0_100M/U0'
-Parsing XDC File [/ram/home/work/takau/kinpira/zedboard/zedboard.srcs/sources_1/bd/kinpira/ip/kinpira_rst_processing_system7_0_100M_0/kinpira_rst_processing_system7_0_100M_0.xdc] for cell 'kinpira_i/rst_processing_system7_0_100M/U0'
-Finished Parsing XDC File [/ram/home/work/takau/kinpira/zedboard/zedboard.srcs/sources_1/bd/kinpira/ip/kinpira_rst_processing_system7_0_100M_0/kinpira_rst_processing_system7_0_100M_0.xdc] for cell 'kinpira_i/rst_processing_system7_0_100M/U0'
+Parsing XDC File [/home/kaftulal/kinpira/zedboard/zedboard.srcs/sources_1/bd/design_1/ip/design_1_processing_system7_0_0/design_1_processing_system7_0_0.xdc] for cell 'design_1_i/processing_system7_0/inst'
+Finished Parsing XDC File [/home/kaftulal/kinpira/zedboard/zedboard.srcs/sources_1/bd/design_1/ip/design_1_processing_system7_0_0/design_1_processing_system7_0_0.xdc] for cell 'design_1_i/processing_system7_0/inst'
+Parsing XDC File [/home/kaftulal/kinpira/zedboard/zedboard.srcs/sources_1/bd/design_1/ip/design_1_rst_ps7_0_50M_0/design_1_rst_ps7_0_50M_0_board.xdc] for cell 'design_1_i/rst_ps7_0_50M/U0'
+Finished Parsing XDC File [/home/kaftulal/kinpira/zedboard/zedboard.srcs/sources_1/bd/design_1/ip/design_1_rst_ps7_0_50M_0/design_1_rst_ps7_0_50M_0_board.xdc] for cell 'design_1_i/rst_ps7_0_50M/U0'
+Parsing XDC File [/home/kaftulal/kinpira/zedboard/zedboard.srcs/sources_1/bd/design_1/ip/design_1_rst_ps7_0_50M_0/design_1_rst_ps7_0_50M_0.xdc] for cell 'design_1_i/rst_ps7_0_50M/U0'
+Finished Parsing XDC File [/home/kaftulal/kinpira/zedboard/zedboard.srcs/sources_1/bd/design_1/ip/design_1_rst_ps7_0_50M_0/design_1_rst_ps7_0_50M_0.xdc] for cell 'design_1_i/rst_ps7_0_50M/U0'
 INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
 INFO: [Project 1-111] Unisim Transformation Summary:
   A total of 1074 instances were transformed.
@@ -32,471 +30,369 @@ INFO: [Project 1-111] Unisim Transformation Summary:
   RAM64M => RAM64M (RAMD64E, RAMD64E, RAMD64E, RAMD64E): 760 instances
   RAM64X1D => RAM64X1D (RAMD64E, RAMD64E): 152 instances
 
-link_design: Time (s): cpu = 00:00:14 ; elapsed = 00:00:23 . Memory (MB): peak = 1400.766 ; gain = 433.539 ; free physical = 3025 ; free virtual = 19293
+link_design: Time (s): cpu = 00:00:16 ; elapsed = 00:00:16 . Memory (MB): peak = 1374.066 ; gain = 375.102 ; free physical = 673 ; free virtual = 4210
+Command: opt_design
+Attempting to get a license for feature 'Implementation' and/or device 'xc7z020'
+INFO: [Common 17-349] Got license for feature 'Implementation' and/or device 'xc7z020'
+Running DRC as a precondition to command opt_design
+
+Starting DRC Task
+INFO: [DRC 23-27] Running DRC with 4 threads
+INFO: [Project 1-461] DRC finished with 0 Errors
+INFO: [Project 1-462] Please refer to the DRC report (report_drc) for more information.
+
+Time (s): cpu = 00:00:02 ; elapsed = 00:00:00.85 . Memory (MB): peak = 1412.082 ; gain = 38.016 ; free physical = 666 ; free virtual = 4204
+INFO: [Timing 38-35] Done setting XDC timing constraints.
+
+Starting Logic Optimization Task
+Implement Debug Cores | Checksum: 18c981f9e
+
+Phase 1 Retarget
+INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
+INFO: [Opt 31-49] Retargeted 0 cell(s).
+Phase 1 Retarget | Checksum: 120e87b71
+
+Time (s): cpu = 00:00:02 ; elapsed = 00:00:02 . Memory (MB): peak = 1898.574 ; gain = 0.000 ; free physical = 213 ; free virtual = 3766
+
+Phase 2 Constant propagation
+INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
+INFO: [Opt 31-10] Eliminated 12 cells.
+Phase 2 Constant propagation | Checksum: 1dc267d28
+
+Time (s): cpu = 00:00:07 ; elapsed = 00:00:07 . Memory (MB): peak = 1898.574 ; gain = 0.000 ; free physical = 206 ; free virtual = 3759
+
+Phase 3 Sweep
+INFO: [Opt 31-12] Eliminated 4854 unconnected nets.
+INFO: [Opt 31-11] Eliminated 327 unconnected cells.
+Phase 3 Sweep | Checksum: 190f4b56f
+
+Time (s): cpu = 00:00:10 ; elapsed = 00:00:10 . Memory (MB): peak = 1898.574 ; gain = 0.000 ; free physical = 205 ; free virtual = 3759
+
+Phase 4 BUFG optimization
+INFO: [Opt 31-12] Eliminated 0 unconnected nets.
+INFO: [Opt 31-11] Eliminated 0 unconnected cells.
+Phase 4 BUFG optimization | Checksum: 1f20632ca
+
+Time (s): cpu = 00:00:16 ; elapsed = 00:00:16 . Memory (MB): peak = 1898.574 ; gain = 0.000 ; free physical = 202 ; free virtual = 3756
+
+Starting Connectivity Check Task
+
+Time (s): cpu = 00:00:00.11 ; elapsed = 00:00:00.11 . Memory (MB): peak = 1898.574 ; gain = 0.000 ; free physical = 202 ; free virtual = 3756
+Ending Logic Optimization Task | Checksum: 1f20632ca
+
+Time (s): cpu = 00:00:17 ; elapsed = 00:00:16 . Memory (MB): peak = 1898.574 ; gain = 0.000 ; free physical = 202 ; free virtual = 3756
+
+Starting Power Optimization Task
+INFO: [Pwropt 34-132] Skipping clock gating for clocks with a period < 2.00 ns.
+INFO: [Timing 38-35] Done setting XDC timing constraints.
+INFO: [Pwropt 34-9] Applying IDT optimizations ...
+INFO: [Pwropt 34-10] Applying ODC optimizations ...
+Running Vector-less Activity Propagation...
+
+Finished Running Vector-less Activity Propagation
+
+
+Starting PowerOpt Patch Enables Task
+INFO: [Pwropt 34-162] WRITE_MODE attribute of 0 BRAM(s) out of a total of 138 has been updated to save power. Run report_power_opt to get a complete listing of the BRAMs updated.
+INFO: [Pwropt 34-201] Structural ODC has moved 0 WE to EN ports
+Number of BRAM Ports augmented: 0 newly gated: 0 Total Ports: 276
+Ending PowerOpt Patch Enables Task | Checksum: 1f20632ca
+
+Time (s): cpu = 00:00:00.18 ; elapsed = 00:00:00.18 . Memory (MB): peak = 2370.379 ; gain = 0.000 ; free physical = 111 ; free virtual = 3412
+Ending Power Optimization Task | Checksum: 1f20632ca
+
+Time (s): cpu = 00:00:32 ; elapsed = 00:00:16 . Memory (MB): peak = 2370.379 ; gain = 471.805 ; free physical = 111 ; free virtual = 3412
+INFO: [Common 17-83] Releasing license: Implementation
+27 Infos, 0 Warnings, 0 Critical Warnings and 0 Errors encountered.
+opt_design completed successfully
+opt_design: Time (s): cpu = 00:01:10 ; elapsed = 00:00:47 . Memory (MB): peak = 2370.379 ; gain = 996.312 ; free physical = 111 ; free virtual = 3412
+Writing placer database...
+Writing XDEF routing.
+Writing XDEF routing logical nets.
+Writing XDEF routing special nets.
+Write XDEF Complete: Time (s): cpu = 00:00:00.20 ; elapsed = 00:00:00.06 . Memory (MB): peak = 2370.379 ; gain = 0.000 ; free physical = 108 ; free virtual = 3412
+INFO: [Common 17-1381] The checkpoint '/home/kaftulal/kinpira/zedboard/zedboard.runs/impl_1/design_1_wrapper_opt.dcp' has been generated.
+write_checkpoint: Time (s): cpu = 00:00:11 ; elapsed = 00:00:08 . Memory (MB): peak = 2370.379 ; gain = 0.000 ; free physical = 131 ; free virtual = 3415
+INFO: [DRC 23-27] Running DRC with 4 threads
+INFO: [Coretcl 2-168] The results of DRC are in file /home/kaftulal/kinpira/zedboard/zedboard.runs/impl_1/design_1_wrapper_drc_opted.rpt.
+report_drc: Time (s): cpu = 00:00:14 ; elapsed = 00:00:07 . Memory (MB): peak = 2370.379 ; gain = 0.000 ; free physical = 110 ; free virtual = 3409
 INFO: [Chipscope 16-241] No debug cores found in the current design.
 Before running the implement_debug_core command, either use the Set Up Debug wizard (GUI mode)
 or use the create_debug_core and connect_debug_core Tcl commands to insert debug cores into the design.
 Command: place_design
 Attempting to get a license for feature 'Implementation' and/or device 'xc7z020'
 INFO: [Common 17-349] Got license for feature 'Implementation' and/or device 'xc7z020'
-INFO: [DRC 23-27] Running DRC with 8 threads
+INFO: [DRC 23-27] Running DRC with 4 threads
 INFO: [Vivado_Tcl 4-198] DRC finished with 0 Errors
 INFO: [Vivado_Tcl 4-199] Please refer to the DRC report (report_drc) for more information.
 Running DRC as a precondition to command place_design
-INFO: [DRC 23-27] Running DRC with 8 threads
+INFO: [DRC 23-27] Running DRC with 4 threads
 INFO: [Vivado_Tcl 4-198] DRC finished with 0 Errors
 INFO: [Vivado_Tcl 4-199] Please refer to the DRC report (report_drc) for more information.
 
 Starting Placer Task
-INFO: [Place 30-611] Multithreading enabled for place_design using a maximum of 8 CPUs
+INFO: [Place 30-611] Multithreading enabled for place_design using a maximum of 4 CPUs
 
 Phase 1 Placer Initialization
-Netlist sorting complete. Time (s): cpu = 00:00:00.05 ; elapsed = 00:00:00.05 . Memory (MB): peak = 1469.797 ; gain = 0.000 ; free physical = 3055 ; free virtual = 19324
-INFO: [Timing 38-35] Done setting XDC timing constraints.
-INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
-Netlist sorting complete. Time (s): cpu = 00:00:00.04 ; elapsed = 00:00:00.05 . Memory (MB): peak = 1924.289 ; gain = 0.000 ; free physical = 2628 ; free virtual = 18911
+Netlist sorting complete. Time (s): cpu = 00:00:00.07 ; elapsed = 00:00:00.08 . Memory (MB): peak = 2370.379 ; gain = 0.000 ; free physical = 112 ; free virtual = 3412
+Netlist sorting complete. Time (s): cpu = 00:00:00.07 ; elapsed = 00:00:00.06 . Memory (MB): peak = 2370.379 ; gain = 0.000 ; free physical = 112 ; free virtual = 3412
 
 Phase 1.1 IO Placement/ Clock Placement/ Build Placer Device
-
-Phase 1.1.1 ParallelPlaceIOClockAndInitTop
-
-Phase 1.1.1.1 Pre-Place Cells
-Phase 1.1.1.1 Pre-Place Cells | Checksum: 98566580
-
-Time (s): cpu = 00:00:17 ; elapsed = 00:00:13 . Memory (MB): peak = 1924.289 ; gain = 454.492 ; free physical = 2607 ; free virtual = 18889
-
-Phase 1.1.1.2 Constructing HAPIClkRuleMgr
-Phase 1.1.1.2 Constructing HAPIClkRuleMgr | Checksum: 98566580
-
-Time (s): cpu = 00:00:18 ; elapsed = 00:00:14 . Memory (MB): peak = 1924.289 ; gain = 454.492 ; free physical = 2549 ; free virtual = 18832
-
-Phase 1.1.1.3 IOLockPlacementChecker
-
-Phase 1.1.1.4 ClockRegionPlacementChecker
-
-Phase 1.1.1.6 IOBufferPlacementChecker
-
-Phase 1.1.1.5 DSPChecker
-Phase 1.1.1.5 DSPChecker | Checksum: 98566580
-
-Time (s): cpu = 00:00:21 ; elapsed = 00:00:16 . Memory (MB): peak = 2004.328 ; gain = 534.531 ; free physical = 2561 ; free virtual = 18844
-
-Phase 1.1.1.7 V7IOVoltageChecker
-Phase 1.1.1.7 V7IOVoltageChecker | Checksum: 98566580
-
-Time (s): cpu = 00:00:21 ; elapsed = 00:00:16 . Memory (MB): peak = 2004.328 ; gain = 534.531 ; free physical = 2561 ; free virtual = 18844
-
-Phase 1.1.1.8 OverlappingPBlocksChecker
-Phase 1.1.1.3 IOLockPlacementChecker | Checksum: 98566580
-
-Time (s): cpu = 00:00:21 ; elapsed = 00:00:16 . Memory (MB): peak = 2004.328 ; gain = 534.531 ; free physical = 2564 ; free virtual = 18847
-
-Phase 1.1.1.9 CheckerForMandatoryPrePlacedCells
-Phase 1.1.1.8 OverlappingPBlocksChecker | Checksum: 98566580
-
-Time (s): cpu = 00:00:21 ; elapsed = 00:00:16 . Memory (MB): peak = 2004.328 ; gain = 534.531 ; free physical = 2564 ; free virtual = 18846
-Phase 1.1.1.9 CheckerForMandatoryPrePlacedCells | Checksum: 98566580
-
-Time (s): cpu = 00:00:21 ; elapsed = 00:00:16 . Memory (MB): peak = 2004.328 ; gain = 534.531 ; free physical = 2564 ; free virtual = 18846
-
-Phase 1.1.1.10 CascadeElementConstraintsChecker
-Phase 1.1.1.10 CascadeElementConstraintsChecker | Checksum: 98566580
-
-Time (s): cpu = 00:00:21 ; elapsed = 00:00:16 . Memory (MB): peak = 2004.328 ; gain = 534.531 ; free physical = 2564 ; free virtual = 18846
-
-Phase 1.1.1.11 HdioRelatedChecker
-Phase 1.1.1.11 HdioRelatedChecker | Checksum: 98566580
-
-Time (s): cpu = 00:00:21 ; elapsed = 00:00:16 . Memory (MB): peak = 2004.328 ; gain = 534.531 ; free physical = 2561 ; free virtual = 18844
-Phase 1.1.1.6 IOBufferPlacementChecker | Checksum: 98566580
-
-Time (s): cpu = 00:00:22 ; elapsed = 00:00:16 . Memory (MB): peak = 2004.328 ; gain = 534.531 ; free physical = 2561 ; free virtual = 18844
-
-Phase 1.1.1.12 DisallowedInsts
-Phase 1.1.1.12 DisallowedInsts | Checksum: 98566580
-
-Time (s): cpu = 00:00:22 ; elapsed = 00:00:16 . Memory (MB): peak = 2004.328 ; gain = 534.531 ; free physical = 2575 ; free virtual = 18858
-
-Phase 1.1.1.13 Laguna PBlock Checker
-Phase 1.1.1.13 Laguna PBlock Checker | Checksum: 98566580
-
-Time (s): cpu = 00:00:22 ; elapsed = 00:00:16 . Memory (MB): peak = 2004.328 ; gain = 534.531 ; free physical = 2575 ; free virtual = 18858
-
-Phase 1.1.1.14 ShapePlacementValidityChecker
-Phase 1.1.1.4 ClockRegionPlacementChecker | Checksum: 98566580
-
-Time (s): cpu = 00:00:22 ; elapsed = 00:00:16 . Memory (MB): peak = 2004.328 ; gain = 534.531 ; free physical = 2569 ; free virtual = 18852
-
-Phase 1.1.1.15 CheckerForUnsupportedConstraints
-Phase 1.1.1.15 CheckerForUnsupportedConstraints | Checksum: 98566580
-
-Time (s): cpu = 00:00:22 ; elapsed = 00:00:16 . Memory (MB): peak = 2004.328 ; gain = 534.531 ; free physical = 2546 ; free virtual = 18829
-
-Phase 1.1.1.16 ShapesExcludeCompatibilityChecker
-Phase 1.1.1.16 ShapesExcludeCompatibilityChecker | Checksum: 98566580
-
-Time (s): cpu = 00:00:22 ; elapsed = 00:00:16 . Memory (MB): peak = 2004.328 ; gain = 534.531 ; free physical = 2546 ; free virtual = 18829
-
-Phase 1.1.1.17 IOStdCompatabilityChecker
-Phase 1.1.1.17 IOStdCompatabilityChecker | Checksum: 98566580
-
-Time (s): cpu = 00:00:22 ; elapsed = 00:00:16 . Memory (MB): peak = 2004.328 ; gain = 534.531 ; free physical = 2546 ; free virtual = 18828
-Phase 1.1.1.14 ShapePlacementValidityChecker | Checksum: 98566580
-
-Time (s): cpu = 00:00:25 ; elapsed = 00:00:18 . Memory (MB): peak = 2004.328 ; gain = 534.531 ; free physical = 2623 ; free virtual = 18906
-WARNING: [Place 30-879] Found overlapping PBlocks. The use of overlapping PBlocks is not recommended as it may lead to legalization errors or unplaced instances.
-WARNING: [Place 30-12] An IO Bus FIXED_IO_mio with more than one IO standard is found. Components associated with this bus are: 
-	FIXED_IO_mio[53] of IOStandard LVCMOS18
-	FIXED_IO_mio[52] of IOStandard LVCMOS18
-	FIXED_IO_mio[51] of IOStandard LVCMOS18
-	FIXED_IO_mio[50] of IOStandard LVCMOS18
-	FIXED_IO_mio[49] of IOStandard LVCMOS18
-	FIXED_IO_mio[48] of IOStandard LVCMOS18
-	FIXED_IO_mio[47] of IOStandard LVCMOS18
-	FIXED_IO_mio[46] of IOStandard LVCMOS18
-	FIXED_IO_mio[45] of IOStandard LVCMOS18
-	FIXED_IO_mio[44] of IOStandard LVCMOS18
-	FIXED_IO_mio[43] of IOStandard LVCMOS18
-	FIXED_IO_mio[42] of IOStandard LVCMOS18
-	FIXED_IO_mio[41] of IOStandard LVCMOS18
-	FIXED_IO_mio[40] of IOStandard LVCMOS18
-	FIXED_IO_mio[39] of IOStandard LVCMOS18
-	FIXED_IO_mio[38] of IOStandard LVCMOS18
-	FIXED_IO_mio[37] of IOStandard LVCMOS18
-	FIXED_IO_mio[36] of IOStandard LVCMOS18
-	FIXED_IO_mio[35] of IOStandard LVCMOS18
-	FIXED_IO_mio[34] of IOStandard LVCMOS18
-	FIXED_IO_mio[33] of IOStandard LVCMOS18
-	FIXED_IO_mio[32] of IOStandard LVCMOS18
-	FIXED_IO_mio[31] of IOStandard LVCMOS18
-	FIXED_IO_mio[30] of IOStandard LVCMOS18
-	FIXED_IO_mio[29] of IOStandard LVCMOS18
-	FIXED_IO_mio[28] of IOStandard LVCMOS18
-	FIXED_IO_mio[27] of IOStandard LVCMOS18
-	FIXED_IO_mio[26] of IOStandard LVCMOS18
-	FIXED_IO_mio[25] of IOStandard LVCMOS18
-	FIXED_IO_mio[24] of IOStandard LVCMOS18
-	FIXED_IO_mio[23] of IOStandard LVCMOS18
-	FIXED_IO_mio[22] of IOStandard LVCMOS18
-	FIXED_IO_mio[21] of IOStandard LVCMOS18
-	FIXED_IO_mio[20] of IOStandard LVCMOS18
-	FIXED_IO_mio[19] of IOStandard LVCMOS18
-	FIXED_IO_mio[18] of IOStandard LVCMOS18
-	FIXED_IO_mio[17] of IOStandard LVCMOS18
-	FIXED_IO_mio[16] of IOStandard LVCMOS18
-	FIXED_IO_mio[15] of IOStandard LVCMOS33
-	FIXED_IO_mio[14] of IOStandard LVCMOS33
-	FIXED_IO_mio[13] of IOStandard LVCMOS33
-	FIXED_IO_mio[12] of IOStandard LVCMOS33
-	FIXED_IO_mio[11] of IOStandard LVCMOS33
-	FIXED_IO_mio[10] of IOStandard LVCMOS33
-	FIXED_IO_mio[9] of IOStandard LVCMOS33
-	FIXED_IO_mio[8] of IOStandard LVCMOS33
-	FIXED_IO_mio[7] of IOStandard LVCMOS33
-	FIXED_IO_mio[6] of IOStandard LVCMOS33
-	FIXED_IO_mio[5] of IOStandard LVCMOS33
-	FIXED_IO_mio[4] of IOStandard LVCMOS33
-	FIXED_IO_mio[3] of IOStandard LVCMOS33
-	FIXED_IO_mio[2] of IOStandard LVCMOS33
-	FIXED_IO_mio[1] of IOStandard LVCMOS33
-	FIXED_IO_mio[0] of IOStandard LVCMOS33
 INFO: [Timing 38-35] Done setting XDC timing constraints.
+Phase 1.1 IO Placement/ Clock Placement/ Build Placer Device | Checksum: 10684f37d
 
-Phase 1.1.1.18 IO and Clk Clean Up
-
-Phase 1.1.1.18.1 Constructing HAPIClkRuleMgr
-Phase 1.1.1.18.1 Constructing HAPIClkRuleMgr | Checksum: 98566580
-
-Time (s): cpu = 00:00:32 ; elapsed = 00:00:21 . Memory (MB): peak = 2004.328 ; gain = 534.531 ; free physical = 2615 ; free virtual = 18898
-Phase 1.1.1.18 IO and Clk Clean Up | Checksum: 98566580
-
-Time (s): cpu = 00:00:32 ; elapsed = 00:00:21 . Memory (MB): peak = 2004.328 ; gain = 534.531 ; free physical = 2680 ; free virtual = 18962
-
-Phase 1.1.1.19 Implementation Feasibility check On IDelay
-Phase 1.1.1.19 Implementation Feasibility check On IDelay | Checksum: 98566580
-
-Time (s): cpu = 00:00:32 ; elapsed = 00:00:21 . Memory (MB): peak = 2004.328 ; gain = 534.531 ; free physical = 2638 ; free virtual = 18921
-
-Phase 1.1.1.20 Commit IO Placement
-Phase 1.1.1.20 Commit IO Placement | Checksum: 15cdf3a3
-
-Time (s): cpu = 00:00:32 ; elapsed = 00:00:21 . Memory (MB): peak = 2004.328 ; gain = 534.531 ; free physical = 2637 ; free virtual = 18920
-Phase 1.1.1 ParallelPlaceIOClockAndInitTop | Checksum: 15cdf3a3
-
-Time (s): cpu = 00:00:32 ; elapsed = 00:00:21 . Memory (MB): peak = 2004.328 ; gain = 534.531 ; free physical = 2636 ; free virtual = 18919
-Phase 1.1 IO Placement/ Clock Placement/ Build Placer Device | Checksum: 64e308ab
-
-Time (s): cpu = 00:00:32 ; elapsed = 00:00:21 . Memory (MB): peak = 2004.328 ; gain = 534.531 ; free physical = 2634 ; free virtual = 18917
+Time (s): cpu = 00:00:17 ; elapsed = 00:00:11 . Memory (MB): peak = 2370.379 ; gain = 0.000 ; free physical = 107 ; free virtual = 3410
 
 Phase 1.2 Build Placer Netlist Model
+Phase 1.2 Build Placer Netlist Model | Checksum: 137159632
 
-Phase 1.2.1 Place Init Design
-
-Phase 1.2.1.1 Make Others
-Phase 1.2.1.1 Make Others | Checksum: 1838efa42
-
-Time (s): cpu = 00:00:34 ; elapsed = 00:00:23 . Memory (MB): peak = 2004.328 ; gain = 534.531 ; free physical = 2600 ; free virtual = 18883
-
-Phase 1.2.1.2 Init Lut Pin Assignment
-Phase 1.2.1.2 Init Lut Pin Assignment | Checksum: 1838efa42
-
-Time (s): cpu = 00:00:35 ; elapsed = 00:00:23 . Memory (MB): peak = 2004.328 ; gain = 534.531 ; free physical = 2567 ; free virtual = 18850
-Phase 1.2.1 Place Init Design | Checksum: ce0a7e73
-
-Time (s): cpu = 00:00:56 ; elapsed = 00:00:31 . Memory (MB): peak = 2094.191 ; gain = 624.395 ; free physical = 2481 ; free virtual = 18764
-Phase 1.2 Build Placer Netlist Model | Checksum: ce0a7e73
-
-Time (s): cpu = 00:00:56 ; elapsed = 00:00:31 . Memory (MB): peak = 2094.191 ; gain = 624.395 ; free physical = 2479 ; free virtual = 18762
+Time (s): cpu = 00:00:41 ; elapsed = 00:00:25 . Memory (MB): peak = 2370.379 ; gain = 0.000 ; free physical = 234 ; free virtual = 3478
 
 Phase 1.3 Constrain Clocks/Macros
-Phase 1.3 Constrain Clocks/Macros | Checksum: ce0a7e73
+Phase 1.3 Constrain Clocks/Macros | Checksum: 137159632
 
-Time (s): cpu = 00:00:56 ; elapsed = 00:00:32 . Memory (MB): peak = 2094.191 ; gain = 624.395 ; free physical = 2459 ; free virtual = 18742
-Phase 1 Placer Initialization | Checksum: ce0a7e73
+Time (s): cpu = 00:00:41 ; elapsed = 00:00:25 . Memory (MB): peak = 2370.379 ; gain = 0.000 ; free physical = 234 ; free virtual = 3479
+Phase 1 Placer Initialization | Checksum: 137159632
 
-Time (s): cpu = 00:00:56 ; elapsed = 00:00:32 . Memory (MB): peak = 2094.191 ; gain = 624.395 ; free physical = 2469 ; free virtual = 18752
+Time (s): cpu = 00:00:42 ; elapsed = 00:00:25 . Memory (MB): peak = 2370.379 ; gain = 0.000 ; free physical = 234 ; free virtual = 3479
 
 Phase 2 Global Placement
-Phase 2 Global Placement | Checksum: 16cac7bb2
+Phase 2 Global Placement | Checksum: 192f6b282
 
-Time (s): cpu = 00:02:07 ; elapsed = 00:01:08 . Memory (MB): peak = 2182.234 ; gain = 712.438 ; free physical = 2426 ; free virtual = 18708
+Time (s): cpu = 00:02:27 ; elapsed = 00:01:32 . Memory (MB): peak = 2370.379 ; gain = 0.000 ; free physical = 220 ; free virtual = 3468
 
 Phase 3 Detail Placement
 
 Phase 3.1 Commit Multi Column Macros
-Phase 3.1 Commit Multi Column Macros | Checksum: 16cac7bb2
+Phase 3.1 Commit Multi Column Macros | Checksum: 192f6b282
 
-Time (s): cpu = 00:02:08 ; elapsed = 00:01:08 . Memory (MB): peak = 2182.234 ; gain = 712.438 ; free physical = 2445 ; free virtual = 18728
+Time (s): cpu = 00:02:29 ; elapsed = 00:01:32 . Memory (MB): peak = 2370.379 ; gain = 0.000 ; free physical = 220 ; free virtual = 3468
 
 Phase 3.2 Commit Most Macros & LUTRAMs
-Phase 3.2 Commit Most Macros & LUTRAMs | Checksum: e018fed9
+Phase 3.2 Commit Most Macros & LUTRAMs | Checksum: 1f1da02e9
 
-Time (s): cpu = 00:02:33 ; elapsed = 00:01:22 . Memory (MB): peak = 2182.234 ; gain = 712.438 ; free physical = 2401 ; free virtual = 18683
+Time (s): cpu = 00:02:54 ; elapsed = 00:01:47 . Memory (MB): peak = 2370.379 ; gain = 0.000 ; free physical = 244 ; free virtual = 3495
 
 Phase 3.3 Area Swap Optimization
-Phase 3.3 Area Swap Optimization | Checksum: b6ed33f5
+Phase 3.3 Area Swap Optimization | Checksum: 1746cbd77
 
-Time (s): cpu = 00:02:35 ; elapsed = 00:01:23 . Memory (MB): peak = 2182.234 ; gain = 712.438 ; free physical = 2392 ; free virtual = 18675
+Time (s): cpu = 00:02:55 ; elapsed = 00:01:48 . Memory (MB): peak = 2370.379 ; gain = 0.000 ; free physical = 244 ; free virtual = 3495
 
-Phase 3.4 updateClock Trees: DP
-Phase 3.4 updateClock Trees: DP | Checksum: b6ed33f5
+Phase 3.4 Pipeline Register Optimization
+Phase 3.4 Pipeline Register Optimization | Checksum: 1809bce06
 
-Time (s): cpu = 00:02:35 ; elapsed = 00:01:23 . Memory (MB): peak = 2182.234 ; gain = 712.438 ; free physical = 2402 ; free virtual = 18685
+Time (s): cpu = 00:02:56 ; elapsed = 00:01:48 . Memory (MB): peak = 2370.379 ; gain = 0.000 ; free physical = 244 ; free virtual = 3495
 
 Phase 3.5 Timing Path Optimizer
-Phase 3.5 Timing Path Optimizer | Checksum: 19f514950
+Phase 3.5 Timing Path Optimizer | Checksum: 20108acf4
 
-Time (s): cpu = 00:02:42 ; elapsed = 00:01:25 . Memory (MB): peak = 2182.234 ; gain = 712.438 ; free physical = 2421 ; free virtual = 18704
+Time (s): cpu = 00:03:02 ; elapsed = 00:01:51 . Memory (MB): peak = 2370.379 ; gain = 0.000 ; free physical = 243 ; free virtual = 3494
 
-Phase 3.6 Fast Optimization
-Phase 3.6 Fast Optimization | Checksum: 19f514950
+Phase 3.6 Small Shape Detail Placement
+Phase 3.6 Small Shape Detail Placement | Checksum: 2ba8bdaf7
 
-Time (s): cpu = 00:02:43 ; elapsed = 00:01:26 . Memory (MB): peak = 2182.234 ; gain = 712.438 ; free physical = 2388 ; free virtual = 18671
+Time (s): cpu = 00:03:12 ; elapsed = 00:02:00 . Memory (MB): peak = 2370.379 ; gain = 0.000 ; free physical = 241 ; free virtual = 3492
 
-Phase 3.7 Small Shape Detail Placement
-Phase 3.7 Small Shape Detail Placement | Checksum: 13f72b494
+Phase 3.7 Re-assign LUT pins
+Phase 3.7 Re-assign LUT pins | Checksum: 291b62414
 
-Time (s): cpu = 00:02:54 ; elapsed = 00:01:36 . Memory (MB): peak = 2182.234 ; gain = 712.438 ; free physical = 2380 ; free virtual = 18663
+Time (s): cpu = 00:03:14 ; elapsed = 00:02:02 . Memory (MB): peak = 2370.379 ; gain = 0.000 ; free physical = 237 ; free virtual = 3489
 
-Phase 3.8 Re-assign LUT pins
-Phase 3.8 Re-assign LUT pins | Checksum: 19a7c0708
+Phase 3.8 Pipeline Register Optimization
+Phase 3.8 Pipeline Register Optimization | Checksum: 291b62414
 
-Time (s): cpu = 00:02:56 ; elapsed = 00:01:37 . Memory (MB): peak = 2182.234 ; gain = 712.438 ; free physical = 2374 ; free virtual = 18657
+Time (s): cpu = 00:03:15 ; elapsed = 00:02:03 . Memory (MB): peak = 2370.379 ; gain = 0.000 ; free physical = 236 ; free virtual = 3488
+Phase 3 Detail Placement | Checksum: 291b62414
 
-Phase 3.9 Pipeline Register Optimization
-Phase 3.9 Pipeline Register Optimization | Checksum: 19a7c0708
-
-Time (s): cpu = 00:02:56 ; elapsed = 00:01:38 . Memory (MB): peak = 2182.234 ; gain = 712.438 ; free physical = 2400 ; free virtual = 18683
-
-Phase 3.10 Fast Optimization
-Phase 3.10 Fast Optimization | Checksum: 19a7c0708
-
-Time (s): cpu = 00:03:08 ; elapsed = 00:01:42 . Memory (MB): peak = 2182.234 ; gain = 712.438 ; free physical = 2414 ; free virtual = 18697
-Phase 3 Detail Placement | Checksum: 19a7c0708
-
-Time (s): cpu = 00:03:09 ; elapsed = 00:01:42 . Memory (MB): peak = 2182.234 ; gain = 712.438 ; free physical = 2378 ; free virtual = 18661
+Time (s): cpu = 00:03:16 ; elapsed = 00:02:03 . Memory (MB): peak = 2370.379 ; gain = 0.000 ; free physical = 236 ; free virtual = 3487
 
 Phase 4 Post Placement Optimization and Clean-Up
 
 Phase 4.1 Post Commit Optimization
 INFO: [Timing 38-35] Done setting XDC timing constraints.
 
-Phase 4.1.1 updateClock Trees: PCOPT
-Phase 4.1.1 updateClock Trees: PCOPT | Checksum: 1915473c6
+Phase 4.1.1 Post Placement Optimization
+INFO: [Place 30-746] Post Placement Timing Summary WNS=0.749. For the most accurate timing information please run report_timing.
+Phase 4.1.1 Post Placement Optimization | Checksum: 1f42f4585
 
-Time (s): cpu = 00:03:37 ; elapsed = 00:01:49 . Memory (MB): peak = 2182.234 ; gain = 712.438 ; free physical = 2330 ; free virtual = 18613
+Time (s): cpu = 00:03:45 ; elapsed = 00:02:15 . Memory (MB): peak = 2370.379 ; gain = 0.000 ; free physical = 234 ; free virtual = 3485
+Phase 4.1 Post Commit Optimization | Checksum: 1f42f4585
 
-Phase 4.1.2 Post Placement Optimization
-INFO: [Place 30-746] Post Placement Timing Summary WNS=0.597. For the most accurate timing information please run report_timing.
-Phase 4.1.2 Post Placement Optimization | Checksum: 14554b745
+Time (s): cpu = 00:03:46 ; elapsed = 00:02:15 . Memory (MB): peak = 2370.379 ; gain = 0.000 ; free physical = 234 ; free virtual = 3485
 
-Time (s): cpu = 00:03:38 ; elapsed = 00:01:50 . Memory (MB): peak = 2182.234 ; gain = 712.438 ; free physical = 2424 ; free virtual = 18707
-Phase 4.1 Post Commit Optimization | Checksum: 14554b745
+Phase 4.2 Post Placement Cleanup
+Phase 4.2 Post Placement Cleanup | Checksum: 1f42f4585
 
-Time (s): cpu = 00:03:38 ; elapsed = 00:01:50 . Memory (MB): peak = 2182.234 ; gain = 712.438 ; free physical = 2454 ; free virtual = 18737
+Time (s): cpu = 00:03:47 ; elapsed = 00:02:16 . Memory (MB): peak = 2370.379 ; gain = 0.000 ; free physical = 235 ; free virtual = 3486
 
-Phase 4.2 Sweep Clock Roots: Post-Placement
-Phase 4.2 Sweep Clock Roots: Post-Placement | Checksum: 14554b745
+Phase 4.3 Placer Reporting
+Phase 4.3 Placer Reporting | Checksum: 1f42f4585
 
-Time (s): cpu = 00:03:39 ; elapsed = 00:01:51 . Memory (MB): peak = 2182.234 ; gain = 712.438 ; free physical = 2421 ; free virtual = 18704
+Time (s): cpu = 00:03:48 ; elapsed = 00:02:16 . Memory (MB): peak = 2370.379 ; gain = 0.000 ; free physical = 234 ; free virtual = 3486
 
-Phase 4.3 Uram Pipeline Register Optimization
-Phase 4.3 Uram Pipeline Register Optimization | Checksum: 14554b745
+Phase 4.4 Final Placement Cleanup
+Phase 4.4 Final Placement Cleanup | Checksum: 1f467cffc
 
-Time (s): cpu = 00:03:39 ; elapsed = 00:01:51 . Memory (MB): peak = 2182.234 ; gain = 712.438 ; free physical = 2371 ; free virtual = 18654
+Time (s): cpu = 00:03:48 ; elapsed = 00:02:17 . Memory (MB): peak = 2370.379 ; gain = 0.000 ; free physical = 234 ; free virtual = 3486
+Phase 4 Post Placement Optimization and Clean-Up | Checksum: 1f467cffc
 
-Phase 4.4 Post Placement Cleanup
-Phase 4.4 Post Placement Cleanup | Checksum: 14554b745
+Time (s): cpu = 00:03:48 ; elapsed = 00:02:17 . Memory (MB): peak = 2370.379 ; gain = 0.000 ; free physical = 234 ; free virtual = 3486
+Ending Placer Task | Checksum: 1852eadab
 
-Time (s): cpu = 00:03:39 ; elapsed = 00:01:51 . Memory (MB): peak = 2182.234 ; gain = 712.438 ; free physical = 2334 ; free virtual = 18617
-
-Phase 4.5 Placer Reporting
-Phase 4.5 Placer Reporting | Checksum: 14554b745
-
-Time (s): cpu = 00:03:40 ; elapsed = 00:01:52 . Memory (MB): peak = 2182.234 ; gain = 712.438 ; free physical = 2321 ; free virtual = 18604
-
-Phase 4.6 Final Placement Cleanup
-Phase 4.6 Final Placement Cleanup | Checksum: 132049b50
-
-Time (s): cpu = 00:03:40 ; elapsed = 00:01:52 . Memory (MB): peak = 2182.234 ; gain = 712.438 ; free physical = 2331 ; free virtual = 18614
-Phase 4 Post Placement Optimization and Clean-Up | Checksum: 132049b50
-
-Time (s): cpu = 00:03:40 ; elapsed = 00:01:52 . Memory (MB): peak = 2182.234 ; gain = 712.438 ; free physical = 2402 ; free virtual = 18685
-Ending Placer Task | Checksum: 115a5ff4b
-
-Time (s): cpu = 00:03:40 ; elapsed = 00:01:52 . Memory (MB): peak = 2182.234 ; gain = 712.438 ; free physical = 2432 ; free virtual = 18715
+Time (s): cpu = 00:03:49 ; elapsed = 00:02:17 . Memory (MB): peak = 2370.379 ; gain = 0.000 ; free physical = 234 ; free virtual = 3486
 INFO: [Common 17-83] Releasing license: Implementation
-22 Infos, 2 Warnings, 0 Critical Warnings and 0 Errors encountered.
+43 Infos, 0 Warnings, 0 Critical Warnings and 0 Errors encountered.
 place_design completed successfully
-place_design: Time (s): cpu = 00:03:45 ; elapsed = 00:01:55 . Memory (MB): peak = 2182.234 ; gain = 779.469 ; free physical = 2417 ; free virtual = 18700
+place_design: Time (s): cpu = 00:03:59 ; elapsed = 00:02:23 . Memory (MB): peak = 2370.379 ; gain = 0.000 ; free physical = 233 ; free virtual = 3485
 Writing placer database...
 Writing XDEF routing.
 Writing XDEF routing logical nets.
 Writing XDEF routing special nets.
-Write XDEF Complete: Time (s): cpu = 00:00:09 ; elapsed = 00:00:03 . Memory (MB): peak = 2182.234 ; gain = 0.000 ; free physical = 2378 ; free virtual = 18710
-write_checkpoint: Time (s): cpu = 00:00:12 ; elapsed = 00:00:07 . Memory (MB): peak = 2182.234 ; gain = 0.000 ; free physical = 2332 ; free virtual = 18625
-report_io: Time (s): cpu = 00:00:00.17 ; elapsed = 00:00:00.30 . Memory (MB): peak = 2182.234 ; gain = 0.000 ; free physical = 2331 ; free virtual = 18624
-report_utilization: Time (s): cpu = 00:00:00.40 ; elapsed = 00:00:00.49 . Memory (MB): peak = 2182.234 ; gain = 0.000 ; free physical = 2366 ; free virtual = 18658
-report_control_sets: Time (s): cpu = 00:00:00.20 ; elapsed = 00:00:00.26 . Memory (MB): peak = 2182.234 ; gain = 0.000 ; free physical = 2395 ; free virtual = 18688
+Write XDEF Complete: Time (s): cpu = 00:00:12 ; elapsed = 00:00:04 . Memory (MB): peak = 2370.379 ; gain = 0.000 ; free physical = 185 ; free virtual = 3485
+INFO: [Common 17-1381] The checkpoint '/home/kaftulal/kinpira/zedboard/zedboard.runs/impl_1/design_1_wrapper_placed.dcp' has been generated.
+write_checkpoint: Time (s): cpu = 00:00:17 ; elapsed = 00:00:09 . Memory (MB): peak = 2370.379 ; gain = 0.000 ; free physical = 219 ; free virtual = 3481
+report_io: Time (s): cpu = 00:00:00.20 ; elapsed = 00:00:00.25 . Memory (MB): peak = 2370.379 ; gain = 0.000 ; free physical = 218 ; free virtual = 3480
+report_utilization: Time (s): cpu = 00:00:00.53 ; elapsed = 00:00:00.57 . Memory (MB): peak = 2370.379 ; gain = 0.000 ; free physical = 217 ; free virtual = 3480
+report_control_sets: Time (s): cpu = 00:00:00.22 ; elapsed = 00:00:00.27 . Memory (MB): peak = 2370.379 ; gain = 0.000 ; free physical = 217 ; free virtual = 3480
 Command: route_design
 Attempting to get a license for feature 'Implementation' and/or device 'xc7z020'
 INFO: [Common 17-349] Got license for feature 'Implementation' and/or device 'xc7z020'
 Running DRC as a precondition to command route_design
-INFO: [DRC 23-27] Running DRC with 8 threads
-WARNING: [DRC 23-20] Rule violation (PLIO-7) Placement Constraints Check for IO constraints - An IO Bus FIXED_IO_mio[53:0] with more than one IO standard is found. Components associated with this bus are: LVCMOS18 (FIXED_IO_mio[53], FIXED_IO_mio[52], FIXED_IO_mio[51], FIXED_IO_mio[50], FIXED_IO_mio[49], FIXED_IO_mio[48], FIXED_IO_mio[47], FIXED_IO_mio[46], FIXED_IO_mio[45], FIXED_IO_mio[44], FIXED_IO_mio[43], FIXED_IO_mio[42], FIXED_IO_mio[41], FIXED_IO_mio[40], FIXED_IO_mio[39] (the first 15 of 38 listed)); LVCMOS33 (FIXED_IO_mio[15], FIXED_IO_mio[14], FIXED_IO_mio[13], FIXED_IO_mio[12], FIXED_IO_mio[11], FIXED_IO_mio[10], FIXED_IO_mio[9], FIXED_IO_mio[8], FIXED_IO_mio[7], FIXED_IO_mio[6], FIXED_IO_mio[5], FIXED_IO_mio[4], FIXED_IO_mio[3], FIXED_IO_mio[2], FIXED_IO_mio[1] (the first 15 of 16 listed)); 
-INFO: [Vivado_Tcl 4-198] DRC finished with 0 Errors, 1 Warnings
+INFO: [DRC 23-27] Running DRC with 4 threads
+INFO: [Vivado_Tcl 4-198] DRC finished with 0 Errors
 INFO: [Vivado_Tcl 4-199] Please refer to the DRC report (report_drc) for more information.
 
 
 Starting Routing Task
-INFO: [Route 35-254] Multithreading enabled for route_design using a maximum of 8 CPUs
-Checksum: PlaceDB: 5f3b4cc0 ConstDB: 0 ShapeSum: b66ab28b RouteDB: 0
+INFO: [Route 35-254] Multithreading enabled for route_design using a maximum of 4 CPUs
+Checksum: PlaceDB: d42dd56a ConstDB: 0 ShapeSum: b100d841 RouteDB: 0
 
 Phase 1 Build RT Design
-Phase 1 Build RT Design | Checksum: 18625f830
+Phase 1 Build RT Design | Checksum: 170f5e100
 
-Time (s): cpu = 00:00:30 ; elapsed = 00:00:19 . Memory (MB): peak = 2234.777 ; gain = 52.543 ; free physical = 2295 ; free virtual = 18588
+Time (s): cpu = 00:00:37 ; elapsed = 00:00:24 . Memory (MB): peak = 2370.379 ; gain = 0.000 ; free physical = 159 ; free virtual = 3428
 
 Phase 2 Router Initialization
 
 Phase 2.1 Create Timer
-Phase 2.1 Create Timer | Checksum: 18625f830
+Phase 2.1 Create Timer | Checksum: 170f5e100
 
-Time (s): cpu = 00:00:30 ; elapsed = 00:00:20 . Memory (MB): peak = 2234.777 ; gain = 52.543 ; free physical = 2317 ; free virtual = 18610
+Time (s): cpu = 00:00:38 ; elapsed = 00:00:25 . Memory (MB): peak = 2370.379 ; gain = 0.000 ; free physical = 158 ; free virtual = 3427
 
 Phase 2.2 Fix Topology Constraints
-Phase 2.2 Fix Topology Constraints | Checksum: 18625f830
+Phase 2.2 Fix Topology Constraints | Checksum: 170f5e100
 
-Time (s): cpu = 00:00:31 ; elapsed = 00:00:20 . Memory (MB): peak = 2234.777 ; gain = 52.543 ; free physical = 2286 ; free virtual = 18579
+Time (s): cpu = 00:00:39 ; elapsed = 00:00:25 . Memory (MB): peak = 2370.379 ; gain = 0.000 ; free physical = 155 ; free virtual = 3426
 
 Phase 2.3 Pre Route Cleanup
-Phase 2.3 Pre Route Cleanup | Checksum: 18625f830
+Phase 2.3 Pre Route Cleanup | Checksum: 170f5e100
 
-Time (s): cpu = 00:00:31 ; elapsed = 00:00:20 . Memory (MB): peak = 2234.777 ; gain = 52.543 ; free physical = 2281 ; free virtual = 18574
+Time (s): cpu = 00:00:39 ; elapsed = 00:00:25 . Memory (MB): peak = 2370.379 ; gain = 0.000 ; free physical = 155 ; free virtual = 3426
  Number of Nodes with overlaps = 0
 
 Phase 2.4 Update Timing
-Phase 2.4 Update Timing | Checksum: 18c33a4ce
+Phase 2.4 Update Timing | Checksum: 2641bf6f
 
-Time (s): cpu = 00:01:06 ; elapsed = 00:00:32 . Memory (MB): peak = 2289.820 ; gain = 107.586 ; free physical = 2186 ; free virtual = 18479
-INFO: [Route 35-416] Intermediate Timing Summary | WNS=0.766  | TNS=0.000  | WHS=-0.235 | THS=-490.966|
+Time (s): cpu = 00:01:11 ; elapsed = 00:00:40 . Memory (MB): peak = 2370.379 ; gain = 0.000 ; free physical = 144 ; free virtual = 3362
+INFO: [Route 35-416] Intermediate Timing Summary | WNS=0.652  | TNS=0.000  | WHS=-0.223 | THS=-749.252|
 
-Phase 2 Router Initialization | Checksum: 20d540f5d
+Phase 2 Router Initialization | Checksum: 77fdf253
 
-Time (s): cpu = 00:01:20 ; elapsed = 00:00:35 . Memory (MB): peak = 2289.820 ; gain = 107.586 ; free physical = 2202 ; free virtual = 18496
+Time (s): cpu = 00:01:24 ; elapsed = 00:00:45 . Memory (MB): peak = 2370.379 ; gain = 0.000 ; free physical = 145 ; free virtual = 3362
 
 Phase 3 Initial Routing
-Phase 3 Initial Routing | Checksum: 9f6046c7
+Phase 3 Initial Routing | Checksum: 1b3aad0e2
 
-Time (s): cpu = 00:01:51 ; elapsed = 00:00:51 . Memory (MB): peak = 2391.977 ; gain = 209.742 ; free physical = 2049 ; free virtual = 18343
+Time (s): cpu = 00:01:56 ; elapsed = 00:00:58 . Memory (MB): peak = 2370.379 ; gain = 0.000 ; free physical = 120 ; free virtual = 3292
 
 Phase 4 Rip-up And Reroute
 
 Phase 4.1 Global Iteration 0
- Number of Nodes with overlaps = 3587
- Number of Nodes with overlaps = 378
- Number of Nodes with overlaps = 57
- Number of Nodes with overlaps = 11
- Number of Nodes with overlaps = 2
+ Number of Nodes with overlaps = 3227
+ Number of Nodes with overlaps = 271
+ Number of Nodes with overlaps = 36
+ Number of Nodes with overlaps = 6
+ Number of Nodes with overlaps = 1
  Number of Nodes with overlaps = 0
 
 Phase 4.1.1 Update Timing
-Phase 4.1.1 Update Timing | Checksum: 20b6274d3
+Phase 4.1.1 Update Timing | Checksum: 15f6b851b
 
-Time (s): cpu = 00:03:00 ; elapsed = 00:01:10 . Memory (MB): peak = 2391.977 ; gain = 209.742 ; free physical = 2119 ; free virtual = 18413
-INFO: [Route 35-416] Intermediate Timing Summary | WNS=0.411  | TNS=0.000  | WHS=N/A    | THS=N/A    |
+Time (s): cpu = 00:03:02 ; elapsed = 00:01:21 . Memory (MB): peak = 2370.379 ; gain = 0.000 ; free physical = 114 ; free virtual = 3287
+INFO: [Route 35-416] Intermediate Timing Summary | WNS=0.417  | TNS=0.000  | WHS=N/A    | THS=N/A    |
 
-Phase 4.1 Global Iteration 0 | Checksum: f97fe6cf
+Phase 4.1 Global Iteration 0 | Checksum: 169263c79
 
-Time (s): cpu = 00:03:01 ; elapsed = 00:01:10 . Memory (MB): peak = 2391.977 ; gain = 209.742 ; free physical = 2124 ; free virtual = 18418
-Phase 4 Rip-up And Reroute | Checksum: f97fe6cf
+Time (s): cpu = 00:03:03 ; elapsed = 00:01:22 . Memory (MB): peak = 2370.379 ; gain = 0.000 ; free physical = 114 ; free virtual = 3287
 
-Time (s): cpu = 00:03:01 ; elapsed = 00:01:10 . Memory (MB): peak = 2391.977 ; gain = 209.742 ; free physical = 2162 ; free virtual = 18456
+Phase 4.2 Global Iteration 1
+ Number of Nodes with overlaps = 10
+ Number of Nodes with overlaps = 0
+
+Phase 4.2.1 Update Timing
+Phase 4.2.1 Update Timing | Checksum: 170c1f712
+
+Time (s): cpu = 00:03:04 ; elapsed = 00:01:23 . Memory (MB): peak = 2370.379 ; gain = 0.000 ; free physical = 114 ; free virtual = 3287
+INFO: [Route 35-416] Intermediate Timing Summary | WNS=0.417  | TNS=0.000  | WHS=N/A    | THS=N/A    |
+
+Phase 4.2 Global Iteration 1 | Checksum: 17e7bdbaf
+
+Time (s): cpu = 00:03:05 ; elapsed = 00:01:23 . Memory (MB): peak = 2370.379 ; gain = 0.000 ; free physical = 114 ; free virtual = 3287
+
+Phase 4.3 Global Iteration 2
+ Number of Nodes with overlaps = 1
+ Number of Nodes with overlaps = 0
+
+Phase 4.3.1 Update Timing
+Phase 4.3.1 Update Timing | Checksum: 13dc466a2
+
+Time (s): cpu = 00:03:08 ; elapsed = 00:01:25 . Memory (MB): peak = 2370.379 ; gain = 0.000 ; free physical = 114 ; free virtual = 3287
+INFO: [Route 35-416] Intermediate Timing Summary | WNS=0.417  | TNS=0.000  | WHS=N/A    | THS=N/A    |
+
+Phase 4.3 Global Iteration 2 | Checksum: 1a3d9c01d
+
+Time (s): cpu = 00:03:09 ; elapsed = 00:01:26 . Memory (MB): peak = 2370.379 ; gain = 0.000 ; free physical = 114 ; free virtual = 3287
+Phase 4 Rip-up And Reroute | Checksum: 1a3d9c01d
+
+Time (s): cpu = 00:03:09 ; elapsed = 00:01:26 . Memory (MB): peak = 2370.379 ; gain = 0.000 ; free physical = 114 ; free virtual = 3287
 
 Phase 5 Delay and Skew Optimization
 
 Phase 5.1 Delay CleanUp
+Phase 5.1 Delay CleanUp | Checksum: 1a3d9c01d
 
-Phase 5.1.1 Update Timing
-Phase 5.1.1 Update Timing | Checksum: 108a38a95
-
-Time (s): cpu = 00:03:06 ; elapsed = 00:01:12 . Memory (MB): peak = 2391.977 ; gain = 209.742 ; free physical = 2027 ; free virtual = 18321
-INFO: [Route 35-416] Intermediate Timing Summary | WNS=0.411  | TNS=0.000  | WHS=N/A    | THS=N/A    |
-
-Phase 5.1 Delay CleanUp | Checksum: 108a38a95
-
-Time (s): cpu = 00:03:06 ; elapsed = 00:01:12 . Memory (MB): peak = 2391.977 ; gain = 209.742 ; free physical = 2037 ; free virtual = 18331
+Time (s): cpu = 00:03:09 ; elapsed = 00:01:26 . Memory (MB): peak = 2370.379 ; gain = 0.000 ; free physical = 113 ; free virtual = 3287
 
 Phase 5.2 Clock Skew Optimization
-Phase 5.2 Clock Skew Optimization | Checksum: 108a38a95
+Phase 5.2 Clock Skew Optimization | Checksum: 1a3d9c01d
 
-Time (s): cpu = 00:03:06 ; elapsed = 00:01:12 . Memory (MB): peak = 2391.977 ; gain = 209.742 ; free physical = 2037 ; free virtual = 18331
-Phase 5 Delay and Skew Optimization | Checksum: 108a38a95
+Time (s): cpu = 00:03:09 ; elapsed = 00:01:26 . Memory (MB): peak = 2370.379 ; gain = 0.000 ; free physical = 113 ; free virtual = 3287
+Phase 5 Delay and Skew Optimization | Checksum: 1a3d9c01d
 
-Time (s): cpu = 00:03:06 ; elapsed = 00:01:12 . Memory (MB): peak = 2391.977 ; gain = 209.742 ; free physical = 2071 ; free virtual = 18365
+Time (s): cpu = 00:03:10 ; elapsed = 00:01:26 . Memory (MB): peak = 2370.379 ; gain = 0.000 ; free physical = 113 ; free virtual = 3287
 
 Phase 6 Post Hold Fix
 
 Phase 6.1 Hold Fix Iter
 
 Phase 6.1.1 Update Timing
-Phase 6.1.1 Update Timing | Checksum: 1c22024f8
+Phase 6.1.1 Update Timing | Checksum: 19cca7b41
 
-Time (s): cpu = 00:03:12 ; elapsed = 00:01:14 . Memory (MB): peak = 2391.977 ; gain = 209.742 ; free physical = 2053 ; free virtual = 18347
-INFO: [Route 35-416] Intermediate Timing Summary | WNS=0.411  | TNS=0.000  | WHS=0.020  | THS=0.000  |
+Time (s): cpu = 00:03:15 ; elapsed = 00:01:29 . Memory (MB): peak = 2370.379 ; gain = 0.000 ; free physical = 113 ; free virtual = 3287
+INFO: [Route 35-416] Intermediate Timing Summary | WNS=0.431  | TNS=0.000  | WHS=0.024  | THS=0.000  |
 
-Phase 6.1 Hold Fix Iter | Checksum: 1cf219d65
+Phase 6.1 Hold Fix Iter | Checksum: 18449a6e6
 
-Time (s): cpu = 00:03:12 ; elapsed = 00:01:14 . Memory (MB): peak = 2391.977 ; gain = 209.742 ; free physical = 2024 ; free virtual = 18318
-Phase 6 Post Hold Fix | Checksum: 1cf219d65
+Time (s): cpu = 00:03:16 ; elapsed = 00:01:29 . Memory (MB): peak = 2370.379 ; gain = 0.000 ; free physical = 113 ; free virtual = 3287
+Phase 6 Post Hold Fix | Checksum: 18449a6e6
 
-Time (s): cpu = 00:03:12 ; elapsed = 00:01:15 . Memory (MB): peak = 2391.977 ; gain = 209.742 ; free physical = 2028 ; free virtual = 18322
+Time (s): cpu = 00:03:16 ; elapsed = 00:01:30 . Memory (MB): peak = 2370.379 ; gain = 0.000 ; free physical = 113 ; free virtual = 3287
 
 Phase 7 Route finalize
 
 Router Utilization Summary
-  Global Vertical Routing Utilization    = 16.7401 %
-  Global Horizontal Routing Utilization  = 19.7367 %
+  Global Vertical Routing Utilization    = 15.4724 %
+  Global Horizontal Routing Utilization  = 18.5223 %
   Routable Net Status*
   *Does not include unroutable nets such as driverless and loadless.
   Run report_route_status for detailed report.
@@ -505,170 +401,223 @@ Router Utilization Summary
   Number of Partially Routed Nets     = 0
   Number of Node Overlaps             = 0
 
-Phase 7 Route finalize | Checksum: 1d7d03075
+Phase 7 Route finalize | Checksum: c08e0212
 
-Time (s): cpu = 00:03:13 ; elapsed = 00:01:15 . Memory (MB): peak = 2391.977 ; gain = 209.742 ; free physical = 2057 ; free virtual = 18351
+Time (s): cpu = 00:03:17 ; elapsed = 00:01:30 . Memory (MB): peak = 2370.379 ; gain = 0.000 ; free physical = 113 ; free virtual = 3287
 
 Phase 8 Verifying routed nets
 
  Verification completed successfully
-Phase 8 Verifying routed nets | Checksum: 1d7d03075
+Phase 8 Verifying routed nets | Checksum: c08e0212
 
-Time (s): cpu = 00:03:13 ; elapsed = 00:01:15 . Memory (MB): peak = 2391.977 ; gain = 209.742 ; free physical = 2067 ; free virtual = 18361
+Time (s): cpu = 00:03:17 ; elapsed = 00:01:30 . Memory (MB): peak = 2370.379 ; gain = 0.000 ; free physical = 113 ; free virtual = 3287
 
 Phase 9 Depositing Routes
-Phase 9 Depositing Routes | Checksum: 279de31a5
+Phase 9 Depositing Routes | Checksum: 11f938649
 
-Time (s): cpu = 00:03:16 ; elapsed = 00:01:18 . Memory (MB): peak = 2391.977 ; gain = 209.742 ; free physical = 2128 ; free virtual = 18422
+Time (s): cpu = 00:03:20 ; elapsed = 00:01:33 . Memory (MB): peak = 2370.379 ; gain = 0.000 ; free physical = 113 ; free virtual = 3287
 
 Phase 10 Post Router Timing
-INFO: [Route 35-57] Estimated Timing Summary | WNS=0.411  | TNS=0.000  | WHS=0.020  | THS=0.000  |
+INFO: [Route 35-57] Estimated Timing Summary | WNS=0.431  | TNS=0.000  | WHS=0.024  | THS=0.000  |
 
 INFO: [Route 35-327] The final timing numbers are based on the router estimated timing analysis. For a complete and accurate timing signoff, please run report_timing_summary.
-Phase 10 Post Router Timing | Checksum: 279de31a5
+Phase 10 Post Router Timing | Checksum: 11f938649
 
-Time (s): cpu = 00:03:16 ; elapsed = 00:01:18 . Memory (MB): peak = 2391.977 ; gain = 209.742 ; free physical = 2123 ; free virtual = 18417
+Time (s): cpu = 00:03:20 ; elapsed = 00:01:33 . Memory (MB): peak = 2370.379 ; gain = 0.000 ; free physical = 114 ; free virtual = 3287
 INFO: [Route 35-16] Router Completed Successfully
 
-Time (s): cpu = 00:03:17 ; elapsed = 00:01:18 . Memory (MB): peak = 2391.977 ; gain = 209.742 ; free physical = 2128 ; free virtual = 18422
+Time (s): cpu = 00:03:25 ; elapsed = 00:01:35 . Memory (MB): peak = 2370.379 ; gain = 0.000 ; free physical = 112 ; free virtual = 3286
 
 Routing Is Done.
 INFO: [Common 17-83] Releasing license: Implementation
-35 Infos, 3 Warnings, 0 Critical Warnings and 0 Errors encountered.
+58 Infos, 0 Warnings, 0 Critical Warnings and 0 Errors encountered.
 route_design completed successfully
-route_design: Time (s): cpu = 00:03:21 ; elapsed = 00:01:21 . Memory (MB): peak = 2392.477 ; gain = 210.242 ; free physical = 2173 ; free virtual = 18467
+route_design: Time (s): cpu = 00:03:34 ; elapsed = 00:01:40 . Memory (MB): peak = 2370.379 ; gain = 0.000 ; free physical = 112 ; free virtual = 3286
 Writing placer database...
 Writing XDEF routing.
 Writing XDEF routing logical nets.
 Writing XDEF routing special nets.
-Write XDEF Complete: Time (s): cpu = 00:00:10 ; elapsed = 00:00:04 . Memory (MB): peak = 2423.992 ; gain = 0.000 ; free physical = 1975 ; free virtual = 18332
-write_checkpoint: Time (s): cpu = 00:00:13 ; elapsed = 00:00:07 . Memory (MB): peak = 2424.992 ; gain = 32.516 ; free physical = 2076 ; free virtual = 18384
-INFO: [DRC 23-27] Running DRC with 8 threads
-INFO: [Coretcl 2-168] The results of DRC are in file /ram/home/work/takau/kinpira/zedboard/zedboard.runs/impl_1/kinpira_wrapper_drc_routed.rpt.
+Write XDEF Complete: Time (s): cpu = 00:00:14 ; elapsed = 00:00:05 . Memory (MB): peak = 2370.379 ; gain = 0.000 ; free physical = 146 ; free virtual = 3302
+INFO: [Common 17-1381] The checkpoint '/home/kaftulal/kinpira/zedboard/zedboard.runs/impl_1/design_1_wrapper_routed.dcp' has been generated.
+write_checkpoint: Time (s): cpu = 00:00:18 ; elapsed = 00:00:09 . Memory (MB): peak = 2370.379 ; gain = 0.000 ; free physical = 196 ; free virtual = 3302
+INFO: [DRC 23-27] Running DRC with 4 threads
+INFO: [Coretcl 2-168] The results of DRC are in file /home/kaftulal/kinpira/zedboard/zedboard.runs/impl_1/design_1_wrapper_drc_routed.rpt.
+report_drc: Time (s): cpu = 00:00:22 ; elapsed = 00:00:08 . Memory (MB): peak = 2370.379 ; gain = 0.000 ; free physical = 175 ; free virtual = 3299
+INFO: [Timing 38-35] Done setting XDC timing constraints.
+INFO: [DRC 23-133] Running Methodology with 4 threads
+INFO: [Coretcl 2-1520] The results of Report Methodology are in file /home/kaftulal/kinpira/zedboard/zedboard.runs/impl_1/design_1_wrapper_methodology_drc_routed.rpt.
+report_methodology: Time (s): cpu = 00:00:42 ; elapsed = 00:00:17 . Memory (MB): peak = 2459.371 ; gain = 88.992 ; free physical = 118 ; free virtual = 3203
+INFO: [Timing 38-35] Done setting XDC timing constraints.
 INFO: [Timing 38-91] UpdateTimingParams: Speed grade: -1, Delay Type: min_max.
-INFO: [Timing 38-191] Multithreading enabled for timing update using a maximum of 8 CPUs
-report_timing_summary: Time (s): cpu = 00:00:29 ; elapsed = 00:00:06 . Memory (MB): peak = 2456.008 ; gain = 0.000 ; free physical = 2009 ; free virtual = 18322
+INFO: [Timing 38-191] Multithreading enabled for timing update using a maximum of 4 CPUs
+INFO: [Timing 38-35] Done setting XDC timing constraints.
+report_timing_summary: Time (s): cpu = 00:00:15 ; elapsed = 00:00:08 . Memory (MB): peak = 2483.441 ; gain = 24.070 ; free physical = 128 ; free virtual = 3179
+Command: report_power -file design_1_wrapper_power_routed.rpt -pb design_1_wrapper_power_summary_routed.pb -rpx design_1_wrapper_power_routed.rpx
 Running Vector-less Activity Propagation...
 
 Finished Running Vector-less Activity Propagation
-report_power: Time (s): cpu = 00:00:20 ; elapsed = 00:00:06 . Memory (MB): peak = 2496.035 ; gain = 40.027 ; free physical = 2051 ; free virtual = 18373
+68 Infos, 0 Warnings, 0 Critical Warnings and 0 Errors encountered.
+report_power completed successfully
+report_power: Time (s): cpu = 00:00:23 ; elapsed = 00:00:10 . Memory (MB): peak = 2574.492 ; gain = 91.051 ; free physical = 126 ; free virtual = 3109
+INFO: [Common 17-206] Exiting Vivado at Sun Feb 26 11:07:41 2017...
+
+*** Running vivado
+    with args -log design_1_wrapper.vdi -applog -m64 -product Vivado -messageDb vivado.pb -mode batch -source design_1_wrapper.tcl -notrace
+
+awk: symbol lookup error: awk: undefined symbol: mpfr_z_sub
+
+****** Vivado v2016.4 (64-bit)
+  **** SW Build 1756540 on Mon Jan 23 19:11:19 MST 2017
+  **** IP Build 1755317 on Mon Jan 23 20:30:07 MST 2017
+    ** Copyright 1986-2016 Xilinx, Inc. All Rights Reserved.
+
+source design_1_wrapper.tcl -notrace
+Command: open_checkpoint design_1_wrapper_routed.dcp
+
+Starting open_checkpoint Task
+
+Time (s): cpu = 00:00:00.02 ; elapsed = 00:00:00.04 . Memory (MB): peak = 996.949 ; gain = 0.000 ; free physical = 1319 ; free virtual = 4536
+INFO: [Netlist 29-17] Analyzing 2956 Unisim elements for replacement
+INFO: [Netlist 29-28] Unisim Transformation completed in 1 CPU seconds
+INFO: [Project 1-479] Netlist was created with Vivado 2016.4
+INFO: [Device 21-403] Loading part xc7z020clg484-1
+INFO: [Project 1-570] Preparing netlist for logic optimization
+Parsing XDC File [/home/kaftulal/kinpira/zedboard/zedboard.runs/impl_1/.Xil/Vivado-16321-london/dcp/design_1_wrapper_early.xdc]
+Finished Parsing XDC File [/home/kaftulal/kinpira/zedboard/zedboard.runs/impl_1/.Xil/Vivado-16321-london/dcp/design_1_wrapper_early.xdc]
+Reading XDEF placement.
+Reading placer database...
+Reading XDEF routing.
+Read XDEF File: Time (s): cpu = 00:00:03 ; elapsed = 00:00:03 . Memory (MB): peak = 1401.125 ; gain = 59.070 ; free physical = 830 ; free virtual = 4172
+Restored from archive | CPU: 3.180000 secs | Memory: 49.652939 MB |
+Finished XDEF File Restore: Time (s): cpu = 00:00:03 ; elapsed = 00:00:03 . Memory (MB): peak = 1401.125 ; gain = 59.070 ; free physical = 830 ; free virtual = 4172
+INFO: [Project 1-111] Unisim Transformation Summary:
+  A total of 1074 instances were transformed.
+  RAM32M => RAM32M (RAMS32, RAMS32, RAMD32, RAMD32, RAMD32, RAMD32, RAMD32, RAMD32): 162 instances
+  RAM64M => RAM64M (RAMD64E, RAMD64E, RAMD64E, RAMD64E): 760 instances
+  RAM64X1D => RAM64X1D (RAMD64E, RAMD64E): 152 instances
+
+INFO: [Project 1-604] Checkpoint was created with Vivado v2016.4 (64-bit) build 1756540
+open_checkpoint: Time (s): cpu = 00:00:18 ; elapsed = 00:00:19 . Memory (MB): peak = 1401.125 ; gain = 404.176 ; free physical = 893 ; free virtual = 4172
+Command: write_bitstream -force -no_partial_bitfile design_1_wrapper.bit
 Attempting to get a license for feature 'Implementation' and/or device 'xc7z020'
 INFO: [Common 17-349] Got license for feature 'Implementation' and/or device 'xc7z020'
 Running DRC as a precondition to command write_bitstream
-INFO: [DRC 23-27] Running DRC with 8 threads
-WARNING: [DRC 23-20] Rule violation (DPIP-1) Input pipelining - DSP kinpira_i/kinpira_0/inst/renkon0/core0/conv/tree/r_pro0_reg input kinpira_i/kinpira_0/inst/renkon0/core0/conv/tree/r_pro0_reg/A[29:0] is not pipelined. Pipelining DSP48 input will improve performance.
-WARNING: [DRC 23-20] Rule violation (DPIP-1) Input pipelining - DSP kinpira_i/kinpira_0/inst/renkon0/core0/conv/tree/r_pro0_reg input kinpira_i/kinpira_0/inst/renkon0/core0/conv/tree/r_pro0_reg/B[17:0] is not pipelined. Pipelining DSP48 input will improve performance.
-WARNING: [DRC 23-20] Rule violation (DPIP-1) Input pipelining - DSP kinpira_i/kinpira_0/inst/renkon0/core0/conv/tree/r_pro10_reg input kinpira_i/kinpira_0/inst/renkon0/core0/conv/tree/r_pro10_reg/A[29:0] is not pipelined. Pipelining DSP48 input will improve performance.
-WARNING: [DRC 23-20] Rule violation (DPIP-1) Input pipelining - DSP kinpira_i/kinpira_0/inst/renkon0/core0/conv/tree/r_pro10_reg input kinpira_i/kinpira_0/inst/renkon0/core0/conv/tree/r_pro10_reg/B[17:0] is not pipelined. Pipelining DSP48 input will improve performance.
-WARNING: [DRC 23-20] Rule violation (DPIP-1) Input pipelining - DSP kinpira_i/kinpira_0/inst/renkon0/core0/conv/tree/r_pro11_reg input kinpira_i/kinpira_0/inst/renkon0/core0/conv/tree/r_pro11_reg/A[29:0] is not pipelined. Pipelining DSP48 input will improve performance.
-WARNING: [DRC 23-20] Rule violation (DPIP-1) Input pipelining - DSP kinpira_i/kinpira_0/inst/renkon0/core0/conv/tree/r_pro11_reg input kinpira_i/kinpira_0/inst/renkon0/core0/conv/tree/r_pro11_reg/B[17:0] is not pipelined. Pipelining DSP48 input will improve performance.
-WARNING: [DRC 23-20] Rule violation (DPIP-1) Input pipelining - DSP kinpira_i/kinpira_0/inst/renkon0/core0/conv/tree/r_pro12_reg input kinpira_i/kinpira_0/inst/renkon0/core0/conv/tree/r_pro12_reg/A[29:0] is not pipelined. Pipelining DSP48 input will improve performance.
-WARNING: [DRC 23-20] Rule violation (DPIP-1) Input pipelining - DSP kinpira_i/kinpira_0/inst/renkon0/core0/conv/tree/r_pro12_reg input kinpira_i/kinpira_0/inst/renkon0/core0/conv/tree/r_pro12_reg/B[17:0] is not pipelined. Pipelining DSP48 input will improve performance.
-WARNING: [DRC 23-20] Rule violation (DPIP-1) Input pipelining - DSP kinpira_i/kinpira_0/inst/renkon0/core0/conv/tree/r_pro13_reg input kinpira_i/kinpira_0/inst/renkon0/core0/conv/tree/r_pro13_reg/A[29:0] is not pipelined. Pipelining DSP48 input will improve performance.
-WARNING: [DRC 23-20] Rule violation (DPIP-1) Input pipelining - DSP kinpira_i/kinpira_0/inst/renkon0/core0/conv/tree/r_pro13_reg input kinpira_i/kinpira_0/inst/renkon0/core0/conv/tree/r_pro13_reg/B[17:0] is not pipelined. Pipelining DSP48 input will improve performance.
-WARNING: [DRC 23-20] Rule violation (DPIP-1) Input pipelining - DSP kinpira_i/kinpira_0/inst/renkon0/core0/conv/tree/r_pro14_reg input kinpira_i/kinpira_0/inst/renkon0/core0/conv/tree/r_pro14_reg/A[29:0] is not pipelined. Pipelining DSP48 input will improve performance.
-WARNING: [DRC 23-20] Rule violation (DPIP-1) Input pipelining - DSP kinpira_i/kinpira_0/inst/renkon0/core0/conv/tree/r_pro14_reg input kinpira_i/kinpira_0/inst/renkon0/core0/conv/tree/r_pro14_reg/B[17:0] is not pipelined. Pipelining DSP48 input will improve performance.
-WARNING: [DRC 23-20] Rule violation (DPIP-1) Input pipelining - DSP kinpira_i/kinpira_0/inst/renkon0/core0/conv/tree/r_pro15_reg input kinpira_i/kinpira_0/inst/renkon0/core0/conv/tree/r_pro15_reg/A[29:0] is not pipelined. Pipelining DSP48 input will improve performance.
-WARNING: [DRC 23-20] Rule violation (DPIP-1) Input pipelining - DSP kinpira_i/kinpira_0/inst/renkon0/core0/conv/tree/r_pro15_reg input kinpira_i/kinpira_0/inst/renkon0/core0/conv/tree/r_pro15_reg/B[17:0] is not pipelined. Pipelining DSP48 input will improve performance.
-WARNING: [DRC 23-20] Rule violation (DPIP-1) Input pipelining - DSP kinpira_i/kinpira_0/inst/renkon0/core0/conv/tree/r_pro16_reg input kinpira_i/kinpira_0/inst/renkon0/core0/conv/tree/r_pro16_reg/A[29:0] is not pipelined. Pipelining DSP48 input will improve performance.
-WARNING: [DRC 23-20] Rule violation (DPIP-1) Input pipelining - DSP kinpira_i/kinpira_0/inst/renkon0/core0/conv/tree/r_pro16_reg input kinpira_i/kinpira_0/inst/renkon0/core0/conv/tree/r_pro16_reg/B[17:0] is not pipelined. Pipelining DSP48 input will improve performance.
-WARNING: [DRC 23-20] Rule violation (DPIP-1) Input pipelining - DSP kinpira_i/kinpira_0/inst/renkon0/core0/conv/tree/r_pro17_reg input kinpira_i/kinpira_0/inst/renkon0/core0/conv/tree/r_pro17_reg/A[29:0] is not pipelined. Pipelining DSP48 input will improve performance.
-WARNING: [DRC 23-20] Rule violation (DPIP-1) Input pipelining - DSP kinpira_i/kinpira_0/inst/renkon0/core0/conv/tree/r_pro17_reg input kinpira_i/kinpira_0/inst/renkon0/core0/conv/tree/r_pro17_reg/B[17:0] is not pipelined. Pipelining DSP48 input will improve performance.
-WARNING: [DRC 23-20] Rule violation (DPIP-1) Input pipelining - DSP kinpira_i/kinpira_0/inst/renkon0/core0/conv/tree/r_pro18_reg input kinpira_i/kinpira_0/inst/renkon0/core0/conv/tree/r_pro18_reg/A[29:0] is not pipelined. Pipelining DSP48 input will improve performance.
-WARNING: [DRC 23-20] Rule violation (DPIP-1) Input pipelining - DSP kinpira_i/kinpira_0/inst/renkon0/core0/conv/tree/r_pro18_reg input kinpira_i/kinpira_0/inst/renkon0/core0/conv/tree/r_pro18_reg/B[17:0] is not pipelined. Pipelining DSP48 input will improve performance.
-WARNING: [DRC 23-20] Rule violation (DPIP-1) Input pipelining - DSP kinpira_i/kinpira_0/inst/renkon0/core0/conv/tree/r_pro19_reg input kinpira_i/kinpira_0/inst/renkon0/core0/conv/tree/r_pro19_reg/A[29:0] is not pipelined. Pipelining DSP48 input will improve performance.
-WARNING: [DRC 23-20] Rule violation (DPIP-1) Input pipelining - DSP kinpira_i/kinpira_0/inst/renkon0/core0/conv/tree/r_pro19_reg input kinpira_i/kinpira_0/inst/renkon0/core0/conv/tree/r_pro19_reg/B[17:0] is not pipelined. Pipelining DSP48 input will improve performance.
-WARNING: [DRC 23-20] Rule violation (DPIP-1) Input pipelining - DSP kinpira_i/kinpira_0/inst/renkon0/core0/conv/tree/r_pro1_reg input kinpira_i/kinpira_0/inst/renkon0/core0/conv/tree/r_pro1_reg/A[29:0] is not pipelined. Pipelining DSP48 input will improve performance.
-WARNING: [DRC 23-20] Rule violation (DPIP-1) Input pipelining - DSP kinpira_i/kinpira_0/inst/renkon0/core0/conv/tree/r_pro1_reg input kinpira_i/kinpira_0/inst/renkon0/core0/conv/tree/r_pro1_reg/B[17:0] is not pipelined. Pipelining DSP48 input will improve performance.
-WARNING: [DRC 23-20] Rule violation (DPIP-1) Input pipelining - DSP kinpira_i/kinpira_0/inst/renkon0/core0/conv/tree/r_pro20_reg input kinpira_i/kinpira_0/inst/renkon0/core0/conv/tree/r_pro20_reg/A[29:0] is not pipelined. Pipelining DSP48 input will improve performance.
-WARNING: [DRC 23-20] Rule violation (DPIP-1) Input pipelining - DSP kinpira_i/kinpira_0/inst/renkon0/core0/conv/tree/r_pro20_reg input kinpira_i/kinpira_0/inst/renkon0/core0/conv/tree/r_pro20_reg/B[17:0] is not pipelined. Pipelining DSP48 input will improve performance.
-WARNING: [DRC 23-20] Rule violation (DPIP-1) Input pipelining - DSP kinpira_i/kinpira_0/inst/renkon0/core0/conv/tree/r_pro21_reg input kinpira_i/kinpira_0/inst/renkon0/core0/conv/tree/r_pro21_reg/A[29:0] is not pipelined. Pipelining DSP48 input will improve performance.
-WARNING: [DRC 23-20] Rule violation (DPIP-1) Input pipelining - DSP kinpira_i/kinpira_0/inst/renkon0/core0/conv/tree/r_pro21_reg input kinpira_i/kinpira_0/inst/renkon0/core0/conv/tree/r_pro21_reg/B[17:0] is not pipelined. Pipelining DSP48 input will improve performance.
-WARNING: [DRC 23-20] Rule violation (DPIP-1) Input pipelining - DSP kinpira_i/kinpira_0/inst/renkon0/core0/conv/tree/r_pro22_reg input kinpira_i/kinpira_0/inst/renkon0/core0/conv/tree/r_pro22_reg/A[29:0] is not pipelined. Pipelining DSP48 input will improve performance.
-WARNING: [DRC 23-20] Rule violation (DPIP-1) Input pipelining - DSP kinpira_i/kinpira_0/inst/renkon0/core0/conv/tree/r_pro22_reg input kinpira_i/kinpira_0/inst/renkon0/core0/conv/tree/r_pro22_reg/B[17:0] is not pipelined. Pipelining DSP48 input will improve performance.
-WARNING: [DRC 23-20] Rule violation (DPIP-1) Input pipelining - DSP kinpira_i/kinpira_0/inst/renkon0/core0/conv/tree/r_pro23_reg input kinpira_i/kinpira_0/inst/renkon0/core0/conv/tree/r_pro23_reg/A[29:0] is not pipelined. Pipelining DSP48 input will improve performance.
-WARNING: [DRC 23-20] Rule violation (DPIP-1) Input pipelining - DSP kinpira_i/kinpira_0/inst/renkon0/core0/conv/tree/r_pro23_reg input kinpira_i/kinpira_0/inst/renkon0/core0/conv/tree/r_pro23_reg/B[17:0] is not pipelined. Pipelining DSP48 input will improve performance.
-WARNING: [DRC 23-20] Rule violation (DPIP-1) Input pipelining - DSP kinpira_i/kinpira_0/inst/renkon0/core0/conv/tree/r_pro24_reg input kinpira_i/kinpira_0/inst/renkon0/core0/conv/tree/r_pro24_reg/A[29:0] is not pipelined. Pipelining DSP48 input will improve performance.
-WARNING: [DRC 23-20] Rule violation (DPIP-1) Input pipelining - DSP kinpira_i/kinpira_0/inst/renkon0/core0/conv/tree/r_pro24_reg input kinpira_i/kinpira_0/inst/renkon0/core0/conv/tree/r_pro24_reg/B[17:0] is not pipelined. Pipelining DSP48 input will improve performance.
-WARNING: [DRC 23-20] Rule violation (DPIP-1) Input pipelining - DSP kinpira_i/kinpira_0/inst/renkon0/core0/conv/tree/r_pro2_reg input kinpira_i/kinpira_0/inst/renkon0/core0/conv/tree/r_pro2_reg/A[29:0] is not pipelined. Pipelining DSP48 input will improve performance.
-WARNING: [DRC 23-20] Rule violation (DPIP-1) Input pipelining - DSP kinpira_i/kinpira_0/inst/renkon0/core0/conv/tree/r_pro2_reg input kinpira_i/kinpira_0/inst/renkon0/core0/conv/tree/r_pro2_reg/B[17:0] is not pipelined. Pipelining DSP48 input will improve performance.
-WARNING: [DRC 23-20] Rule violation (DPIP-1) Input pipelining - DSP kinpira_i/kinpira_0/inst/renkon0/core0/conv/tree/r_pro3_reg input kinpira_i/kinpira_0/inst/renkon0/core0/conv/tree/r_pro3_reg/A[29:0] is not pipelined. Pipelining DSP48 input will improve performance.
-WARNING: [DRC 23-20] Rule violation (DPIP-1) Input pipelining - DSP kinpira_i/kinpira_0/inst/renkon0/core0/conv/tree/r_pro3_reg input kinpira_i/kinpira_0/inst/renkon0/core0/conv/tree/r_pro3_reg/B[17:0] is not pipelined. Pipelining DSP48 input will improve performance.
-WARNING: [DRC 23-20] Rule violation (DPIP-1) Input pipelining - DSP kinpira_i/kinpira_0/inst/renkon0/core0/conv/tree/r_pro4_reg input kinpira_i/kinpira_0/inst/renkon0/core0/conv/tree/r_pro4_reg/A[29:0] is not pipelined. Pipelining DSP48 input will improve performance.
-WARNING: [DRC 23-20] Rule violation (DPIP-1) Input pipelining - DSP kinpira_i/kinpira_0/inst/renkon0/core0/conv/tree/r_pro4_reg input kinpira_i/kinpira_0/inst/renkon0/core0/conv/tree/r_pro4_reg/B[17:0] is not pipelined. Pipelining DSP48 input will improve performance.
-WARNING: [DRC 23-20] Rule violation (DPIP-1) Input pipelining - DSP kinpira_i/kinpira_0/inst/renkon0/core0/conv/tree/r_pro5_reg input kinpira_i/kinpira_0/inst/renkon0/core0/conv/tree/r_pro5_reg/A[29:0] is not pipelined. Pipelining DSP48 input will improve performance.
-WARNING: [DRC 23-20] Rule violation (DPIP-1) Input pipelining - DSP kinpira_i/kinpira_0/inst/renkon0/core0/conv/tree/r_pro5_reg input kinpira_i/kinpira_0/inst/renkon0/core0/conv/tree/r_pro5_reg/B[17:0] is not pipelined. Pipelining DSP48 input will improve performance.
-WARNING: [DRC 23-20] Rule violation (DPIP-1) Input pipelining - DSP kinpira_i/kinpira_0/inst/renkon0/core0/conv/tree/r_pro6_reg input kinpira_i/kinpira_0/inst/renkon0/core0/conv/tree/r_pro6_reg/A[29:0] is not pipelined. Pipelining DSP48 input will improve performance.
-WARNING: [DRC 23-20] Rule violation (DPIP-1) Input pipelining - DSP kinpira_i/kinpira_0/inst/renkon0/core0/conv/tree/r_pro6_reg input kinpira_i/kinpira_0/inst/renkon0/core0/conv/tree/r_pro6_reg/B[17:0] is not pipelined. Pipelining DSP48 input will improve performance.
-WARNING: [DRC 23-20] Rule violation (DPIP-1) Input pipelining - DSP kinpira_i/kinpira_0/inst/renkon0/core0/conv/tree/r_pro7_reg input kinpira_i/kinpira_0/inst/renkon0/core0/conv/tree/r_pro7_reg/A[29:0] is not pipelined. Pipelining DSP48 input will improve performance.
-WARNING: [DRC 23-20] Rule violation (DPIP-1) Input pipelining - DSP kinpira_i/kinpira_0/inst/renkon0/core0/conv/tree/r_pro7_reg input kinpira_i/kinpira_0/inst/renkon0/core0/conv/tree/r_pro7_reg/B[17:0] is not pipelined. Pipelining DSP48 input will improve performance.
-WARNING: [DRC 23-20] Rule violation (DPIP-1) Input pipelining - DSP kinpira_i/kinpira_0/inst/renkon0/core0/conv/tree/r_pro8_reg input kinpira_i/kinpira_0/inst/renkon0/core0/conv/tree/r_pro8_reg/A[29:0] is not pipelined. Pipelining DSP48 input will improve performance.
-WARNING: [DRC 23-20] Rule violation (DPIP-1) Input pipelining - DSP kinpira_i/kinpira_0/inst/renkon0/core0/conv/tree/r_pro8_reg input kinpira_i/kinpira_0/inst/renkon0/core0/conv/tree/r_pro8_reg/B[17:0] is not pipelined. Pipelining DSP48 input will improve performance.
-WARNING: [DRC 23-20] Rule violation (DPIP-1) Input pipelining - DSP kinpira_i/kinpira_0/inst/renkon0/core0/conv/tree/r_pro9_reg input kinpira_i/kinpira_0/inst/renkon0/core0/conv/tree/r_pro9_reg/A[29:0] is not pipelined. Pipelining DSP48 input will improve performance.
-WARNING: [DRC 23-20] Rule violation (DPIP-1) Input pipelining - DSP kinpira_i/kinpira_0/inst/renkon0/core0/conv/tree/r_pro9_reg input kinpira_i/kinpira_0/inst/renkon0/core0/conv/tree/r_pro9_reg/B[17:0] is not pipelined. Pipelining DSP48 input will improve performance.
-WARNING: [DRC 23-20] Rule violation (DPIP-1) Input pipelining - DSP kinpira_i/kinpira_0/inst/renkon0/core1/conv/tree/r_pro0_reg input kinpira_i/kinpira_0/inst/renkon0/core1/conv/tree/r_pro0_reg/A[29:0] is not pipelined. Pipelining DSP48 input will improve performance.
-WARNING: [DRC 23-20] Rule violation (DPIP-1) Input pipelining - DSP kinpira_i/kinpira_0/inst/renkon0/core1/conv/tree/r_pro0_reg input kinpira_i/kinpira_0/inst/renkon0/core1/conv/tree/r_pro0_reg/B[17:0] is not pipelined. Pipelining DSP48 input will improve performance.
-WARNING: [DRC 23-20] Rule violation (DPIP-1) Input pipelining - DSP kinpira_i/kinpira_0/inst/renkon0/core1/conv/tree/r_pro10_reg input kinpira_i/kinpira_0/inst/renkon0/core1/conv/tree/r_pro10_reg/A[29:0] is not pipelined. Pipelining DSP48 input will improve performance.
-WARNING: [DRC 23-20] Rule violation (DPIP-1) Input pipelining - DSP kinpira_i/kinpira_0/inst/renkon0/core1/conv/tree/r_pro10_reg input kinpira_i/kinpira_0/inst/renkon0/core1/conv/tree/r_pro10_reg/B[17:0] is not pipelined. Pipelining DSP48 input will improve performance.
-WARNING: [DRC 23-20] Rule violation (DPIP-1) Input pipelining - DSP kinpira_i/kinpira_0/inst/renkon0/core1/conv/tree/r_pro11_reg input kinpira_i/kinpira_0/inst/renkon0/core1/conv/tree/r_pro11_reg/A[29:0] is not pipelined. Pipelining DSP48 input will improve performance.
-WARNING: [DRC 23-20] Rule violation (DPIP-1) Input pipelining - DSP kinpira_i/kinpira_0/inst/renkon0/core1/conv/tree/r_pro11_reg input kinpira_i/kinpira_0/inst/renkon0/core1/conv/tree/r_pro11_reg/B[17:0] is not pipelined. Pipelining DSP48 input will improve performance.
-WARNING: [DRC 23-20] Rule violation (DPIP-1) Input pipelining - DSP kinpira_i/kinpira_0/inst/renkon0/core1/conv/tree/r_pro12_reg input kinpira_i/kinpira_0/inst/renkon0/core1/conv/tree/r_pro12_reg/A[29:0] is not pipelined. Pipelining DSP48 input will improve performance.
-WARNING: [DRC 23-20] Rule violation (DPIP-1) Input pipelining - DSP kinpira_i/kinpira_0/inst/renkon0/core1/conv/tree/r_pro12_reg input kinpira_i/kinpira_0/inst/renkon0/core1/conv/tree/r_pro12_reg/B[17:0] is not pipelined. Pipelining DSP48 input will improve performance.
-WARNING: [DRC 23-20] Rule violation (DPIP-1) Input pipelining - DSP kinpira_i/kinpira_0/inst/renkon0/core1/conv/tree/r_pro13_reg input kinpira_i/kinpira_0/inst/renkon0/core1/conv/tree/r_pro13_reg/A[29:0] is not pipelined. Pipelining DSP48 input will improve performance.
-WARNING: [DRC 23-20] Rule violation (DPIP-1) Input pipelining - DSP kinpira_i/kinpira_0/inst/renkon0/core1/conv/tree/r_pro13_reg input kinpira_i/kinpira_0/inst/renkon0/core1/conv/tree/r_pro13_reg/B[17:0] is not pipelined. Pipelining DSP48 input will improve performance.
-WARNING: [DRC 23-20] Rule violation (DPIP-1) Input pipelining - DSP kinpira_i/kinpira_0/inst/renkon0/core1/conv/tree/r_pro14_reg input kinpira_i/kinpira_0/inst/renkon0/core1/conv/tree/r_pro14_reg/A[29:0] is not pipelined. Pipelining DSP48 input will improve performance.
-WARNING: [DRC 23-20] Rule violation (DPIP-1) Input pipelining - DSP kinpira_i/kinpira_0/inst/renkon0/core1/conv/tree/r_pro14_reg input kinpira_i/kinpira_0/inst/renkon0/core1/conv/tree/r_pro14_reg/B[17:0] is not pipelined. Pipelining DSP48 input will improve performance.
-WARNING: [DRC 23-20] Rule violation (DPIP-1) Input pipelining - DSP kinpira_i/kinpira_0/inst/renkon0/core1/conv/tree/r_pro15_reg input kinpira_i/kinpira_0/inst/renkon0/core1/conv/tree/r_pro15_reg/A[29:0] is not pipelined. Pipelining DSP48 input will improve performance.
-WARNING: [DRC 23-20] Rule violation (DPIP-1) Input pipelining - DSP kinpira_i/kinpira_0/inst/renkon0/core1/conv/tree/r_pro15_reg input kinpira_i/kinpira_0/inst/renkon0/core1/conv/tree/r_pro15_reg/B[17:0] is not pipelined. Pipelining DSP48 input will improve performance.
-WARNING: [DRC 23-20] Rule violation (DPIP-1) Input pipelining - DSP kinpira_i/kinpira_0/inst/renkon0/core1/conv/tree/r_pro16_reg input kinpira_i/kinpira_0/inst/renkon0/core1/conv/tree/r_pro16_reg/A[29:0] is not pipelined. Pipelining DSP48 input will improve performance.
-WARNING: [DRC 23-20] Rule violation (DPIP-1) Input pipelining - DSP kinpira_i/kinpira_0/inst/renkon0/core1/conv/tree/r_pro16_reg input kinpira_i/kinpira_0/inst/renkon0/core1/conv/tree/r_pro16_reg/B[17:0] is not pipelined. Pipelining DSP48 input will improve performance.
-WARNING: [DRC 23-20] Rule violation (DPIP-1) Input pipelining - DSP kinpira_i/kinpira_0/inst/renkon0/core1/conv/tree/r_pro17_reg input kinpira_i/kinpira_0/inst/renkon0/core1/conv/tree/r_pro17_reg/A[29:0] is not pipelined. Pipelining DSP48 input will improve performance.
-WARNING: [DRC 23-20] Rule violation (DPIP-1) Input pipelining - DSP kinpira_i/kinpira_0/inst/renkon0/core1/conv/tree/r_pro17_reg input kinpira_i/kinpira_0/inst/renkon0/core1/conv/tree/r_pro17_reg/B[17:0] is not pipelined. Pipelining DSP48 input will improve performance.
-WARNING: [DRC 23-20] Rule violation (DPIP-1) Input pipelining - DSP kinpira_i/kinpira_0/inst/renkon0/core1/conv/tree/r_pro18_reg input kinpira_i/kinpira_0/inst/renkon0/core1/conv/tree/r_pro18_reg/A[29:0] is not pipelined. Pipelining DSP48 input will improve performance.
-WARNING: [DRC 23-20] Rule violation (DPIP-1) Input pipelining - DSP kinpira_i/kinpira_0/inst/renkon0/core1/conv/tree/r_pro18_reg input kinpira_i/kinpira_0/inst/renkon0/core1/conv/tree/r_pro18_reg/B[17:0] is not pipelined. Pipelining DSP48 input will improve performance.
-WARNING: [DRC 23-20] Rule violation (DPIP-1) Input pipelining - DSP kinpira_i/kinpira_0/inst/renkon0/core1/conv/tree/r_pro19_reg input kinpira_i/kinpira_0/inst/renkon0/core1/conv/tree/r_pro19_reg/A[29:0] is not pipelined. Pipelining DSP48 input will improve performance.
-WARNING: [DRC 23-20] Rule violation (DPIP-1) Input pipelining - DSP kinpira_i/kinpira_0/inst/renkon0/core1/conv/tree/r_pro19_reg input kinpira_i/kinpira_0/inst/renkon0/core1/conv/tree/r_pro19_reg/B[17:0] is not pipelined. Pipelining DSP48 input will improve performance.
-WARNING: [DRC 23-20] Rule violation (DPIP-1) Input pipelining - DSP kinpira_i/kinpira_0/inst/renkon0/core1/conv/tree/r_pro1_reg input kinpira_i/kinpira_0/inst/renkon0/core1/conv/tree/r_pro1_reg/A[29:0] is not pipelined. Pipelining DSP48 input will improve performance.
-WARNING: [DRC 23-20] Rule violation (DPIP-1) Input pipelining - DSP kinpira_i/kinpira_0/inst/renkon0/core1/conv/tree/r_pro1_reg input kinpira_i/kinpira_0/inst/renkon0/core1/conv/tree/r_pro1_reg/B[17:0] is not pipelined. Pipelining DSP48 input will improve performance.
-WARNING: [DRC 23-20] Rule violation (DPIP-1) Input pipelining - DSP kinpira_i/kinpira_0/inst/renkon0/core1/conv/tree/r_pro20_reg input kinpira_i/kinpira_0/inst/renkon0/core1/conv/tree/r_pro20_reg/A[29:0] is not pipelined. Pipelining DSP48 input will improve performance.
-WARNING: [DRC 23-20] Rule violation (DPIP-1) Input pipelining - DSP kinpira_i/kinpira_0/inst/renkon0/core1/conv/tree/r_pro20_reg input kinpira_i/kinpira_0/inst/renkon0/core1/conv/tree/r_pro20_reg/B[17:0] is not pipelined. Pipelining DSP48 input will improve performance.
-WARNING: [DRC 23-20] Rule violation (DPIP-1) Input pipelining - DSP kinpira_i/kinpira_0/inst/renkon0/core1/conv/tree/r_pro21_reg input kinpira_i/kinpira_0/inst/renkon0/core1/conv/tree/r_pro21_reg/A[29:0] is not pipelined. Pipelining DSP48 input will improve performance.
-WARNING: [DRC 23-20] Rule violation (DPIP-1) Input pipelining - DSP kinpira_i/kinpira_0/inst/renkon0/core1/conv/tree/r_pro21_reg input kinpira_i/kinpira_0/inst/renkon0/core1/conv/tree/r_pro21_reg/B[17:0] is not pipelined. Pipelining DSP48 input will improve performance.
-WARNING: [DRC 23-20] Rule violation (DPIP-1) Input pipelining - DSP kinpira_i/kinpira_0/inst/renkon0/core1/conv/tree/r_pro22_reg input kinpira_i/kinpira_0/inst/renkon0/core1/conv/tree/r_pro22_reg/A[29:0] is not pipelined. Pipelining DSP48 input will improve performance.
-WARNING: [DRC 23-20] Rule violation (DPIP-1) Input pipelining - DSP kinpira_i/kinpira_0/inst/renkon0/core1/conv/tree/r_pro22_reg input kinpira_i/kinpira_0/inst/renkon0/core1/conv/tree/r_pro22_reg/B[17:0] is not pipelined. Pipelining DSP48 input will improve performance.
-WARNING: [DRC 23-20] Rule violation (DPIP-1) Input pipelining - DSP kinpira_i/kinpira_0/inst/renkon0/core1/conv/tree/r_pro23_reg input kinpira_i/kinpira_0/inst/renkon0/core1/conv/tree/r_pro23_reg/A[29:0] is not pipelined. Pipelining DSP48 input will improve performance.
-WARNING: [DRC 23-20] Rule violation (DPIP-1) Input pipelining - DSP kinpira_i/kinpira_0/inst/renkon0/core1/conv/tree/r_pro23_reg input kinpira_i/kinpira_0/inst/renkon0/core1/conv/tree/r_pro23_reg/B[17:0] is not pipelined. Pipelining DSP48 input will improve performance.
-WARNING: [DRC 23-20] Rule violation (DPIP-1) Input pipelining - DSP kinpira_i/kinpira_0/inst/renkon0/core1/conv/tree/r_pro24_reg input kinpira_i/kinpira_0/inst/renkon0/core1/conv/tree/r_pro24_reg/A[29:0] is not pipelined. Pipelining DSP48 input will improve performance.
-WARNING: [DRC 23-20] Rule violation (DPIP-1) Input pipelining - DSP kinpira_i/kinpira_0/inst/renkon0/core1/conv/tree/r_pro24_reg input kinpira_i/kinpira_0/inst/renkon0/core1/conv/tree/r_pro24_reg/B[17:0] is not pipelined. Pipelining DSP48 input will improve performance.
-WARNING: [DRC 23-20] Rule violation (DPIP-1) Input pipelining - DSP kinpira_i/kinpira_0/inst/renkon0/core1/conv/tree/r_pro2_reg input kinpira_i/kinpira_0/inst/renkon0/core1/conv/tree/r_pro2_reg/A[29:0] is not pipelined. Pipelining DSP48 input will improve performance.
-WARNING: [DRC 23-20] Rule violation (DPIP-1) Input pipelining - DSP kinpira_i/kinpira_0/inst/renkon0/core1/conv/tree/r_pro2_reg input kinpira_i/kinpira_0/inst/renkon0/core1/conv/tree/r_pro2_reg/B[17:0] is not pipelined. Pipelining DSP48 input will improve performance.
-WARNING: [DRC 23-20] Rule violation (DPIP-1) Input pipelining - DSP kinpira_i/kinpira_0/inst/renkon0/core1/conv/tree/r_pro3_reg input kinpira_i/kinpira_0/inst/renkon0/core1/conv/tree/r_pro3_reg/A[29:0] is not pipelined. Pipelining DSP48 input will improve performance.
-WARNING: [DRC 23-20] Rule violation (DPIP-1) Input pipelining - DSP kinpira_i/kinpira_0/inst/renkon0/core1/conv/tree/r_pro3_reg input kinpira_i/kinpira_0/inst/renkon0/core1/conv/tree/r_pro3_reg/B[17:0] is not pipelined. Pipelining DSP48 input will improve performance.
-WARNING: [DRC 23-20] Rule violation (DPIP-1) Input pipelining - DSP kinpira_i/kinpira_0/inst/renkon0/core1/conv/tree/r_pro4_reg input kinpira_i/kinpira_0/inst/renkon0/core1/conv/tree/r_pro4_reg/A[29:0] is not pipelined. Pipelining DSP48 input will improve performance.
-WARNING: [DRC 23-20] Rule violation (DPIP-1) Input pipelining - DSP kinpira_i/kinpira_0/inst/renkon0/core1/conv/tree/r_pro4_reg input kinpira_i/kinpira_0/inst/renkon0/core1/conv/tree/r_pro4_reg/B[17:0] is not pipelined. Pipelining DSP48 input will improve performance.
-WARNING: [DRC 23-20] Rule violation (DPIP-1) Input pipelining - DSP kinpira_i/kinpira_0/inst/renkon0/core1/conv/tree/r_pro5_reg input kinpira_i/kinpira_0/inst/renkon0/core1/conv/tree/r_pro5_reg/A[29:0] is not pipelined. Pipelining DSP48 input will improve performance.
-WARNING: [DRC 23-20] Rule violation (DPIP-1) Input pipelining - DSP kinpira_i/kinpira_0/inst/renkon0/core1/conv/tree/r_pro5_reg input kinpira_i/kinpira_0/inst/renkon0/core1/conv/tree/r_pro5_reg/B[17:0] is not pipelined. Pipelining DSP48 input will improve performance.
-WARNING: [DRC 23-20] Rule violation (DPIP-1) Input pipelining - DSP kinpira_i/kinpira_0/inst/renkon0/core1/conv/tree/r_pro6_reg input kinpira_i/kinpira_0/inst/renkon0/core1/conv/tree/r_pro6_reg/A[29:0] is not pipelined. Pipelining DSP48 input will improve performance.
-WARNING: [DRC 23-20] Rule violation (DPIP-1) Input pipelining - DSP kinpira_i/kinpira_0/inst/renkon0/core1/conv/tree/r_pro6_reg input kinpira_i/kinpira_0/inst/renkon0/core1/conv/tree/r_pro6_reg/B[17:0] is not pipelined. Pipelining DSP48 input will improve performance.
-WARNING: [DRC 23-20] Rule violation (DPIP-1) Input pipelining - DSP kinpira_i/kinpira_0/inst/renkon0/core1/conv/tree/r_pro7_reg input kinpira_i/kinpira_0/inst/renkon0/core1/conv/tree/r_pro7_reg/A[29:0] is not pipelined. Pipelining DSP48 input will improve performance.
-WARNING: [DRC 23-20] Rule violation (DPIP-1) Input pipelining - DSP kinpira_i/kinpira_0/inst/renkon0/core1/conv/tree/r_pro7_reg input kinpira_i/kinpira_0/inst/renkon0/core1/conv/tree/r_pro7_reg/B[17:0] is not pipelined. Pipelining DSP48 input will improve performance.
-WARNING: [DRC 23-20] Rule violation (DPIP-1) Input pipelining - DSP kinpira_i/kinpira_0/inst/renkon0/core1/conv/tree/r_pro8_reg input kinpira_i/kinpira_0/inst/renkon0/core1/conv/tree/r_pro8_reg/A[29:0] is not pipelined. Pipelining DSP48 input will improve performance.
-WARNING: [DRC 23-20] Rule violation (DPIP-1) Input pipelining - DSP kinpira_i/kinpira_0/inst/renkon0/core1/conv/tree/r_pro8_reg input kinpira_i/kinpira_0/inst/renkon0/core1/conv/tree/r_pro8_reg/B[17:0] is not pipelined. Pipelining DSP48 input will improve performance.
-WARNING: [DRC 23-20] Rule violation (DPIP-1) Input pipelining - DSP kinpira_i/kinpira_0/inst/renkon0/core1/conv/tree/r_pro9_reg input kinpira_i/kinpira_0/inst/renkon0/core1/conv/tree/r_pro9_reg/A[29:0] is not pipelined. Pipelining DSP48 input will improve performance.
+INFO: [DRC 23-27] Running DRC with 4 threads
+WARNING: [DRC 23-20] Rule violation (DPIP-1) Input pipelining - DSP design_1_i/kinpira_v1_0_0/inst/renkon0/core0/conv/tree/r_pro0_reg input design_1_i/kinpira_v1_0_0/inst/renkon0/core0/conv/tree/r_pro0_reg/A[29:0] is not pipelined. Pipelining DSP48 input will improve performance.
+WARNING: [DRC 23-20] Rule violation (DPIP-1) Input pipelining - DSP design_1_i/kinpira_v1_0_0/inst/renkon0/core0/conv/tree/r_pro0_reg input design_1_i/kinpira_v1_0_0/inst/renkon0/core0/conv/tree/r_pro0_reg/B[17:0] is not pipelined. Pipelining DSP48 input will improve performance.
+WARNING: [DRC 23-20] Rule violation (DPIP-1) Input pipelining - DSP design_1_i/kinpira_v1_0_0/inst/renkon0/core0/conv/tree/r_pro10_reg input design_1_i/kinpira_v1_0_0/inst/renkon0/core0/conv/tree/r_pro10_reg/A[29:0] is not pipelined. Pipelining DSP48 input will improve performance.
+WARNING: [DRC 23-20] Rule violation (DPIP-1) Input pipelining - DSP design_1_i/kinpira_v1_0_0/inst/renkon0/core0/conv/tree/r_pro10_reg input design_1_i/kinpira_v1_0_0/inst/renkon0/core0/conv/tree/r_pro10_reg/B[17:0] is not pipelined. Pipelining DSP48 input will improve performance.
+WARNING: [DRC 23-20] Rule violation (DPIP-1) Input pipelining - DSP design_1_i/kinpira_v1_0_0/inst/renkon0/core0/conv/tree/r_pro11_reg input design_1_i/kinpira_v1_0_0/inst/renkon0/core0/conv/tree/r_pro11_reg/A[29:0] is not pipelined. Pipelining DSP48 input will improve performance.
+WARNING: [DRC 23-20] Rule violation (DPIP-1) Input pipelining - DSP design_1_i/kinpira_v1_0_0/inst/renkon0/core0/conv/tree/r_pro11_reg input design_1_i/kinpira_v1_0_0/inst/renkon0/core0/conv/tree/r_pro11_reg/B[17:0] is not pipelined. Pipelining DSP48 input will improve performance.
+WARNING: [DRC 23-20] Rule violation (DPIP-1) Input pipelining - DSP design_1_i/kinpira_v1_0_0/inst/renkon0/core0/conv/tree/r_pro12_reg input design_1_i/kinpira_v1_0_0/inst/renkon0/core0/conv/tree/r_pro12_reg/A[29:0] is not pipelined. Pipelining DSP48 input will improve performance.
+WARNING: [DRC 23-20] Rule violation (DPIP-1) Input pipelining - DSP design_1_i/kinpira_v1_0_0/inst/renkon0/core0/conv/tree/r_pro12_reg input design_1_i/kinpira_v1_0_0/inst/renkon0/core0/conv/tree/r_pro12_reg/B[17:0] is not pipelined. Pipelining DSP48 input will improve performance.
+WARNING: [DRC 23-20] Rule violation (DPIP-1) Input pipelining - DSP design_1_i/kinpira_v1_0_0/inst/renkon0/core0/conv/tree/r_pro13_reg input design_1_i/kinpira_v1_0_0/inst/renkon0/core0/conv/tree/r_pro13_reg/A[29:0] is not pipelined. Pipelining DSP48 input will improve performance.
+WARNING: [DRC 23-20] Rule violation (DPIP-1) Input pipelining - DSP design_1_i/kinpira_v1_0_0/inst/renkon0/core0/conv/tree/r_pro13_reg input design_1_i/kinpira_v1_0_0/inst/renkon0/core0/conv/tree/r_pro13_reg/B[17:0] is not pipelined. Pipelining DSP48 input will improve performance.
+WARNING: [DRC 23-20] Rule violation (DPIP-1) Input pipelining - DSP design_1_i/kinpira_v1_0_0/inst/renkon0/core0/conv/tree/r_pro14_reg input design_1_i/kinpira_v1_0_0/inst/renkon0/core0/conv/tree/r_pro14_reg/A[29:0] is not pipelined. Pipelining DSP48 input will improve performance.
+WARNING: [DRC 23-20] Rule violation (DPIP-1) Input pipelining - DSP design_1_i/kinpira_v1_0_0/inst/renkon0/core0/conv/tree/r_pro14_reg input design_1_i/kinpira_v1_0_0/inst/renkon0/core0/conv/tree/r_pro14_reg/B[17:0] is not pipelined. Pipelining DSP48 input will improve performance.
+WARNING: [DRC 23-20] Rule violation (DPIP-1) Input pipelining - DSP design_1_i/kinpira_v1_0_0/inst/renkon0/core0/conv/tree/r_pro15_reg input design_1_i/kinpira_v1_0_0/inst/renkon0/core0/conv/tree/r_pro15_reg/A[29:0] is not pipelined. Pipelining DSP48 input will improve performance.
+WARNING: [DRC 23-20] Rule violation (DPIP-1) Input pipelining - DSP design_1_i/kinpira_v1_0_0/inst/renkon0/core0/conv/tree/r_pro15_reg input design_1_i/kinpira_v1_0_0/inst/renkon0/core0/conv/tree/r_pro15_reg/B[17:0] is not pipelined. Pipelining DSP48 input will improve performance.
+WARNING: [DRC 23-20] Rule violation (DPIP-1) Input pipelining - DSP design_1_i/kinpira_v1_0_0/inst/renkon0/core0/conv/tree/r_pro16_reg input design_1_i/kinpira_v1_0_0/inst/renkon0/core0/conv/tree/r_pro16_reg/A[29:0] is not pipelined. Pipelining DSP48 input will improve performance.
+WARNING: [DRC 23-20] Rule violation (DPIP-1) Input pipelining - DSP design_1_i/kinpira_v1_0_0/inst/renkon0/core0/conv/tree/r_pro16_reg input design_1_i/kinpira_v1_0_0/inst/renkon0/core0/conv/tree/r_pro16_reg/B[17:0] is not pipelined. Pipelining DSP48 input will improve performance.
+WARNING: [DRC 23-20] Rule violation (DPIP-1) Input pipelining - DSP design_1_i/kinpira_v1_0_0/inst/renkon0/core0/conv/tree/r_pro17_reg input design_1_i/kinpira_v1_0_0/inst/renkon0/core0/conv/tree/r_pro17_reg/A[29:0] is not pipelined. Pipelining DSP48 input will improve performance.
+WARNING: [DRC 23-20] Rule violation (DPIP-1) Input pipelining - DSP design_1_i/kinpira_v1_0_0/inst/renkon0/core0/conv/tree/r_pro17_reg input design_1_i/kinpira_v1_0_0/inst/renkon0/core0/conv/tree/r_pro17_reg/B[17:0] is not pipelined. Pipelining DSP48 input will improve performance.
+WARNING: [DRC 23-20] Rule violation (DPIP-1) Input pipelining - DSP design_1_i/kinpira_v1_0_0/inst/renkon0/core0/conv/tree/r_pro18_reg input design_1_i/kinpira_v1_0_0/inst/renkon0/core0/conv/tree/r_pro18_reg/A[29:0] is not pipelined. Pipelining DSP48 input will improve performance.
+WARNING: [DRC 23-20] Rule violation (DPIP-1) Input pipelining - DSP design_1_i/kinpira_v1_0_0/inst/renkon0/core0/conv/tree/r_pro18_reg input design_1_i/kinpira_v1_0_0/inst/renkon0/core0/conv/tree/r_pro18_reg/B[17:0] is not pipelined. Pipelining DSP48 input will improve performance.
+WARNING: [DRC 23-20] Rule violation (DPIP-1) Input pipelining - DSP design_1_i/kinpira_v1_0_0/inst/renkon0/core0/conv/tree/r_pro19_reg input design_1_i/kinpira_v1_0_0/inst/renkon0/core0/conv/tree/r_pro19_reg/A[29:0] is not pipelined. Pipelining DSP48 input will improve performance.
+WARNING: [DRC 23-20] Rule violation (DPIP-1) Input pipelining - DSP design_1_i/kinpira_v1_0_0/inst/renkon0/core0/conv/tree/r_pro19_reg input design_1_i/kinpira_v1_0_0/inst/renkon0/core0/conv/tree/r_pro19_reg/B[17:0] is not pipelined. Pipelining DSP48 input will improve performance.
+WARNING: [DRC 23-20] Rule violation (DPIP-1) Input pipelining - DSP design_1_i/kinpira_v1_0_0/inst/renkon0/core0/conv/tree/r_pro1_reg input design_1_i/kinpira_v1_0_0/inst/renkon0/core0/conv/tree/r_pro1_reg/A[29:0] is not pipelined. Pipelining DSP48 input will improve performance.
+WARNING: [DRC 23-20] Rule violation (DPIP-1) Input pipelining - DSP design_1_i/kinpira_v1_0_0/inst/renkon0/core0/conv/tree/r_pro1_reg input design_1_i/kinpira_v1_0_0/inst/renkon0/core0/conv/tree/r_pro1_reg/B[17:0] is not pipelined. Pipelining DSP48 input will improve performance.
+WARNING: [DRC 23-20] Rule violation (DPIP-1) Input pipelining - DSP design_1_i/kinpira_v1_0_0/inst/renkon0/core0/conv/tree/r_pro20_reg input design_1_i/kinpira_v1_0_0/inst/renkon0/core0/conv/tree/r_pro20_reg/A[29:0] is not pipelined. Pipelining DSP48 input will improve performance.
+WARNING: [DRC 23-20] Rule violation (DPIP-1) Input pipelining - DSP design_1_i/kinpira_v1_0_0/inst/renkon0/core0/conv/tree/r_pro20_reg input design_1_i/kinpira_v1_0_0/inst/renkon0/core0/conv/tree/r_pro20_reg/B[17:0] is not pipelined. Pipelining DSP48 input will improve performance.
+WARNING: [DRC 23-20] Rule violation (DPIP-1) Input pipelining - DSP design_1_i/kinpira_v1_0_0/inst/renkon0/core0/conv/tree/r_pro21_reg input design_1_i/kinpira_v1_0_0/inst/renkon0/core0/conv/tree/r_pro21_reg/A[29:0] is not pipelined. Pipelining DSP48 input will improve performance.
+WARNING: [DRC 23-20] Rule violation (DPIP-1) Input pipelining - DSP design_1_i/kinpira_v1_0_0/inst/renkon0/core0/conv/tree/r_pro21_reg input design_1_i/kinpira_v1_0_0/inst/renkon0/core0/conv/tree/r_pro21_reg/B[17:0] is not pipelined. Pipelining DSP48 input will improve performance.
+WARNING: [DRC 23-20] Rule violation (DPIP-1) Input pipelining - DSP design_1_i/kinpira_v1_0_0/inst/renkon0/core0/conv/tree/r_pro22_reg input design_1_i/kinpira_v1_0_0/inst/renkon0/core0/conv/tree/r_pro22_reg/A[29:0] is not pipelined. Pipelining DSP48 input will improve performance.
+WARNING: [DRC 23-20] Rule violation (DPIP-1) Input pipelining - DSP design_1_i/kinpira_v1_0_0/inst/renkon0/core0/conv/tree/r_pro22_reg input design_1_i/kinpira_v1_0_0/inst/renkon0/core0/conv/tree/r_pro22_reg/B[17:0] is not pipelined. Pipelining DSP48 input will improve performance.
+WARNING: [DRC 23-20] Rule violation (DPIP-1) Input pipelining - DSP design_1_i/kinpira_v1_0_0/inst/renkon0/core0/conv/tree/r_pro23_reg input design_1_i/kinpira_v1_0_0/inst/renkon0/core0/conv/tree/r_pro23_reg/A[29:0] is not pipelined. Pipelining DSP48 input will improve performance.
+WARNING: [DRC 23-20] Rule violation (DPIP-1) Input pipelining - DSP design_1_i/kinpira_v1_0_0/inst/renkon0/core0/conv/tree/r_pro23_reg input design_1_i/kinpira_v1_0_0/inst/renkon0/core0/conv/tree/r_pro23_reg/B[17:0] is not pipelined. Pipelining DSP48 input will improve performance.
+WARNING: [DRC 23-20] Rule violation (DPIP-1) Input pipelining - DSP design_1_i/kinpira_v1_0_0/inst/renkon0/core0/conv/tree/r_pro24_reg input design_1_i/kinpira_v1_0_0/inst/renkon0/core0/conv/tree/r_pro24_reg/A[29:0] is not pipelined. Pipelining DSP48 input will improve performance.
+WARNING: [DRC 23-20] Rule violation (DPIP-1) Input pipelining - DSP design_1_i/kinpira_v1_0_0/inst/renkon0/core0/conv/tree/r_pro24_reg input design_1_i/kinpira_v1_0_0/inst/renkon0/core0/conv/tree/r_pro24_reg/B[17:0] is not pipelined. Pipelining DSP48 input will improve performance.
+WARNING: [DRC 23-20] Rule violation (DPIP-1) Input pipelining - DSP design_1_i/kinpira_v1_0_0/inst/renkon0/core0/conv/tree/r_pro2_reg input design_1_i/kinpira_v1_0_0/inst/renkon0/core0/conv/tree/r_pro2_reg/A[29:0] is not pipelined. Pipelining DSP48 input will improve performance.
+WARNING: [DRC 23-20] Rule violation (DPIP-1) Input pipelining - DSP design_1_i/kinpira_v1_0_0/inst/renkon0/core0/conv/tree/r_pro2_reg input design_1_i/kinpira_v1_0_0/inst/renkon0/core0/conv/tree/r_pro2_reg/B[17:0] is not pipelined. Pipelining DSP48 input will improve performance.
+WARNING: [DRC 23-20] Rule violation (DPIP-1) Input pipelining - DSP design_1_i/kinpira_v1_0_0/inst/renkon0/core0/conv/tree/r_pro3_reg input design_1_i/kinpira_v1_0_0/inst/renkon0/core0/conv/tree/r_pro3_reg/A[29:0] is not pipelined. Pipelining DSP48 input will improve performance.
+WARNING: [DRC 23-20] Rule violation (DPIP-1) Input pipelining - DSP design_1_i/kinpira_v1_0_0/inst/renkon0/core0/conv/tree/r_pro3_reg input design_1_i/kinpira_v1_0_0/inst/renkon0/core0/conv/tree/r_pro3_reg/B[17:0] is not pipelined. Pipelining DSP48 input will improve performance.
+WARNING: [DRC 23-20] Rule violation (DPIP-1) Input pipelining - DSP design_1_i/kinpira_v1_0_0/inst/renkon0/core0/conv/tree/r_pro4_reg input design_1_i/kinpira_v1_0_0/inst/renkon0/core0/conv/tree/r_pro4_reg/A[29:0] is not pipelined. Pipelining DSP48 input will improve performance.
+WARNING: [DRC 23-20] Rule violation (DPIP-1) Input pipelining - DSP design_1_i/kinpira_v1_0_0/inst/renkon0/core0/conv/tree/r_pro4_reg input design_1_i/kinpira_v1_0_0/inst/renkon0/core0/conv/tree/r_pro4_reg/B[17:0] is not pipelined. Pipelining DSP48 input will improve performance.
+WARNING: [DRC 23-20] Rule violation (DPIP-1) Input pipelining - DSP design_1_i/kinpira_v1_0_0/inst/renkon0/core0/conv/tree/r_pro5_reg input design_1_i/kinpira_v1_0_0/inst/renkon0/core0/conv/tree/r_pro5_reg/A[29:0] is not pipelined. Pipelining DSP48 input will improve performance.
+WARNING: [DRC 23-20] Rule violation (DPIP-1) Input pipelining - DSP design_1_i/kinpira_v1_0_0/inst/renkon0/core0/conv/tree/r_pro5_reg input design_1_i/kinpira_v1_0_0/inst/renkon0/core0/conv/tree/r_pro5_reg/B[17:0] is not pipelined. Pipelining DSP48 input will improve performance.
+WARNING: [DRC 23-20] Rule violation (DPIP-1) Input pipelining - DSP design_1_i/kinpira_v1_0_0/inst/renkon0/core0/conv/tree/r_pro6_reg input design_1_i/kinpira_v1_0_0/inst/renkon0/core0/conv/tree/r_pro6_reg/A[29:0] is not pipelined. Pipelining DSP48 input will improve performance.
+WARNING: [DRC 23-20] Rule violation (DPIP-1) Input pipelining - DSP design_1_i/kinpira_v1_0_0/inst/renkon0/core0/conv/tree/r_pro6_reg input design_1_i/kinpira_v1_0_0/inst/renkon0/core0/conv/tree/r_pro6_reg/B[17:0] is not pipelined. Pipelining DSP48 input will improve performance.
+WARNING: [DRC 23-20] Rule violation (DPIP-1) Input pipelining - DSP design_1_i/kinpira_v1_0_0/inst/renkon0/core0/conv/tree/r_pro7_reg input design_1_i/kinpira_v1_0_0/inst/renkon0/core0/conv/tree/r_pro7_reg/A[29:0] is not pipelined. Pipelining DSP48 input will improve performance.
+WARNING: [DRC 23-20] Rule violation (DPIP-1) Input pipelining - DSP design_1_i/kinpira_v1_0_0/inst/renkon0/core0/conv/tree/r_pro7_reg input design_1_i/kinpira_v1_0_0/inst/renkon0/core0/conv/tree/r_pro7_reg/B[17:0] is not pipelined. Pipelining DSP48 input will improve performance.
+WARNING: [DRC 23-20] Rule violation (DPIP-1) Input pipelining - DSP design_1_i/kinpira_v1_0_0/inst/renkon0/core0/conv/tree/r_pro8_reg input design_1_i/kinpira_v1_0_0/inst/renkon0/core0/conv/tree/r_pro8_reg/A[29:0] is not pipelined. Pipelining DSP48 input will improve performance.
+WARNING: [DRC 23-20] Rule violation (DPIP-1) Input pipelining - DSP design_1_i/kinpira_v1_0_0/inst/renkon0/core0/conv/tree/r_pro8_reg input design_1_i/kinpira_v1_0_0/inst/renkon0/core0/conv/tree/r_pro8_reg/B[17:0] is not pipelined. Pipelining DSP48 input will improve performance.
+WARNING: [DRC 23-20] Rule violation (DPIP-1) Input pipelining - DSP design_1_i/kinpira_v1_0_0/inst/renkon0/core0/conv/tree/r_pro9_reg input design_1_i/kinpira_v1_0_0/inst/renkon0/core0/conv/tree/r_pro9_reg/A[29:0] is not pipelined. Pipelining DSP48 input will improve performance.
+WARNING: [DRC 23-20] Rule violation (DPIP-1) Input pipelining - DSP design_1_i/kinpira_v1_0_0/inst/renkon0/core0/conv/tree/r_pro9_reg input design_1_i/kinpira_v1_0_0/inst/renkon0/core0/conv/tree/r_pro9_reg/B[17:0] is not pipelined. Pipelining DSP48 input will improve performance.
+WARNING: [DRC 23-20] Rule violation (DPIP-1) Input pipelining - DSP design_1_i/kinpira_v1_0_0/inst/renkon0/core1/conv/tree/r_pro0_reg input design_1_i/kinpira_v1_0_0/inst/renkon0/core1/conv/tree/r_pro0_reg/A[29:0] is not pipelined. Pipelining DSP48 input will improve performance.
+WARNING: [DRC 23-20] Rule violation (DPIP-1) Input pipelining - DSP design_1_i/kinpira_v1_0_0/inst/renkon0/core1/conv/tree/r_pro0_reg input design_1_i/kinpira_v1_0_0/inst/renkon0/core1/conv/tree/r_pro0_reg/B[17:0] is not pipelined. Pipelining DSP48 input will improve performance.
+WARNING: [DRC 23-20] Rule violation (DPIP-1) Input pipelining - DSP design_1_i/kinpira_v1_0_0/inst/renkon0/core1/conv/tree/r_pro10_reg input design_1_i/kinpira_v1_0_0/inst/renkon0/core1/conv/tree/r_pro10_reg/A[29:0] is not pipelined. Pipelining DSP48 input will improve performance.
+WARNING: [DRC 23-20] Rule violation (DPIP-1) Input pipelining - DSP design_1_i/kinpira_v1_0_0/inst/renkon0/core1/conv/tree/r_pro10_reg input design_1_i/kinpira_v1_0_0/inst/renkon0/core1/conv/tree/r_pro10_reg/B[17:0] is not pipelined. Pipelining DSP48 input will improve performance.
+WARNING: [DRC 23-20] Rule violation (DPIP-1) Input pipelining - DSP design_1_i/kinpira_v1_0_0/inst/renkon0/core1/conv/tree/r_pro11_reg input design_1_i/kinpira_v1_0_0/inst/renkon0/core1/conv/tree/r_pro11_reg/A[29:0] is not pipelined. Pipelining DSP48 input will improve performance.
+WARNING: [DRC 23-20] Rule violation (DPIP-1) Input pipelining - DSP design_1_i/kinpira_v1_0_0/inst/renkon0/core1/conv/tree/r_pro11_reg input design_1_i/kinpira_v1_0_0/inst/renkon0/core1/conv/tree/r_pro11_reg/B[17:0] is not pipelined. Pipelining DSP48 input will improve performance.
+WARNING: [DRC 23-20] Rule violation (DPIP-1) Input pipelining - DSP design_1_i/kinpira_v1_0_0/inst/renkon0/core1/conv/tree/r_pro12_reg input design_1_i/kinpira_v1_0_0/inst/renkon0/core1/conv/tree/r_pro12_reg/A[29:0] is not pipelined. Pipelining DSP48 input will improve performance.
+WARNING: [DRC 23-20] Rule violation (DPIP-1) Input pipelining - DSP design_1_i/kinpira_v1_0_0/inst/renkon0/core1/conv/tree/r_pro12_reg input design_1_i/kinpira_v1_0_0/inst/renkon0/core1/conv/tree/r_pro12_reg/B[17:0] is not pipelined. Pipelining DSP48 input will improve performance.
+WARNING: [DRC 23-20] Rule violation (DPIP-1) Input pipelining - DSP design_1_i/kinpira_v1_0_0/inst/renkon0/core1/conv/tree/r_pro13_reg input design_1_i/kinpira_v1_0_0/inst/renkon0/core1/conv/tree/r_pro13_reg/A[29:0] is not pipelined. Pipelining DSP48 input will improve performance.
+WARNING: [DRC 23-20] Rule violation (DPIP-1) Input pipelining - DSP design_1_i/kinpira_v1_0_0/inst/renkon0/core1/conv/tree/r_pro13_reg input design_1_i/kinpira_v1_0_0/inst/renkon0/core1/conv/tree/r_pro13_reg/B[17:0] is not pipelined. Pipelining DSP48 input will improve performance.
+WARNING: [DRC 23-20] Rule violation (DPIP-1) Input pipelining - DSP design_1_i/kinpira_v1_0_0/inst/renkon0/core1/conv/tree/r_pro14_reg input design_1_i/kinpira_v1_0_0/inst/renkon0/core1/conv/tree/r_pro14_reg/A[29:0] is not pipelined. Pipelining DSP48 input will improve performance.
+WARNING: [DRC 23-20] Rule violation (DPIP-1) Input pipelining - DSP design_1_i/kinpira_v1_0_0/inst/renkon0/core1/conv/tree/r_pro14_reg input design_1_i/kinpira_v1_0_0/inst/renkon0/core1/conv/tree/r_pro14_reg/B[17:0] is not pipelined. Pipelining DSP48 input will improve performance.
+WARNING: [DRC 23-20] Rule violation (DPIP-1) Input pipelining - DSP design_1_i/kinpira_v1_0_0/inst/renkon0/core1/conv/tree/r_pro15_reg input design_1_i/kinpira_v1_0_0/inst/renkon0/core1/conv/tree/r_pro15_reg/A[29:0] is not pipelined. Pipelining DSP48 input will improve performance.
+WARNING: [DRC 23-20] Rule violation (DPIP-1) Input pipelining - DSP design_1_i/kinpira_v1_0_0/inst/renkon0/core1/conv/tree/r_pro15_reg input design_1_i/kinpira_v1_0_0/inst/renkon0/core1/conv/tree/r_pro15_reg/B[17:0] is not pipelined. Pipelining DSP48 input will improve performance.
+WARNING: [DRC 23-20] Rule violation (DPIP-1) Input pipelining - DSP design_1_i/kinpira_v1_0_0/inst/renkon0/core1/conv/tree/r_pro16_reg input design_1_i/kinpira_v1_0_0/inst/renkon0/core1/conv/tree/r_pro16_reg/A[29:0] is not pipelined. Pipelining DSP48 input will improve performance.
+WARNING: [DRC 23-20] Rule violation (DPIP-1) Input pipelining - DSP design_1_i/kinpira_v1_0_0/inst/renkon0/core1/conv/tree/r_pro16_reg input design_1_i/kinpira_v1_0_0/inst/renkon0/core1/conv/tree/r_pro16_reg/B[17:0] is not pipelined. Pipelining DSP48 input will improve performance.
+WARNING: [DRC 23-20] Rule violation (DPIP-1) Input pipelining - DSP design_1_i/kinpira_v1_0_0/inst/renkon0/core1/conv/tree/r_pro17_reg input design_1_i/kinpira_v1_0_0/inst/renkon0/core1/conv/tree/r_pro17_reg/A[29:0] is not pipelined. Pipelining DSP48 input will improve performance.
+WARNING: [DRC 23-20] Rule violation (DPIP-1) Input pipelining - DSP design_1_i/kinpira_v1_0_0/inst/renkon0/core1/conv/tree/r_pro17_reg input design_1_i/kinpira_v1_0_0/inst/renkon0/core1/conv/tree/r_pro17_reg/B[17:0] is not pipelined. Pipelining DSP48 input will improve performance.
+WARNING: [DRC 23-20] Rule violation (DPIP-1) Input pipelining - DSP design_1_i/kinpira_v1_0_0/inst/renkon0/core1/conv/tree/r_pro18_reg input design_1_i/kinpira_v1_0_0/inst/renkon0/core1/conv/tree/r_pro18_reg/A[29:0] is not pipelined. Pipelining DSP48 input will improve performance.
+WARNING: [DRC 23-20] Rule violation (DPIP-1) Input pipelining - DSP design_1_i/kinpira_v1_0_0/inst/renkon0/core1/conv/tree/r_pro18_reg input design_1_i/kinpira_v1_0_0/inst/renkon0/core1/conv/tree/r_pro18_reg/B[17:0] is not pipelined. Pipelining DSP48 input will improve performance.
+WARNING: [DRC 23-20] Rule violation (DPIP-1) Input pipelining - DSP design_1_i/kinpira_v1_0_0/inst/renkon0/core1/conv/tree/r_pro19_reg input design_1_i/kinpira_v1_0_0/inst/renkon0/core1/conv/tree/r_pro19_reg/A[29:0] is not pipelined. Pipelining DSP48 input will improve performance.
+WARNING: [DRC 23-20] Rule violation (DPIP-1) Input pipelining - DSP design_1_i/kinpira_v1_0_0/inst/renkon0/core1/conv/tree/r_pro19_reg input design_1_i/kinpira_v1_0_0/inst/renkon0/core1/conv/tree/r_pro19_reg/B[17:0] is not pipelined. Pipelining DSP48 input will improve performance.
+WARNING: [DRC 23-20] Rule violation (DPIP-1) Input pipelining - DSP design_1_i/kinpira_v1_0_0/inst/renkon0/core1/conv/tree/r_pro1_reg input design_1_i/kinpira_v1_0_0/inst/renkon0/core1/conv/tree/r_pro1_reg/A[29:0] is not pipelined. Pipelining DSP48 input will improve performance.
+WARNING: [DRC 23-20] Rule violation (DPIP-1) Input pipelining - DSP design_1_i/kinpira_v1_0_0/inst/renkon0/core1/conv/tree/r_pro1_reg input design_1_i/kinpira_v1_0_0/inst/renkon0/core1/conv/tree/r_pro1_reg/B[17:0] is not pipelined. Pipelining DSP48 input will improve performance.
+WARNING: [DRC 23-20] Rule violation (DPIP-1) Input pipelining - DSP design_1_i/kinpira_v1_0_0/inst/renkon0/core1/conv/tree/r_pro20_reg input design_1_i/kinpira_v1_0_0/inst/renkon0/core1/conv/tree/r_pro20_reg/A[29:0] is not pipelined. Pipelining DSP48 input will improve performance.
+WARNING: [DRC 23-20] Rule violation (DPIP-1) Input pipelining - DSP design_1_i/kinpira_v1_0_0/inst/renkon0/core1/conv/tree/r_pro20_reg input design_1_i/kinpira_v1_0_0/inst/renkon0/core1/conv/tree/r_pro20_reg/B[17:0] is not pipelined. Pipelining DSP48 input will improve performance.
+WARNING: [DRC 23-20] Rule violation (DPIP-1) Input pipelining - DSP design_1_i/kinpira_v1_0_0/inst/renkon0/core1/conv/tree/r_pro21_reg input design_1_i/kinpira_v1_0_0/inst/renkon0/core1/conv/tree/r_pro21_reg/A[29:0] is not pipelined. Pipelining DSP48 input will improve performance.
+WARNING: [DRC 23-20] Rule violation (DPIP-1) Input pipelining - DSP design_1_i/kinpira_v1_0_0/inst/renkon0/core1/conv/tree/r_pro21_reg input design_1_i/kinpira_v1_0_0/inst/renkon0/core1/conv/tree/r_pro21_reg/B[17:0] is not pipelined. Pipelining DSP48 input will improve performance.
+WARNING: [DRC 23-20] Rule violation (DPIP-1) Input pipelining - DSP design_1_i/kinpira_v1_0_0/inst/renkon0/core1/conv/tree/r_pro22_reg input design_1_i/kinpira_v1_0_0/inst/renkon0/core1/conv/tree/r_pro22_reg/A[29:0] is not pipelined. Pipelining DSP48 input will improve performance.
+WARNING: [DRC 23-20] Rule violation (DPIP-1) Input pipelining - DSP design_1_i/kinpira_v1_0_0/inst/renkon0/core1/conv/tree/r_pro22_reg input design_1_i/kinpira_v1_0_0/inst/renkon0/core1/conv/tree/r_pro22_reg/B[17:0] is not pipelined. Pipelining DSP48 input will improve performance.
+WARNING: [DRC 23-20] Rule violation (DPIP-1) Input pipelining - DSP design_1_i/kinpira_v1_0_0/inst/renkon0/core1/conv/tree/r_pro23_reg input design_1_i/kinpira_v1_0_0/inst/renkon0/core1/conv/tree/r_pro23_reg/A[29:0] is not pipelined. Pipelining DSP48 input will improve performance.
+WARNING: [DRC 23-20] Rule violation (DPIP-1) Input pipelining - DSP design_1_i/kinpira_v1_0_0/inst/renkon0/core1/conv/tree/r_pro23_reg input design_1_i/kinpira_v1_0_0/inst/renkon0/core1/conv/tree/r_pro23_reg/B[17:0] is not pipelined. Pipelining DSP48 input will improve performance.
+WARNING: [DRC 23-20] Rule violation (DPIP-1) Input pipelining - DSP design_1_i/kinpira_v1_0_0/inst/renkon0/core1/conv/tree/r_pro24_reg input design_1_i/kinpira_v1_0_0/inst/renkon0/core1/conv/tree/r_pro24_reg/A[29:0] is not pipelined. Pipelining DSP48 input will improve performance.
+WARNING: [DRC 23-20] Rule violation (DPIP-1) Input pipelining - DSP design_1_i/kinpira_v1_0_0/inst/renkon0/core1/conv/tree/r_pro24_reg input design_1_i/kinpira_v1_0_0/inst/renkon0/core1/conv/tree/r_pro24_reg/B[17:0] is not pipelined. Pipelining DSP48 input will improve performance.
+WARNING: [DRC 23-20] Rule violation (DPIP-1) Input pipelining - DSP design_1_i/kinpira_v1_0_0/inst/renkon0/core1/conv/tree/r_pro2_reg input design_1_i/kinpira_v1_0_0/inst/renkon0/core1/conv/tree/r_pro2_reg/A[29:0] is not pipelined. Pipelining DSP48 input will improve performance.
+WARNING: [DRC 23-20] Rule violation (DPIP-1) Input pipelining - DSP design_1_i/kinpira_v1_0_0/inst/renkon0/core1/conv/tree/r_pro2_reg input design_1_i/kinpira_v1_0_0/inst/renkon0/core1/conv/tree/r_pro2_reg/B[17:0] is not pipelined. Pipelining DSP48 input will improve performance.
+WARNING: [DRC 23-20] Rule violation (DPIP-1) Input pipelining - DSP design_1_i/kinpira_v1_0_0/inst/renkon0/core1/conv/tree/r_pro3_reg input design_1_i/kinpira_v1_0_0/inst/renkon0/core1/conv/tree/r_pro3_reg/A[29:0] is not pipelined. Pipelining DSP48 input will improve performance.
+WARNING: [DRC 23-20] Rule violation (DPIP-1) Input pipelining - DSP design_1_i/kinpira_v1_0_0/inst/renkon0/core1/conv/tree/r_pro3_reg input design_1_i/kinpira_v1_0_0/inst/renkon0/core1/conv/tree/r_pro3_reg/B[17:0] is not pipelined. Pipelining DSP48 input will improve performance.
+WARNING: [DRC 23-20] Rule violation (DPIP-1) Input pipelining - DSP design_1_i/kinpira_v1_0_0/inst/renkon0/core1/conv/tree/r_pro4_reg input design_1_i/kinpira_v1_0_0/inst/renkon0/core1/conv/tree/r_pro4_reg/A[29:0] is not pipelined. Pipelining DSP48 input will improve performance.
+WARNING: [DRC 23-20] Rule violation (DPIP-1) Input pipelining - DSP design_1_i/kinpira_v1_0_0/inst/renkon0/core1/conv/tree/r_pro4_reg input design_1_i/kinpira_v1_0_0/inst/renkon0/core1/conv/tree/r_pro4_reg/B[17:0] is not pipelined. Pipelining DSP48 input will improve performance.
+WARNING: [DRC 23-20] Rule violation (DPIP-1) Input pipelining - DSP design_1_i/kinpira_v1_0_0/inst/renkon0/core1/conv/tree/r_pro5_reg input design_1_i/kinpira_v1_0_0/inst/renkon0/core1/conv/tree/r_pro5_reg/A[29:0] is not pipelined. Pipelining DSP48 input will improve performance.
+WARNING: [DRC 23-20] Rule violation (DPIP-1) Input pipelining - DSP design_1_i/kinpira_v1_0_0/inst/renkon0/core1/conv/tree/r_pro5_reg input design_1_i/kinpira_v1_0_0/inst/renkon0/core1/conv/tree/r_pro5_reg/B[17:0] is not pipelined. Pipelining DSP48 input will improve performance.
+WARNING: [DRC 23-20] Rule violation (DPIP-1) Input pipelining - DSP design_1_i/kinpira_v1_0_0/inst/renkon0/core1/conv/tree/r_pro6_reg input design_1_i/kinpira_v1_0_0/inst/renkon0/core1/conv/tree/r_pro6_reg/A[29:0] is not pipelined. Pipelining DSP48 input will improve performance.
+WARNING: [DRC 23-20] Rule violation (DPIP-1) Input pipelining - DSP design_1_i/kinpira_v1_0_0/inst/renkon0/core1/conv/tree/r_pro6_reg input design_1_i/kinpira_v1_0_0/inst/renkon0/core1/conv/tree/r_pro6_reg/B[17:0] is not pipelined. Pipelining DSP48 input will improve performance.
+WARNING: [DRC 23-20] Rule violation (DPIP-1) Input pipelining - DSP design_1_i/kinpira_v1_0_0/inst/renkon0/core1/conv/tree/r_pro7_reg input design_1_i/kinpira_v1_0_0/inst/renkon0/core1/conv/tree/r_pro7_reg/A[29:0] is not pipelined. Pipelining DSP48 input will improve performance.
+WARNING: [DRC 23-20] Rule violation (DPIP-1) Input pipelining - DSP design_1_i/kinpira_v1_0_0/inst/renkon0/core1/conv/tree/r_pro7_reg input design_1_i/kinpira_v1_0_0/inst/renkon0/core1/conv/tree/r_pro7_reg/B[17:0] is not pipelined. Pipelining DSP48 input will improve performance.
+WARNING: [DRC 23-20] Rule violation (DPIP-1) Input pipelining - DSP design_1_i/kinpira_v1_0_0/inst/renkon0/core1/conv/tree/r_pro8_reg input design_1_i/kinpira_v1_0_0/inst/renkon0/core1/conv/tree/r_pro8_reg/A[29:0] is not pipelined. Pipelining DSP48 input will improve performance.
+WARNING: [DRC 23-20] Rule violation (DPIP-1) Input pipelining - DSP design_1_i/kinpira_v1_0_0/inst/renkon0/core1/conv/tree/r_pro8_reg input design_1_i/kinpira_v1_0_0/inst/renkon0/core1/conv/tree/r_pro8_reg/B[17:0] is not pipelined. Pipelining DSP48 input will improve performance.
+WARNING: [DRC 23-20] Rule violation (DPIP-1) Input pipelining - DSP design_1_i/kinpira_v1_0_0/inst/renkon0/core1/conv/tree/r_pro9_reg input design_1_i/kinpira_v1_0_0/inst/renkon0/core1/conv/tree/r_pro9_reg/A[29:0] is not pipelined. Pipelining DSP48 input will improve performance.
+WARNING: [DRC 23-20] Rule violation (DPIP-1) Input pipelining - DSP design_1_i/kinpira_v1_0_0/inst/renkon0/core1/conv/tree/r_pro9_reg input design_1_i/kinpira_v1_0_0/inst/renkon0/core1/conv/tree/r_pro9_reg/B[17:0] is not pipelined. Pipelining DSP48 input will improve performance.
 INFO: [Common 17-14] Message 'DRC 23-20' appears 100 times and further instances of the messages will be disabled. Use the Tcl command set_msg_config to change the current settings.
-INFO: [Vivado 12-3199] DRC finished with 0 Errors, 10233 Warnings
+INFO: [Vivado 12-3199] DRC finished with 0 Errors, 10232 Warnings
 INFO: [Vivado 12-3200] Please refer to the DRC report (report_drc) for more information.
-INFO: [Designutils 20-2272] Running write_bitstream with 8 threads.
 Loading data files...
 Loading site data...
 Loading route data...
 Processing options...
 Creating bitmap...
 Creating bitstream...
-Writing bitstream ./kinpira_wrapper.bit...
+Writing bitstream ./design_1_wrapper.bit...
 INFO: [Vivado 12-1842] Bitgen Completed Successfully.
 INFO: [Project 1-120] WebTalk data collection is mandatory when using a WebPACK part without a full Vivado license. To see the specific WebTalk data collected for your design, open the usage_statistics_webtalk.html or usage_statistics_webtalk.xml file in the implementation directory.
-INFO: [Common 17-186] '/ram/home/work/takau/kinpira/zedboard/zedboard.runs/impl_1/usage_statistics_webtalk.xml' has been successfully sent to Xilinx on Thu Dec  1 22:37:41 2016. For additional details about this file, please refer to the WebTalk help file at /opt/xilinx/Vivado/2016.2/doc/webtalk_introduction.html.
+INFO: [Common 17-186] '/home/kaftulal/kinpira/zedboard/zedboard.runs/impl_1/usage_statistics_webtalk.xml' has been successfully sent to Xilinx on Sun Feb 26 11:13:00 2017. For additional details about this file, please refer to the WebTalk help file at /opt/xilinx/Vivado/2016.4/doc/webtalk_introduction.html.
 INFO: [Common 17-83] Releasing license: Implementation
-write_bitstream: Time (s): cpu = 00:01:01 ; elapsed = 00:00:25 . Memory (MB): peak = 2786.152 ; gain = 290.117 ; free physical = 1701 ; free virtual = 18037
-INFO: [Common 17-206] Exiting Vivado at Thu Dec  1 22:37:41 2016...
+16 Infos, 100 Warnings, 0 Critical Warnings and 0 Errors encountered.
+write_bitstream completed successfully
+write_bitstream: Time (s): cpu = 00:01:24 ; elapsed = 00:01:17 . Memory (MB): peak = 1896.629 ; gain = 495.504 ; free physical = 405 ; free virtual = 3722
+INFO: [Common 17-206] Exiting Vivado at Sun Feb 26 11:13:00 2017...

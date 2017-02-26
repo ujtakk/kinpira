@@ -7,20 +7,20 @@
 # 
 
 if [ -z "$PATH" ]; then
-  PATH=/opt/xilinx/SDK/2016.2/bin:/opt/xilinx/Vivado/2016.2/ids_lite/ISE/bin/lin64:/opt/xilinx/Vivado/2016.2/bin
+  PATH=/opt/xilinx/SDK/2016.4/bin:/opt/xilinx/Vivado/2016.4/ids_lite/ISE/bin/lin64:/opt/xilinx/Vivado/2016.4/bin
 else
-  PATH=/opt/xilinx/SDK/2016.2/bin:/opt/xilinx/Vivado/2016.2/ids_lite/ISE/bin/lin64:/opt/xilinx/Vivado/2016.2/bin:$PATH
+  PATH=/opt/xilinx/SDK/2016.4/bin:/opt/xilinx/Vivado/2016.4/ids_lite/ISE/bin/lin64:/opt/xilinx/Vivado/2016.4/bin:$PATH
 fi
 export PATH
 
 if [ -z "$LD_LIBRARY_PATH" ]; then
-  LD_LIBRARY_PATH=/opt/xilinx/Vivado/2016.2/ids_lite/ISE/lib/lin64
+  LD_LIBRARY_PATH=/opt/xilinx/Vivado/2016.4/ids_lite/ISE/lib/lin64
 else
-  LD_LIBRARY_PATH=/opt/xilinx/Vivado/2016.2/ids_lite/ISE/lib/lin64:$LD_LIBRARY_PATH
+  LD_LIBRARY_PATH=/opt/xilinx/Vivado/2016.4/ids_lite/ISE/lib/lin64:$LD_LIBRARY_PATH
 fi
 export LD_LIBRARY_PATH
 
-HD_PWD='/ram/home/work/takau/kinpira/zedboard/zedboard.runs/synth_1'
+HD_PWD='/home/kaftulal/kinpira/zedboard/zedboard.runs/synth_1'
 cd "$HD_PWD"
 
 HD_LOG=runme.log
@@ -36,4 +36,4 @@ EAStep()
      fi
 }
 
-EAStep vivado -log kinpira_wrapper.vds -m64 -mode batch -messageDb vivado.pb -notrace -source kinpira_wrapper.tcl
+EAStep vivado -log design_1_wrapper.vds -m64 -product Vivado -mode batch -messageDb vivado.pb -notrace -source design_1_wrapper.tcl

@@ -1,12 +1,12 @@
 #-----------------------------------------------------------
-# Vivado v2016.2 (64-bit)
-# SW Build 1577090 on Thu Jun  2 16:32:35 MDT 2016
-# IP Build 1577682 on Fri Jun  3 12:00:54 MDT 2016
-# Start of session at: Thu Dec  1 22:29:56 2016
-# Process ID: 27343
-# Current directory: /ram/home/work/takau/kinpira/zedboard/zedboard.runs/synth_1
-# Command line: vivado -log kinpira_wrapper.vds -mode batch -messageDb vivado.pb -notrace -source kinpira_wrapper.tcl
-# Log file: /ram/home/work/takau/kinpira/zedboard/zedboard.runs/synth_1/kinpira_wrapper.vds
-# Journal file: /ram/home/work/takau/kinpira/zedboard/zedboard.runs/synth_1/vivado.jou
+# Vivado v2016.4 (64-bit)
+# SW Build 1756540 on Mon Jan 23 19:11:19 MST 2017
+# IP Build 1755317 on Mon Jan 23 20:30:07 MST 2017
+# Start of session at: Sun Feb 26 10:57:32 2017
+# Process ID: 14050
+# Current directory: /home/kaftulal/kinpira/zedboard/zedboard.runs/synth_1
+# Command line: vivado -log design_1_wrapper.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source design_1_wrapper.tcl
+# Log file: /home/kaftulal/kinpira/zedboard/zedboard.runs/synth_1/design_1_wrapper.vds
+# Journal file: /home/kaftulal/kinpira/zedboard/zedboard.runs/synth_1/vivado.jou
 #-----------------------------------------------------------
-source kinpira_wrapper.tcl -notrace
+source design_1_wrapper.tcl -notrace

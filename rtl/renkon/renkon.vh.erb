@@ -3,6 +3,8 @@
 % load "renkon.rb"
 
 % if $dist
+% # to avoid parsing ninjin.vh in !$dist mode
+<%="`include"%> "ninjin.vh"
 % else
 parameter STEP    = <%= $step     %>;
 parameter DWIDTH  = <%= $dwidth   %>;

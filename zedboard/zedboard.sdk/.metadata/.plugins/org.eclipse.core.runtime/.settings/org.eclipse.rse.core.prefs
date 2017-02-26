@@ -1,4 +1,3 @@
-activeuserprofiles=Team;mai;menorca
 eclipse.preferences.version=1
-org.eclipse.rse.systemtype.local.systemType.defaultUserId=takau
-useridperkey=mai.Local\=takau;
+org.eclipse.rse.systemtype.local.systemType.defaultUserId=kaftulal
+useridperkey=london.Local\=kaftulal;

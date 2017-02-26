@@ -1,23 +1,50 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<GenRun Id="synth_1" LaunchPart="xc7z020clg484-1" LaunchTime="1480598995">
-  <File Type="RDS-PROPCONSTRS" Name="kinpira_wrapper_drc_synth.rpt"/>
-  <File Type="RDS-UTIL" Name="kinpira_wrapper_utilization_synth.rpt"/>
-  <File Type="RDS-RDS" Name="kinpira_wrapper.vds"/>
-  <File Type="VDS-TIMING-PB" Name="kinpira_wrapper_timing_summary_synth.pb"/>
-  <File Type="PA-TCL" Name="kinpira_wrapper.tcl"/>
-  <File Type="VDS-TIMINGSUMMARY" Name="kinpira_wrapper_timing_summary_synth.rpt"/>
-  <File Type="RDS-DCP" Name="kinpira_wrapper.dcp"/>
-  <File Type="RDS-UTIL-PB" Name="kinpira_wrapper_utilization_synth.pb"/>
+<GenRun Id="synth_1" LaunchPart="xc7z020clg484-1" LaunchTime="1488074251">
+  <File Type="VDS-TIMING-PB" Name="design_1_wrapper_timing_summary_synth.pb"/>
+  <File Type="VDS-TIMINGSUMMARY" Name="design_1_wrapper_timing_summary_synth.rpt"/>
+  <File Type="RDS-DCP" Name="design_1_wrapper.dcp"/>
+  <File Type="RDS-UTIL-PB" Name="design_1_wrapper_utilization_synth.pb"/>
+  <File Type="RDS-UTIL" Name="design_1_wrapper_utilization_synth.rpt"/>
+  <File Type="RDS-PROPCONSTRS" Name="design_1_wrapper_drc_synth.rpt"/>
+  <File Type="RDS-RDS" Name="design_1_wrapper.vds"/>
+  <File Type="PA-TCL" Name="design_1_wrapper.tcl"/>
   <FileSet Name="sources" Type="DesignSrcs" RelSrcDir="$PSRCDIR/sources_1">
     <Filter Type="Srcs"/>
-    <File Path="$PSRCDIR/sources_1/bd/kinpira/kinpira.bd">
+    <File Path="$PSRCDIR/sources_1/imports/dist/renkon.vh">
+      <FileInfo>
+        <Attr Name="IsGlobalInclude" Val="1"/>
+        <Attr Name="ImportPath" Val="$PPRDIR/../rtl/dist/renkon.vh"/>
+        <Attr Name="ImportTime" Val="1488056395"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/imports/dist/gobou.vh">
+      <FileInfo>
+        <Attr Name="IsGlobalInclude" Val="1"/>
+        <Attr Name="ImportPath" Val="$PPRDIR/../rtl/dist/gobou.vh"/>
+        <Attr Name="ImportTime" Val="1488056398"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/bd/design_1/design_1.bd">
       <FileInfo>
         <Attr Name="UsedIn" Val="synthesis"/>
         <Attr Name="UsedIn" Val="implementation"/>
         <Attr Name="UsedIn" Val="simulation"/>
       </FileInfo>
     </File>
-    <File Path="$PSRCDIR/sources_1/bd/kinpira/hdl/kinpira_wrapper.v">
+    <File Path="$PSRCDIR/sources_1/imports/dist/ninjin.vh">
+      <FileInfo>
+        <Attr Name="IsGlobalInclude" Val="1"/>
+        <Attr Name="ImportPath" Val="$PPRDIR/../rtl/dist/ninjin.vh"/>
+        <Attr Name="ImportTime" Val="1488070619"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/bd/design_1/hdl/design_1_wrapper.v">
       <FileInfo>
         <Attr Name="UsedIn" Val="synthesis"/>
         <Attr Name="UsedIn" Val="implementation"/>
@@ -26,7 +53,7 @@
     </File>
     <Config>
       <Option Name="DesignMode" Val="RTL"/>
-      <Option Name="TopModule" Val="kinpira_wrapper"/>
+      <Option Name="TopModule" Val="design_1_wrapper"/>
       <Option Name="TopAutoSet" Val="TRUE"/>
     </Config>
   </FileSet>
