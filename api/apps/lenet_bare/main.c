@@ -8,10 +8,7 @@
 #include <xil_printf.h>
 
 #include <kinpira.h>
-#include <kinpira/func_ps.h>
-#include <kinpira/func_pl.h>
-#include <kinpira/show.h>
-#include <kinpira/misc.h>
+#include <kinpira/bare.h>
 
 #include "platform.h"
 #include "lenet.h"
