@@ -51,11 +51,9 @@ DIST=dist
 endif
 
 ifeq ($(VERBOSE),1)
-#  quiet =
   E = true
   Q =
 else
-#  quiet=quiet_
   E =
   Q = @
 endif
@@ -132,8 +130,9 @@ endif
 .v.in.v:
 	@$(E) echo "  VMODE (.v.in) (B) $<"
 	$(Q)(rm -f $@ ; cp $< $@ ; chmod 644 $@ ; \
-		LANG=C emacs --batch --no-site-file \
-		--eval '(setq large-file-warning-threshold nil)' $@ \
+		LANG=C emacs --batch --no-site-file $@ \
+		--eval '(setq make-backup-files nil)' \
+		--eval '(setq large-file-warning-threshold nil)' \
 		-l verilog-mode -f verilog-auto -f save-buffer \
 		> $@.log 2>&1 || (rm -f $@ ; cat $@.log ; false))
 	$(Q)chmod 444 $@

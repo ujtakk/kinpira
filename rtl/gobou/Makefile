@@ -12,13 +12,13 @@ TARGET    = $(TEST_DIR)/test_$(MODULE)
 include Makefile.dep
 include VERBMakefile
 
-.PHONY: all file sim clean log edit diff
-sim: $(TARGET).log
+.PHONY: all file test clean log edit diff
+test: $(TARGET).log
 file: $(TARGET).com
 
 all:
 	make clean
-	make sim
+	make test
 
 clean: clean-common
 
