@@ -1,11 +1,12 @@
 #ifndef _KINPIRA_H_
 #define _KINPIRA_H_
 
-#include "xparameters.h"
-
 // reg macro
-#define REG_BASE          XPAR_KINPIRA_0_S_AXI_BASEADDR
-#define REG_COPRO(num)    REG_BASE + KINPIRA_s_axi_SLV_REG##num##_OFFSET
+// #include "xparameters.h"
+// #define REG_BASE          XPAR_KINPIRA_0_S_AXI_BASEADDR
+// #define REG_COPRO(num)    REG_BASE + KINPIRA_s_axi_SLV_REG##num##_OFFSET
+#define REG_BASE          0xA0000000
+#define REG_COPRO(num)    REG_BASE + 4 * (num)
 
 // input reg
 #define reg_which         REG_COPRO(0)
