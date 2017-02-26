@@ -8,7 +8,7 @@
 #include <xil_printf.h>
 
 #include <kinpira.h>
-#include <kinpira/bare.h>
+#include <kprbare.h>
 
 #include "platform.h"
 #include "lenet.h"

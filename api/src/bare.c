@@ -2,10 +2,13 @@
 
 #include <math.h>
 #include <limits.h>
+
 #include "xil_io.h"
 #include "xil_printf.h"
+#include "xil_types.h"
+
 #include "kinpira.h"
-#include "kinpira/bare.h"
+#include "bare.h"
 
 #define SHIFT 256
 

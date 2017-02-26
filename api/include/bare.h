@@ -1,7 +1,9 @@
 #ifndef _BARE_H_
 #define _BARE_H_
 
-
+#ifdef __cplusplus
+extern "C" {
+#endif
 
 #include "xil_types.h"
 
@@ -71,7 +73,7 @@ void activate_1d(s16 *input, const int ilen);
 int softmax(double *output, const int len);
 
 // misc
-s16 _mul(s16 input, s16 weight);
+s16 mul(s16 input, s16 weight);
 
 u32 concat8_32(u8 data0, u8 data1, u8 data2, u8 data3);
 u32 concat16_32(u16 upper, u16 lower);
@@ -86,6 +88,8 @@ void probe_w(s16 *weight_true, int total_out, int total_in, int fil_size);
 void print_port(void);
 void print_result(s16 *output);
 
-
+#ifdef __cplusplus
+}
+#endif
 
 #endif
