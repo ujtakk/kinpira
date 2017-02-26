@@ -9,25 +9,25 @@ extern "C" {
 #include "layer.h"
 
 typedef struct {
-  u8 which;
-  u16 input_offset;
-  u16 output_offset;
-  u16 net_offset;
-  u16 total_out;
-  u16 total_in;
-  u16 img_size;
-  u16 pool_size;
+  u32 which;
+  u32 in_offset;
+  u32 out_offset;
+  u32 net_offset;
+  u32 total_out;
+  u32 total_in;
+  u32 img_size;
+  u32 pool_size;
 } kpr_op;
 
-void post_image(int fd, kpr_layer *image, const u16 offset);
+void post_image(kpr_layer *image, const u16 offset);
 
-void define_op(int fd, kpr_op *op, kpr_layer *l,
+void define_op(kpr_op *op, kpr_layer *l,
   u16 in_offset, u16 out_offset, u16 net_offset
 );
 
 void exec_core(kpr_op *op);
 
-void get_image(int fd, kpr_layer *image, const u16 offset);
+void get_image(kpr_layer *image, const u16 offset);
 
 #ifdef __cplusplus
 }
