@@ -44,4 +44,9 @@
 #define FACCUM      7
 #define PACCUM      8
 
+void kinpira_open();
+void kinpira_close();
+void kinpira_read();
+void kinpira_close();
+
 #endif
