@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby
 
 # ERB(Meta) parameter
-$dist     = true
+$dist     = false
 $project  = `pwd`.chomp.split('/rtl')[0]
 $d_mac    = 3   # Delay clocks in the pool module
 $d_bias   = 2   # Delay clocks in the pool module
