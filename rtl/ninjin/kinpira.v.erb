@@ -51,67 +51,67 @@ module kinpira #
 
 
     // Ports of Axi Slave Bus Interface s_axi_params
-    input wire  s_axi_params_aclk,
-    input wire  s_axi_params_aresetn,
-    input wire [C_s_axi_params_ADDR_WIDTH-1 : 0] s_axi_params_awaddr,
-    input wire [2 : 0] s_axi_params_awprot,
-    input wire  s_axi_params_awvalid,
+    input  wire  s_axi_params_aclk,
+    input  wire  s_axi_params_aresetn,
+    input  wire [C_s_axi_params_ADDR_WIDTH-1 : 0] s_axi_params_awaddr,
+    input  wire [2 : 0] s_axi_params_awprot,
+    input  wire  s_axi_params_awvalid,
     output wire  s_axi_params_awready,
-    input wire [C_s_axi_params_DATA_WIDTH-1 : 0] s_axi_params_wdata,
-    input wire [(C_s_axi_params_DATA_WIDTH/8)-1 : 0] s_axi_params_wstrb,
-    input wire  s_axi_params_wvalid,
+    input  wire [C_s_axi_params_DATA_WIDTH-1 : 0] s_axi_params_wdata,
+    input  wire [(C_s_axi_params_DATA_WIDTH/8)-1 : 0] s_axi_params_wstrb,
+    input  wire  s_axi_params_wvalid,
     output wire  s_axi_params_wready,
     output wire [1 : 0] s_axi_params_bresp,
     output wire  s_axi_params_bvalid,
-    input wire  s_axi_params_bready,
-    input wire [C_s_axi_params_ADDR_WIDTH-1 : 0] s_axi_params_araddr,
-    input wire [2 : 0] s_axi_params_arprot,
-    input wire  s_axi_params_arvalid,
+    input  wire  s_axi_params_bready,
+    input  wire [C_s_axi_params_ADDR_WIDTH-1 : 0] s_axi_params_araddr,
+    input  wire [2 : 0] s_axi_params_arprot,
+    input  wire  s_axi_params_arvalid,
     output wire  s_axi_params_arready,
     output wire [C_s_axi_params_DATA_WIDTH-1 : 0] s_axi_params_rdata,
     output wire [1 : 0] s_axi_params_rresp,
     output wire  s_axi_params_rvalid,
-    input wire  s_axi_params_rready,
+    input  wire  s_axi_params_rready,
 
     // Ports of Axi Slave Bus Interface s_axi_image
-    input wire  s_axi_image_aclk,
-    input wire  s_axi_image_aresetn,
-    input wire [C_s_axi_image_ID_WIDTH-1 : 0] s_axi_image_awid,
-    input wire [C_s_axi_image_ADDR_WIDTH-1 : 0] s_axi_image_awaddr,
-    input wire [7 : 0] s_axi_image_awlen,
-    input wire [2 : 0] s_axi_image_awsize,
-    input wire [1 : 0] s_axi_image_awburst,
-    input wire  s_axi_image_awlock,
-    input wire [3 : 0] s_axi_image_awcache,
-    input wire [2 : 0] s_axi_image_awprot,
-    input wire [3 : 0] s_axi_image_awqos,
-    input wire [3 : 0] s_axi_image_awregion,
-    input wire [C_s_axi_image_AWUSER_WIDTH-1 : 0] s_axi_image_awuser,
-    input wire  s_axi_image_awvalid,
+    input  wire  s_axi_image_aclk,
+    input  wire  s_axi_image_aresetn,
+    input  wire [C_s_axi_image_ID_WIDTH-1 : 0] s_axi_image_awid,
+    input  wire [C_s_axi_image_ADDR_WIDTH-1 : 0] s_axi_image_awaddr,
+    input  wire [7 : 0] s_axi_image_awlen,
+    input  wire [2 : 0] s_axi_image_awsize,
+    input  wire [1 : 0] s_axi_image_awburst,
+    input  wire  s_axi_image_awlock,
+    input  wire [3 : 0] s_axi_image_awcache,
+    input  wire [2 : 0] s_axi_image_awprot,
+    input  wire [3 : 0] s_axi_image_awqos,
+    input  wire [3 : 0] s_axi_image_awregion,
+    input  wire [C_s_axi_image_AWUSER_WIDTH-1 : 0] s_axi_image_awuser,
+    input  wire  s_axi_image_awvalid,
     output wire  s_axi_image_awready,
-    input wire [C_s_axi_image_DATA_WIDTH-1 : 0] s_axi_image_wdata,
-    input wire [(C_s_axi_image_DATA_WIDTH/8)-1 : 0] s_axi_image_wstrb,
-    input wire  s_axi_image_wlast,
-    input wire [C_s_axi_image_WUSER_WIDTH-1 : 0] s_axi_image_wuser,
-    input wire  s_axi_image_wvalid,
+    input  wire [C_s_axi_image_DATA_WIDTH-1 : 0] s_axi_image_wdata,
+    input  wire [(C_s_axi_image_DATA_WIDTH/8)-1 : 0] s_axi_image_wstrb,
+    input  wire  s_axi_image_wlast,
+    input  wire [C_s_axi_image_WUSER_WIDTH-1 : 0] s_axi_image_wuser,
+    input  wire  s_axi_image_wvalid,
     output wire  s_axi_image_wready,
     output wire [C_s_axi_image_ID_WIDTH-1 : 0] s_axi_image_bid,
     output wire [1 : 0] s_axi_image_bresp,
     output wire [C_s_axi_image_BUSER_WIDTH-1 : 0] s_axi_image_buser,
     output wire  s_axi_image_bvalid,
-    input wire  s_axi_image_bready,
-    input wire [C_s_axi_image_ID_WIDTH-1 : 0] s_axi_image_arid,
-    input wire [C_s_axi_image_ADDR_WIDTH-1 : 0] s_axi_image_araddr,
-    input wire [7 : 0] s_axi_image_arlen,
-    input wire [2 : 0] s_axi_image_arsize,
-    input wire [1 : 0] s_axi_image_arburst,
-    input wire  s_axi_image_arlock,
-    input wire [3 : 0] s_axi_image_arcache,
-    input wire [2 : 0] s_axi_image_arprot,
-    input wire [3 : 0] s_axi_image_arqos,
-    input wire [3 : 0] s_axi_image_arregion,
-    input wire [C_s_axi_image_ARUSER_WIDTH-1 : 0] s_axi_image_aruser,
-    input wire  s_axi_image_arvalid,
+    input  wire  s_axi_image_bready,
+    input  wire [C_s_axi_image_ID_WIDTH-1 : 0] s_axi_image_arid,
+    input  wire [C_s_axi_image_ADDR_WIDTH-1 : 0] s_axi_image_araddr,
+    input  wire [7 : 0] s_axi_image_arlen,
+    input  wire [2 : 0] s_axi_image_arsize,
+    input  wire [1 : 0] s_axi_image_arburst,
+    input  wire  s_axi_image_arlock,
+    input  wire [3 : 0] s_axi_image_arcache,
+    input  wire [2 : 0] s_axi_image_arprot,
+    input  wire [3 : 0] s_axi_image_arqos,
+    input  wire [3 : 0] s_axi_image_arregion,
+    input  wire [C_s_axi_image_ARUSER_WIDTH-1 : 0] s_axi_image_aruser,
+    input  wire  s_axi_image_arvalid,
     output wire  s_axi_image_arready,
     output wire [C_s_axi_image_ID_WIDTH-1 : 0] s_axi_image_rid,
     output wire [C_s_axi_image_DATA_WIDTH-1 : 0] s_axi_image_rdata,
@@ -119,47 +119,47 @@ module kinpira #
     output wire  s_axi_image_rlast,
     output wire [C_s_axi_image_RUSER_WIDTH-1 : 0] s_axi_image_ruser,
     output wire  s_axi_image_rvalid,
-    input wire  s_axi_image_rready,
+    input  wire  s_axi_image_rready,
 
     // Ports of Axi Slave Bus Interface s_axi_renkon
-    input wire  s_axi_renkon_aclk,
-    input wire  s_axi_renkon_aresetn,
-    input wire [C_s_axi_renkon_ID_WIDTH-1 : 0] s_axi_renkon_awid,
-    input wire [C_s_axi_renkon_ADDR_WIDTH-1 : 0] s_axi_renkon_awaddr,
-    input wire [7 : 0] s_axi_renkon_awlen,
-    input wire [2 : 0] s_axi_renkon_awsize,
-    input wire [1 : 0] s_axi_renkon_awburst,
-    input wire  s_axi_renkon_awlock,
-    input wire [3 : 0] s_axi_renkon_awcache,
-    input wire [2 : 0] s_axi_renkon_awprot,
-    input wire [3 : 0] s_axi_renkon_awqos,
-    input wire [3 : 0] s_axi_renkon_awregion,
-    input wire [C_s_axi_renkon_AWUSER_WIDTH-1 : 0] s_axi_renkon_awuser,
-    input wire  s_axi_renkon_awvalid,
+    input  wire  s_axi_renkon_aclk,
+    input  wire  s_axi_renkon_aresetn,
+    input  wire [C_s_axi_renkon_ID_WIDTH-1 : 0] s_axi_renkon_awid,
+    input  wire [C_s_axi_renkon_ADDR_WIDTH-1 : 0] s_axi_renkon_awaddr,
+    input  wire [7 : 0] s_axi_renkon_awlen,
+    input  wire [2 : 0] s_axi_renkon_awsize,
+    input  wire [1 : 0] s_axi_renkon_awburst,
+    input  wire  s_axi_renkon_awlock,
+    input  wire [3 : 0] s_axi_renkon_awcache,
+    input  wire [2 : 0] s_axi_renkon_awprot,
+    input  wire [3 : 0] s_axi_renkon_awqos,
+    input  wire [3 : 0] s_axi_renkon_awregion,
+    input  wire [C_s_axi_renkon_AWUSER_WIDTH-1 : 0] s_axi_renkon_awuser,
+    input  wire  s_axi_renkon_awvalid,
     output wire  s_axi_renkon_awready,
-    input wire [C_s_axi_renkon_DATA_WIDTH-1 : 0] s_axi_renkon_wdata,
-    input wire [(C_s_axi_renkon_DATA_WIDTH/8)-1 : 0] s_axi_renkon_wstrb,
-    input wire  s_axi_renkon_wlast,
-    input wire [C_s_axi_renkon_WUSER_WIDTH-1 : 0] s_axi_renkon_wuser,
-    input wire  s_axi_renkon_wvalid,
+    input  wire [C_s_axi_renkon_DATA_WIDTH-1 : 0] s_axi_renkon_wdata,
+    input  wire [(C_s_axi_renkon_DATA_WIDTH/8)-1 : 0] s_axi_renkon_wstrb,
+    input  wire  s_axi_renkon_wlast,
+    input  wire [C_s_axi_renkon_WUSER_WIDTH-1 : 0] s_axi_renkon_wuser,
+    input  wire  s_axi_renkon_wvalid,
     output wire  s_axi_renkon_wready,
     output wire [C_s_axi_renkon_ID_WIDTH-1 : 0] s_axi_renkon_bid,
     output wire [1 : 0] s_axi_renkon_bresp,
     output wire [C_s_axi_renkon_BUSER_WIDTH-1 : 0] s_axi_renkon_buser,
     output wire  s_axi_renkon_bvalid,
-    input wire  s_axi_renkon_bready,
-    input wire [C_s_axi_renkon_ID_WIDTH-1 : 0] s_axi_renkon_arid,
-    input wire [C_s_axi_renkon_ADDR_WIDTH-1 : 0] s_axi_renkon_araddr,
-    input wire [7 : 0] s_axi_renkon_arlen,
-    input wire [2 : 0] s_axi_renkon_arsize,
-    input wire [1 : 0] s_axi_renkon_arburst,
-    input wire  s_axi_renkon_arlock,
-    input wire [3 : 0] s_axi_renkon_arcache,
-    input wire [2 : 0] s_axi_renkon_arprot,
-    input wire [3 : 0] s_axi_renkon_arqos,
-    input wire [3 : 0] s_axi_renkon_arregion,
-    input wire [C_s_axi_renkon_ARUSER_WIDTH-1 : 0] s_axi_renkon_aruser,
-    input wire  s_axi_renkon_arvalid,
+    input  wire  s_axi_renkon_bready,
+    input  wire [C_s_axi_renkon_ID_WIDTH-1 : 0] s_axi_renkon_arid,
+    input  wire [C_s_axi_renkon_ADDR_WIDTH-1 : 0] s_axi_renkon_araddr,
+    input  wire [7 : 0] s_axi_renkon_arlen,
+    input  wire [2 : 0] s_axi_renkon_arsize,
+    input  wire [1 : 0] s_axi_renkon_arburst,
+    input  wire  s_axi_renkon_arlock,
+    input  wire [3 : 0] s_axi_renkon_arcache,
+    input  wire [2 : 0] s_axi_renkon_arprot,
+    input  wire [3 : 0] s_axi_renkon_arqos,
+    input  wire [3 : 0] s_axi_renkon_arregion,
+    input  wire [C_s_axi_renkon_ARUSER_WIDTH-1 : 0] s_axi_renkon_aruser,
+    input  wire  s_axi_renkon_arvalid,
     output wire  s_axi_renkon_arready,
     output wire [C_s_axi_renkon_ID_WIDTH-1 : 0] s_axi_renkon_rid,
     output wire [C_s_axi_renkon_DATA_WIDTH-1 : 0] s_axi_renkon_rdata,
@@ -167,47 +167,47 @@ module kinpira #
     output wire  s_axi_renkon_rlast,
     output wire [C_s_axi_renkon_RUSER_WIDTH-1 : 0] s_axi_renkon_ruser,
     output wire  s_axi_renkon_rvalid,
-    input wire  s_axi_renkon_rready,
+    input  wire  s_axi_renkon_rready,
 
     // Ports of Axi Slave Bus Interface s_axi_gobou
-    input wire  s_axi_gobou_aclk,
-    input wire  s_axi_gobou_aresetn,
-    input wire [C_s_axi_gobou_ID_WIDTH-1 : 0] s_axi_gobou_awid,
-    input wire [C_s_axi_gobou_ADDR_WIDTH-1 : 0] s_axi_gobou_awaddr,
-    input wire [7 : 0] s_axi_gobou_awlen,
-    input wire [2 : 0] s_axi_gobou_awsize,
-    input wire [1 : 0] s_axi_gobou_awburst,
-    input wire  s_axi_gobou_awlock,
-    input wire [3 : 0] s_axi_gobou_awcache,
-    input wire [2 : 0] s_axi_gobou_awprot,
-    input wire [3 : 0] s_axi_gobou_awqos,
-    input wire [3 : 0] s_axi_gobou_awregion,
-    input wire [C_s_axi_gobou_AWUSER_WIDTH-1 : 0] s_axi_gobou_awuser,
-    input wire  s_axi_gobou_awvalid,
+    input  wire  s_axi_gobou_aclk,
+    input  wire  s_axi_gobou_aresetn,
+    input  wire [C_s_axi_gobou_ID_WIDTH-1 : 0] s_axi_gobou_awid,
+    input  wire [C_s_axi_gobou_ADDR_WIDTH-1 : 0] s_axi_gobou_awaddr,
+    input  wire [7 : 0] s_axi_gobou_awlen,
+    input  wire [2 : 0] s_axi_gobou_awsize,
+    input  wire [1 : 0] s_axi_gobou_awburst,
+    input  wire  s_axi_gobou_awlock,
+    input  wire [3 : 0] s_axi_gobou_awcache,
+    input  wire [2 : 0] s_axi_gobou_awprot,
+    input  wire [3 : 0] s_axi_gobou_awqos,
+    input  wire [3 : 0] s_axi_gobou_awregion,
+    input  wire [C_s_axi_gobou_AWUSER_WIDTH-1 : 0] s_axi_gobou_awuser,
+    input  wire  s_axi_gobou_awvalid,
     output wire  s_axi_gobou_awready,
-    input wire [C_s_axi_gobou_DATA_WIDTH-1 : 0] s_axi_gobou_wdata,
-    input wire [(C_s_axi_gobou_DATA_WIDTH/8)-1 : 0] s_axi_gobou_wstrb,
-    input wire  s_axi_gobou_wlast,
-    input wire [C_s_axi_gobou_WUSER_WIDTH-1 : 0] s_axi_gobou_wuser,
-    input wire  s_axi_gobou_wvalid,
+    input  wire [C_s_axi_gobou_DATA_WIDTH-1 : 0] s_axi_gobou_wdata,
+    input  wire [(C_s_axi_gobou_DATA_WIDTH/8)-1 : 0] s_axi_gobou_wstrb,
+    input  wire  s_axi_gobou_wlast,
+    input  wire [C_s_axi_gobou_WUSER_WIDTH-1 : 0] s_axi_gobou_wuser,
+    input  wire  s_axi_gobou_wvalid,
     output wire  s_axi_gobou_wready,
     output wire [C_s_axi_gobou_ID_WIDTH-1 : 0] s_axi_gobou_bid,
     output wire [1 : 0] s_axi_gobou_bresp,
     output wire [C_s_axi_gobou_BUSER_WIDTH-1 : 0] s_axi_gobou_buser,
     output wire  s_axi_gobou_bvalid,
-    input wire  s_axi_gobou_bready,
-    input wire [C_s_axi_gobou_ID_WIDTH-1 : 0] s_axi_gobou_arid,
-    input wire [C_s_axi_gobou_ADDR_WIDTH-1 : 0] s_axi_gobou_araddr,
-    input wire [7 : 0] s_axi_gobou_arlen,
-    input wire [2 : 0] s_axi_gobou_arsize,
-    input wire [1 : 0] s_axi_gobou_arburst,
-    input wire  s_axi_gobou_arlock,
-    input wire [3 : 0] s_axi_gobou_arcache,
-    input wire [2 : 0] s_axi_gobou_arprot,
-    input wire [3 : 0] s_axi_gobou_arqos,
-    input wire [3 : 0] s_axi_gobou_arregion,
-    input wire [C_s_axi_gobou_ARUSER_WIDTH-1 : 0] s_axi_gobou_aruser,
-    input wire  s_axi_gobou_arvalid,
+    input  wire  s_axi_gobou_bready,
+    input  wire [C_s_axi_gobou_ID_WIDTH-1 : 0] s_axi_gobou_arid,
+    input  wire [C_s_axi_gobou_ADDR_WIDTH-1 : 0] s_axi_gobou_araddr,
+    input  wire [7 : 0] s_axi_gobou_arlen,
+    input  wire [2 : 0] s_axi_gobou_arsize,
+    input  wire [1 : 0] s_axi_gobou_arburst,
+    input  wire  s_axi_gobou_arlock,
+    input  wire [3 : 0] s_axi_gobou_arcache,
+    input  wire [2 : 0] s_axi_gobou_arprot,
+    input  wire [3 : 0] s_axi_gobou_arqos,
+    input  wire [3 : 0] s_axi_gobou_arregion,
+    input  wire [C_s_axi_gobou_ARUSER_WIDTH-1 : 0] s_axi_gobou_aruser,
+    input  wire  s_axi_gobou_arvalid,
     output wire  s_axi_gobou_arready,
     output wire [C_s_axi_gobou_ID_WIDTH-1 : 0] s_axi_gobou_rid,
     output wire [C_s_axi_gobou_DATA_WIDTH-1 : 0] s_axi_gobou_rdata,
@@ -215,7 +215,7 @@ module kinpira #
     output wire  s_axi_gobou_rlast,
     output wire [C_s_axi_gobou_RUSER_WIDTH-1 : 0] s_axi_gobou_ruser,
     output wire  s_axi_gobou_rvalid,
-    input wire  s_axi_gobou_rready
+    input  wire  s_axi_gobou_rready
   );
 // Instantiation of Axi Bus Interface s_axi_params
   ninjin_axi_params # (
@@ -451,18 +451,19 @@ module kinpira #
 
   wire                      clk;
   wire                      xrst;
-  wire signed [DWIDTH-1:0]  read_img;
+  wire signed [DWIDTH-1:0]  img_rdata;
 
   // For ninjin
   wire                      which;
   wire                      req;
   wire                      img_we;
   wire [IMGSIZE-1:0]        input_addr;
-  wire [IMGSIZE-1:0]        output_addr;
-  wire signed [DWIDTH-1:0]  write_img;
+  wire [IMGSIZE-1:0]        input_offset;
+  wire [IMGSIZE-1:0]        output_offset;
+  wire signed [DWIDTH-1:0]  img_wdata;
   wire [32-1:0]             net_we;
   wire [32-1:0]             net_addr;
-  wire signed [DWIDTH-1:0]  write_net;
+  wire signed [DWIDTH-1:0]  net_wdata;
   wire [LWIDTH-1:0]         total_out;
   wire [LWIDTH-1:0]         total_in;
   wire [LWIDTH-1:0]         img_size;
@@ -472,49 +473,49 @@ module kinpira #
   wire                      ack;
   wire                      mem_img_we;
   wire [IMGSIZE-1:0]        mem_img_addr;
-  wire signed [DWIDTH-1:0]  write_mem_img;
+  wire signed [DWIDTH-1:0]  mem_img_wdata;
 
   // For renkon
   wire                      renkon_req;
   wire                      renkon_img_we;
-  wire [IMGSIZE-1:0]        renkon_input_addr;
-  wire [IMGSIZE-1:0]        renkon_output_addr;
-  wire signed [DWIDTH-1:0]  renkon_write_img;
+  wire [IMGSIZE-1:0]        renkon_input_offset;
+  wire [IMGSIZE-1:0]        renkon_output_offset;
+  wire signed [DWIDTH-1:0]  renkon_img_wdata;
   wire [RENKON_CORELOG:0]   renkon_net_we;
   wire [RENKON_NETSIZE-1:0] renkon_net_addr;
-  wire signed [DWIDTH-1:0]  renkon_write_net;
+  wire signed [DWIDTH-1:0]  renkon_net_wdata;
   wire [LWIDTH-1:0]         renkon_total_out;
   wire [LWIDTH-1:0]         renkon_total_in;
   wire [LWIDTH-1:0]         renkon_img_size;
   wire [LWIDTH-1:0]         renkon_fil_size;
   wire [LWIDTH-1:0]         renkon_pool_size;
-  wire signed [DWIDTH-1:0]  renkon_read_img;
+  wire signed [DWIDTH-1:0]  renkon_img_rdata;
 
   wire                      renkon_ack;
   wire                      renkon_mem_img_we;
   wire [IMGSIZE-1:0]        renkon_mem_img_addr;
-  wire signed [DWIDTH-1:0]  renkon_write_mem_img;
+  wire signed [DWIDTH-1:0]  renkon_mem_img_wdata;
 
   // For gobou
   wire                      gobou_req;
   wire                      gobou_img_we;
-  wire [IMGSIZE-1:0]        gobou_input_addr;
-  wire [IMGSIZE-1:0]        gobou_output_addr;
-  wire signed [DWIDTH-1:0]  gobou_write_img;
+  wire [IMGSIZE-1:0]        gobou_input_offset;
+  wire [IMGSIZE-1:0]        gobou_output_offset;
+  wire signed [DWIDTH-1:0]  gobou_img_wdata;
   wire [GOBOU_CORELOG:0]    gobou_net_we;
   wire [GOBOU_NETSIZE-1:0]  gobou_net_addr;
-  wire signed [DWIDTH-1:0]  gobou_write_net;
+  wire signed [DWIDTH-1:0]  gobou_net_wdata;
   wire [LWIDTH-1:0]         gobou_total_out;
   wire [LWIDTH-1:0]         gobou_total_in;
   wire [LWIDTH-1:0]         gobou_img_size;
   wire [LWIDTH-1:0]         gobou_fil_size;
   wire [LWIDTH-1:0]         gobou_pool_size;
-  wire signed [DWIDTH-1:0]  gobou_read_img;
+  wire signed [DWIDTH-1:0]  gobou_img_rdata;
 
   wire                      gobou_ack;
   wire                      gobou_mem_img_we;
   wire [IMGSIZE-1:0]        gobou_mem_img_addr;
-  wire signed [DWIDTH-1:0]  gobou_write_mem_img;
+  wire signed [DWIDTH-1:0]  gobou_mem_img_wdata;
 
   reg r_which;
 
@@ -524,60 +525,67 @@ module kinpira #
    *   0: renkon  (2D convolution)
    *   1: gobou   (1D linear)
    */
-  assign clk          = s_axi_aclk;
-  assign xrst         = s_axi_aresetn;
-  assign which        =  port0[0];
-  assign req          =  port1[0];
-  assign img_we       = mem_image_we;
-  assign input_addr   = mem_image_addr;
-  assign output_addr  =  port4[IMGSIZE-1:0];
-  assign write_img    = mem_image_wdata;
-  assign total_out    =  port9[LWIDTH-1:0];
-  assign total_in     = port10[LWIDTH-1:0];
-  assign img_size     = port11[LWIDTH-1:0];
-  assign fil_size     = port12[LWIDTH-1:0];
-  assign pool_size    = port13[LWIDTH-1:0];
+  assign clk            = s_axi_aclk;
+  assign xrst           = s_axi_aresetn;
+  assign which          = port0[0];
+  assign req            = port1[0];
+  assign input_offset   = port2[IMGSIZE-1:0];
+  assign output_offset  = port3[IMGSIZE-1:0];
+  assign total_out      = port4[LWIDTH-1:0];
+  assign total_in       = port5[LWIDTH-1:0];
+  assign img_size       = port6[LWIDTH-1:0];
+  assign fil_size       = port7[LWIDTH-1:0];
+  assign pool_size      = port8[LWIDTH-1:0];
 
   assign port31 = {31'b0, r_which};
   assign port30 = {31'b0, ack};
-  assign mem_image_rdata = {{(32-DWIDTH){read_img[DWIDTH-1]}}, read_img};
+
+  assign img_we    = mem_image_we;
+  assign img_addr  = mem_image_addr;
+  assign img_wdata = mem_image_wdata;
+
+  assign mem_image_rdata = { {32-DWIDTH{img_rdata[DWIDTH-1]}}
+                           , img_rdata
+                           };
 
   // For renkon
-  assign renkon_req         = !which ? req                        : 0;
-  assign renkon_img_we      = !which ? img_we                     : 0;
-  assign renkon_input_addr  = !which ? input_addr                 : 0;
-  assign renkon_output_addr = !which ? output_addr                : 0;
-  assign renkon_write_img   = !which ? write_img                  : 0;
-  assign renkon_net_we      = mem_renkon_we;
-  assign renkon_net_addr    = mem_renkon_addr;
-  assign renkon_write_net   = mem_renkon_wdata;
-  assign renkon_total_out   = !which ? total_out                  : 0;
-  assign renkon_total_in    = !which ? total_in                   : 0;
-  assign renkon_img_size    = !which ? img_size                   : 0;
-  assign renkon_fil_size    = !which ? fil_size                   : 0;
-  assign renkon_pool_size   = !which ? pool_size                  : 0;
-  assign renkon_read_img    = !which ? read_img                   : 0;
+  assign renkon_req           = !which ? req            : 0;
+  assign renkon_img_we        = !which ? img_we         : 0;
+  assign renkon_image_addr    = !which ? image_addr     : 0;
+  assign renkon_input_offset  = !which ? input_offset   : 0;
+  assign renkon_output_offset = !which ? output_offset  : 0;
+  assign renkon_img_wdata     = !which ? img_wdata      : 0;
+  assign renkon_total_out     = !which ? total_out      : 0;
+  assign renkon_total_in      = !which ? total_in       : 0;
+  assign renkon_img_size      = !which ? img_size       : 0;
+  assign renkon_fil_size      = !which ? fil_size       : 0;
+  assign renkon_pool_size     = !which ? pool_size      : 0;
+  assign renkon_img_rdata     = !which ? img_rdata      : 0;
+  assign renkon_net_we        = mem_renkon_we;
+  assign renkon_net_addr      = mem_renkon_addr;
+  assign renkon_net_wdata     = mem_renkon_wdata;
 
   // For gobou
-  assign gobou_req          = which ? req                         : 0;
-  assign gobou_img_we       = which ? img_we                      : 0;
-  assign gobou_input_addr   = which ? input_addr                  : 0;
-  assign gobou_output_addr  = which ? output_addr                 : 0;
-  assign gobou_write_img    = which ? write_img                   : 0;
-  assign gobou_net_we       = mem_gobou_we;
-  assign gobou_net_addr     = mem_gobou_addr;
-  assign gobou_write_net    = mem_gobou_wdata;
-  assign gobou_total_out    = which ? total_out                   : 0;
-  assign gobou_total_in     = which ? total_in                    : 0;
-  assign gobou_img_size     = which ? img_size                    : 0;
-  assign gobou_fil_size     = which ? fil_size                    : 0;
-  assign gobou_pool_size    = which ? pool_size                   : 0;
-  assign gobou_read_img     = which ? read_img                    : 0;
+  assign gobou_req            = which ? req             : 0;
+  assign gobou_img_we         = which ? img_we          : 0;
+  assign gobou_image_addr     = which ? image_addr      : 0;
+  assign gobou_input_offset   = which ? input_offset    : 0;
+  assign gobou_output_offset  = which ? output_offset   : 0;
+  assign gobou_img_wdata      = which ? img_wdata       : 0;
+  assign gobou_total_out      = which ? total_out       : 0;
+  assign gobou_total_in       = which ? total_in        : 0;
+  assign gobou_img_size       = which ? img_size        : 0;
+  assign gobou_fil_size       = which ? fil_size        : 0;
+  assign gobou_pool_size      = which ? pool_size       : 0;
+  assign gobou_img_rdata      = which ? img_rdata       : 0;
+  assign gobou_net_we         = mem_gobou_we;
+  assign gobou_net_addr       = mem_gobou_addr;
+  assign gobou_net_wdata      = mem_gobou_wdata;
 
   assign ack            = !which ? renkon_ack           : gobou_ack           ;
   assign mem_img_we     = !which ? renkon_mem_img_we    : gobou_mem_img_we    ;
   assign mem_img_addr   = !which ? renkon_mem_img_addr  : gobou_mem_img_addr  ;
-  assign write_mem_img  = !which ? renkon_write_mem_img : gobou_write_mem_img ;
+  assign mem_img_wdata  = !which ? renkon_mem_img_wdata : gobou_mem_img_wdata ;
 
 
 
@@ -589,12 +597,12 @@ module kinpira #
 
   mem_img mem_img0(/*AUTOINST*/
     // Outputs
-    .read_data  (read_img[DWIDTH-1:0]),
+    .mem_rdata  (img_rdata[DWIDTH-1:0]),
     // Inputs
     .clk        (clk),
     .mem_we     (mem_img_we),
     .mem_addr   (mem_img_addr[IMGSIZE-1:0]),
-    .write_data (write_mem_img[DWIDTH-1:0])
+    .mem_wdata  (mem_img_wdata[DWIDTH-1:0])
   );
 
   renkon_top renkon0(/*AUTOINST*/
@@ -602,24 +610,25 @@ module kinpira #
     .ack            (renkon_ack),
     .mem_img_we     (renkon_mem_img_we),
     .mem_img_addr   (renkon_mem_img_addr[IMGSIZE-1:0]),
-    .write_mem_img  (renkon_write_mem_img[DWIDTH-1:0]),
+    .mem_img_wdata  (renkon_mem_img_wdata[DWIDTH-1:0]),
     // Inputs
     .clk            (clk),
     .xrst           (xrst),
     .req            (renkon_req),
     .img_we         (renkon_img_we),
-    .input_addr     (renkon_input_addr[IMGSIZE-1:0]),
-    .output_addr    (renkon_output_addr[IMGSIZE-1:0]),
-    .write_img      (renkon_write_img[DWIDTH-1:0]),
+    .image_addr     (renkon_image_addr[IMGSIZE-1:0]),
+    .input_offset   (renkon_input_offset[IMGSIZE-1:0]),
+    .output_offset  (renkon_output_offset[IMGSIZE-1:0]),
+    .img_wdata      (renkon_img_wdata[DWIDTH-1:0]),
     .net_we         (renkon_net_we[RENKON_CORELOG:0]),
     .net_addr       (renkon_net_addr[RENKON_NETSIZE-1:0]),
-    .write_net      (renkon_write_net[DWIDTH-1:0]),
+    .net_wdata      (renkon_net_wdata[DWIDTH-1:0]),
     .total_out      (renkon_total_out[LWIDTH-1:0]),
     .total_in       (renkon_total_in[LWIDTH-1:0]),
     .img_size       (renkon_img_size[LWIDTH-1:0]),
     .fil_size       (renkon_fil_size[LWIDTH-1:0]),
     .pool_size      (renkon_pool_size[LWIDTH-1:0]),
-    .read_img       (renkon_read_img[DWIDTH-1:0])
+    .img_rdata      (renkon_img_rdata[DWIDTH-1:0])
   );
 
   gobou_top gobou0(/*AUTOINST*/
@@ -627,21 +636,22 @@ module kinpira #
     .ack            (gobou_ack),
     .mem_img_we     (gobou_mem_img_we),
     .mem_img_addr   (gobou_mem_img_addr[IMGSIZE-1:0]),
-    .write_mem_img  (gobou_write_mem_img[DWIDTH-1:0]),
+    .mem_img_wdata  (gobou_mem_img_wdata[DWIDTH-1:0]),
     // Inputs
     .clk            (clk),
     .xrst           (xrst),
     .req            (gobou_req),
     .img_we         (gobou_img_we),
-    .input_addr     (gobou_input_addr[IMGSIZE-1:0]),
-    .output_addr    (gobou_output_addr[IMGSIZE-1:0]),
-    .write_img      (gobou_write_img[DWIDTH-1:0]),
+    .image_addr     (gobou_image_addr[IMGSIZE-1:0]),
+    .input_offset   (gobou_input_offset[IMGSIZE-1:0]),
+    .output_offset  (gobou_output_offset[IMGSIZE-1:0]),
+    .img_wdata      (gobou_img_wdata[DWIDTH-1:0]),
     .net_we         (gobou_net_we[GOBOU_CORELOG:0]),
     .net_addr       (gobou_net_addr[GOBOU_NETSIZE-1:0]),
-    .write_net      (gobou_write_net[DWIDTH-1:0]),
+    .net_wdata      (gobou_net_wdata[DWIDTH-1:0]),
     .total_out      (gobou_total_out[LWIDTH-1:0]),
     .total_in       (gobou_total_in[LWIDTH-1:0]),
-    .read_img       (gobou_read_img[DWIDTH-1:0])
+    .img_rdata      (gobou_img_rdata[DWIDTH-1:0])
   );
 
   // User logic ends

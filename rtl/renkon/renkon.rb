@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby
 
 ### ERB(Meta) parameter
-$dist       = true
+$dist       = false
 $core       = 8   # Num of cores
 $core_log   = (Math.log($core)/Math.log(2)).to_i
 $max_size   = 32  # Corresponds to acceptable max input size

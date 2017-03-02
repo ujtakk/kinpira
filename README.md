@@ -8,7 +8,7 @@ for various network structures.
 Requirements
 ==================================================
 
-Kinsys is tested on Debian 8.7 and CentOS 6.8.
+Kinpira is tested on Debian 8.7 and CentOS 6.8.
 Each modules and scripts are run using the tools listed below.
 
 * gcc >= 4.9.2

@@ -14,10 +14,10 @@ module renkon_mem_net(/*AUTOARG*/);
   input                     clk;
   input                     mem_we;
   input [RENKON_NETSIZE-1:0]        mem_addr;
-  input signed [DWIDTH-1:0] write_data;
+  input signed [DWIDTH-1:0] mem_wdata;
 
   /*AUTOOUTPUT*/
-  output signed [DWIDTH-1:0] read_data;
+  output signed [DWIDTH-1:0] mem_rdata;
 
   /*AUTOWIRE*/
 
@@ -27,23 +27,23 @@ module renkon_mem_net(/*AUTOARG*/);
 % else
   reg signed [DWIDTH-1:0] mem [WORDS-1:0];
 % end
-  reg [DWIDTH-1:0]        addr_reg;
+  reg [DWIDTH-1:0]        r_addr;
 
 % if less
-  assign read_data = $signed({{5{mem[addr_reg][DWIDTH-1-5]}}, mem[addr_reg]});
+  assign mem_rdata = $signed({{5{mem[r_addr][DWIDTH-1-5]}}, mem[r_addr]});
 % else
-  assign read_data = mem[addr_reg];
+  assign mem_rdata = mem[r_addr];
 % end
 
   always @(posedge clk)
   begin
     if (mem_we)
 % if less
-      mem[mem_addr] <= write_data[DWIDTH-1-5:0];
+      mem[mem_addr] <= mem_wdata[DWIDTH-1-5:0];
 % else
-      mem[mem_addr] <= write_data;
+      mem[mem_addr] <= mem_wdata;
 % end
-    addr_reg <= mem_addr;
+    r_addr <= mem_addr;
   end
 
 endmodule

@@ -1,20 +1,18 @@
-#### notice, don't forget update Makefile.dep
-# SIMULATOR = (vsim,) vcs, xsim, iverilog
+VERBOSE   = 0
 SIMULATOR = iverilog
-MODULE    = renkon_top
-TEST_DIR  = test
-OUTFILE   = mem_data
+MODULE    = renkon_top.v.erb
+TARGET    = test/test_$(MODULE)
+INCLUDE   = $(shell git rev-parse --show-toplevel)/rtl/ninjin
 
 LINK_DIR  = .
 DIST      = ../dist
-TARGET    = $(TEST_DIR)/test_$(MODULE)
 
 include Makefile.dep
 include VERBMakefile
 
 .PHONY: all file test clean log edit diff
-test: $(TARGET).log
-file: $(TARGET).com
+file: $(TARGET:.v.erb=.com)
+test: $(TARGET:.v.erb=.log)
 
 all:
 	make clean
@@ -23,13 +21,17 @@ all:
 clean: clean-common
 
 log:
-	nvim $(TARGET).log
+	@vim $(TARGET:.v.erb=.log)
+
+com:
+	@nvim $(TARGET:.v.erb=.com)
 
 edit:
-	nvim -O $(TARGET).v.erb `echo $(TARGET) | awk -F "$(TEST_DIR)/test_" '{print $$2 ".v.erb"}'`
+	@vim -O $(TARGET) $(MODULE)
 
 diff:
-	nvim -d $(OUTFILE)_test.dat $(OUTFILE)_true.dat
+	@vimdiff ../../data/renkon/output_$(shell echo $(MODULE) | cut -d. -f1).dat \
+           ../../data/renkon/true_$(shell echo $(MODULE) | cut -d. -f1).dat
 
 define DEP_IN
 ## -*- text -*-

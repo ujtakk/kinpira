@@ -37,60 +37,60 @@ module ninjin_axi_image #
     // Do not modify the ports beyond this line
 
     // Global Clock Signal
-    input wire  S_AXI_ACLK,
+    input  wire  S_AXI_ACLK,
     // Global Reset Signal. This Signal is Active LOW
-    input wire  S_AXI_ARESETN,
+    input  wire  S_AXI_ARESETN,
     // Write Address ID
-    input wire [C_S_AXI_ID_WIDTH-1 : 0] S_AXI_AWID,
+    input  wire [C_S_AXI_ID_WIDTH-1 : 0] S_AXI_AWID,
     // Write address
-    input wire [C_S_AXI_ADDR_WIDTH-1 : 0] S_AXI_AWADDR,
+    input  wire [C_S_AXI_ADDR_WIDTH-1 : 0] S_AXI_AWADDR,
     // Burst length. The burst length gives the exact number of transfers in a burst
-    input wire [7 : 0] S_AXI_AWLEN,
+    input  wire [7 : 0] S_AXI_AWLEN,
     // Burst size. This signal indicates the size of each transfer in the burst
-    input wire [2 : 0] S_AXI_AWSIZE,
+    input  wire [2 : 0] S_AXI_AWSIZE,
     // Burst type. The burst type and the size information,
     // determine how the address for each transfer within the burst is calculated.
-    input wire [1 : 0] S_AXI_AWBURST,
+    input  wire [1 : 0] S_AXI_AWBURST,
     // Lock type. Provides additional information about the
     // atomic characteristics of the transfer.
-    input wire  S_AXI_AWLOCK,
+    input  wire  S_AXI_AWLOCK,
     // Memory type. This signal indicates how transactions
     // are required to progress through a system.
-    input wire [3 : 0] S_AXI_AWCACHE,
+    input  wire [3 : 0] S_AXI_AWCACHE,
     // Protection type. This signal indicates the privilege
     // and security level of the transaction, and whether
     // the transaction is a data access or an instruction access.
-    input wire [2 : 0] S_AXI_AWPROT,
+    input  wire [2 : 0] S_AXI_AWPROT,
     // Quality of Service, QoS identifier sent for each
     // write transaction.
-    input wire [3 : 0] S_AXI_AWQOS,
+    input  wire [3 : 0] S_AXI_AWQOS,
     // Region identifier. Permits a single physical interface
     // on a slave to be used for multiple logical interfaces.
-    input wire [3 : 0] S_AXI_AWREGION,
+    input  wire [3 : 0] S_AXI_AWREGION,
     // Optional User-defined signal in the write address channel.
-    input wire [C_S_AXI_AWUSER_WIDTH-1 : 0] S_AXI_AWUSER,
+    input  wire [C_S_AXI_AWUSER_WIDTH-1 : 0] S_AXI_AWUSER,
     // Write address valid. This signal indicates that
     // the channel is signaling valid write address and
     // control information.
-    input wire  S_AXI_AWVALID,
+    input  wire  S_AXI_AWVALID,
     // Write address ready. This signal indicates that
     // the slave is ready to accept an address and associated
     // control signals.
     output wire  S_AXI_AWREADY,
     // Write Data
-    input wire [C_S_AXI_DATA_WIDTH-1 : 0] S_AXI_WDATA,
+    input  wire [C_S_AXI_DATA_WIDTH-1 : 0] S_AXI_WDATA,
     // Write strobes. This signal indicates which byte
     // lanes hold valid data. There is one write strobe
     // bit for each eight bits of the write data bus.
-    input wire [(C_S_AXI_DATA_WIDTH/8)-1 : 0] S_AXI_WSTRB,
+    input  wire [(C_S_AXI_DATA_WIDTH/8)-1 : 0] S_AXI_WSTRB,
     // Write last. This signal indicates the last transfer
     // in a write burst.
-    input wire  S_AXI_WLAST,
+    input  wire  S_AXI_WLAST,
     // Optional User-defined signal in the write data channel.
-    input wire [C_S_AXI_WUSER_WIDTH-1 : 0] S_AXI_WUSER,
+    input  wire [C_S_AXI_WUSER_WIDTH-1 : 0] S_AXI_WUSER,
     // Write valid. This signal indicates that valid write
     // data and strobes are available.
-    input wire  S_AXI_WVALID,
+    input  wire  S_AXI_WVALID,
     // Write ready. This signal indicates that the slave
     // can accept the write data.
     output wire  S_AXI_WREADY,
@@ -107,42 +107,42 @@ module ninjin_axi_image #
     output wire  S_AXI_BVALID,
     // Response ready. This signal indicates that the master
     // can accept a write response.
-    input wire  S_AXI_BREADY,
+    input  wire  S_AXI_BREADY,
     // Read address ID. This signal is the identification
     // tag for the read address group of signals.
-    input wire [C_S_AXI_ID_WIDTH-1 : 0] S_AXI_ARID,
+    input  wire [C_S_AXI_ID_WIDTH-1 : 0] S_AXI_ARID,
     // Read address. This signal indicates the initial
     // address of a read burst transaction.
-    input wire [C_S_AXI_ADDR_WIDTH-1 : 0] S_AXI_ARADDR,
+    input  wire [C_S_AXI_ADDR_WIDTH-1 : 0] S_AXI_ARADDR,
     // Burst length. The burst length gives the exact number of transfers in a burst
-    input wire [7 : 0] S_AXI_ARLEN,
+    input  wire [7 : 0] S_AXI_ARLEN,
     // Burst size. This signal indicates the size of each transfer in the burst
-    input wire [2 : 0] S_AXI_ARSIZE,
+    input  wire [2 : 0] S_AXI_ARSIZE,
     // Burst type. The burst type and the size information,
     // determine how the address for each transfer within the burst is calculated.
-    input wire [1 : 0] S_AXI_ARBURST,
+    input  wire [1 : 0] S_AXI_ARBURST,
     // Lock type. Provides additional information about the
     // atomic characteristics of the transfer.
-    input wire  S_AXI_ARLOCK,
+    input  wire  S_AXI_ARLOCK,
     // Memory type. This signal indicates how transactions
     // are required to progress through a system.
-    input wire [3 : 0] S_AXI_ARCACHE,
+    input  wire [3 : 0] S_AXI_ARCACHE,
     // Protection type. This signal indicates the privilege
     // and security level of the transaction, and whether
     // the transaction is a data access or an instruction access.
-    input wire [2 : 0] S_AXI_ARPROT,
+    input  wire [2 : 0] S_AXI_ARPROT,
     // Quality of Service, QoS identifier sent for each
     // read transaction.
-    input wire [3 : 0] S_AXI_ARQOS,
+    input  wire [3 : 0] S_AXI_ARQOS,
     // Region identifier. Permits a single physical interface
     // on a slave to be used for multiple logical interfaces.
-    input wire [3 : 0] S_AXI_ARREGION,
+    input  wire [3 : 0] S_AXI_ARREGION,
     // Optional User-defined signal in the read address channel.
-    input wire [C_S_AXI_ARUSER_WIDTH-1 : 0] S_AXI_ARUSER,
+    input  wire [C_S_AXI_ARUSER_WIDTH-1 : 0] S_AXI_ARUSER,
     // Write address valid. This signal indicates that
     // the channel is signaling valid read address and
     // control information.
-    input wire  S_AXI_ARVALID,
+    input  wire  S_AXI_ARVALID,
     // Read address ready. This signal indicates that
     // the slave is ready to accept an address and associated
     // control signals.
@@ -165,7 +165,7 @@ module ninjin_axi_image #
     output wire  S_AXI_RVALID,
     // Read ready. This signal indicates that the master can
     // accept the read data and response information.
-    input wire  S_AXI_RREADY
+    input  wire  S_AXI_RREADY
   );
 
   // AXI4FULL signals
