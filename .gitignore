@@ -13,7 +13,6 @@
 *.dir
 *.jou
 Makefile.dep
-dep.rb
 work/
 transcript
 vish_stacktrace.vstf
