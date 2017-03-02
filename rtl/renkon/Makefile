@@ -8,15 +8,12 @@ LINK_DIR  = .
 DIST      = ../dist
 
 include Makefile.dep
-include VERBMakefile
+include ../../utils/VERBMakefile
 
-.PHONY: all file test clean log edit diff
+.PHONY: file test clean log edit diff
+
 file: $(TARGET:.v.erb=.com)
 test: $(TARGET:.v.erb=.log)
-
-all:
-	make clean
-	make test
 
 clean: clean-common
 
