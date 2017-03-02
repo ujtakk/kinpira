@@ -6,12 +6,6 @@
 # Include this file and Makefile.dep from normal Makefile.
 ###
 
-###
-# TODO:
-#   - extend VFile.includes to VHFile class
-#     (currently, another `include in the header file will not work.)
-###
-
 
 
 ###
@@ -33,7 +27,9 @@
 #export DEP_IN
 #-----------------------------------------------------------
 
-.SUFFIXES: .com .v .vo .obj .eps .dat .bin .v.erb .v.in .log .run .run.g .vh .vh.erb .info .sim .dot .png .reg .reg.erb
+############################################################
+# Attributes Definition
+############################################################
 
 ifndef SIMULATOR
 SIMULATOR=vsim
@@ -43,100 +39,119 @@ SIMULATOR=vsim
 endif
 
 ifndef VERBOSE
-VERBOSE=0
+VERBOSE = 0
 endif
 
 ifndef DIST
-DIST=dist
+DIST = dist
 endif
 
 ifeq ($(VERBOSE),1)
-#  quiet =
-  E = true
+  E = @true
   Q =
 else
-#  quiet=quiet_
-  E =
+  E = @
   Q = @
 endif
 
-ERUBY=erb -T -
-IVERILOG=iverilog
-ARCH=$(shell uname -m)
+ERUBY = erb -T - $<
+VMODE = cp $< $@ ; chmod 644 $@ ; \
+        emacs --batch --no-site-file $@ \
+        --eval '(setq make-backup-files nil)' \
+        --eval '(setq large-file-warning-threshold nil)' \
+        -l verilog-mode -f verilog-auto -f save-buffer
 
-ifeq ($(ARCH),x86_64)
-VCS=vcs +v2k -full64
-else
-VCS=vcs +v2k
-endif
-
+V_TARGET    = $(shell echo $* | tac -s/ | head -1 | cut -d. -f1)
 ifeq ($(SIMULATOR),xsim)
-XVLOG_OPT= --verbose 2 #-work work #+acc=rnbp +define+FAST_FUNC # -novopt # -lint
-XSIMOPTION= #$(XVLOG_OPT)
-XELABOPTION= -debug typical
-ELAB_SIM=xelab $(XELABOPTION) $* -s $*_sim
-DO_SIM= test -f $*_sim && rm -f $*_sim ; time xsim $*_sim $(XSIMOPTION) -R | sed 's/^\# //'
-V_COMPILE=(xvlog $(XVLOG_OPT) $< > $@.log && touch $@) && (grep "^\*\* " $@.log || true) || (cat $@.log ; false)
+  XVLOG_OPT = -i $(INCLUDE) --verbose 2
+  COMPILE   = xvlog $(XVLOG_OPT) $<
+  XELAB_OPT = -relax -debug typical
+  ELABORATE = xelab $(XELAB_OPT) $(V_TARGET) -s $(V_TARGET)_sim
+  XSIM_OPT  = -R #$(XVLOG_OPT)
+  SIMULATE  = xsim $(V_TARGET)_sim $(XSIM_OPT)
 else
 ifeq ($(SIMULATOR),vsim)
-VLOG_OPT= +acc=rnbp +define+FAST_FUNC # -novopt # -lint
-VSIMOPTION= #$(VLOG_OPT)
-DO_SIM=test -f $* && rm -f $* ; time vsim $* $(VSIMOPTION) -c -do 'run -all; quit' | sed 's/^\# //'
-V_COMPILE=(test -d work || vlib work) && (vlog $(VLOG_OPT) $< > $@.log && touch $@) && (grep "^\*\* " $@.log || true) || (cat $@.log ; false)
+  VLOG_OPT  = +incdir+$(INCLUDE) -lint
+  COMPILE   = (test -d work || vlib work) \
+           && vlog $(VLOG_OPT) $<
+  VSIM_OPT  = -c -do 'run -all; quit' # $(VLOG_OPT)
+  SIMULATE  = vsim $(V_TARGET) $(VSIM_OPT) | sed 's/^\# //'
 else
 ifeq ($(SIMULATOR),vcs)
-DO_SIM=make $* && time ./$*
-V_COMPILE=touch $@
+  VCS_OPT   = -full64 +incdir+$(INCLUDE) -R
+  COMPILE   = true $<
+  SIMULATE  = vcs $(VCS_OPT) -o $(V_TARGET).out $*.sv $(SOURCES)
 else
 ifeq ($(SIMULATOR),iverilog)
-DO_SIM=make $* && time ./$*.out
-V_COMPILE=touch $@
+  IVER_OPT  = -g2001 -I $(INCLUDE)
+  COMPILE   = true $<
+  SIMULATE  = iverilog $(IVER_OPT) -o $(V_TARGET).out $(VFILES) \
+           && time ./$(V_TARGET).out
 endif
 endif
 endif
 endif
 
-.com.sim:
-ifeq ($(SIMULATOR),xsim)
-	@$(E) echo "  ELABORATE         $*"
-	$(Q)$(ELAB_SIM)
-	$(DO_SIM)
+############################################################
+# General Rules
+############################################################
+
+.SUFFIXES: .v .v.in .v.erb .log .vh .vh.erb .com .dot .png
+
+.v.erb.v.in:
+	$(E) echo "  ERUBY (.v.erb)    $<"
+ifeq ($(VERBOSE),1)
+	$(Q) $(ERUBY) 2>&1 | tee $@
 else
-	$(DO_SIM)
+	$(Q) $(ERUBY) > $@ 2>&1
+endif
+
+.vh.erb.vh:
+	$(E) echo "  ERUBY (.vh.erb)   $<"
+ifeq ($(VERBOSE),1)
+	$(Q) $(ERUBY) 2>&1 | tee $@
+else
+	$(Q) $(ERUBY) > $@ 2>&1
+endif
+
+.v.in.v:
+	$(E) echo "  VMODE (.v.in) (B) $<"
+ifeq ($(VERBOSE),1)
+	$(Q) $(VMODE) 2>&1 | tee $@.log
+else
+	$(Q) $(VMODE) > $@.log 2>&1
+endif
+
+.v.com:
+	$(E) echo "  COMPILE (.v)      $<"
+ifeq ($(VERBOSE),1)
+	$(Q) $(COMPILE) 2>&1 | tee $@
+else
+	$(Q) $(COMPILE) > $@ 2>&1
 endif
 
 .com.log:
 ifeq ($(SIMULATOR),xsim)
-	@$(E) echo "  ELABORATE         $*"
-	$(Q)$(ELAB_SIM) | tee $@
-	$(DO_SIM) 2>&1 | tee -a $@
+	$(E) echo "  ELABORATE         $(V_TARGET)"
+  ifeq ($(VERBOSE),1)
+		$(Q) $(ELABORATE) 2>&1 | tee $@
+  else
+		$(Q) $(ELABORATE) > $@ 2>&1
+  endif
+	$(E) echo "  SIMULATE          $(V_TARGET)"
+  ifeq ($(VERBOSE),1)
+		$(Q) $(SIMULATE) 2>&1 | tee -a $@
+  else
+		$(Q) $(SIMULATE) >> $@ 2>&1
+  endif
 else
-	$(DO_SIM) 2>&1 | tee $@
+	$(E) echo "  SIMULATE          $(V_TARGET)"
+  ifeq ($(VERBOSE),1)
+		$(Q) $(SIMULATE) 2>&1 | tee $@
+  else
+		$(Q) $(SIMULATE) > $@ 2>&1
+  endif
 endif
-
-#### log suppressed
-.v.com:
-	@$(E) echo "  COMPILE (.v)      $<"
-	$(Q)$(V_COMPILE)
-.vo.com:
-	@$(E) echo "  COMPILE (.vo)     $<"
-	$(Q)$(V_COMPILE)
-.v.erb.v.in:
-	@$(E) echo "  ERUBY (.v.erb)    $<"
-	$(Q)(rm -f $@ ; $(ERUBY) $< > $@ || (rm -f $@ ; false))
-	$(Q)chmod 444 $@
-.vh.erb.vh:
-	@$(E) echo "  ERUBY (.vh.erb)   $<"
-	$(Q)(rm -f $@ ; $(ERUBY) $< > $@ || (rm -f $@ ; false))
-	$(Q)chmod 444 $@
-.v.in.v:
-	@$(E) echo "  VMODE (.v.in) (B) $<"
-	$(Q)(rm -f $@ ; cp $< $@ ; chmod 644 $@ ; \
-		LANG=C emacs --batch --no-site-file \
-		--eval '(setq large-file-warning-threshold nil)' $@ \
-		-l verilog-mode -f verilog-auto -f save-buffer \
-		> $@.log 2>&1 || (rm -f $@ ; cat $@.log ; false))
-	$(Q)chmod 444 $@
 
 .v.dot:
 	./dep.rb --dot $< > $@
@@ -145,23 +160,16 @@ endif
 .dot.svg:
 	dot -Tsvg $< > $@
 
-work:
-ifeq ($(SIMULATOR),vsim)
-	vlib $@
-endif
-
 Makefile.dep:
 	cat Makefile | grep -v Makefile.dep | $(MAKE) -f - dep.rb dep.in
-	./dep.rb $(TARGET) > $@ || rm -f $@
-
-dep.rb:
-	echo "$$DEP_RB" > dep.rb
-	chmod 744 dep.rb
+	./dep.rb $(shell echo $(TARGET) | cut -d. -f1) > $@ || rm -f $@
 
 dep.in:
 	echo "$$DEP_IN" > dep.in
 
-compile.all: $(TARGET:=.com)
+dep.rb:
+	echo "$$DEP_RB" > dep.rb
+	chmod 744 dep.rb
 
 VERBFILES  = $(wildcard *.v.erb)  $(wildcard $(TEST_DIR)/*.v.erb)
 VHERBFILES = $(wildcard *.vh.erb) $(wildcard $(TEST_DIR)/*.vh.erb)
@@ -195,8 +203,6 @@ clean-common:
 	rm -f $(VERBFILES:.v.erb=.v.in)
 	rm -f $(VHERBFILES:.vh.erb=.vh)
 	rm -f $(VINFILES:.v.in=.v)
-
-	rm -f $(TARGET)
 
 	rm -f $(LINK_FILES)
 
@@ -392,7 +398,7 @@ class VFile
       r << "node_#{@filename_body}->node_#{i};"
       k
     }
-    r.flatten * "\n"
+    r.flatten * "\\n"
   end
 
   def to_dot
@@ -437,8 +443,8 @@ class VFiles < Array
   def to_s
     f = self.uniq
     f = purge(f)
-    f = f.sort * " \\\n\t" + "\n"
-    "#{name}= \\\n\t#{f}\n"
+    f = f.sort * " \\\\\\n\\t" + "\\n"
+    "#{name}= \\\\\\n\\t#{f}\\n"
   end
 
   def name
@@ -500,33 +506,19 @@ top_vfiles_s = top_vfiles.map{|t|
 
   k = t.module_name
 
-  r += <<~EOF
-
-    #{k}_FILES= \\
-    \t#{f * " \\\n\t"}
-
-    #{k}: $$(#{k}_FILES) $$(#{k}_FILES_OPT)
-    ifeq ($$(SIMULATOR), vcs)
-    \t$$(VCS) -o $$@.out $$(#{k}_FILES) $$(#{k}_FILES_OPT)
-    else
-    ifeq ($$(SIMULATOR), iverilog)
-    \t$$(IVERILOG) -o $$@.out $$(#{k}_FILES) $$(#{k}_FILES_OPT)
-    endif
-    endif
-  EOF
   r
 }
 
 files = files_all
 
 if options.mode == :make
-  print "## -*- makefile -*-\n"
+  print "## -*- makefile -*-\\n"
   print VFiles.new(files.dup).to_s
   print VHFiles.new(files.dup).to_s
-  print top_vfiles_s * "\n"
+  print top_vfiles_s * "\\n"
 elsif options.mode == :dc
   files.delete_if{|i| not i =~ /\.v$$/}
-  print files.uniq.map{|i| "read_file -format verilog #{i}\n"}*""
+  print files.uniq.map{|i| "read_file -format verilog #{i}\\n"}*""
 elsif options.mode == :dot
   top_vfiles.each do |t|
     print t.to_dot

@@ -24,22 +24,22 @@ module renkon_conv(/*AUTOARG*/);
   renkon_conv_wreg wreg(/*AUTOINST*/);
 
   /* renkon_mem_feat AUTO_TEMPLATE (
-      .read_data1   (),
-      .write_data1  (write_feat[DWIDTH-1:0]),
-      .mem_we1      (mem_feat_we),
-      .mem_addr1    (mem_feat_addr_d1[FACCUM-1:0]),
-      .read_data2   (read_feat[DWIDTH-1:0]),
-      .write_data2  ({DWIDTH{1'b0}}),
-      .mem_we2      (1'b0),
-      .mem_addr2    (mem_feat_addr[FACCUM-1:0]),
+      .mem_rdata1 (),
+      .mem_wdata1 (feat_wdata[DWIDTH-1:0]),
+      .mem_we1    (mem_feat_we),
+      .mem_addr1  (mem_feat_addr_d1[FACCUM-1:0]),
+      .mem_rdata2 (feat_rdata[DWIDTH-1:0]),
+      .mem_wdata2 ({DWIDTH{1'b0}}),
+      .mem_we2    (1'b0),
+      .mem_addr2  (mem_feat_addr[FACCUM-1:0]),
   ); */
   renkon_mem_feat mem_feat(/*AUTOINST*/);
 
   /* renkon_accum AUTO_TEMPLATE (
       .pixel_in (result[DWIDTH-1:0]),
       .reset    (mem_feat_rst),
-      .sum_old  (read_feat[DWIDTH-1:0]),
-      .sum_new  (write_feat[DWIDTH-1:0]),
+      .sum_old  (feat_rdata[DWIDTH-1:0]),
+      .sum_new  (feat_wdata[DWIDTH-1:0]),
   ); */
   renkon_accum feat_accum(/*AUTOINST*/);
 

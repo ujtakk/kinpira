@@ -15,14 +15,12 @@ clean:
 
 .SUFFIXES: .v .v.erb .vh .vh.erb
 
-ERUBY=erb -T -
+ERUBY=erb -T - $<
 
 .v.erb.v:
 	@echo "  ERUBY (.v.erb)    $<"
-	@(rm -f $@ ; $(ERUBY) $< > $@ || (rm -f $@ ; false))
-	@chmod 444 $@
+	@$(ERUBY) > $@ 2>&1
 
 .vh.erb.vh:
 	@echo "  ERUBY (.vh.erb)   $<"
-	@(rm -f $@ ; $(ERUBY) $< > $@ || (rm -f $@ ; false))
-	@chmod 444 $@
+	@$(ERUBY) > $@ 2>&1

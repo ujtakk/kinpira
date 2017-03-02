@@ -13,7 +13,7 @@ module test_renkon_top;
   /*AUTOREGINPUT*/
   reg [DWIDTH-1:0] mem_i [2**IMGSIZE-1:0];
   <%- for i in 0...$core -%>
-  reg [DWIDTH-1:0] mem_n<%=i%> [2**NETSIZE-1:0];
+  reg [DWIDTH-1:0] mem_n<%=i%> [2**RENKON_NETSIZE-1:0];
   <%- end -%>
 
 
@@ -102,7 +102,7 @@ module test_renkon_top;
         mem_i[i] = {DWIDTH{1'b0}};
 
       <%- for i in 0...$core -%>
-      for (i=0; i<2**NETSIZE; i=i+1)
+      for (i=0; i<2**RENKON_NETSIZE; i=i+1)
         mem_n<%=i%>[i] = {DWIDTH{1'b0}};
       <%- end -%>
     end // }}}
@@ -114,7 +114,7 @@ module test_renkon_top;
         dut0.mem_img.mem[i] = {DWIDTH{1'b0}};
 
       <%- for i in 0...$core -%>
-      for (i=0; i<2**NETSIZE; i=i+1)
+      for (i=0; i<2**RENKON_NETSIZE; i=i+1)
         dut0.mem_net<%=i%>.mem[i] = {DWIDTH{1'b0}};
       <%- end -%>
     end // }}}
@@ -222,7 +222,7 @@ module test_renkon_top;
       <%- for n in 0...$core -%>
       net_we = <%=$core_log+1%>'d<%=n+1%>;
       #(STEP);
-      for (i=0; i<2**NETSIZE; i=i+1)
+      for (i=0; i<2**RENKON_NETSIZE; i=i+1)
       begin
         net_addr = i;
         #(STEP);

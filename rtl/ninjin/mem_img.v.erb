@@ -2,22 +2,21 @@
 
 module mem_img(/*AUTOARG*/
    // Outputs
-   read_data,
+   mem_rdata,
    // Inputs
-   clk, mem_we, mem_addr, write_data
+   clk, mem_we, mem_addr, mem_wdata
    );
 `include "ninjin.vh"
-  // parameter WORDS = 2 ** IMGSIZE;
-  parameter WORDS = 5000;
+  parameter WORDS = 2 ** IMGSIZE;
 
   /*AUTOINPUT*/
   input                     clk;
   input                     mem_we;
-  input [IMGSIZE-1:0]        mem_addr;
-  input signed [DWIDTH-1:0] write_data;
+  input [IMGSIZE-1:0]       mem_addr;
+  input signed [DWIDTH-1:0] mem_wdata;
 
   /*AUTOOUTPUT*/
-  output signed [DWIDTH-1:0] read_data;
+  output signed [DWIDTH-1:0] mem_rdata;
 
   /*AUTOWIRE*/
 
@@ -25,12 +24,12 @@ module mem_img(/*AUTOARG*/
   reg signed [DWIDTH-1:0] mem [WORDS-1:0];
   reg [DWIDTH-1:0]        addr_reg;
 
-  assign read_data = mem[addr_reg];
+  assign mem_rdata = mem[addr_reg];
 
   always @(posedge clk)
   begin
     if (mem_we)
-      mem[mem_addr] <= write_data;
+      mem[mem_addr] <= mem_wdata;
     addr_reg <= mem_addr;
   end
 
