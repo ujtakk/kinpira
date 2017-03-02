@@ -10,6 +10,11 @@
 module test_renkon_top;
 `include "renkon.vh"
 
+  parameter N_OUT = 32;
+  parameter N_IN  = 16;
+  parameter FSIZE = 5;
+  parameter PSIZE = 2;
+
   /*AUTOREGINPUT*/
   reg [DWIDTH-1:0] mem_i [2**IMGSIZE-1:0];
   <%- for i in 0...$core -%>
@@ -41,10 +46,10 @@ module test_renkon_top;
     img_we = 0;
     input_addr = 0;
     output_addr = 0;
-    write_img = 0;
+    img_wdata = 0;
     net_we = 0;
     net_addr = 0;
-    write_net = 0;
+    net_wdata = 0;
     total_out = 0;
     total_in = 0;
     img_size = 0;
@@ -56,8 +61,8 @@ module test_renkon_top;
 
     xrst        = 1;
     req         = 0;
-    total_out   = N_F2;
-    total_in    = N_F1;
+    total_out   = N_OUT;
+    total_in    = N_IN;
     img_size    = 12;
     fil_size    = FSIZE;
     pool_size   = PSIZE;
@@ -139,14 +144,14 @@ module test_renkon_top;
         $fdisplay(fd, "%d", mem_i[i]);
         input_addr = i;
         #(STEP);
-        write_img = mem_i[i];
+        img_wdata = mem_i[i];
         #(STEP);
       end
       $fclose(fd);
       #(STEP);
       img_we = 0;
       input_addr = 0;
-      write_img = 0;
+      img_wdata = 0;
     end // }}}
   endtask
 
@@ -226,12 +231,12 @@ module test_renkon_top;
       begin
         net_addr = i;
         #(STEP);
-        write_net = mem_n<%=n%>[i];
+        net_wdata = mem_n<%=n%>[i];
         #(STEP);
       end
       net_we = <%=$core_log+1%>'d0;
       net_addr = 0;
-      write_net = 0;
+      net_wdata = 0;
       <%- end -%>
     end // }}}
   endtask
@@ -305,7 +310,7 @@ module test_renkon_top;
       begin
         input_addr = i + 5000;
         #(STEP*2);
-        $fdisplay(fd, "%0d", read_img);
+        $fdisplay(fd, "%0d", img_rdata);
       end
       input_addr = 0;
       #(STEP);
@@ -324,15 +329,15 @@ module test_renkon_top;
       "%d ", dut0.ctrl.ctrl_core.r_count_in,
       "|o: ",
       "%d ", ack,
-      "%4d ", read_img,
+      "%4d ", img_rdata,
       "|r: ",
       "%d ", dut0.mem_img_we,
       "%d ", dut0.mem_img_addr,
-      "%4d ", dut0.read_img,
+      "%4d ", dut0.img_rdata,
       "; ",
       "%d ", dut0.mem_net_we,
       "%d ", dut0.mem_net_addr,
-      "%4d ", dut0.read_net0,
+      "%4d ", dut0.net_rdata0,
       "; ",
       "%4d ", dut0.pmap0,
       "; ",

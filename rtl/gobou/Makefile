@@ -21,16 +21,16 @@ all:
 clean: clean-common
 
 log:
-	@vim $(TARGET:.v.erb=.log)
+	@nvim $(TARGET:.v.erb=.log)
 
 com:
 	@nvim $(TARGET:.v.erb=.com)
 
 edit:
-	@vim -O $(TARGET) $(MODULE)
+	@nvim -O $(TARGET) $(MODULE)
 
 diff:
-	@vimdiff ../../data/renkon/output_$(shell echo $(MODULE) | cut -d. -f1).dat \
+	@nvim -d ../../data/renkon/output_$(shell echo $(MODULE) | cut -d. -f1).dat \
            ../../data/renkon/true_$(shell echo $(MODULE) | cut -d. -f1).dat
 
 define DEP_IN
