@@ -2,11 +2,17 @@
 #define _KINPIRA_H_
 
 // reg macro
-// #include "xparameters.h"
-// #define REG_BASE          XPAR_KINPIRA_0_S_AXI_BASEADDR
-// #define REG_COPRO(num)    REG_BASE + KINPIRA_s_axi_SLV_REG##num##_OFFSET
-#define REG_BASE          0xA0000000
-#define REG_COPRO(num)    REG_BASE + 4 * (num)
+#define REG_NUM           32
+#define REG_SIZE          4 * REG_NUM
+
+#ifdef XENV_STANDALONE_H
+#  include "xparameters.h"
+#  define REG_BASE          XPAR_KINPIRA_0_S_AXI_BASEADDR
+#  define REG_COPRO(num)    REG_BASE + KINPIRA_s_axi_SLV_REG##num##_OFFSET
+#else
+#  define REG_BASE          0xA0000000
+#  define REG_COPRO(num)    __kpr_port[4*num]
+#endif
 
 // input reg
 #define reg_which         REG_COPRO(0)
@@ -43,10 +49,5 @@
 #define IFMSIZE     9
 #define FACCUM      7
 #define PACCUM      8
-
-void kinpira_open();
-void kinpira_close();
-void kinpira_read();
-void kinpira_close();
 
 #endif

@@ -47,9 +47,12 @@
 #include "xtime_l.h"
 #define INIT  XTime begin, end;
 #define BEGIN XTime_GetTime(&begin);
-#define END   XTime_GetTime(&end);        \
-  printf("%10.6f [ms]\n\n", \
-      (double)(end-begin) / COUNTS_PER_SECOND * 1000);
+#define END   do {                                                    \
+                XTime_GetTime(&end);                                  \
+                printf("%10.6f [ms]\n\n",                             \
+                    (double)(end-begin) / COUNTS_PER_SECOND * 1000);  \
+              } while (0);
+
 
 #include "xgpiops.h"
 #define GPIO_DEVICE_ID  XPAR_XGPIOPS_0_DEVICE_ID
