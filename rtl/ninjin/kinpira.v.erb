@@ -1,3 +1,4 @@
+% load "ninjin.rb"
 
 `timescale 1 ns / 1 ps
 
@@ -264,7 +265,7 @@ module kinpira #
     .mem_addr(mem_<%=n%>_addr),
     .mem_wdata(mem_<%=n%>_wdata),
     .mem_rdata(mem_<%=n%>_rdata),
-%# end
+% end
     .S_AXI_ACLK(s_axi_image_aclk),
     .S_AXI_ARESETN(s_axi_image_aresetn),
     .S_AXI_AWID(s_axi_image_awid),
@@ -329,7 +330,7 @@ module kinpira #
     .mem_addr(mem_<%=n%>_addr),
     .mem_wdata(mem_<%=n%>_wdata),
     .mem_rdata(),
-%# end
+% end
     .S_AXI_ACLK(s_axi_renkon_aclk),
     .S_AXI_ARESETN(s_axi_renkon_aresetn),
     .S_AXI_AWID(s_axi_renkon_awid),
@@ -394,7 +395,7 @@ module kinpira #
     .mem_addr(mem_<%=n%>_addr),
     .mem_wdata(mem_<%=n%>_wdata),
     .mem_rdata(),
-%# end
+% end
     .S_AXI_ACLK(s_axi_gobou_aclk),
     .S_AXI_ARESETN(s_axi_gobou_aresetn),
     .S_AXI_AWID(s_axi_gobou_awid),
