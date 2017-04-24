@@ -19,11 +19,10 @@ module renkon_ctrl_core(/*AUTOARG*/);
   input                       in_valid;
   input                       in_end;
   input                       img_we;
-  input  [IMGSIZE-1:0]        image_addr;
-  input  [IMGSIZE-1:0]        input_offset;
-  input  [IMGSIZE-1:0]        output_offset;
+  input  [IMGSIZE-1:0]        input_addr;
+  input  [IMGSIZE-1:0]        output_addr;
   input  signed [DWIDTH-1:0]  img_wdata;
-  input  signed [DWIDTH-1:0]  result_wdata;
+  input  signed [DWIDTH-1:0]  out_wdata;
   input  [RENKON_CORELOG:0]   net_we;
   input  [RENKON_NETSIZE-1:0] net_addr;
   input  [LWIDTH-1:0]         total_out;
@@ -195,7 +194,7 @@ module renkon_ctrl_core(/*AUTOARG*/);
       r_total_out   <= total_out;
       r_img_size    <= img_size;
       r_fil_size    <= fil_size;
-      r_d_pixelbuf  <= img_size - fil_size + 8 - 1;
+      r_d_pixelbuf  <= img_size + 2;
     end
 
   assign first_input = r_first_input_d[r_d_pixelbuf];
@@ -301,7 +300,7 @@ module renkon_ctrl_core(/*AUTOARG*/);
         S_W_WEIGHT:
           r_net_addr <= r_net_addr + 1;
         S_W_BIAS:
-          r_net_addr   <= r_net_addr + 1;
+          r_net_addr <= r_net_addr + 1;
         default:
           r_net_addr <= r_net_addr;
       endcase
@@ -379,7 +378,7 @@ module renkon_ctrl_core(/*AUTOARG*/);
   assign mem_img_addr = w_img_addr + w_img_offset;
 
   assign mem_img_wdata = r_state == S_OUTPUT
-                       ? result_wdata
+                       ? out_wdata
                        : img_wdata;
 
   assign w_img_addr = r_state == S_OUTPUT
@@ -452,15 +451,10 @@ module renkon_ctrl_core(/*AUTOARG*/);
       r_input_offset <= 0;
       r_output_offset <= 0;
     end
-    else if (req)
+    else if (req || ack)
     begin
-      r_input_offset <= input_offset;
-      r_output_offset <= output_offset;
-    end
-    else if (ack)
-    begin
-      r_input_offset  <= image_addr;
-      r_output_offset <= 0;
+      r_input_offset <= input_addr;
+      r_output_offset <= output_addr;
     end
 
 //==========================================================

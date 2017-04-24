@@ -2,8 +2,7 @@
 
 module renkon_mem_serial(/*AUTOARG*/);
 `include "renkon.vh"
-  // parameter WORDS = 2 ** OUTSIZE;
-  parameter WORDS = 150;
+  parameter WORDS = 2 ** OUTSIZE;
 
   /*AUTOINPUT*/
   input                     clk;
@@ -19,7 +18,7 @@ module renkon_mem_serial(/*AUTOARG*/);
   /*AUTOREG*/
 
   reg signed [DWIDTH-1:0] mem [WORDS-1:0];
-  reg [DWIDTH-1:0]        r_addr;
+  reg [OUTSIZE-1:0]        r_addr;
 
   always @(posedge clk)
   begin

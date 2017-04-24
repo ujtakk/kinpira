@@ -31,9 +31,9 @@
 # Attributes Definition
 ############################################################
 
-VERBFILES  = $(wildcard *.v.erb)  $(wildcard $(TEST_DIR)/*.v.erb)
-VHERBFILES = $(wildcard *.vh.erb) $(wildcard $(TEST_DIR)/*.vh.erb)
-VINFILES   = $(wildcard *.v.in)   $(wildcard $(TEST_DIR)/*.v.in)
+VERBFILES  = $(wildcard *.v.erb)  $(wildcard test/*.v.erb)
+VHERBFILES = $(wildcard *.vh.erb) $(wildcard test/*.vh.erb)
+VINFILES   = $(wildcard *.v.in)   $(wildcard test/*.v.in)
 
 ifndef SIMULATOR
 SIMULATOR=vsim
@@ -173,9 +173,9 @@ dep.in:
 	echo "$$DEP_IN" > dep.in
 
 clean-common:
-	rm -f *~ $(TEST_DIR)/*~
-	rm -f *.com $(TEST_DIR)/*.com
-	rm -f *.log $(TEST_DIR)/*.log
+	rm -f *~ test/*~
+	rm -f *.com test/*.com
+	rm -f *.log test/*.log
 	rm -f Makefile.dep
 	rm -f dep.in
 
@@ -194,7 +194,7 @@ clean-common:
 	rm -rf *.daidir
 
 	### iverilog
-	rm -f *.out $(TEST_DIR)/*.out
+	rm -f *.out test/*.out
 
 	rm -f $(VERBFILES:.v.erb=.v)
 	rm -f $(VERBFILES:.v.erb=.v.in)

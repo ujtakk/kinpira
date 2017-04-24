@@ -16,7 +16,7 @@ module renkon_core(/*AUTOARG*/);
   /* renkon_conv AUTO_TEMPLATE (
       .wreg_we        (wreg_we),
       .out_en         (conv_oe),
-      .read_weight    (read_net[DWIDTH-1:0]),
+      .read_weight    (net_rdata[DWIDTH-1:0]),
       <%- for i in 0...($fsize**2) -%>
       .pixel_in<%=i%> (pixel<%=i%>[DWIDTH-1:0]),
       <%- end -%>
@@ -27,7 +27,7 @@ module renkon_core(/*AUTOARG*/);
   /* renkon_bias AUTO_TEMPLATE (
       .breg_we    (breg_we),
       .out_en     (bias_oe),
-      .read_bias  (read_net[DWIDTH-1:0]),
+      .read_bias  (net_rdata[DWIDTH-1:0]),
       .pixel_in   (fmap[DWIDTH-1:0]),
       .pixel_out  (biased[DWIDTH-1:0]),
   ); */

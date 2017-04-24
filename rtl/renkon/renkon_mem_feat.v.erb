@@ -21,8 +21,8 @@ module renkon_mem_feat(/*AUTOARG*/);
 
   /*AUTOREG*/
   reg signed [DWIDTH-1:0] mem [WORDS-1:0];
-  reg [DWIDTH-1:0]        r_addr1;
-  reg [DWIDTH-1:0]        r_addr2;
+  reg [FACCUM-1:0]        r_addr1;
+  reg [FACCUM-1:0]        r_addr2;
 
   always @(posedge clk)
   begin

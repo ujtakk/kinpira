@@ -27,7 +27,7 @@ module renkon_mem_net(/*AUTOARG*/);
 % else
   reg signed [DWIDTH-1:0] mem [WORDS-1:0];
 % end
-  reg [DWIDTH-1:0]        r_addr;
+  reg [RENKON_NETSIZE-1:0]        r_addr;
 
 % if less
   assign mem_rdata = $signed({{5{mem[r_addr][DWIDTH-1-5]}}, mem[r_addr]});

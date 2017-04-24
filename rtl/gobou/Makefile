@@ -1,5 +1,5 @@
 VERBOSE   = 0
-SIMULATOR = iverilog
+SIMULATOR = vsim
 MODULE    = gobou_top.v.erb
 TARGET    = test/test_$(MODULE)
 INCLUDE   = $(shell git rev-parse --show-toplevel)/rtl/ninjin
@@ -11,6 +11,7 @@ include Makefile.dep
 include ../../utils/VERBMakefile
 
 .PHONY: all file test clean log edit diff
+
 file: $(TARGET:.v.erb=.com)
 test: $(TARGET:.v.erb=.log)
 

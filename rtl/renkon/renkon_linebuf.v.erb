@@ -1,10 +1,8 @@
 % load "renkon.rb"
-% max_line = 5
-% max_size = 32
 
 /* AUTO_LISP(setq verilog-auto-output-ignore-regexp
    (verilog-regexp-words `(
-     <%- for i in 0..max_line -%>
+     <%- for i in 0..$max_line -%>
      "read_mem<%=i%>"
      <%- end -%>
    ))) */
@@ -12,7 +10,8 @@
 module renkon_linebuf(/*AUTOARG*/);
 `include "renkon.vh"
 
-  parameter _BUFSIZE = <%= ( Math.log(max_size) / Math.log(2) ).to_i %>;
+  parameter _BUFSIZE = <%= ( Math.log($max_size) / Math.log(2) ).to_i %>;
+  parameter _BUFLINE = <%= ( Math.log($max_line) / Math.log(2) ).to_i %>;
 
   parameter S_WAIT   = 'd0;
   parameter S_CHARGE = 'd1;
@@ -26,31 +25,30 @@ module renkon_linebuf(/*AUTOARG*/);
   input signed [DWIDTH-1:0] buf_input;
 
   /*AUTOOUTPUT*/
-  <%- for i in 0...max_line -%>
-  <%-   for j in 0...max_line -%>
+  <%- for i in 0...$max_line -%>
+  <%-   for j in 0...$max_line -%>
   output signed [DWIDTH-1:0] buf_output<%=i%>_<%=j%>;
   <%-   end -%>
   <%- end -%>
 
   /*AUTOWIRE*/
-  wire                      s_charge_end;
-  wire                      s_active_end;
-  wire [8-1:0]              mem_linebuf_we;
-  wire [_BUFSIZE-1:0]       mem_linebuf_addr;
-  <%- for i in 0..max_line -%>
+  wire                        s_charge_end;
+  wire                        s_active_end;
+  wire [<%=$max_line+1%>-1:0] mem_linebuf_we;
+  wire [_BUFSIZE-1:0]         mem_linebuf_addr;
+  <%- for i in 0..$max_line -%>
   wire signed [DWIDTH-1:0]  read_mem<%=i%>;
   <%- end -%>
 
   /*AUTOREG*/
-  reg [4-1:0]             r_select;
   reg [2-1:0]             r_state;
+  reg [_BUFLINE:0]        r_select;
+  reg [_BUFLINE-1:0]      r_mem_count;
   reg [_BUFSIZE-1:0]      r_addr_count;
-  reg [3-1:0]             r_mem_count;
-  reg [LWIDTH-1:0]        r_line_count;
-  reg [8-1:0]             r_linebuf_we;
+  reg [_BUFSIZE-1:0]      r_line_count;
   reg signed [DWIDTH-1:0] r_buf_input;
-  <%- for i in 0...max_line -%>
-  <%-   for j in 0...max_line -%>
+  <%- for i in 0...$max_line -%>
+  <%-   for j in 0...$max_line -%>
   reg signed [DWIDTH-1:0] r_pixel<%=i%>_<%=j%>;
   <%-   end -%>
   <%- end -%>
@@ -61,8 +59,8 @@ module renkon_linebuf(/*AUTOARG*/);
                         ? (1 << r_mem_count)
                         : 1'b0;
 
-  <%- for i in 0...max_line -%>
-  <%-   for j in 0...max_line -%>
+  <%- for i in 0...$max_line -%>
+  <%-   for j in 0...$max_line -%>
   assign buf_output<%=i%>_<%=j%> = r_pixel<%=i%>_<%=j%>;
   <%-   end -%>
   <%- end -%>
@@ -114,7 +112,7 @@ module renkon_linebuf(/*AUTOARG*/);
     else if  (r_state == S_WAIT)
       r_mem_count <= 0;
     else if (r_state == S_CHARGE || r_state == S_ACTIVE)
-      if ((r_line_count == img_size || r_mem_count == <%=max_line%>)
+      if ((r_line_count == img_size || r_mem_count == <%=$max_line%>)
             && r_addr_count == img_size - 1)
         r_mem_count <= 0;
       else if (r_addr_count == img_size - 1)
@@ -142,17 +140,17 @@ module renkon_linebuf(/*AUTOARG*/);
       else if (r_addr_count == 0)
         r_select <= r_select+1;
 
-  <%- for i in 0...max_line -%>
-  <%-   for j in 0...max_line -%>
+  <%- for i in 0...$max_line -%>
+  <%-   for j in 0...$max_line -%>
   always @(posedge clk or negedge xrst)
     if (!xrst)
       r_pixel<%=i%>_<%=j%> <= 0;
-    <%- if j == 4 -%>
+    <%- if j == $max_line-1 -%>
     else
       case (r_select)
-        4'd0:    r_pixel<%=i%>_<%=j%> <= 0;
-        <%- for k in 0..max_line -%>
-        4'd<%=k+1%>:    r_pixel<%=i%>_<%=j%> <= read_mem<%=(i + k) % (max_line + 1)%>;
+        0:    r_pixel<%=i%>_<%=j%> <= 0;
+        <%- for k in 0..$max_line -%>
+        <%=k+1%>:    r_pixel<%=i%>_<%=j%> <= read_mem<%=(i + k) % ($max_line + 1)%>;
         <%- end -%>
         default: r_pixel<%=i%>_<%=j%> <= 0;
       endcase
@@ -164,7 +162,7 @@ module renkon_linebuf(/*AUTOARG*/);
   <%-   end -%>
   <%- end -%>
 
-  <%- for i in 0..max_line -%>
+  <%- for i in 0..$max_line -%>
   /* renkon_mem_linebuf AUTO_TEMPLATE (
       .mem_rdata  (read_mem<%=i%>[DWIDTH-1:0]),
       .mem_wdata  (r_buf_input[DWIDTH-1:0]),

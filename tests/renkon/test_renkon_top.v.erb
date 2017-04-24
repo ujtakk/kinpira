@@ -10,10 +10,10 @@
 module test_renkon_top;
 `include "renkon.vh"
 
-  parameter N_OUT = 32;
-  parameter N_IN  = 16;
-  parameter FSIZE = 5;
-  parameter PSIZE = 2;
+  parameter N_OUT = <%=$n_f2%>;
+  parameter N_IN  = <%=$n_f1%>;
+  parameter FSIZE = <%=$fsize%>;
+  parameter PSIZE = <%=$psize%>;
 
   /*AUTOREGINPUT*/
   reg [DWIDTH-1:0] mem_i [2**IMGSIZE-1:0];
@@ -21,12 +21,10 @@ module test_renkon_top;
   reg [DWIDTH-1:0] mem_n<%=i%> [2**RENKON_NETSIZE-1:0];
   <%- end -%>
 
-
   /*AUTOWIRE*/
 
   //clock
-  always
-  begin
+  always begin
     clk = 0;
     #(STEP/2);
     clk = 1;
@@ -35,8 +33,7 @@ module test_renkon_top;
 
   integer i;
   integer gd;
-  initial
-  begin
+  initial begin
     // $set_toggle_region(test_renkon.dut0);
 
     xrst = 0;
@@ -55,15 +52,15 @@ module test_renkon_top;
     img_size = 0;
     fil_size = 0;
     pool_size = 0;
-    // mem_clear;
-    mem_clear_direct;
+    mem_clear;
+    // mem_clear_direct;
     #(STEP);
 
     xrst        = 1;
     req         = 0;
     total_out   = N_OUT;
     total_in    = N_IN;
-    img_size    = 12;
+    img_size    = <%=$pm1hei%>;
     fil_size    = FSIZE;
     pool_size   = PSIZE;
     input_addr  = 0;
@@ -71,10 +68,10 @@ module test_renkon_top;
     net_addr    = <%=net_offset%>;
 
     // read_image_direct;
-    read_image;
+    // read_image;
 
     // read_network_direct;
-    read_network;
+    // read_network;
 
     // $toggle_start();
     #(STEP);
@@ -92,9 +89,7 @@ module test_renkon_top;
     //   "test_renkon.dut0"
     // );
 
-    // valid_memin;
-    // valid_memw;
-    write_output;
+    // write_output;
 
     $finish();
   end
@@ -136,18 +131,14 @@ module test_renkon_top;
         <%=($pm1hei**2)*(i+1)-1%>
       );
       <%- end -%>
-      #(STEP);
       img_we = 1;
-      fd = $fopen("asdf");
-      for (i=0; i<2**IMGSIZE; i=i+1)
-      begin
-        $fdisplay(fd, "%d", mem_i[i]);
+      #(STEP);
+      for (i=0; i<2**IMGSIZE; i=i+1) begin
         input_addr = i;
         #(STEP);
         img_wdata = mem_i[i];
         #(STEP);
       end
-      $fclose(fd);
       #(STEP);
       img_we = 0;
       input_addr = 0;
@@ -304,10 +295,9 @@ module test_renkon_top;
     integer i;
     integer out_size;
     begin // {{{
-      fd = $fopen("test_renkon.dat", "w");
+      fd = $fopen("output_renkon_top.dat", "w");
       out_size = 800;
-      for (i=0; i<out_size; i=i+1)
-      begin
+      for (i=0; i<out_size; i=i+1) begin
         input_addr = i + 5000;
         #(STEP*2);
         $fdisplay(fd, "%0d", img_rdata);
@@ -323,31 +313,27 @@ module test_renkon_top;
     #(STEP/2-1);
     $display(
       "%5d: ", $time/STEP, // {{{
+      "%d ", req,
+      "%d ", ack,
+      "| ",
+      "%d ", dut0.ctrl.ctrl_core.r_out_we,
+      "%d ", dut0.ctrl.ctrl_core.r_serial_we,
+      "%d ", dut0.ctrl.ctrl_core.r_serial_re,
+      "%d ", dut0.ctrl.ctrl_core.r_serial_cnt,
+      "%d ", dut0.ctrl.ctrl_core.r_serial_addr,
+      "%d ", dut0.mem_img_addr,
+      "%d ", dut0.mem_net_addr,
+      "| ",
       "%d ", dut0.ctrl.ctrl_core.r_state,
       "%d ", dut0.ctrl.ctrl_core.r_state_weight,
       "%d ", dut0.ctrl.ctrl_core.r_count_out,
       "%d ", dut0.ctrl.ctrl_core.r_count_in,
-      "|o: ",
-      "%d ", ack,
-      "%4d ", img_rdata,
-      "|r: ",
-      "%d ", dut0.mem_img_we,
-      "%d ", dut0.mem_img_addr,
-      "%4d ", dut0.img_rdata,
-      "; ",
-      "%d ", dut0.mem_net_we,
-      "%d ", dut0.mem_net_addr,
-      "%4d ", dut0.net_rdata0,
-      "; ",
-      "%4d ", dut0.pmap0,
-      "; ",
-      <%- 16.times do |i| -%>
-      "%0d ", dut0.serial.mem_serial0.mem[<%=i%>],
-      <%- end -%>
-      "; ",
-      <%- 16.times do |i| -%>
-      "%0d ", dut0.serial.mem_serial7.mem[<%=i%>],
-      <%- end -%>
+      "| ",
+      "%d ", dut0.ctrl.ctrl_conv.r_conv_x,
+      "%d ", dut0.ctrl.ctrl_conv.r_conv_y,
+      "| ",
+      "%d ", dut0.ctrl.ctrl_pool.r_pool_x,
+      "%d ", dut0.ctrl.ctrl_pool.r_pool_y,
       "|" // }}}
     );
     #(STEP/2+1);
