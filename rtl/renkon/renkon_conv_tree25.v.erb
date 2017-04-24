@@ -1,0 +1,170 @@
+% load "renkon.rb"
+
+module renkon_conv_tree25(/*AUTOARG*/);
+`include "renkon.vh"
+
+  /*AUTOINPUT*/
+  input clk;
+  input xrst;
+  <%- for i in 0...25 -%>
+  input signed [DWIDTH-1:0] pixel<%=i%>;
+  input signed [DWIDTH-1:0] weight<%=i%>;
+  <%- end -%>
+
+  /*AUTOOUTPUT*/
+  output signed [DWIDTH-1:0] fmap;
+
+  /*AUTOWIRE*/
+  <%- for i in 0...25 -%>
+  wire signed[2*DWIDTH-1:0]   pro<%=i%>;
+  wire signed [DWIDTH-1:0]    pro_short<%=i%>;
+  <%- end -%>
+  wire signed [DWIDTH-1:0]   sum0_0;
+  wire signed [DWIDTH-1:0]   sum0_1;
+  wire signed [DWIDTH-1:0]   sum0_2;
+  wire signed [DWIDTH-1:0]   sum0_3;
+  wire signed [DWIDTH-1:0]   sum0_4;
+  wire signed [DWIDTH-1:0]   sum0_5;
+  wire signed [DWIDTH-1:0]   sum0_6;
+  wire signed [DWIDTH-1:0]   sum0_7;
+  wire signed [DWIDTH-1:0]   sum0_8;
+  wire signed [DWIDTH-1:0]   sum0_9;
+  wire signed [DWIDTH-1:0]   sum0_10;
+  wire signed [DWIDTH-1:0]   sum0_11;
+  wire signed [DWIDTH-1:0]   sum1_0;
+  wire signed [DWIDTH-1:0]   sum1_1;
+  wire signed [DWIDTH-1:0]   sum1_2;
+  wire signed [DWIDTH-1:0]   sum1_3;
+  wire signed [DWIDTH-1:0]   sum1_4;
+  wire signed [DWIDTH-1:0]   sum1_5;
+  wire signed [DWIDTH-1:0]   sum2_0;
+  wire signed [DWIDTH-1:0]   sum2_1;
+  wire signed [DWIDTH-1:0]   sum2_2;
+  wire signed [DWIDTH-1:0]   sum3_0;
+  wire signed [DWIDTH-1:0]   sum3_1;
+  wire signed [DWIDTH-1:0]   sum4_0;
+
+  /*AUTOREG*/
+  <%- for i in 0...25 -%>
+  reg signed [DWIDTH-1:0]   r_pixel<%=i%>;
+  reg signed [DWIDTH-1:0]   r_weight<%=i%>;
+  reg signed [2*DWIDTH-1:0] r_pro<%=i%>;
+  reg signed [DWIDTH-1:0]   r_pro_short<%=i%>;
+  <%- end -%>
+  reg signed [DWIDTH-1:0]   r_pro_short24_d1;
+  reg signed [DWIDTH-1:0]   r_sum0_0;
+  reg signed [DWIDTH-1:0]   r_sum0_1;
+  reg signed [DWIDTH-1:0]   r_sum0_2;
+  reg signed [DWIDTH-1:0]   r_sum0_3;
+  reg signed [DWIDTH-1:0]   r_sum0_4;
+  reg signed [DWIDTH-1:0]   r_sum0_5;
+  reg signed [DWIDTH-1:0]   r_sum0_6;
+  reg signed [DWIDTH-1:0]   r_sum0_7;
+  reg signed [DWIDTH-1:0]   r_sum0_8;
+  reg signed [DWIDTH-1:0]   r_sum0_9;
+  reg signed [DWIDTH-1:0]   r_sum0_10;
+  reg signed [DWIDTH-1:0]   r_sum0_11;
+  reg signed [DWIDTH-1:0]   r_sum1_0;
+  reg signed [DWIDTH-1:0]   r_sum1_1;
+  reg signed [DWIDTH-1:0]   r_sum1_2;
+  reg signed [DWIDTH-1:0]   r_sum1_3;
+  reg signed [DWIDTH-1:0]   r_sum1_4;
+  reg signed [DWIDTH-1:0]   r_sum1_5;
+  reg signed [DWIDTH-1:0]   r_sum2_0;
+  reg signed [DWIDTH-1:0]   r_sum2_1;
+  reg signed [DWIDTH-1:0]   r_sum2_2;
+  reg signed [DWIDTH-1:0]   r_sum3_0;
+  reg signed [DWIDTH-1:0]   r_sum3_1;
+  reg signed [DWIDTH-1:0]   r_sum4_0;
+  reg signed[DWIDTH-1:0]    r_fmap;
+
+  <%- for i in 0...25 -%>
+  assign pro<%=i%> = r_pixel<%=i%> * r_weight<%=i%>;
+  assign pro_short<%=i%> = round(r_pro<%=i%>);
+  <%- end -%>
+
+  assign sum0_0  = r_pro_short0  + r_pro_short1;
+  assign sum0_1  = r_pro_short2  + r_pro_short3;
+  assign sum0_2  = r_pro_short4  + r_pro_short5;
+  assign sum0_3  = r_pro_short6  + r_pro_short7;
+  assign sum0_4  = r_pro_short8  + r_pro_short9;
+  assign sum0_5  = r_pro_short10 + r_pro_short11;
+  assign sum0_6  = r_pro_short12 + r_pro_short13;
+  assign sum0_7  = r_pro_short14 + r_pro_short15;
+  assign sum0_8  = r_pro_short16 + r_pro_short17;
+  assign sum0_9  = r_pro_short18 + r_pro_short19;
+  assign sum0_10 = r_pro_short20 + r_pro_short21;
+  assign sum0_11 = r_pro_short22 + r_pro_short23;
+  assign sum1_0 = sum0_0 + sum0_1;
+  assign sum1_1 = sum0_2 + sum0_3;
+  assign sum1_2 = sum0_4 + sum0_5;
+  assign sum1_3 = sum0_6 + sum0_7;
+  assign sum1_4 = sum0_8 + sum0_9;
+  assign sum1_5 = sum0_10 + sum0_11;
+  assign sum2_0 = sum1_0 + sum1_1;
+  assign sum2_1 = sum1_2 + sum1_3;
+  assign sum2_2 = sum1_4 + sum1_5;
+  assign sum3_0 = r_sum2_0 + r_sum2_1;
+  assign sum3_1 = r_sum2_2 + r_pro_short24_d1;
+  assign sum4_0 = sum3_0 + sum3_1;
+
+  assign fmap = r_fmap;
+
+  <%- for i in 0...25 -%>
+  always @(posedge clk or negedge xrst)
+    if(!xrst)
+      r_pixel<%=i%> <= 0;
+    else
+      r_pixel<%=i%> <= pixel<%=i%>;
+
+  always @(posedge clk or negedge xrst)
+    if(!xrst)
+      r_weight<%=i%> <= 0;
+    else
+      r_weight<%=i%> <= weight<%=i%>;
+
+  always @(posedge clk)
+    r_pro<%=i%> <= pro<%=i%>;
+  always @(posedge clk)
+    r_pro_short<%=i%> <= pro_short<%=i%>;
+  <%- end -%>
+
+  always @(posedge clk)
+    if (!xrst) begin
+      r_sum2_0         <= 0;
+      r_sum2_1         <= 0;
+      r_sum2_2         <= 0;
+      r_pro_short24_d1 <= 0;
+    end
+    else begin
+      r_sum2_0         <= sum2_0;
+      r_sum2_1         <= sum2_1;
+      r_sum2_2         <= sum2_2;
+      r_pro_short24_d1 <= r_pro_short24;
+    end
+
+  always @(posedge clk or negedge xrst)
+    if(!xrst)
+      r_fmap <= 0;
+    else
+      r_fmap <= sum4_0;
+
+////////////////////////////////////////////////////////////
+//  Function
+////////////////////////////////////////////////////////////
+
+  function signed [DWIDTH-1:0] round;
+    input signed [2*DWIDTH-1:0] data;
+    if (data[2*DWIDTH-DWIDTH/2-2] == 1 && data[DWIDTH/2-1:0] == 0)
+      round = $signed({
+                data[2*DWIDTH-DWIDTH/2-2],
+                data[2*DWIDTH-DWIDTH/2-2:DWIDTH/2] - 1'b1
+              });
+    else
+      round = $signed({
+                data[2*DWIDTH-DWIDTH/2-2],
+                data[2*DWIDTH-DWIDTH/2-2:DWIDTH/2]
+              });
+  endfunction
+
+endmodule

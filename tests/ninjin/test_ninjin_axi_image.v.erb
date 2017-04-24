@@ -1,0 +1,162 @@
+% load "parameters.rb"
+
+`timescale 1ns/1ps
+
+module test_ninjin_axi_image();
+`include "parameters.vh"
+
+  /*AUTOREGINPUT*/
+
+  /*AUTOWIRE*/
+
+  //clock
+  always
+  begin
+    clk = 0;
+    #(STEP/2);
+    clk = 1;
+    #(STEP/2);
+  end
+
+  //flow
+  initial
+  begin
+
+    $finish();
+  end
+
+  ninjin_axi_image dut0(/*AUTOINST*/);
+
+  //display
+  always
+  begin
+    #(STEP/2-1);
+    $display(
+      "%d: ", $time/STEP,
+      "| ",
+    );
+    #(STEP/2+1);
+  end
+
+endmodule
+
+`timescale 1 ns / 1 ps
+
+module AXI4_Lite_Master_BFM_v1_0 #(
+  parameter integer C_M_AXI_ADDR_WIDTH	= 32,
+  parameter integer C_M_AXI_DATA_WIDTH	= 32
+) (
+  output reg error = 0,
+
+  input wire  m_axi_aclk,
+  input wire  m_axi_aresetn,
+  output reg [C_M_AXI_ADDR_WIDTH-1 : 0] m_axi_awaddr,
+  output wire [2 : 0] m_axi_awprot,
+  output reg  m_axi_awvalid = 0,
+  input wire  m_axi_awready,
+  output reg [C_M_AXI_DATA_WIDTH-1 : 0] m_axi_wdata,
+  output wire [C_M_AXI_DATA_WIDTH/8-1 : 0] m_axi_wstrb,
+  output reg m_axi_wvalid = 0,
+  input wire  m_axi_wready,
+  input wire [1 : 0] m_axi_bresp,
+  input wire  m_axi_bvalid,
+  output reg  m_axi_bready = 0,
+  output reg [C_M_AXI_ADDR_WIDTH-1 : 0] m_axi_araddr,
+  output wire [2 : 0] m_axi_arprot,
+  output reg  m_axi_arvalid = 0,
+  input wire  m_axi_arready,
+  input wire [C_M_AXI_DATA_WIDTH-1 : 0] m_axi_rdata,
+  input wire [1 : 0] m_axi_rresp,
+  input wire  m_axi_rvalid,
+  output reg  m_axi_rready = 0 
+);
+  assign m_axi_awprot = 3'b000;
+  assign m_axi_wstrb = 4'b1111;
+  assign m_axi_arprot = 3'b000;
+
+  task write(
+    input [C_M_AXI_ADDR_WIDTH-1:0] addr,
+    input [C_M_AXI_DATA_WIDTH-1:0] data
+  );
+  begin
+    m_axi_awvalid = 0;
+    m_axi_wvalid = 0;
+    m_axi_bready = 0;
+    @(posedge m_axi_aclk) #1
+    fork
+      begin // アドレスを出力し awvalid を立てて awready を待つ
+        m_axi_awaddr = addr;
+        m_axi_awvalid = 1;
+        while(!m_axi_awready) @(posedge m_axi_aclk) #1;
+        @(posedge m_axi_aclk) #1;
+        m_axi_awvalid = 0;
+      end
+      begin // データを出力し wvalid を立てて wready を待つ
+        m_axi_wdata = data;
+        m_axi_wvalid = 1;
+        while(!m_axi_wready) @(posedge m_axi_aclk) #1;
+        @(posedge m_axi_aclk) #1;
+        m_axi_wvalid = 0;
+      end
+      begin // bvalid が立ったら bready を返しエラーを読む
+        while(!m_axi_bvalid) @(posedge m_axi_aclk) #1;
+        @(posedge m_axi_aclk) #1; 
+        m_axi_bready = 1;
+        error = m_axi_bresp[1];
+        @(posedge m_axi_aclk) #1; 
+        m_axi_bready = 0;
+        @(posedge m_axi_aclk) #1; 
+      end
+    join
+  end
+  endtask
+
+  task read(
+    input [C_M_AXI_ADDR_WIDTH-1:0] addr,
+    output [C_M_AXI_DATA_WIDTH-1:0] data
+  );
+  begin
+    m_axi_arvalid = 0;
+    m_axi_rready = 0;
+    @(posedge m_axi_aclk) #1
+    fork
+      begin // アドレスを出力し arvalid を立てて arready を待つ
+        m_axi_araddr = addr;
+        m_axi_arvalid = 1;
+        while(!m_axi_arready) @(posedge m_axi_aclk) #1;
+        @(posedge m_axi_aclk) #1;
+        m_axi_arvalid = 0;
+      end
+      begin // rvalid が立ったら rready を返しエラーとデータを読む
+        while(!m_axi_rvalid) @(posedge m_axi_aclk) #1;
+        @(posedge m_axi_aclk) #1; 
+        m_axi_rready = 1;
+        error = m_axi_rresp[1];
+        if(!error)
+          data = m_axi_rdata;
+        @(posedge m_axi_aclk) #1; 
+        m_axi_rready = 0;
+        @(posedge m_axi_aclk) #1; 
+      end
+    join
+  end
+  endtask
+
+  task verify(
+    input [C_M_AXI_ADDR_WIDTH-1:0] addr,
+    input [C_M_AXI_DATA_WIDTH-1:0] expected
+  );
+  reg [C_M_AXI_DATA_WIDTH-1:0] data;
+  reg read_error;
+  begin
+    read(addr, data);
+    error = data !== expected;
+    if(error) $display("ERROR");
+  end
+  endtask
+
+endmodule
+
+// Local Variables:
+// verilog-library-directories:("." "..")
+// End:

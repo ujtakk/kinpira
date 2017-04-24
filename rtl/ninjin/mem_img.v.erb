@@ -22,15 +22,15 @@ module mem_img(/*AUTOARG*/
 
   /*AUTOREG*/
   reg signed [DWIDTH-1:0] mem [WORDS-1:0];
-  reg [DWIDTH-1:0]        addr_reg;
+  reg [IMGSIZE-1:0]       r_addr;
 
-  assign mem_rdata = mem[addr_reg];
+  assign mem_rdata = mem[r_addr];
 
   always @(posedge clk)
   begin
     if (mem_we)
       mem[mem_addr] <= mem_wdata;
-    addr_reg <= mem_addr;
+    r_addr <= mem_addr;
   end
 
 endmodule

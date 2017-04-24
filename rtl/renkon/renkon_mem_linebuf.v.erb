@@ -18,7 +18,7 @@ module renkon_mem_linebuf(/*AUTOARG*/);
     /*AUTOREG*/
 
     reg [DWIDTH-1:0] mem [WORDS-1:0];
-    reg [DWIDTH-1:0] r_addr;
+    reg [BUFSIZE-1:0] r_addr;
 
     always @(posedge clk)
     begin

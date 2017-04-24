@@ -17,11 +17,10 @@ module gobou_ctrl_core(/*AUTOARG*/);
   input                     in_valid;
   input                     in_end;
   input                     img_we;
-  input [IMGSIZE-1:0]       image_addr;
-  input [IMGSIZE-1:0]       input_offset;
-  input [IMGSIZE-1:0]       output_offset;
-  input signed [DWIDTH-1:0] write_img;
-  input signed [DWIDTH-1:0] write_result;
+  input [IMGSIZE-1:0]       input_addr;
+  input [IMGSIZE-1:0]       output_addr;
+  input signed [DWIDTH-1:0] img_wdata;
+  input signed [DWIDTH-1:0] out_wdata;
   input [GOBOU_CORELOG:0]   net_we;
   input [GOBOU_NETSIZE-1:0] net_addr;
   input [LWIDTH-1:0]        total_out;
@@ -34,7 +33,7 @@ module gobou_ctrl_core(/*AUTOARG*/);
   output                      out_end;
   output                      mem_img_we;
   output [IMGSIZE-1:0]        mem_img_addr;
-  output signed [DWIDTH-1:0]  write_mem_img;
+  output signed [DWIDTH-1:0]  mem_img_wdata;
   output [GOBOU_CORE-1:0]     mem_net_we;
   output [GOBOU_NETSIZE-1:0]  mem_net_addr;
   output                      breg_we;
@@ -49,33 +48,32 @@ module gobou_ctrl_core(/*AUTOARG*/);
   wire [IMGSIZE-1:0]  w_img_offset;
 
   /*AUTOREG*/
-  reg [2-1:0]       r_state;
-  reg               r_ack;
-  reg [LWIDTH-1:0]  r_total_out;
-  reg [LWIDTH-1:0]  r_total_in;
-  reg [LWIDTH-1:0]  r_count_out;
-  reg [LWIDTH-1:0]  r_count_in;
-  reg               r_img_we;
-  reg [IMGSIZE-1:0] r_input_offset;
-  reg [IMGSIZE-1:0] r_output_offset;
-  reg [IMGSIZE-1:0] r_input_addr;
-  reg [IMGSIZE-1:0] r_output_addr;
+  reg [2-1:0]             r_state;
+  reg                     r_ack;
+  reg [LWIDTH-1:0]        r_total_out;
+  reg [LWIDTH-1:0]        r_total_in;
+  reg [LWIDTH-1:0]        r_count_out;
+  reg [LWIDTH-1:0]        r_count_in;
+  reg                     r_img_we;
+  reg [IMGSIZE-1:0]       r_input_offset;
+  reg [IMGSIZE-1:0]       r_output_offset;
+  reg [IMGSIZE-1:0]       r_input_addr;
+  reg [IMGSIZE-1:0]       r_output_addr;
   reg [GOBOU_CORE-1:0]    r_net_we;
   reg [GOBOU_NETSIZE-1:0] r_net_addr;
   reg [GOBOU_NETSIZE-1:0] r_net_offset;
-  reg               r_breg_we;
-  reg               r_serial_we;
-  reg [LWIDTH-1:0]  r_serial_cnt;
-  reg               r_out_begin;
-  reg               r_out_valid;
-  reg               r_out_end;
+  reg                     r_breg_we;
+  reg                     r_serial_we;
+  reg [LWIDTH-1:0]        r_serial_cnt;
+  reg                     r_out_begin;
+  reg                     r_out_valid;
+  reg                     r_out_end;
 
-  assign final_iter = r_count_in == r_total_in - 1
+  assign final_iter = r_state == S_OUTPUT
                    && r_count_out + GOBOU_CORE >= r_total_out;
 
   always @(posedge clk)
-    if (!xrst)
-    begin
+    if (!xrst) begin
       r_state <= S_WAIT;
       r_count_out <= 0;
       r_count_in <= 0;
@@ -87,8 +85,7 @@ module gobou_ctrl_core(/*AUTOARG*/);
             r_state <= S_WEIGHT;
 
         S_WEIGHT:
-          if (s_weight_end)
-          begin
+          if (s_weight_end) begin
             r_state <= S_BIAS;
             r_count_in <= 0;
           end
@@ -101,13 +98,11 @@ module gobou_ctrl_core(/*AUTOARG*/);
 
         S_OUTPUT:
           if (s_output_end)
-            if (r_count_out + GOBOU_CORE >= r_total_out)
-            begin
+            if (r_count_out + GOBOU_CORE >= r_total_out) begin
               r_state <= S_WAIT;
               r_count_out <= 0;
             end
-            else
-            begin
+            else begin
               r_state <= S_WEIGHT;
               r_count_out <= r_count_out + GOBOU_CORE;
             end
@@ -117,13 +112,11 @@ module gobou_ctrl_core(/*AUTOARG*/);
       endcase
 
   always @(posedge clk)
-    if (!xrst)
-    begin
+    if (!xrst) begin
       r_total_in    <= 0;
       r_total_out   <= 0;
     end
-    else if (r_state == S_WAIT && req)
-    begin
+    else if (r_state == S_WAIT && req) begin
       r_total_in    <= total_in;
       r_total_out   <= total_out;
     end
@@ -150,9 +143,9 @@ module gobou_ctrl_core(/*AUTOARG*/);
 
   assign mem_img_addr = w_img_addr + w_img_offset;
 
-  assign write_mem_img = r_state == S_OUTPUT
-                       ? write_result
-                       : write_img;
+  assign mem_img_wdata = r_state == S_OUTPUT
+                       ? out_wdata
+                       : img_wdata;
 
   assign w_img_addr = r_state == S_OUTPUT
                     ? r_output_addr
@@ -179,20 +172,13 @@ module gobou_ctrl_core(/*AUTOARG*/);
       r_output_addr <= r_output_addr + 1;
 
   always @(posedge clk)
-    if (!xrst)
-    begin
+    if (!xrst) begin
       r_input_offset <= 0;
       r_output_offset <= 0;
     end
-    else if (req)
-    begin
-      r_input_offset <= input_offset;
-      r_output_offset <= output_offset;
-    end
-    else if (ack)
-    begin
-      r_input_offset  <= image_addr;
-      r_output_offset <= 0;
+    else if (req || ack) begin
+      r_input_offset <= input_addr;
+      r_output_offset <= output_addr;
     end
 
 //==========================================================

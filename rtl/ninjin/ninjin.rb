@@ -1,10 +1,14 @@
+$dist             = false
+$step             = 10
 $port             = 32
 $dwidth           = 16
 $lwidth           = 10
-$imgsize          = 12
-$renkon_core      = 8
+$imgsize          = 10
+
+$renkon_core      = 4
+$renkon_netsize   = 10
+$gobou_core       = 4
+$gobou_netsize    = 10
+
 $renkon_core_log  = (Math.log($renkon_core)/Math.log(2)).to_i
-$renkon_netsize   = 11
-$gobou_core       = 16
 $gobou_core_log   = (Math.log($gobou_core)/Math.log(2)).to_i
-$gobou_netsize    = 14

@@ -1,14 +1,24 @@
 #!/usr/bin/env ruby
 
+require '../ninjin/ninjin'
+
 ### ERB(Meta) parameter
-$dist       = false
-$core       = 8   # Num of cores
-$core_log   = (Math.log($core)/Math.log(2)).to_i
-$max_size   = 32  # Corresponds to acceptable max input size
-$max_line   = 5
+$core       = $renkon_core # Num of cores
+$core_log   = $renkon_core_log
+
+$max_size   = 448  # Corresponds to acceptable max input size
+$max_line   = 3
+
+$fsize      = 3
+$psize      = 2
+
 $d_pixelbuf = 32  # Corresponds to acceptable max input size
 $d_poolbuf  = 32  # Corresponds to acceptable max input size
-$d_conv     = 5   # Delay clocks in the conv module
+$d_conv     = if $fsize == 5   # Delay clocks in the conv module
+                5
+              else
+                4
+              end
 $d_accum    = 1   # Delay clocks in the accumlator module
 $d_bias     = 2   # Delay clocks in the pool module
 $d_relu     = 2   # Delay clocks in the pool module
@@ -16,21 +26,15 @@ $d_pool     = 2   # Delay clocks in the pool module
 
 ### Verilog parameter
 # Hardware
-$dwidth   = 16 # Data bitwidth
-$lwidth   = 10 # Literal(Constant) data bitwidth
-$step     = 10 # Step width(ns) per clock
-$imgsize  = 12 # Address bitwidth of inputs: (12*12*16)
-$outsize  = 8 # Address bitwidth of outputs: (4*4*32)
-$netsize  = 11 # Address bitwidth of weights: (50*20*5*5)/8
+$netsize  = $renkon_netsize # Address bitwidth of weights: (50*20*5*5)/8
+$outsize  = 10 # Address bitwidth of outputs: (4*4*32)
 $faccum   = 10 # Address bitwidth of conv fmap: (24*24)
 $bufsize  = ( Math.log($max_size) / Math.log(2) ).to_i;;
 
 # Network
 $n_in   = 1
-$n_f1   = 16
-$n_f2   = 32
-$fsize  = 5
-$psize  = 2
+$n_f1   = 20
+$n_f2   = 50
 $in_hei = 28
 $fm1hei = $in_hei - $fsize + 1
 $pm1hei = $fm1hei / $psize

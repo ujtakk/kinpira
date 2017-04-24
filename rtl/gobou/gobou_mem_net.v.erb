@@ -12,11 +12,11 @@ module gobou_mem_net(/*AUTOARG*/);
   /*AUTOINPUT*/
   input                     clk;
   input                     mem_we;
-  input [GOBOU_NETSIZE-1:0]        mem_addr;
-  input signed [DWIDTH-1:0] write_data;
+  input [GOBOU_NETSIZE-1:0] mem_addr;
+  input signed [DWIDTH-1:0] mem_wdata;
 
   /*AUTOOUTPUT*/
-  output signed [DWIDTH-1:0] read_data;
+  output signed [DWIDTH-1:0] mem_rdata;
 
   /*AUTOWIRE*/
 
@@ -26,21 +26,21 @@ module gobou_mem_net(/*AUTOARG*/);
 % else
   reg signed [DWIDTH-1:0] mem [WORDS-1:0];
 % end
-  reg [DWIDTH-1:0]        addr_reg;
+  reg [GOBOU_NETSIZE-1:0]        addr_reg;
 
 % if less
-  assign read_data = $signed({{6{mem[addr_reg][DWIDTH-1-6]}}, mem[addr_reg]});
+  assign mem_rdata = $signed({{6{mem[addr_reg][DWIDTH-1-6]}}, mem[addr_reg]});
 % else
-  assign read_data = mem[addr_reg];
+  assign mem_rdata = mem[addr_reg];
 % end
 
   always @(posedge clk)
   begin
     if (mem_we)
 % if less
-      mem[mem_addr] <= write_data[DWIDTH-1-6:0];
+      mem[mem_addr] <= mem_wdata[DWIDTH-1-6:0];
 % else
-      mem[mem_addr] <= write_data;
+      mem[mem_addr] <= mem_wdata;
 % end
     addr_reg <= mem_addr;
   end

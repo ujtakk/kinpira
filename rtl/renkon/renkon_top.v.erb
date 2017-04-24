@@ -27,7 +27,7 @@ module renkon_top(/*AUTOARG*/);
   input [LWIDTH-1:0]         fil_size;
   input [LWIDTH-1:0]         pool_size;
 % if $dist
-  input signed [DWIDTH-1:0] img_rdata;
+  input signed [DWIDTH-1:0]  img_rdata;
 % end
 
   /*AUTOOUTPUT*/
@@ -94,7 +94,7 @@ module renkon_top(/*AUTOARG*/);
       <%- $core.times do |i| -%>
       .in_data<%=i%> (pmap<%=i%>[DWIDTH-1:0]),
       <%- end -%>
-      .out_data (write_result[DWIDTH-1:0]),
+      .out_data (out_wdata[DWIDTH-1:0]),
   ); */
   renkon_serial_mat serial(/*AUTOINST*/);
 
