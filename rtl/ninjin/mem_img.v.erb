@@ -26,8 +26,7 @@ module mem_img(/*AUTOARG*/
 
   assign mem_rdata = mem[r_addr];
 
-  always @(posedge clk)
-  begin
+  always @(posedge clk) begin
     if (mem_we)
       mem[mem_addr] <= mem_wdata;
     r_addr <= mem_addr;

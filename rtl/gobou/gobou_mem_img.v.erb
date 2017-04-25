@@ -21,8 +21,7 @@ module gobou_mem_img(/*AUTOARG*/);
 
   assign mem_rdata = mem[addr_reg];
 
-  always @(posedge clk)
-  begin
+  always @(posedge clk) begin
     if (mem_we)
       mem[mem_addr] <= mem_wdata;
     addr_reg <= mem_addr;

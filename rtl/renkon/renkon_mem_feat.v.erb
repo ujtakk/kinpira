@@ -24,15 +24,13 @@ module renkon_mem_feat(/*AUTOARG*/);
   reg [FACCUM-1:0]        r_addr1;
   reg [FACCUM-1:0]        r_addr2;
 
-  always @(posedge clk)
-  begin
+  always @(posedge clk) begin
     if(mem_we1)
       mem[mem_addr1] <= mem_wdata1;
     r_addr1 <= mem_addr1;
   end
 
-  always @(posedge clk)
-  begin
+  always @(posedge clk) begin
     //if(mem_we2)
     //  mem[mem_addr2] <= mem_wdata2;
     r_addr2 <= mem_addr2;

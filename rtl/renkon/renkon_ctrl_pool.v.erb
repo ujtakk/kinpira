@@ -67,22 +67,19 @@ module renkon_ctrl_pool(/*AUTOARG*/);
   assign w_pool_size = r_pool_size;
 
   always @(posedge clk)
-    if (!xrst)
-    begin
+    if (!xrst) begin
       r_fea_size  <= 0;
       r_pool_size <= 0;
       r_d_poolbuf <= 0;
     end
-    else if (r_state == S_WAIT && in_begin)
-    begin
+    else if (r_state == S_WAIT && in_begin) begin
       r_fea_size  <= w_fea_size;
       r_pool_size <= pool_size;
       r_d_poolbuf <= w_fea_size - pool_size + 8 - 1;
     end
 
   always @(posedge clk)
-    if (!xrst)
-    begin
+    if (!xrst) begin
       r_pool_x <= 0;
       r_pool_y <= 0;
       r_pool_exec_x <= 0;
@@ -90,8 +87,7 @@ module renkon_ctrl_pool(/*AUTOARG*/);
     end
     else
       case (r_state)
-        S_WAIT:
-        begin
+        S_WAIT: begin
           r_pool_x <= 0;
           r_pool_y <= 0;
           r_pool_exec_x <= 0;
@@ -99,10 +95,8 @@ module renkon_ctrl_pool(/*AUTOARG*/);
         end
 
         S_ACTIVE:
-          if (in_valid)
-          begin
-            if (r_pool_x == r_fea_size - 1)
-            begin
+          if (in_valid) begin
+            if (r_pool_x == r_fea_size - 1) begin
               r_pool_x <= 0;
               if (r_pool_y == r_fea_size - 1)
                 r_pool_y <= 0;

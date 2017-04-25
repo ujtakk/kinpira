@@ -34,8 +34,7 @@ module gobou_mem_net(/*AUTOARG*/);
   assign mem_rdata = mem[addr_reg];
 % end
 
-  always @(posedge clk)
-  begin
+  always @(posedge clk) begin
     if (mem_we)
 % if less
       mem[mem_addr] <= mem_wdata[DWIDTH-1-6:0];
