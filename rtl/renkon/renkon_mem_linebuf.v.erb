@@ -20,11 +20,10 @@ module renkon_mem_linebuf(/*AUTOARG*/);
     reg [DWIDTH-1:0] mem [WORDS-1:0];
     reg [BUFSIZE-1:0] r_addr;
 
-    always @(posedge clk)
-    begin
-        if(mem_we)
-          mem[mem_addr] <= mem_wdata;
-        r_addr <= mem_addr;
+    always @(posedge clk) begin
+      if(mem_we)
+        mem[mem_addr] <= mem_wdata;
+      r_addr <= mem_addr;
     end
 
     assign mem_rdata = mem[r_addr];

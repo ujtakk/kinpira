@@ -112,8 +112,7 @@ module renkon_ctrl_core(/*AUTOARG*/);
 
   //main FSM
   always @(posedge clk)
-    if (!xrst)
-    begin
+    if (!xrst) begin
       r_state     <= S_WAIT;
       r_count_in  <= 0;
       r_count_out <= 0;
@@ -130,26 +129,22 @@ module renkon_ctrl_core(/*AUTOARG*/);
 
         S_INPUT:
           if (s_input_end)
-            if (r_count_in == r_total_in - 1)
-            begin
+            if (r_count_in == r_total_in - 1) begin
               r_state     <= S_OUTPUT;
               r_count_in  <= 0;
             end
-            else
-            begin
+            else begin
               r_state     <= S_NETWORK;
               r_count_in  <= r_count_in + 1;
             end
 
         S_OUTPUT:
           if (s_output_end)
-            if (r_count_out + RENKON_CORE >= r_total_out)
-            begin
+            if (r_count_out + RENKON_CORE >= r_total_out) begin
               r_state     <= S_WAIT;
               r_count_out <= 0;
             end
-            else
-            begin
+            else begin
               r_state     <= S_NETWORK;
               r_count_out <= r_count_out + RENKON_CORE;
             end
@@ -180,16 +175,14 @@ module renkon_ctrl_core(/*AUTOARG*/);
 
   //wait exec (initialize)
   always @(posedge clk)
-    if (!xrst)
-    begin
+    if (!xrst) begin
       r_total_in    <= 0;
       r_total_out   <= 0;
       r_img_size    <= 0;
       r_fil_size    <= 0;
       r_d_pixelbuf  <= 0;
     end
-    else if (r_state == S_WAIT && req)
-    begin
+    else if (r_state == S_WAIT && req) begin
       r_total_in    <= total_in;
       r_total_out   <= total_out;
       r_img_size    <= img_size;
@@ -203,24 +196,20 @@ module renkon_ctrl_core(/*AUTOARG*/);
   <%- for i in 0...$d_pixelbuf -%>
   always @(posedge clk)
     <%- if i == 0 -%>
-    if (!xrst)
-    begin
+    if (!xrst) begin
       r_first_input_d[0] <= 0;
       r_last_input_d[0]  <= 0;
     end
-    else
-    begin
+    else begin
       r_first_input_d[0] <= r_state == S_INPUT && r_count_in == 0;
       r_last_input_d[0]  <= r_state == S_INPUT && r_count_in == r_total_in - 1;
     end
     <%- else -%>
-    if (!xrst)
-    begin
+    if (!xrst) begin
       r_first_input_d[<%=i%>] <= 0;
       r_last_input_d[<%=i%>]  <= 0;
     end
-    else
-    begin
+    else begin
       r_first_input_d[<%=i%>] <= r_first_input_d[<%=i-1%>];
       r_last_input_d[<%=i%>]  <= r_last_input_d[<%=i-1%>];
     end
@@ -312,8 +301,7 @@ module renkon_ctrl_core(/*AUTOARG*/);
       r_net_offset <= net_addr;
 
   always @(posedge clk)
-    if (!xrst)
-    begin
+    if (!xrst) begin
       r_weight_x <= 0;
       r_weight_y <= 0;
     end
@@ -322,8 +310,7 @@ module renkon_ctrl_core(/*AUTOARG*/);
         S_NETWORK:
           case (r_state_weight)
             S_W_WEIGHT:
-              if (r_weight_x == r_fil_size - 1)
-              begin
+              if (r_weight_x == r_fil_size - 1) begin
                 r_weight_x <= 0;
                 if (r_weight_y == r_fil_size - 1)
                   r_weight_y <= 0;
@@ -333,15 +320,13 @@ module renkon_ctrl_core(/*AUTOARG*/);
               else
                 r_weight_x <= r_weight_x + 1;
 
-            default:
-            begin
+            default: begin
               r_weight_x <= 0;
               r_weight_y <= 0;
             end
           endcase
 
-        default:
-        begin
+        default: begin
           r_weight_x <= 0;
           r_weight_y <= 0;
         end
@@ -390,16 +375,14 @@ module renkon_ctrl_core(/*AUTOARG*/);
                       : r_input_offset;
 
   always @(posedge clk)
-    if (!xrst)
-    begin
+    if (!xrst) begin
       r_input_x <= 0;
       r_input_y <= 0;
     end
     else
       case (r_state)
         S_INPUT:
-          if (r_input_x == r_img_size - 1)
-          begin
+          if (r_input_x == r_img_size - 1) begin
             r_input_x <= 0;
             if (r_input_y == r_img_size - 1)
               r_input_y <= 0;
@@ -409,8 +392,7 @@ module renkon_ctrl_core(/*AUTOARG*/);
           else
             r_input_x <= r_input_x + 1;
 
-        default:
-        begin
+        default: begin
           r_input_x <= 0;
           r_input_y <= 0;
         end
@@ -446,13 +428,11 @@ module renkon_ctrl_core(/*AUTOARG*/);
       r_output_addr <= r_output_addr + 1;
 
   always @(posedge clk)
-    if (!xrst)
-    begin
+    if (!xrst) begin
       r_input_offset <= 0;
       r_output_offset <= 0;
     end
-    else if (req || ack)
-    begin
+    else if (req || ack) begin
       r_input_offset <= input_addr;
       r_output_offset <= output_addr;
     end

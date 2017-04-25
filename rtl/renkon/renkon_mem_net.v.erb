@@ -35,8 +35,7 @@ module renkon_mem_net(/*AUTOARG*/);
   assign mem_rdata = mem[r_addr];
 % end
 
-  always @(posedge clk)
-  begin
+  always @(posedge clk) begin
     if (mem_we)
 % if less
       mem[mem_addr] <= mem_wdata[DWIDTH-1-5:0];

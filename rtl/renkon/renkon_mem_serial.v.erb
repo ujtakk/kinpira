@@ -20,8 +20,7 @@ module renkon_mem_serial(/*AUTOARG*/);
   reg signed [DWIDTH-1:0] mem [WORDS-1:0];
   reg [OUTSIZE-1:0]        r_addr;
 
-  always @(posedge clk)
-  begin
+  always @(posedge clk) begin
     if(mem_we)
       mem[mem_addr] <= mem_wdata;
     r_addr <= mem_addr;
