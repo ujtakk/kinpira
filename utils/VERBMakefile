@@ -154,7 +154,8 @@ else
   ifeq ($(VERBOSE),1)
 		$(Q) $(SIMULATE) 2>&1 | tee $@
   else
-		$(Q) $(SIMULATE) > $@ 2>&1
+		$(Q) $(SIMULATE) 2>&1 | tee $@
+		# $(Q) $(SIMULATE) > $@ 2>&1
   endif
 endif
 

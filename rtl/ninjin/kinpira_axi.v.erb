@@ -2,7 +2,7 @@
 
 `timescale 1 ns / 1 ps
 
-module kinpira #
+module kinpira_axi #
   (
     // Users to add parameters here
 
@@ -504,7 +504,8 @@ module kinpira #
   wire [IMGSIZE-1:0]        renkon_input_addr;
   wire [IMGSIZE-1:0]        renkon_output_addr;
   wire signed [DWIDTH-1:0]  renkon_img_wdata;
-  wire [RENKON_CORELOG:0]   renkon_net_we;
+  wire [RENKON_CORELOG-1:0] renkon_net_sel;
+  wire                      renkon_net_we;
   wire [RENKON_NETSIZE-1:0] renkon_net_addr;
   wire signed [DWIDTH-1:0]  renkon_net_wdata;
   wire [LWIDTH-1:0]         renkon_total_out;
@@ -525,7 +526,8 @@ module kinpira #
   wire [IMGSIZE-1:0]        gobou_input_addr;
   wire [IMGSIZE-1:0]        gobou_output_addr;
   wire signed [DWIDTH-1:0]  gobou_img_wdata;
-  wire [GOBOU_CORELOG:0]    gobou_net_we;
+  wire [GOBOU_CORELOG-1:0]  gobou_net_sel;
+  wire                      gobou_net_we;
   wire [GOBOU_NETSIZE-1:0]  gobou_net_addr;
   wire signed [DWIDTH-1:0]  gobou_net_wdata;
   wire [LWIDTH-1:0]         gobou_total_out;
@@ -556,17 +558,19 @@ module kinpira #
   assign xrst         = s_axi_params_aresetn;
   assign which        = port0[1:0];
   assign req          = port1[0];
-  assign input_addr   = port2[IMGSIZE-1:0];
-  assign output_addr  = port3[IMGSIZE-1:0];
-  assign total_out    = port4[LWIDTH-1:0];
-  assign total_in     = port5[LWIDTH-1:0];
-  assign img_size     = port6[LWIDTH-1:0];
-  assign fil_size     = port7[LWIDTH-1:0];
-  assign pool_size    = port8[LWIDTH-1:0];
+  assign net_sel      = port2;
+  assign input_addr   = port3[IMGSIZE-1:0];
+  assign output_addr  = port4[IMGSIZE-1:0];
+  assign total_out    = port5[LWIDTH-1:0];
+  assign total_in     = port6[LWIDTH-1:0];
+  assign img_size     = port7[LWIDTH-1:0];
+  assign fil_size     = port8[LWIDTH-1:0];
+  assign pool_size    = port9[LWIDTH-1:0];
 
   assign port31 = {30'b0, r_which};
   assign port30 = {31'b0, ack};
 
+  // TODO: these wires could be removed
   assign img_we    = mem_image_we;
   assign img_wdata = mem_image_wdata;
 

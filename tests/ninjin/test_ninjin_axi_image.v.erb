@@ -1,159 +1,474 @@
-% load "parameters.rb"
+% load "ninjin.rb"
 
-`timescale 1ns/1ps
+`timescale 1 ns / 1 ps
 
-module test_ninjin_axi_image();
-`include "parameters.vh"
+module test_ninjin_axi_image;
+`include "ninjin.vh"
+
+  parameter C_S_AXI_ID_WIDTH     = 1;
+  parameter C_S_AXI_DATA_WIDTH   = 32;
+  parameter C_S_AXI_ADDR_WIDTH   = 12;
+  parameter C_S_AXI_AWUSER_WIDTH = 0;
+  parameter C_S_AXI_ARUSER_WIDTH = 0;
+  parameter C_S_AXI_WUSER_WIDTH  = 0;
+  parameter C_S_AXI_RUSER_WIDTH  = 0;
+  parameter C_S_AXI_BUSER_WIDTH  = 0;
+
+  parameter NUMBER_OF_TEST = 1;  // テストする数
+
+  parameter ASIZE_BT_4 = 3'd2;  // 32 bit width
+  parameter ASIZE_BT_2 = 3'd1;  // 16 bit width
+  parameter ASIZE_BT_1 = 3'd0;  // 8 bit width
+
+  parameter ABURST_FIXED = 2'd0;
+  parameter ABURST_INCR  = 2'd1;
+  parameter ABURST_WRAP  = 2'd2;
+
+  parameter BRESP_OKAY   = 2'b00;
+  parameter BRESP_EXOKAY = 2'b01;
+  parameter BRESP_SLVERR = 2'b10;
+  parameter BRESP_DECERR = 2'b11;
 
   /*AUTOREGINPUT*/
+  reg  WriteTaskBusy = 1'b0;
+  reg  ReadTestBusy  = 1'b0;
+
+  reg [7:0] awlen_hold = 0;
+  reg [0:0] wid_hold = 0;
+  reg       axi_w_transaction_active = 0;
+  reg       axi_r_transaction_active = 0;
+  reg [7:0] arlen_hold = 0;
 
   /*AUTOWIRE*/
+  wire [C_S_AXI_DATA_WIDTH-1:0] mem_rdata;
+
+  integer wt_cnt;
+  integer rd_cnt;
+
+  reg         S_AXI_AWREADY_d;
+  reg         S_AXI_WREADY_d;
+  reg [0:0]   S_AXI_BID_d;
+  reg [1:0]   S_AXI_BRESP_d;
+  reg [0:0]   S_AXI_BUSER_d;
+  reg         S_AXI_BVALID_d;
+  reg         S_AXI_ARREADY_d;
+  reg [0:0]   S_AXI_RID_d;
+  reg [31:0]  S_AXI_RDATA_d;
+  reg [1:0]   S_AXI_RRESP_d;
+  reg         S_AXI_RLAST_d;
+  reg [0:0]   S_AXI_RUSER_d;
+  reg         S_AXI_RVALID_d;
+
+  reg [9:0]		        r_mem_addr;
+  reg [C_S_AXI_DATA_WIDTH-1:0]  r_mem_wdata;
+  reg			        r_mem_we;
+
+  always @(posedge S_AXI_ACLK) begin
+    r_mem_we    <= mem_we;
+    r_mem_addr  <= mem_addr;
+    r_mem_wdata <= mem_wdata;
+  end
+
+  always @(posedge S_AXI_ACLK) S_AXI_AWREADY_d <= S_AXI_AWREADY;
+  always @(posedge S_AXI_ACLK) S_AXI_WREADY_d  <= S_AXI_WREADY;
+  always @(posedge S_AXI_ACLK) S_AXI_BID_d     <= S_AXI_BID;
+  always @(posedge S_AXI_ACLK) S_AXI_BRESP_d   <= S_AXI_BRESP;
+  always @(posedge S_AXI_ACLK) S_AXI_BUSER_d   <= S_AXI_BUSER;
+  always @(posedge S_AXI_ACLK) S_AXI_BVALID_d  <= S_AXI_BVALID;
+  always @(posedge S_AXI_ACLK) S_AXI_ARREADY_d <= S_AXI_ARREADY;
+  always @(posedge S_AXI_ACLK) S_AXI_RID_d     <= S_AXI_RID;
+  always @(posedge S_AXI_ACLK) S_AXI_RDATA_d   <= S_AXI_RDATA;
+  always @(posedge S_AXI_ACLK) S_AXI_RRESP_d   <= S_AXI_RRESP;
+  always @(posedge S_AXI_ACLK) S_AXI_RLAST_d   <= S_AXI_RLAST;
+  always @(posedge S_AXI_ACLK) S_AXI_RUSER_d   <= S_AXI_RUSER;
+  always @(posedge S_AXI_ACLK) S_AXI_RVALID_d  <= S_AXI_RVALID;
 
   //clock
-  always
-  begin
-    clk = 0;
+  always begin
+    S_AXI_ACLK = 0;
     #(STEP/2);
-    clk = 1;
+    S_AXI_ACLK = 1;
     #(STEP/2);
   end
 
+  // wr_data生成、+1する
+  reg   [15:0]  wcount;
+  wire  [31:0]  wdata;
+
+  assign wdata = {{16{1'b0}}, wcount};
+
+  always @(posedge S_AXI_ACLK)
+    if (~S_AXI_ARESETN)
+      wcount <= 0;
+    else begin
+      if (S_AXI_WVALID & S_AXI_WREADY)
+        wcount <= wcount + 16'd1;
+    end
+
   //flow
-  initial
-  begin
+  initial begin
+    S_AXI_ARESETN = 0;
+    #(STEP);
+
+    S_AXI_ARESETN   = 1;
+    AXI_Master_Init;
+    #(STEP);
+
+    $display("--- WRITE START ---");
+    for (wt_cnt = 0; wt_cnt < NUMBER_OF_TEST; wt_cnt = wt_cnt + 1) begin
+      WriteTaskBusy = 1'b1;
+      AXI_Master_Write(0, 32'h100, 8'd15, ASIZE_BT_4, ABURST_INCR, wdata, 0, 2);
+      AXI_Master_Write(0, 32'h200, 8'd7, ASIZE_BT_4, ABURST_INCR, wdata, 1, 3);
+      AXI_Master_Write(0, 32'h300, 8'd3, ASIZE_BT_4, ABURST_INCR, wdata, 1, 4);
+      AXI_Master_Write(0, 32'h400, 8'd1, ASIZE_BT_4, ABURST_INCR, wdata, 1, 5);
+      WriteTaskBusy = 1'b0;
+      #(STEP);
+    end
+    #(STEP);
+
+    $display("--- READ START ---");
+    for (rd_cnt = 0; rd_cnt < NUMBER_OF_TEST; rd_cnt = rd_cnt + 1) begin
+      ReadTestBusy = 1'b1;
+      AXI_Master_Read(0, 32'h100, 8'd15, ASIZE_BT_4, ABURST_INCR, 2);
+      AXI_Master_Read(0, 32'h200, 8'd7, ASIZE_BT_4, ABURST_INCR, 3);
+      AXI_Master_Read(0, 32'h300, 8'd3, ASIZE_BT_4, ABURST_INCR, 4);
+      AXI_Master_Read(0, 32'h400, 8'd1, ASIZE_BT_4, ABURST_INCR, 5);
+      ReadTestBusy = 1'b0;
+      #(STEP);
+    end
 
     $finish();
   end
 
   ninjin_axi_image dut0(/*AUTOINST*/);
 
+  /* mem_img AUTO_TEMPLATE (
+      .mem_rdata  (mem_rdata[DWIDTH-1:0]),
+      .clk        (S_AXI_ACLK),
+      .mem_we     (r_mem_we),
+      .mem_addr   (r_mem_addr[IMGSIZE-1:0]),
+      .mem_wdata  (r_mem_wdata[DWIDTH-1:0]),
+  ); */
+  mem_img dut1(/*AUTOINST*/);
+
+  task AXI_Master_Init;
+    begin // {{{
+      S_AXI_AWID      = 0;
+      S_AXI_AWADDR    = 0;
+      S_AXI_AWLEN     = 0;
+      S_AXI_AWSIZE    = 0;
+      S_AXI_AWBURST   = 0;
+      S_AXI_AWLOCK    = 0;
+      S_AXI_AWCACHE   = 0;
+      S_AXI_AWPROT    = 0;
+      S_AXI_AWQOS     = 0;
+      S_AXI_AWREGION  = 0;
+      S_AXI_AWUSER    = 0;
+      S_AXI_AWVALID   = 0;
+      S_AXI_WDATA     = 0;
+      S_AXI_WSTRB     = 0;
+      S_AXI_WLAST     = 0;
+      S_AXI_WUSER     = 0;
+      S_AXI_WVALID    = 0;
+      S_AXI_BREADY    = 0;
+      S_AXI_ARID      = 0;
+      S_AXI_ARADDR    = 0;
+      S_AXI_ARLEN     = 0;
+      S_AXI_ARSIZE    = 0;
+      S_AXI_ARBURST   = 0;
+      S_AXI_ARLOCK    = 0;
+      S_AXI_ARCACHE   = 0;
+      S_AXI_ARPROT    = 0;
+      S_AXI_ARQOS     = 0;
+      S_AXI_ARREGION  = 0;
+      S_AXI_ARUSER    = 0;
+      S_AXI_ARVALID   = 0;
+      S_AXI_RREADY    = 0;
+    end // }}}
+  endtask
+
+  // Write Channel
+  // wait_clk_bready: 0     - breadyのWaitは無し，
+  //                  0以外 - breadyのWaitはwait_clk_breadyの値のWaitが入る
+  // wmax_wait: 0     - wvalidのWaitは無し，
+  //            0以外 - wmax_waitを最大値とするランダムな値のWaitがwvalidに入る
+  // Write Address; Write Data, Write Response をシーケンシャルにオーバーラップせずに行う．
+  task AXI_Master_Write;
+    input [0:0]   awid;
+    input [31:0]  awaddr;
+    input [7:0]   awlen;
+    input [2:0]   awsize;
+    input [1:0]   awburst;
+    input [31:0]  wdata;
+    input [7:0]   wait_clk_bready;
+    input [7:0]   wmax_wait;
+    begin // {{{
+      fork
+        AXI_MASTER_WAC(awid, awaddr, awlen, awsize, awburst);
+        AXI_MASTER_WDC(wdata, wmax_wait);
+      join
+      AXI_MASTER_WRC(wait_clk_bready);
+    end // }}}
+  endtask
+
+  // Write Address Channel
+  task AXI_MASTER_WAC;
+    input [0:0]   awid;
+    input [31:0]  awaddr;
+    input [7:0]   awlen;
+    input [2:0]   awsize;
+    input [1:0]   awburst;
+    begin // {{{
+      S_AXI_AWID    = awid;
+      S_AXI_AWADDR  = awaddr;
+      S_AXI_AWLEN   = awlen;
+      S_AXI_AWSIZE  = awsize;
+      S_AXI_AWBURST = awburst;
+      S_AXI_AWVALID = 1'b1;
+
+      // AXI Write トランザクションが開始されている場合は戻る
+      if (axi_w_transaction_active == 1'b0) begin
+        axi_w_transaction_active = 1'b1; // AXIトランザクション開始
+
+        awlen_hold  = awlen; // Write Data Channel のためにバースト数を取っておく
+        #(STEP);
+
+        while (~S_AXI_AWREADY_d) #(STEP); // S_AXI_AWREADY が1になるまで待つ
+
+        S_AXI_AWID    = 0;
+        S_AXI_AWADDR  = 0;
+        S_AXI_AWLEN   = 0;
+        S_AXI_AWSIZE  = 0;
+        S_AXI_AWBURST = 0;
+        S_AXI_AWVALID = 1'b0;
+        #(STEP);
+      end
+    end // }}}
+  endtask
+
+  // Write Data Channel
+  // wmax_wait: 0     - wvalidのWaitは無し，
+  //            0以外 - wmax_waitを最大値とするランダムな値のWaitがwvalidに入る
+  task AXI_MASTER_WDC;    // WDATA は+1する
+  // とりあえず，WSTRBはオール1にする
+    input   [31:0]  wdata;
+    input   [7:0]   wmax_wait;    // Write時の最大wait数
+    integer         i, j, val;
+    begin // {{{
+      i = 0; j = 0;
+      S_AXI_WSTRB = 4'b1111;
+
+      while (~S_AXI_AWVALID) #(STEP); // S_AXI_AWVALID が1になるまで待つ
+
+      while (i <= awlen_hold) begin
+        if (wmax_wait == 0) // wmax_wait が0の時は$random を実行しない
+          val = 0;
+        else
+          val = $unsigned($random) % (wmax_wait+1);
+
+        if (val == 0) // waitなし
+          S_AXI_WVALID = 1'b1;
+        else begin // waitあり
+          S_AXI_WVALID = 1'b0;
+          for (j = 0; j < val; j = j + 1)
+            #(STEP);
+          S_AXI_WVALID = 1'b1; // wait終了
+        end
+
+        if (i == awlen_hold)
+          S_AXI_WLAST = 1'b1;
+        else
+          S_AXI_WLAST = 1'b0;
+        S_AXI_WDATA = wdata;
+        wdata = wdata + 1;
+
+        #(STEP);
+
+        // S_AXI_WREADYが0の時は1になるまで待つ
+        while (~S_AXI_WREADY_d) #(STEP);
+
+        i = i + 1;
+      end
+      S_AXI_WVALID  = 1'b0;
+      S_AXI_WLAST   = 1'b0;
+      S_AXI_WSTRB   = 4'b0000;
+    end // }}}
+  endtask
+
+  // Write Response Channel
+  // wait_clk_bready: 0     - breadyのWaitは無し，
+  //                  0以外 - breadyのWaitはwait_clk_breadyの値のWaitが入る
+  task AXI_MASTER_WRC;    // wait_clk_bready
+    input    [7:0]    wait_clk_bready;
+    integer    i;
+    begin // {{{
+      for (i=0; i<wait_clk_bready; i=i+1)
+        #(STEP);
+
+      S_AXI_BREADY = 1'b1;
+
+      #(STEP);
+
+      while (~S_AXI_BVALID_d) #(STEP); // S_AXI_BVALID が1になるまでWait
+
+      S_AXI_BREADY = 1'b0;
+
+      axi_w_transaction_active = 1'b0; // AXIトランザクション終了
+      #(STEP);
+    end // }}}
+  endtask
+
+  // Read Channel
+  task AXI_Master_Read; // Read Address, Read Data をシーケンシャルに行う．
+      input [0:0]   arid;
+      input [31:0]  araddr;
+      input [7:0]   arlen;
+      input [2:0]   arsize;
+      input [1:0]   arburst;
+      input [7:0]   rmax_wait;    // Read時の最大wait数
+      begin // {{{
+        AXI_MASTER_RAC(arid, araddr, arlen, arsize, arburst);
+        AXI_MASTER_RDC(rmax_wait);
+      end // }}}
+  endtask
+
+  // Read Address Channel
+  task AXI_MASTER_RAC;
+    input [0:0]   arid;
+    input [31:0]  araddr;
+    input [7:0]   arlen;
+    input [2:0]   arsize;
+    input [1:0]   arburst;
+    begin // {{{
+      S_AXI_ARID    = arid;
+      S_AXI_ARADDR  = araddr;
+      S_AXI_ARLEN   = arlen;
+      S_AXI_ARSIZE  = arsize;
+      S_AXI_ARBURST = arburst;
+      S_AXI_ARVALID = 1'b1;
+
+      // AXI Read トランザクションが開始されている場合は戻る
+      if (axi_r_transaction_active == 1'b0) begin
+        arlen_hold = arlen; // Read Data Channel のためにバースト数を取っておく
+        #(STEP);
+
+        while (~S_AXI_ARREADY_d) #(STEP); // S_AXI_ARREADY が1になるまで待つ
+
+        S_AXI_ARID    = 0;
+        S_AXI_ARADDR  = 0;
+        S_AXI_ARLEN   = 0;
+        S_AXI_ARSIZE  = 0;
+        S_AXI_ARBURST = 0;
+        S_AXI_ARVALID = 1'b0;
+        #(STEP);
+
+        axi_r_transaction_active = 1'b1; // AXIトランザクション開始
+      end
+    end // }}}
+  endtask
+
+  // Read Data Channel
+  // S_AXI_RLASTがアサートされるまでS_AXI_RREADYをアサートする
+  task AXI_MASTER_RDC;
+    input [7:0] rmax_wait;    // Read時の最大wait数
+    integer     i, val;
+    begin // {{{
+      // S_AXI_RLAST & S_AXI_RVALID & S_AXI_RREADY で終了
+      while (~(S_AXI_RLAST_d & S_AXI_RVALID_d & S_AXI_RREADY)) begin
+        if (rmax_wait == 0) begin // rmax_wait が0の時は$random を実行しない
+          val = 0;
+          S_AXI_RREADY = 1'b1;
+        end
+        else begin
+          val = $unsigned($random) % (rmax_wait+1);
+          if (val == 0)
+            S_AXI_RREADY = 1'b1;
+          else
+            S_AXI_RREADY = 1'b0;
+        end
+        #(STEP);
+
+        for (i=0; i<val; i=i+1) // ランダム値でWait，val=0の時はスキップ
+          #(STEP);
+
+        S_AXI_RREADY = 1'b1;
+        while (~S_AXI_RVALID_d) #(STEP); // S_AXI_RVALID が1になるまでWait
+      end
+      #(STEP);
+
+      S_AXI_RREADY = 1'b0;
+      axi_r_transaction_active = 1'b0; // AXIトランザクション終了
+      #(STEP);
+    end // }}}
+  endtask
+
   //display
-  always
-  begin
+  always begin
     #(STEP/2-1);
     $display(
-      "%d: ", $time/STEP,
-      "| ",
+      "%3d: ", $time/STEP,
+      // "%x ", S_AXI_ACLK,
+      "%x ", S_AXI_ARESETN,
+      "|i: ",
+      "%x ", S_AXI_AWID,
+      "%x ", S_AXI_AWADDR,
+      "%x ", S_AXI_AWLEN,
+      "%x ", S_AXI_AWSIZE,
+      "%x ", S_AXI_AWBURST,
+      // "%x ", S_AXI_AWLOCK,
+      // "%x ", S_AXI_AWCACHE,
+      // "%x ", S_AXI_AWPROT,
+      // "%x ", S_AXI_AWQOS,
+      // "%x ", S_AXI_AWREGION,
+      // "%x ", S_AXI_AWUSER,
+      "%x ", S_AXI_AWVALID,
+      "%5x ", S_AXI_WDATA,
+      "%x ", S_AXI_WSTRB,
+      "%x ", S_AXI_WLAST,
+      // "%x ", S_AXI_WUSER,
+      "%x ", S_AXI_WVALID,
+      "; ",
+      "%x ", S_AXI_BREADY,
+      "; ",
+      "%x ", S_AXI_ARID,
+      "%x ", S_AXI_ARADDR,
+      "%x ", S_AXI_ARLEN,
+      "%x ", S_AXI_ARSIZE,
+      "%x ", S_AXI_ARBURST,
+      // "%x ", S_AXI_ARLOCK,
+      // "%x ", S_AXI_ARCACHE,
+      // "%x ", S_AXI_ARPROT,
+      // "%x ", S_AXI_ARQOS,
+      // "%x ", S_AXI_ARREGION,
+      // "%x ", S_AXI_ARUSER,
+      "%x ", S_AXI_ARVALID,
+      "%x ", S_AXI_RREADY,
+      "|o: ",
+      "%x ", S_AXI_AWREADY,
+      "%x ", S_AXI_WREADY,
+      "; ",
+      "%x ", S_AXI_BID,
+      // "%x ", S_AXI_BRESP,
+      // "%x ", S_AXI_BUSER,
+      "%x ", S_AXI_BVALID,
+      "; ",
+      "%x ", S_AXI_ARREADY,
+      "%x ", S_AXI_RID,
+      "%5x ", S_AXI_RDATA,
+      // "%x ", S_AXI_RRESP,
+      "%x ", S_AXI_RLAST,
+      // "%x ", S_AXI_RUSER,
+      "%x ", S_AXI_RVALID,
+      "|r: ",
+      "%x ", mem_we,
+      "%x ", mem_addr,
+      "%5x ", mem_wdata,
+      "%5x ", mem_rdata,
+      "%5x ", wdata,
+      "|"
     );
     #(STEP/2+1);
   end
-
-endmodule
-
-`timescale 1 ns / 1 ps
-
-module AXI4_Lite_Master_BFM_v1_0 #(
-  parameter integer C_M_AXI_ADDR_WIDTH	= 32,
-  parameter integer C_M_AXI_DATA_WIDTH	= 32
-) (
-  output reg error = 0,
-
-  input wire  m_axi_aclk,
-  input wire  m_axi_aresetn,
-  output reg [C_M_AXI_ADDR_WIDTH-1 : 0] m_axi_awaddr,
-  output wire [2 : 0] m_axi_awprot,
-  output reg  m_axi_awvalid = 0,
-  input wire  m_axi_awready,
-  output reg [C_M_AXI_DATA_WIDTH-1 : 0] m_axi_wdata,
-  output wire [C_M_AXI_DATA_WIDTH/8-1 : 0] m_axi_wstrb,
-  output reg m_axi_wvalid = 0,
-  input wire  m_axi_wready,
-  input wire [1 : 0] m_axi_bresp,
-  input wire  m_axi_bvalid,
-  output reg  m_axi_bready = 0,
-  output reg [C_M_AXI_ADDR_WIDTH-1 : 0] m_axi_araddr,
-  output wire [2 : 0] m_axi_arprot,
-  output reg  m_axi_arvalid = 0,
-  input wire  m_axi_arready,
-  input wire [C_M_AXI_DATA_WIDTH-1 : 0] m_axi_rdata,
-  input wire [1 : 0] m_axi_rresp,
-  input wire  m_axi_rvalid,
-  output reg  m_axi_rready = 0 
-);
-  assign m_axi_awprot = 3'b000;
-  assign m_axi_wstrb = 4'b1111;
-  assign m_axi_arprot = 3'b000;
-
-  task write(
-    input [C_M_AXI_ADDR_WIDTH-1:0] addr,
-    input [C_M_AXI_DATA_WIDTH-1:0] data
-  );
-  begin
-    m_axi_awvalid = 0;
-    m_axi_wvalid = 0;
-    m_axi_bready = 0;
-    @(posedge m_axi_aclk) #1
-    fork
-      begin // アドレスを出力し awvalid を立てて awready を待つ
-        m_axi_awaddr = addr;
-        m_axi_awvalid = 1;
-        while(!m_axi_awready) @(posedge m_axi_aclk) #1;
-        @(posedge m_axi_aclk) #1;
-        m_axi_awvalid = 0;
-      end
-      begin // データを出力し wvalid を立てて wready を待つ
-        m_axi_wdata = data;
-        m_axi_wvalid = 1;
-        while(!m_axi_wready) @(posedge m_axi_aclk) #1;
-        @(posedge m_axi_aclk) #1;
-        m_axi_wvalid = 0;
-      end
-      begin // bvalid が立ったら bready を返しエラーを読む
-        while(!m_axi_bvalid) @(posedge m_axi_aclk) #1;
-        @(posedge m_axi_aclk) #1; 
-        m_axi_bready = 1;
-        error = m_axi_bresp[1];
-        @(posedge m_axi_aclk) #1; 
-        m_axi_bready = 0;
-        @(posedge m_axi_aclk) #1; 
-      end
-    join
-  end
-  endtask
-
-  task read(
-    input [C_M_AXI_ADDR_WIDTH-1:0] addr,
-    output [C_M_AXI_DATA_WIDTH-1:0] data
-  );
-  begin
-    m_axi_arvalid = 0;
-    m_axi_rready = 0;
-    @(posedge m_axi_aclk) #1
-    fork
-      begin // アドレスを出力し arvalid を立てて arready を待つ
-        m_axi_araddr = addr;
-        m_axi_arvalid = 1;
-        while(!m_axi_arready) @(posedge m_axi_aclk) #1;
-        @(posedge m_axi_aclk) #1;
-        m_axi_arvalid = 0;
-      end
-      begin // rvalid が立ったら rready を返しエラーとデータを読む
-        while(!m_axi_rvalid) @(posedge m_axi_aclk) #1;
-        @(posedge m_axi_aclk) #1; 
-        m_axi_rready = 1;
-        error = m_axi_rresp[1];
-        if(!error)
-          data = m_axi_rdata;
-        @(posedge m_axi_aclk) #1; 
-        m_axi_rready = 0;
-        @(posedge m_axi_aclk) #1; 
-      end
-    join
-  end
-  endtask
-
-  task verify(
-    input [C_M_AXI_ADDR_WIDTH-1:0] addr,
-    input [C_M_AXI_DATA_WIDTH-1:0] expected
-  );
-  reg [C_M_AXI_DATA_WIDTH-1:0] data;
-  reg read_error;
-  begin
-    read(addr, data);
-    error = data !== expected;
-    if(error) $display("ERROR");
-  end
-  endtask
 
 endmodule
 

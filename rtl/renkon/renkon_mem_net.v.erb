@@ -1,20 +1,14 @@
 % load "renkon.rb"
-% less = false
 
 module renkon_mem_net(/*AUTOARG*/);
 `include "renkon.vh"
-% if less
-  // parameter WORDS = 4000;
   parameter WORDS = 2 ** RENKON_NETSIZE;
-% else
-  parameter WORDS = 2 ** RENKON_NETSIZE;
-% end
 
   /*AUTOINPUT*/
-  input                     clk;
-  input                     mem_we;
-  input [RENKON_NETSIZE-1:0]        mem_addr;
-  input signed [DWIDTH-1:0] mem_wdata;
+  input                       clk;
+  input                       mem_we;
+  input [RENKON_NETSIZE-1:0]  mem_addr;
+  input signed [DWIDTH-1:0]   mem_wdata;
 
   /*AUTOOUTPUT*/
   output signed [DWIDTH-1:0] mem_rdata;
@@ -22,26 +16,14 @@ module renkon_mem_net(/*AUTOARG*/);
   /*AUTOWIRE*/
 
   /*AUTOREG*/
-% if less
-  reg signed [DWIDTH-1-5:0] mem [WORDS-1:0];
-% else
-  reg signed [DWIDTH-1:0] mem [WORDS-1:0];
-% end
-  reg [RENKON_NETSIZE-1:0]        r_addr;
+  reg signed [DWIDTH-1:0]   mem [WORDS-1:0];
+  reg [RENKON_NETSIZE-1:0]  r_addr;
 
-% if less
-  assign mem_rdata = $signed({{5{mem[r_addr][DWIDTH-1-5]}}, mem[r_addr]});
-% else
   assign mem_rdata = mem[r_addr];
-% end
 
   always @(posedge clk) begin
     if (mem_we)
-% if less
-      mem[mem_addr] <= mem_wdata[DWIDTH-1-5:0];
-% else
       mem[mem_addr] <= mem_wdata;
-% end
     r_addr <= mem_addr;
   end
 

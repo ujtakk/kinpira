@@ -18,7 +18,8 @@ module gobou_top(/*AUTOARG*/);
   input [IMGSIZE-1:0]       input_addr;
   input [IMGSIZE-1:0]       output_addr;
   input signed [DWIDTH-1:0] img_wdata;
-  input [GOBOU_CORELOG:0]   net_we;
+  input [GOBOU_CORELOG-1:0] net_sel;
+  input                     net_we;
   input [GOBOU_NETSIZE-1:0] net_addr;
   input signed [DWIDTH-1:0] net_wdata;
   input [LWIDTH-1:0]        total_out;
@@ -47,18 +48,20 @@ module gobou_top(/*AUTOARG*/);
   /* gobou_mem_img AUTO_TEMPLATE (
       .mem_we     (mem_img_we),
       .mem_addr   (mem_img_addr[IMGSIZE-1:0]),
-      .mem_rdata  (img_rdata[DWIDTH-1:0]),
       .mem_wdata  (mem_img_wdata[DWIDTH-1:0]),
+      .mem_rdata  (img_rdata[DWIDTH-1:0]),
   ); */
   gobou_mem_img mem_img(/*AUTOINST*/);
 % end
 
   <%- for i in 0...$core -%>
+  assign mem_net_we<%=i%> = net_we & net_sel == <%=i%>;
+
   /* gobou_mem_net AUTO_TEMPLATE (
-      .mem_we     (mem_net_we[<%=i%>]),
+      .mem_we     (mem_net_we<%=i%>),
       .mem_addr   (mem_net_addr[GOBOU_NETSIZE-1:0]),
-      .mem_rdata  (net_rdata<%=i%>[DWIDTH-1:0]),
       .mem_wdata  (net_wdata[DWIDTH-1:0]),
+      .mem_rdata  (net_rdata<%=i%>[DWIDTH-1:0]),
   ); */
   gobou_mem_net mem_net<%=i%>(/*AUTOINST*/);
 
