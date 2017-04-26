@@ -1,26 +1,43 @@
-DIST = ../dist
-HEADERS = $(wildcard *.vh.erb)
-SOURCES = $(wildcard *.v.erb)
+VERBOSE   = 0
+SIMULATOR = vsim
+MODULE    = ninjin_axi_image.v.erb
+TARGET    = test/test_$(MODULE)
+INCLUDE   = $(shell git rev-parse --show-toplevel)/rtl/ninjin
 
-all: $(HEADERS:.vh.erb=.vh) $(SOURCES:.v.erb=.v)
+LINK_DIR  = .
+DIST      = ../dist
 
-dist: all
-	mkdir -p $(DIST)
-	cp $(HEADERS:.vh.erb=.vh) $(DIST)
-	cp $(SOURCES:.v.erb=.v) $(DIST)
+include Makefile.dep
+include ../../utils/VERBMakefile
 
-clean:
-	rm -f $(HEADERS:.vh.erb=.vh)
-	rm -f $(SOURCES:.v.erb=.v)
+.PHONY: file test clean log edit diff
 
-.SUFFIXES: .v .v.erb .vh .vh.erb
+file: $(TARGET:.v.erb=.com)
+test: $(TARGET:.v.erb=.log)
 
-ERUBY=erb -T - $<
+clean: clean-common
 
-.v.erb.v:
-	@echo "  ERUBY (.v.erb)    $<"
-	@$(ERUBY) > $@ 2>&1
+log:
+	@nvim $(TARGET:.v.erb=.log)
 
-.vh.erb.vh:
-	@echo "  ERUBY (.vh.erb)   $<"
-	@$(ERUBY) > $@ 2>&1
+com:
+	@nvim $(TARGET:.v.erb=.com)
+
+edit:
+	@nvim -O $(TARGET) $(MODULE)
+
+diff:
+	@nvim -d output_$(shell echo $(MODULE) | cut -d. -f1).dat \
+		 true_$(shell echo $(MODULE) | cut -d. -f1).dat
+
+define DEP_IN
+## -*- text -*-
+## ignore list
+
+ignore_file {
+}
+
+ignore_com {
+}
+endef
+export DEP_IN

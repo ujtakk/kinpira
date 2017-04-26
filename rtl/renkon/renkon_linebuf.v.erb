@@ -164,10 +164,10 @@ module renkon_linebuf(/*AUTOARG*/);
 
   <%- for i in 0..$max_line -%>
   /* renkon_mem_linebuf AUTO_TEMPLATE (
-      .mem_rdata  (read_mem<%=i%>[DWIDTH-1:0]),
-      .mem_wdata  (r_buf_input[DWIDTH-1:0]),
       .mem_we     (mem_linebuf_we[<%=i%>]),
       .mem_addr   (mem_linebuf_addr[_BUFSIZE-1:0]),
+      .mem_wdata  (r_buf_input[DWIDTH-1:0]),
+      .mem_rdata  (read_mem<%=i%>[DWIDTH-1:0]),
   ); */
   renkon_mem_linebuf buff<%=i%>(/*AUTOINST*/);
 

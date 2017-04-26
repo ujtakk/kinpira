@@ -188,20 +188,23 @@ module gobou_ctrl_core(/*AUTOARG*/);
   assign s_weight_end = r_state == S_WEIGHT && r_count_in == r_total_in - 1;
   assign s_bias_end   = r_state == S_BIAS;
 
-  assign mem_net_we   = r_net_we;
-  assign mem_net_addr = r_net_addr + r_net_offset;
+  // assign mem_net_we   = r_net_we;
+  // assign mem_net_addr = r_net_addr + r_net_offset;
+  assign mem_net_addr = net_we
+                      ? net_addr
+                      : r_net_addr + r_net_offset;
   assign breg_we      = r_breg_we;
 
-  always @(posedge clk)
-    if (!xrst)
-      r_net_we <= 0;
-    else
-      case (net_we)
-        <%- for i in 0..$core -%>
-        <%=$core_log+1%>'d<%=i%>:    r_net_we <= <%=$core%>'b<%=sprintf("%0#{$core}b", 1<<(i-1))%>;
-        <%- end -%>
-        default: r_net_we <= <%=$core%>'b<%=sprintf("%0#{$core}b", 0)%>;
-      endcase
+  // always @(posedge clk)
+  //   if (!xrst)
+  //     r_net_we <= 0;
+  //   else
+  //     case (net_we)
+  //       <%- for i in 0..$core -%>
+  //       <%=$core_log+1%>'d<%=i%>:    r_net_we <= <%=$core%>'b<%=sprintf("%0#{$core}b", 1<<(i-1))%>;
+  //       <%- end -%>
+  //       default: r_net_we <= <%=$core%>'b<%=sprintf("%0#{$core}b", 0)%>;
+  //     endcase
 
   always @(posedge clk)
     if (!xrst)

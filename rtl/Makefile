@@ -9,6 +9,7 @@ dist:
 
 full:
 	rsync -av dist/ ../ip_repo/kinpira_1.0/src/
+	rsync -av dist/**.vh ../zcu102_full/zcu102_full.srcs/sources_1/imports/dist/
 
 lite:
 	rsync -av dist/ ../ip_repo/kinpira_lite_1.0/src/

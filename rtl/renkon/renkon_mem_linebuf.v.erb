@@ -2,35 +2,30 @@
 
 module renkon_mem_linebuf(/*AUTOARG*/);
 `include "renkon.vh"
-    localparam WORDS   = 2 ** BUFSIZE;
+  localparam WORDS   = 2 ** BUFSIZE;
 
-    /*AUTOINPUT*/
-    input clk;
-    input mem_we;
-    input [BUFSIZE-1:0] mem_addr;
-    input signed [DWIDTH-1:0] mem_wdata;
+  /*AUTOINPUT*/
+  input clk;
+  input mem_we;
+  input [BUFSIZE-1:0] mem_addr;
+  input signed [DWIDTH-1:0] mem_wdata;
 
-    /*AUTOOUTPUT*/
-    output signed [DWIDTH-1:0] mem_rdata;
+  /*AUTOOUTPUT*/
+  output signed [DWIDTH-1:0] mem_rdata;
 
-    /*AUTOWIRE*/
+  /*AUTOWIRE*/
 
-    /*AUTOREG*/
+  /*AUTOREG*/
 
-    reg [DWIDTH-1:0] mem [WORDS-1:0];
-    reg [BUFSIZE-1:0] r_addr;
+  reg [DWIDTH-1:0] mem [WORDS-1:0];
+  reg [BUFSIZE-1:0] r_addr;
 
-    always @(posedge clk) begin
-      if(mem_we)
-        mem[mem_addr] <= mem_wdata;
-      r_addr <= mem_addr;
-    end
+  assign mem_rdata = mem[r_addr];
 
-    assign mem_rdata = mem[r_addr];
-
-    integer i;
-    initial
-      for (i = 0; i < WORDS; i = i + 1)
-        mem[i] = 0;
+  always @(posedge clk) begin
+    if(mem_we)
+      mem[mem_addr] <= mem_wdata;
+    r_addr <= mem_addr;
+  end
 
 endmodule

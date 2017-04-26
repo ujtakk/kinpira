@@ -20,10 +20,10 @@ module ninjin_axi_image #
   (
     // Users to add ports here
 
-    output                          mem_we,
-    output [OPT_MEM_ADDR_BITS:0]    mem_addr,
-    output [C_S_AXI_DATA_WIDTH-1:0] mem_wdata,
     input  [C_S_AXI_DATA_WIDTH-1:0] mem_rdata,
+    output                          mem_we,
+    output [<%=$imgsize%>-1:0]      mem_addr,
+    output [C_S_AXI_DATA_WIDTH-1:0] mem_wdata,
 
     // User ports ends
     // Do not modify the ports beyond this line
@@ -75,6 +75,17 @@ module ninjin_axi_image #
     output [C_S_AXI_RUSER_WIDTH-1:0]  S_AXI_RUSER,    // Optional User-defined signal in the read address channel.
     output                            S_AXI_RVALID    // Read valid. This signal indicates that the channel is signaling the required read data.
   );
+`include "ninjin.vh"
+
+  /*
+   * local parameter for addressing 32 bit / 64 bit C_S_AXI_DATA_WIDTH
+   * ADDR_LSB is used for addressing 32/64 bit registers/memories
+   * ADDR_LSB = 2 for 32 bits (n downto 2)
+   * ADDR_LSB = 3 for 42 bits (n downto 3)
+   */
+  localparam ADDR_LSB           = C_S_AXI_DATA_WIDTH/32 + 1;
+  localparam OPT_MEM_ADDR_BITS  = IMGSIZE - 1;
+  localparam USER_NUM_MEM       = 1;
 
   // AXI4FULL signals
   reg  [C_S_AXI_ADDR_WIDTH-1:0]   axi_awaddr;
@@ -108,12 +119,12 @@ module ninjin_axi_image #
   // I/O Connections assignments
   assign S_AXI_AWREADY  = axi_awready;
   assign S_AXI_WREADY   = axi_wready;
-  assign S_AXI_BRESP    = axi_bresp;
+  assign S_AXI_BRESP    = axi_bresp; // = 0;
   assign S_AXI_BUSER    = axi_buser; // = 0;
   assign S_AXI_BVALID   = axi_bvalid;
   assign S_AXI_ARREADY  = axi_arready;
   assign S_AXI_RDATA    = axi_rdata;
-  assign S_AXI_RRESP    = axi_rresp;
+  assign S_AXI_RRESP    = axi_rresp; // = 0;
   assign S_AXI_RLAST    = axi_rlast;
   assign S_AXI_RUSER    = axi_ruser; // = 0;
   assign S_AXI_RVALID   = axi_rvalid;
@@ -361,16 +372,6 @@ module ninjin_axi_image #
   //----------------------------------------------
   //-- Signals for user logic memory space example
   //------------------------------------------------
-  /*
-   * local parameter for addressing 32 bit / 64 bit C_S_AXI_DATA_WIDTH
-   * ADDR_LSB is used for addressing 32/64 bit registers/memories
-   * ADDR_LSB = 2 for 32 bits (n downto 2)
-   * ADDR_LSB = 3 for 42 bits (n downto 3)
-   */
-  localparam ADDR_LSB           = C_S_AXI_DATA_WIDTH/32 + 1;
-  localparam OPT_MEM_ADDR_BITS  = C_S_AXI_ADDR_WIDTH - ADDR_LSB - 1;
-  localparam USER_NUM_MEM       = 1;
-
   wire [OPT_MEM_ADDR_BITS:0]    mem_address;
   wire [USER_NUM_MEM-1:0]       mem_select;
   reg  [C_S_AXI_DATA_WIDTH-1:0] mem_data_out[0:USER_NUM_MEM-1];
