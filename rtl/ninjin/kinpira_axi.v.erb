@@ -482,16 +482,14 @@ module kinpira_axi #
   // For ninjin
   wire [2-1:0]              which;
   wire                      req;
-  wire                      img_we;
-  wire [IMGSIZE-1:0]        input_addr;
-  wire [IMGSIZE-1:0]        output_addr;
-  wire signed [DWIDTH-1:0]  img_wdata;
-  wire signed [DWIDTH-1:0]  img_rdata;
+  wire [IMGSIZE-1:0]        in_offset;
+  wire [IMGSIZE-1:0]        out_offset;
   wire [LWIDTH-1:0]         total_out;
   wire [LWIDTH-1:0]         total_in;
   wire [LWIDTH-1:0]         img_size;
   wire [LWIDTH-1:0]         fil_size;
   wire [LWIDTH-1:0]         pool_size;
+  wire signed [DWIDTH-1:0]  img_rdata;
 
   wire                      ack;
   wire                      mem_img_we;
@@ -500,14 +498,13 @@ module kinpira_axi #
 
   // For renkon
   wire                      renkon_req;
-  wire                      renkon_img_we;
-  wire [IMGSIZE-1:0]        renkon_input_addr;
-  wire [IMGSIZE-1:0]        renkon_output_addr;
-  wire signed [DWIDTH-1:0]  renkon_img_wdata;
   wire [RENKON_CORELOG-1:0] renkon_net_sel;
   wire                      renkon_net_we;
   wire [RENKON_NETSIZE-1:0] renkon_net_addr;
   wire signed [DWIDTH-1:0]  renkon_net_wdata;
+  wire [IMGSIZE-1:0]        renkon_in_offset;
+  wire [IMGSIZE-1:0]        renkon_out_offset;
+  wire [RENKON_NETSIZE-1:0] renkon_net_offset;
   wire [LWIDTH-1:0]         renkon_total_out;
   wire [LWIDTH-1:0]         renkon_total_in;
   wire [LWIDTH-1:0]         renkon_img_size;
@@ -522,14 +519,13 @@ module kinpira_axi #
 
   // For gobou
   wire                      gobou_req;
-  wire                      gobou_img_we;
-  wire [IMGSIZE-1:0]        gobou_input_addr;
-  wire [IMGSIZE-1:0]        gobou_output_addr;
-  wire signed [DWIDTH-1:0]  gobou_img_wdata;
   wire [GOBOU_CORELOG-1:0]  gobou_net_sel;
   wire                      gobou_net_we;
   wire [GOBOU_NETSIZE-1:0]  gobou_net_addr;
   wire signed [DWIDTH-1:0]  gobou_net_wdata;
+  wire [IMGSIZE-1:0]        gobou_in_offset;
+  wire [IMGSIZE-1:0]        gobou_out_offset;
+  wire [GOBOU_NETSIZE-1:0]  gobou_net_offset;
   wire [LWIDTH-1:0]         gobou_total_out;
   wire [LWIDTH-1:0]         gobou_total_in;
   wire [LWIDTH-1:0]         gobou_img_size;
@@ -554,96 +550,87 @@ module kinpira_axi #
   localparam WHICH_GOBOU  = 'd1;
   localparam WHICH_NINJIN = 'd2;
 
-  assign clk          = s_axi_params_aclk;
-  assign xrst         = s_axi_params_aresetn;
-  assign which        = port0[1:0];
-  assign req          = port1[0];
-  assign net_sel      = port2;
-  assign input_addr   = port3[IMGSIZE-1:0];
-  assign output_addr  = port4[IMGSIZE-1:0];
-  assign total_out    = port5[LWIDTH-1:0];
-  assign total_in     = port6[LWIDTH-1:0];
-  assign img_size     = port7[LWIDTH-1:0];
-  assign fil_size     = port8[LWIDTH-1:0];
-  assign pool_size    = port9[LWIDTH-1:0];
+  assign clk        = s_axi_params_aclk;
+  assign xrst       = s_axi_params_aresetn;
+  assign which      = port0[1:0];
+  assign req        = port1[0];
+  assign net_sel    = port2[32-1:0];
+  assign in_offset  = port3[IMGSIZE-1:0];
+  assign out_offset = port4[IMGSIZE-1:0];
+  assign net_offset = port5[IMGSIZE-1:0];
+  assign total_out  = port6[LWIDTH-1:0];
+  assign total_in   = port7[LWIDTH-1:0];
+  assign img_size   = port8[LWIDTH-1:0];
+  assign fil_size   = port9[LWIDTH-1:0];
+  assign pool_size  = port10[LWIDTH-1:0];
 
   assign port31 = {30'b0, r_which};
   assign port30 = {31'b0, ack};
 
-  // TODO: these wires could be removed
-  assign img_we    = mem_image_we;
-  assign img_wdata = mem_image_wdata;
-
-  assign mem_image_rdata = { {32-DWIDTH{img_rdata[DWIDTH-1]}}
-                           , img_rdata
-                           };
-
   // For renkon
   always @(*) begin
+    renkon_net_sel     = net_sel[RENKON_CORELOG-1:0];
     renkon_net_we      = mem_renkon_we;
     renkon_net_addr    = mem_renkon_addr;
     renkon_net_wdata   = mem_renkon_wdata;
     case (which)
       WHICH_RENKON: begin
-        renkon_req         = req;
-        renkon_img_we      = img_we;
-        renkon_input_addr  = input_addr;
-        renkon_output_addr = output_addr;
-        renkon_img_wdata   = img_wdata;
-        renkon_total_out   = total_out;
-        renkon_total_in    = total_in;
-        renkon_img_size    = img_size;
-        renkon_fil_size    = fil_size;
-        renkon_pool_size   = pool_size;
-        renkon_img_rdata   = img_rdata;
+        renkon_req        = req;
+        renkon_in_offset  = in_offset;
+        renkon_out_offset = out_offset;
+        renkon_net_offset = net_offset;
+        renkon_total_out  = total_out;
+        renkon_total_in   = total_in;
+        renkon_img_size   = img_size;
+        renkon_fil_size   = fil_size;
+        renkon_pool_size  = pool_size;
+        renkon_img_rdata  = img_rdata;
       end
       default: begin
-        renkon_req         = 0;
-        renkon_img_we      = 0;
-        renkon_input_addr  = 0;
-        renkon_output_addr = 0;
-        renkon_img_wdata   = 0;
-        renkon_total_out   = 0;
-        renkon_total_in    = 0;
-        renkon_img_size    = 0;
-        renkon_fil_size    = 0;
-        renkon_pool_size   = 0;
-        renkon_img_rdata   = 0;
+        renkon_req        = 0;
+        renkon_in_offset  = 0;
+        renkon_out_offset = 0;
+        renkon_net_offset = 0;
+        renkon_total_out  = 0;
+        renkon_total_in   = 0;
+        renkon_img_size   = 0;
+        renkon_fil_size   = 0;
+        renkon_pool_size  = 0;
+        renkon_img_rdata  = 0;
       end
     endcase
   end
 
   // For gobou
   always @(*) begin
-    gobou_net_we       = mem_gobou_we;
-    gobou_net_addr     = mem_gobou_addr;
-    gobou_net_wdata    = mem_gobou_wdata;
+    gobou_net_sel   = net_sel[GOBOU_CORELOG-1:0];
+    gobou_net_we    = mem_gobou_we;
+    gobou_net_addr  = mem_gobou_addr;
+    gobou_net_wdata = mem_gobou_wdata;
     case (which)
       WHICH_GOBOU: begin
-        gobou_req          = req;
-        gobou_img_we       = img_we;
-        gobou_input_addr   = input_addr;
-        gobou_output_addr  = output_addr;
-        gobou_img_wdata    = img_wdata;
-        gobou_total_out    = total_out;
-        gobou_total_in     = total_in;
-        gobou_img_size     = img_size;
-        gobou_fil_size     = fil_size;
-        gobou_pool_size    = pool_size;
-        gobou_img_rdata    = img_rdata;
+        gobou_req         = req;
+        gobou_in_offset   = in_offset;
+        gobou_out_offset  = out_offset;
+        gobou_net_offset  = net_offset;
+        gobou_total_out   = total_out;
+        gobou_total_in    = total_in;
+        gobou_img_size    = img_size;
+        gobou_fil_size    = fil_size;
+        gobou_pool_size   = pool_size;
+        gobou_img_rdata   = img_rdata;
       end
       default: begin
-        gobou_req          = 0;
-        gobou_img_we       = 0;
-        gobou_input_addr   = 0;
-        gobou_output_addr  = 0;
-        gobou_img_wdata    = 0;
-        gobou_total_out    = 0;
-        gobou_total_in     = 0;
-        gobou_img_size     = 0;
-        gobou_fil_size     = 0;
-        gobou_pool_size    = 0;
-        gobou_img_rdata    = 0;
+        gobou_req         = 0;
+        gobou_in_offset   = 0;
+        gobou_out_offset  = 0;
+        gobou_net_offset  = 0;
+        gobou_total_out   = 0;
+        gobou_total_in    = 0;
+        gobou_img_size    = 0;
+        gobou_fil_size    = 0;
+        gobou_pool_size   = 0;
+        gobou_img_rdata   = 0;
       end
     endcase
   end
@@ -651,6 +638,7 @@ module kinpira_axi #
 
   // For ninjin
   always @(*) begin
+    mem_image_rdata = {{32-DWIDTH{img_rdata[DWIDTH-1]}}, img_rdata};
     case (which)
       WHICH_RENKON: begin
         ack            = renkon_ack;
@@ -707,13 +695,12 @@ module kinpira_axi #
     .clk            (clk),
     .xrst           (xrst),
     .req            (renkon_req),
-    .img_we         (renkon_img_we),
-    .input_addr     (renkon_input_addr[IMGSIZE-1:0]),
-    .output_addr    (renkon_output_addr[IMGSIZE-1:0]),
-    .img_wdata      (renkon_img_wdata[DWIDTH-1:0]),
-    .net_we         (renkon_net_we[RENKON_CORELOG:0]),
+    .net_sel        (renkon_net_sel[RENKON_CORELOG-1:0]),
+    .net_we         (renkon_net_we),
     .net_addr       (renkon_net_addr[RENKON_NETSIZE-1:0]),
     .net_wdata      (renkon_net_wdata[DWIDTH-1:0]),
+    .in_offset      (renkon_in_offset[IMGSIZE-1:0]),
+    .out_offset     (renkon_out_offset[IMGSIZE-1:0]),
     .total_out      (renkon_total_out[LWIDTH-1:0]),
     .total_in       (renkon_total_in[LWIDTH-1:0]),
     .img_size       (renkon_img_size[LWIDTH-1:0]),
@@ -732,13 +719,12 @@ module kinpira_axi #
     .clk            (clk),
     .xrst           (xrst),
     .req            (gobou_req),
-    .img_we         (gobou_img_we),
-    .input_addr     (gobou_input_addr[IMGSIZE-1:0]),
-    .output_addr    (gobou_output_addr[IMGSIZE-1:0]),
-    .img_wdata      (gobou_img_wdata[DWIDTH-1:0]),
-    .net_we         (gobou_net_we[GOBOU_CORELOG:0]),
+    .net_sel        (gobou_net_sel[GOBOU_CORELOG-1:0]),
+    .net_we         (gobou_net_we),
     .net_addr       (gobou_net_addr[GOBOU_NETSIZE-1:0]),
     .net_wdata      (gobou_net_wdata[DWIDTH-1:0]),
+    .in_offset      (gobou_in_offset[IMGSIZE-1:0]),
+    .out_offset     (gobou_out_offset[IMGSIZE-1:0]),
     .total_out      (gobou_total_out[LWIDTH-1:0]),
     .total_in       (gobou_total_in[LWIDTH-1:0]),
     .img_rdata      (gobou_img_rdata[DWIDTH-1:0])
