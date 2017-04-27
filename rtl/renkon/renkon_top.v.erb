@@ -44,6 +44,9 @@ module renkon_top(/*AUTOARG*/);
 % end
 
   /*AUTOWIRE*/
+  <%- for i in 0...$core -%>
+  wire mem_net_we<%=i%>;
+  <%- end -%>
 
   /*AUTOREG*/
 
@@ -90,14 +93,14 @@ module renkon_top(/*AUTOARG*/);
       <%- for j in 0...($fsize**2) -%>
       .pixel<%=j%>  (pixel<%=j%>[DWIDTH-1:0]),
       <%- end -%>
-      .pmap         (pmap<%=i%>[DWIDTH-1:0]),
+      .pmap         (result<%=i%>[DWIDTH-1:0]),
   ); */
   renkon_core core<%=i%>(/*AUTOINST*/);
   <%- end -%>
 
   /* renkon_serial_mat AUTO_TEMPLATE (
       <%- $core.times do |i| -%>
-      .in_data<%=i%> (pmap<%=i%>[DWIDTH-1:0]),
+      .in_data<%=i%> (result<%=i%>[DWIDTH-1:0]),
       <%- end -%>
       .out_data (out_wdata[DWIDTH-1:0]),
   ); */

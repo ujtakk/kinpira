@@ -43,7 +43,7 @@ module renkon_linebuf(/*AUTOARG*/);
   /*AUTOREG*/
   reg [2-1:0]             r_state;
   reg [_BUFLINE:0]        r_select;
-  reg [_BUFLINE-1:0]      r_mem_count;
+  reg [_BUFLINE:0]        r_mem_count;
   reg [_BUFSIZE-1:0]      r_addr_count;
   reg [_BUFSIZE-1:0]      r_line_count;
   reg signed [DWIDTH-1:0] r_buf_input;

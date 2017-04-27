@@ -226,7 +226,7 @@ module kinpira_axi_lite #
     else
       r_which <= which;
 
-  mem_img mem_img0(/*AUTOINST*/
+  mem_img mem_img0(
     // Outputs
     .mem_rdata  (img_rdata[DWIDTH-1:0]),
     // Inputs
@@ -236,7 +236,7 @@ module kinpira_axi_lite #
     .mem_wdata  (mem_img_wdata[DWIDTH-1:0])
   );
 
-  renkon_top renkon0(/*AUTOINST*/
+  renkon_top renkon0(
     // Outputs
     .ack            (renkon_ack),
     .mem_img_we     (renkon_mem_img_we),
@@ -261,7 +261,7 @@ module kinpira_axi_lite #
     .img_rdata      (renkon_img_rdata[DWIDTH-1:0])
   );
 
-  gobou_top gobou0(/*AUTOINST*/
+  gobou_top gobou0(
     // Outputs
     .ack            (gobou_ack),
     .mem_img_we     (gobou_mem_img_we),

@@ -11,7 +11,7 @@ module gobou_core(/*AUTOARG*/);
   /*AUTOINPUT*/
 
   /*AUTOOUTPUT*/
-  output signed [DWIDTH-1:0] result;
+  output signed [DWIDTH-1:0] avec;
 
   /*AUTOWIRE*/
 
@@ -23,7 +23,7 @@ module gobou_core(/*AUTOARG*/);
       .reset    (accum_rst),
       .x        (pixel[DWIDTH-1:0]),
       .w        (weight[DWIDTH-1:0]),
-      .y        (dotted[DWIDTH-1:0]),
+      .y        (fvec[DWIDTH-1:0]),
   ); */
   gobou_mac mac(/*AUTOINST*/);
 
@@ -31,15 +31,15 @@ module gobou_core(/*AUTOARG*/);
       .read_bias  (weight[DWIDTH-1:0]),
       .breg_we    (breg_we),
       .out_en     (bias_oe),
-      .pixel_in   (dotted[DWIDTH-1:0]),
-      .pixel_out  (biased[DWIDTH-1:0]),
+      .pixel_in   (fvec[DWIDTH-1:0]),
+      .pixel_out  (bvec[DWIDTH-1:0]),
   ); */
   gobou_bias bias(/*AUTOINST*/);
 
   /* gobou_relu AUTO_TEMPLATE (
       .out_en     (relu_oe),
-      .pixel_in   (biased[DWIDTH-1:0]),
-      .pixel_out  (result[DWIDTH-1:0]),
+      .pixel_in   (bvec[DWIDTH-1:0]),
+      .pixel_out  (avec[DWIDTH-1:0]),
   ); */
   gobou_relu relu(/*AUTOINST*/);
 

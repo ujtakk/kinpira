@@ -111,13 +111,13 @@ module renkon_conv_tree25(/*AUTOARG*/);
   assign fmap = r_fmap;
 
   <%- for i in 0...25 -%>
-  always @(posedge clk or negedge xrst)
+  always @(posedge clk)
     if(!xrst)
       r_pixel<%=i%> <= 0;
     else
       r_pixel<%=i%> <= pixel<%=i%>;
 
-  always @(posedge clk or negedge xrst)
+  always @(posedge clk)
     if(!xrst)
       r_weight<%=i%> <= 0;
     else

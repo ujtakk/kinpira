@@ -36,42 +36,43 @@ module test_renkon_top;
   initial begin
     // $set_toggle_region(test_renkon.dut0);
 
-    xrst = 0;
-    clk = 0;
-    xrst = 0;
-    req = 0;
-    img_we = 0;
-    input_addr = 0;
-    output_addr = 0;
-    img_wdata = 0;
-    net_sel = 0;
-    net_we = 0;
-    net_addr = 0;
-    net_wdata = 0;
-    total_out = 0;
-    total_in = 0;
-    img_size = 0;
-    fil_size = 0;
-    pool_size = 0;
+    xrst        = 0;
+    clk         = 0;
+    xrst        = 0;
+    req         = 0;
+    img_we      = 0;
+    img_wdata   = 0;
+    net_sel     = 0;
+    net_we      = 0;
+    net_addr    = 0;
+    net_wdata   = 0;
+    in_offset   = 0;
+    out_offset  = 0;
+    net_offset  = 0;
+    total_out   = 0;
+    total_in    = 0;
+    img_size    = 0;
+    fil_size    = 0;
+    pool_size   = 0;
     mem_clear;
     // mem_clear_direct;
     #(STEP);
 
     xrst        = 1;
     req         = 0;
+    in_offset   = 0;
+    out_offset  = 5000;
+    net_offset  = <%=net_offset%>;
     total_out   = N_OUT;
     total_in    = N_IN;
     img_size    = <%=$pm1hei%>;
     fil_size    = FSIZE;
     pool_size   = PSIZE;
-    input_addr  = 0;
-    output_addr = 5000;
-    net_addr    = <%=net_offset%>;
 
-    // read_image_direct;
+    read_image_direct;
     // read_image;
 
-    // read_network_direct;
+    read_network_direct;
     // read_network;
 
     // $toggle_start();
@@ -83,6 +84,7 @@ module test_renkon_top;
 
     while(!ack) #(STEP);
     #(STEP*10);
+
     // $toggle_stop();
     // $toggle_report(
     //   "renkon<%=num%>_<%=file%>.saif",
@@ -90,7 +92,7 @@ module test_renkon_top;
     //   "test_renkon.dut0"
     // );
 
-    // write_output;
+    write_output;
 
     $finish();
   end
@@ -135,14 +137,14 @@ module test_renkon_top;
       img_we = 1;
       #(STEP);
       for (i=0; i<2**IMGSIZE; i=i+1) begin
-        input_addr = i;
+        in_offset = i;
         #(STEP);
         img_wdata = mem_i[i];
         #(STEP);
       end
       #(STEP);
       img_we = 0;
-      input_addr = 0;
+      in_offset = 0;
       img_wdata = 0;
     end // }}}
   endtask
@@ -217,20 +219,20 @@ module test_renkon_top;
       <%- end -%>
 
       <%- for n in 0...$core -%>
-      net_sel = <%=$core_log+1%>'d<%=n%>;
-      net_we  = 1'b0;
+      net_sel = <%=$core_log%>'d<%=n%>;
+      net_we  = 1'b1;
       #(STEP);
-      for (i=0; i<2**RENKON_NETSIZE; i=i+1)
-      begin
+      for (i=0; i<2**RENKON_NETSIZE; i=i+1) begin
         net_addr = i;
         #(STEP);
         net_wdata = mem_n<%=n%>[i];
         #(STEP);
       end
-      net_sel = <%=$core_log+1%>'d0;
+      net_sel = <%=$core_log%>'d0;
       net_we  = 1'b0;
       net_addr = 0;
       net_wdata = 0;
+      #(STEP);
       <%- end -%>
     end // }}}
   endtask
@@ -301,42 +303,62 @@ module test_renkon_top;
       fd = $fopen("output_renkon_top.dat", "w");
       out_size = 800;
       for (i=0; i<out_size; i=i+1) begin
-        input_addr = i + 5000;
+        in_offset = i + 5000;
         #(STEP*2);
         $fdisplay(fd, "%0d", img_rdata);
       end
-      input_addr = 0;
+      in_offset = 0;
       #(STEP);
       $fclose(fd);
     end // }}}
   endtask
 
-  always
-  begin
+  always begin
     #(STEP/2-1);
     $display(
       "%5d: ", $time/STEP, // {{{
       "%d ", req,
       "%d ", ack,
+      "@%d ", dut0.ctrl.ctrl_core.r_state,
       "| ",
-      "%d ", dut0.ctrl.ctrl_core.r_out_we,
-      "%d ", dut0.ctrl.ctrl_core.r_serial_we,
-      "%d ", dut0.ctrl.ctrl_core.r_serial_re,
-      "%d ", dut0.ctrl.ctrl_core.r_serial_cnt,
-      "%d ", dut0.ctrl.ctrl_core.r_serial_addr,
+      "%d ", dut0.mem_img_we,
       "%d ", dut0.mem_img_addr,
-      "%d ", dut0.mem_net_addr,
+      "%d ", dut0.mem_img_wdata,
+      ";%d ", dut0.img_rdata,
       "| ",
-      "%d ", dut0.ctrl.ctrl_core.r_state,
-      "%d ", dut0.ctrl.ctrl_core.r_state_weight,
-      "%d ", dut0.ctrl.ctrl_core.r_count_out,
-      "%d ", dut0.ctrl.ctrl_core.r_count_in,
+      "%2d ", dut0.ctrl.ctrl_core.r_count_out,
+      "%2d ", dut0.ctrl.ctrl_core.r_count_in,
+      "%2d ", dut0.ctrl.ctrl_core.r_weight_x,
+      "%2d ", dut0.ctrl.ctrl_core.r_weight_y,
+      "%2d ", dut0.ctrl.ctrl_core.r_input_x,
+      "%2d ", dut0.ctrl.ctrl_core.r_input_y,
       "| ",
-      "%d ", dut0.ctrl.ctrl_conv.r_conv_x,
-      "%d ", dut0.ctrl.ctrl_conv.r_conv_y,
+      "%2d ", dut0.ctrl.ctrl_core.out_valid,
+      "%2d ", dut0.ctrl.ctrl_conv.out_valid,
+      "%2d ", dut0.ctrl.ctrl_bias.out_valid,
+      "%2d ", dut0.ctrl.ctrl_relu.out_valid,
+      "%2d ", dut0.ctrl.ctrl_pool.out_valid,
       "| ",
-      "%d ", dut0.ctrl.ctrl_pool.r_pool_x,
-      "%d ", dut0.ctrl.ctrl_pool.r_pool_y,
+      "%2d ", dut0.ctrl.ctrl_core.r_buf_pix_en,
+      "%4d ", dut0.buf_pix.read_mem0,
+      "| ",
+      "%4d ", dut0.pixel0,
+      "%4d ", dut0.pixel24,
+      "%4d ", dut0.core0.net_rdata,
+      "%4d ", dut0.core0.conv.wreg.r_weight0,
+      "%4d ", dut0.core0.conv.wreg.r_weight24,
+      "%4d ", dut0.core0.conv.tree.r_pro_short0,
+      "| ",
+      "%4d ", dut0.core0.fmap,
+      "%4d ", dut0.core0.bmap,
+      "%4d ", dut0.core0.amap,
+      "%4d ", dut0.core0.pmap,
+      "| ",
+      "%d ", dut0.serial.r_serial_re,
+      "%2d ", dut0.serial.w_serial_addr0,
+      "%2d ", dut0.serial.w_serial_addr7,
+      "%4d ", dut0.serial.in_data0,
+      "%4d ", dut0.serial.in_data7,
       "|" // }}}
     );
     #(STEP/2+1);
