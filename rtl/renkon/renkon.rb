@@ -6,19 +6,15 @@ require '../ninjin/ninjin'
 $core       = $renkon_core # Num of cores
 $core_log   = $renkon_core_log
 
-$max_size   = 448  # Corresponds to acceptable max input size
-$max_line   = 3
+$max_size   = 32  # Corresponds to acceptable max input size
+$max_line   = 5
 
-$fsize      = 3
+$fsize      = 5
 $psize      = 2
 
 $d_pixelbuf = 32  # Corresponds to acceptable max input size
 $d_poolbuf  = 32  # Corresponds to acceptable max input size
-$d_conv     = if $fsize == 5   # Delay clocks in the conv module
-                5
-              else
-                4
-              end
+$d_conv     = if $fsize == 5 then 5 else 4 end   # Delay clocks in the conv module
 $d_accum    = 1   # Delay clocks in the accumlator module
 $d_bias     = 2   # Delay clocks in the pool module
 $d_relu     = 2   # Delay clocks in the pool module

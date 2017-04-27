@@ -7,11 +7,12 @@ dist:
 	(cd ninjin; make dist)
 	sed -i -e "s/$$dist = true/$$dist = false/g" ninjin/ninjin.rb
 
-full:
+full: dist
 	rsync -av dist/ ../ip_repo/kinpira_1.0/src/
-	rsync -av dist/**.vh ../zcu102_full/zcu102_full.srcs/sources_1/imports/dist/
+	rsync -av dist/**.vh ../zcu102/zcu102.srcs/sources_1/imports/dist/
+	# rsync -av dist/**.vh ../zcu102_full/zcu102_full.srcs/sources_1/imports/dist/
 
-lite:
+lite: dist
 	rsync -av dist/ ../ip_repo/kinpira_lite_1.0/src/
 
 test: dist

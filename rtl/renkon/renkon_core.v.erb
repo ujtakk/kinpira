@@ -29,20 +29,20 @@ module renkon_core(/*AUTOARG*/);
       .out_en     (bias_oe),
       .read_bias  (net_rdata[DWIDTH-1:0]),
       .pixel_in   (fmap[DWIDTH-1:0]),
-      .pixel_out  (biased[DWIDTH-1:0]),
+      .pixel_out  (bmap[DWIDTH-1:0]),
   ); */
   renkon_bias bias(/*AUTOINST*/);
 
   /* renkon_relu AUTO_TEMPLATE (
       .out_en     (relu_oe),
-      .pixel_in   (biased[DWIDTH-1:0]),
-      .pixel_out  (actived[DWIDTH-1:0]),
+      .pixel_in   (bmap[DWIDTH-1:0]),
+      .pixel_out  (amap[DWIDTH-1:0]),
   ); */
   renkon_relu relu(/*AUTOINST*/);
 
   /* renkon_pool AUTO_TEMPLATE (
       .out_en     (pool_oe),
-      .pixel_in   (actived[DWIDTH-1:0]),
+      .pixel_in   (amap[DWIDTH-1:0]),
       .pixel_out  (pmap[DWIDTH-1:0]),
   ); */
   renkon_pool pool(/*AUTOINST*/);

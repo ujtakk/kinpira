@@ -37,10 +37,10 @@ module renkon_serial_mat(/*AUTOARG*/);
       r_serial_re <= serial_re;
 
   /* renkon_mem_serial AUTO_TEMPLATE (
-      .mem_rdata  (mem_data<%=i%>[DWIDTH-1:0]),
-      .mem_wdata  (in_data<%=i%>[DWIDTH-1:0]),
       .mem_we     (serial_we),
       .mem_addr   (w_serial_addr<%=i%>[OUTSIZE-1:0]),
+      .mem_wdata  (in_data<%=i%>[DWIDTH-1:0]),
+      .mem_rdata  (mem_data<%=i%>[DWIDTH-1:0]),
   ); */
   renkon_mem_serial mem_serial<%=i%>(/*AUTOINST*/);
   <%- end -%>

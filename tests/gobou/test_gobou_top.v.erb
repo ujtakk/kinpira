@@ -16,8 +16,7 @@ module test_gobou_top;
   <%- end -%>
 
   //clock
-  always
-  begin
+  always begin
     clk = 0;
     #(STEP/2);
     clk = 1;
@@ -26,28 +25,31 @@ module test_gobou_top;
 
   //flow
   integer i;
-  initial
-  begin
+  initial begin
     xrst = 0;
     #(STEP);
 
     xrst = 1;
     req = 0;
     img_we = 0;
-    input_addr = 0;
-    output_addr = 0;
     img_wdata = 0;
+    net_sel = 0;
     net_we = 0;
     net_addr = 0;
     net_wdata = 0;
+    in_offset = 0;
+    out_offset = 0;
+    net_offset = 0;
     total_out = 0;
     total_in = 0;
     #(STEP);
 
+    in_offset = 0;
+    out_offset = 1000;
+    net_offset = 0;
     total_out = 500;
     total_in = 800;
-    input_addr = 0;
-    output_addr = 1000;
+
     read_input_direct;
     read_weight_direct;
     #(STEP);
@@ -76,14 +78,14 @@ module test_gobou_top;
         #(STEP);
       for (i=0; i<2**IMGSIZE; i=i+1)
       begin
-        input_addr = i;
+        in_offset = i;
         #(STEP);
         img_wdata = mem_i[i];
         #(STEP);
       end
       #(STEP);
       img_we = 0;
-      input_addr = 0;
+      in_offset = 0;
       img_wdata = 0;
     end // }}}
   endtask
@@ -132,7 +134,8 @@ module test_gobou_top;
       <%- end -%>
 
       <%- for n in 0...$core -%>
-      net_we = <%=$core_log+1%>'d<%=n+1%>;
+      net_sel = <%=$core_log%>'d<%=n%>;
+      net_we = 1'b1;
       #(STEP);
       for (i=0; i<2**GOBOU_NETSIZE; i=i+1)
       begin
@@ -141,7 +144,8 @@ module test_gobou_top;
         net_wdata = mem_n<%=n%>[i];
         #(STEP);
       end
-      net_we = <%=$core_log+1%>'d0;
+      net_sel = <%=$core_log%>'d0;
+      net_we = 1'b0;
       net_addr = 0;
       net_wdata = 0;
       <%- end -%>
@@ -196,8 +200,7 @@ module test_gobou_top;
   endtask
 
   //display
-  always
-  begin
+  always begin
     #(STEP/2-1);
     $display(
       "%5d: ", $time/STEP,
@@ -207,8 +210,8 @@ module test_gobou_top;
       "%d ", xrst,
       "%d ", req,
       "%d ", img_we,
-      "%3d ", input_addr,
-      "%3d ", output_addr,
+      "%3d ", in_offset,
+      "%3d ", out_offset,
       "%d ", img_wdata,
       "%d ", net_we,
       "%3d ", net_addr,
@@ -245,9 +248,9 @@ module test_gobou_top;
       "%x ", dut0.core26.pixel,
       "%d ", dut0.core26.weight,
       "%d ", dut0.core26.bias.r_bias,
-      "%d ", dut0.core26.dotted,
-      "%d ", dut0.core26.biased,
-      "%d ", dut0.core26.result,
+      "%d ", dut0.core26.fvec,
+      "%d ", dut0.core26.bvec,
+      "%d ", dut0.core26.avec,
       "%d ", dut0.serial.r_data26,
       "|",
       "%d", dut0.mem_net26.mem[6407]

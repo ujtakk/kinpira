@@ -62,13 +62,13 @@ module renkon_conv_tree9(/*AUTOARG*/);
   assign fmap = r_fmap;
 
   <%- for i in 0...9 -%>
-  always @(posedge clk or negedge xrst)
+  always @(posedge clk)
     if(!xrst)
       r_pixel<%=i%> <= 0;
     else
       r_pixel<%=i%> <= pixel<%=i%>;
 
-  always @(posedge clk or negedge xrst)
+  always @(posedge clk)
     if(!xrst)
       r_weight<%=i%> <= 0;
     else
@@ -80,7 +80,7 @@ module renkon_conv_tree9(/*AUTOARG*/);
     r_pro_short<%=i%> <= pro_short<%=i%>;
   <%- end -%>
 
-  always @(posedge clk or negedge xrst)
+  always @(posedge clk)
     if(!xrst)
       r_fmap <= 0;
     else

@@ -68,9 +68,9 @@ module gobou_top(/*AUTOARG*/);
   gobou_mem_net mem_net<%=i%>(/*AUTOINST*/);
 
   /* gobou_core AUTO_TEMPLATE (
-      .pixel (img_rdata[DWIDTH-1:0]),
+      .pixel  (img_rdata[DWIDTH-1:0]),
       .weight (net_rdata<%=i%>[DWIDTH-1:0]),
-      .result (result<%=i%>[DWIDTH-1:0]),
+      .avec   (result<%=i%>[DWIDTH-1:0]),
   ); */
   gobou_core core<%=i%>(/*AUTOINST*/);
   <%- end -%>
