@@ -5,7 +5,7 @@ TARGET    = test/test_$(MODULE).v.erb
 INCLUDE   = $(shell git rev-parse --show-toplevel)/rtl/ninjin
 
 LINK_DIR  = .
-DIST      = ../dist
+DIST      = ../../dist
 
 include Makefile.dep
 include ../../utils/VERBMakefile

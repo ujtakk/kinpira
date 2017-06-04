@@ -5,7 +5,7 @@ VFILES     = $(VERBFILES:.v.erb=.v)
 VHFILES    = $(VHERBFILES:.vh.erb=.vh)
 
 LINK_DIR  = .
-DIST      = ../dist
+DIST      = ../../dist
 
 ifeq ($(VERBOSE),1)
   E = @true
