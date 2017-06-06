@@ -27,8 +27,8 @@ edit:
 	@nvim -O $(TARGET) $(MODULE)
 
 diff:
-	@nvim -d ../../data/renkon/output_$(shell echo $(MODULE) | cut -d. -f1).dat \
-           ../../data/renkon/true_$(shell echo $(MODULE) | cut -d. -f1).dat
+	@nvim -d output_$(shell echo $(MODULE) | cut -d. -f1).dat \
+                 true_$(shell echo $(MODULE) | cut -d. -f1).dat
 
 define DEP_IN
 ## -*- text -*-

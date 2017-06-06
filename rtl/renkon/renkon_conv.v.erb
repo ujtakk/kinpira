@@ -13,13 +13,13 @@ module renkon_conv(/*AUTOARG*/);
 
   // AUTO_CONSTANT (DWIDTH)
 
-  /* renkon_conv_tree9 AUTO_TEMPLATE (
-      <%- for i in 0...9 -%>
+  /* renkon_conv_tree25 AUTO_TEMPLATE (
+      <%- for i in 0...25 -%>
       .pixel<%=i%>  (pixel_in<%=i%>[DWIDTH-1:0]),
       <%- end -%>
       .fmap         (result[DWIDTH-1:0]),
   ); */
-  renkon_conv_tree9 tree(/*AUTOINST*/);
+  renkon_conv_tree25 tree(/*AUTOINST*/);
 
   renkon_conv_wreg wreg(/*AUTOINST*/);
 

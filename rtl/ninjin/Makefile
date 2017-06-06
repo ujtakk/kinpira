@@ -1,73 +1,43 @@
-VERBOSE    = 0
-VERBFILES  = $(wildcard *.v.erb)  $(wildcard test/*.v.erb)
-VHERBFILES = $(wildcard *.vh.erb) $(wildcard test/*.vh.erb)
-VFILES     = $(VERBFILES:.v.erb=.v)
-VHFILES    = $(VHERBFILES:.vh.erb=.vh)
+VERBOSE   = 0
+SIMULATOR = vsim
+MODULE    = kinpira_axi
+TARGET    = test/test_$(MODULE).v.erb
+INCLUDE   =
 
 LINK_DIR  = .
 DIST      = ../dist
 
-ifeq ($(VERBOSE),1)
-  E = @true
-  Q =
-else
-  E = @
-  Q = @
-endif
+include Makefile.dep
+include ../../utils/VERBMakefile
 
-ERUBY  = erb -T - $<
+.PHONY: file test clean log edit diff
 
-.PHONY: dist clean
-.SUFFIXES: .v .v.erb .vh .vh.erb
+file: $(TARGET:.v.erb=.com)
+test: $(TARGET:.v.erb=.log)
 
-dist:
-	$(MAKE) $(VFILES) $(VHFILES)
-	mkdir -p $(DIST)
-	rsync -L -avz $(VFILES) $(VHFILES) $(DIST)
+clean: clean-common
 
-.v.erb.v:
-	$(E) echo "  ERUBY (.v.erb)    $<"
-ifeq ($(VERBOSE),1)
-	$(Q) $(ERUBY) 2>&1 | tee $@
-else
-	$(Q) $(ERUBY) > $@ 2>&1
-endif
+log:
+	@nvim $(TARGET:.v.erb=.log)
 
-.vh.erb.vh:
-	$(E) echo "  ERUBY (.vh.erb)   $<"
-ifeq ($(VERBOSE),1)
-	$(Q) $(ERUBY) 2>&1 | tee $@
-else
-	$(Q) $(ERUBY) > $@ 2>&1
-endif
+com:
+	@nvim $(TARGET:.v.erb=.com)
 
-clean:
-	rm -f *~ test/*~
-	rm -f *.com test/*.com
-	rm -f *.log test/*.log
-	rm -f Makefile.dep
-	rm -f dep.in
+edit:
+	@nvim -O $(TARGET) $(MODULE)
 
-	### vsim
-	rm -f vsim.wlf transcript
-	rm -f vish_stacktrace.vstf
-	rm -rf work csrc
+diff:
+	@nvim -d output_$(shell echo $(MODULE) | cut -d. -f1).dat \
+		 true_$(shell echo $(MODULE) | cut -d. -f1).dat
 
-	### xsim
-	rm -rf xsim.dir
-	rm -f *.jou *.pb
-	rm -f *.wdb
+define DEP_IN
+## -*- text -*-
+## ignore list
 
-	### vcs
-	rm -f default.cfg vcdplus.vpd vcs.key
-	rm -rf *.daidir
+ignore_file {
+}
 
-	### iverilog
-	rm -f *.out test/*.out
-
-	rm -f $(VERBFILES:.v.erb=.v)
-	rm -f $(VERBFILES:.v.erb=.v.in)
-	rm -f $(VHERBFILES:.vh.erb=.vh)
-	rm -f $(VINFILES:.v.in=.v)
-
-	rm -f $(LINK_FILES)
+ignore_com {
+}
+endef
+export DEP_IN
