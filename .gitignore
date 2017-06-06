@@ -7,11 +7,11 @@
 *.in
 *.com
 *.vstf
-*.dat
 *.pb
 *.wdb
 *.dir
 *.jou
+*.dat
 Makefile.dep
 work/
 transcript
