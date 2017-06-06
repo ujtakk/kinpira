@@ -1,11 +1,11 @@
 VERBOSE   = 0
 SIMULATOR = vsim
-MODULE    = renkon_top.v.erb
-TARGET    = test/test_$(MODULE)
+MODULE    = renkon_top
+TARGET    = test/test_$(MODULE).v.erb
 INCLUDE   = $(shell git rev-parse --show-toplevel)/rtl/ninjin
 
 LINK_DIR  = .
-DIST      = ../dist
+DIST      = ../../dist
 
 include Makefile.dep
 include ../../utils/VERBMakefile
@@ -24,11 +24,11 @@ com:
 	@nvim $(TARGET:.v.erb=.com)
 
 edit:
-	@nvim -O $(TARGET) $(MODULE)
+	@nvim -O $(TARGET) $(MODULE).v.erb
 
 diff:
-	@nvim -d output_$(shell echo $(MODULE) | cut -d. -f1).dat \
-		 true_$(shell echo $(MODULE) | cut -d. -f1).dat
+	@nvim -d output_$(MODULE).dat \
+		 true_$(MODULE).dat
 
 define DEP_IN
 ## -*- text -*-
